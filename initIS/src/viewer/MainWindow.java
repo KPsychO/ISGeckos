@@ -43,6 +43,7 @@ public class MainWindow extends JFrame{
 	private void initComponent() {
 		menuPanel = initMenuPanel();
 		headerPanel = initHeaderPanel();
+		// Aqui pones tu mierda "SubsistemaVentanaPrincipalPene23"
 		principalPanel = new MainViewTienda("estonohacenadaporahora"); 
 	}
 
