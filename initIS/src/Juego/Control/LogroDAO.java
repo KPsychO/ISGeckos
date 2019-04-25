@@ -14,7 +14,7 @@ public class LogroDAO {
 		_obtencion = obtencion;
 	}
 	
-	public LogroDAO(JSONObject logro) {
+	public LogroDAO(@SuppressWarnings("exports") JSONObject logro) {
 		_id = logro.getString("_id");
 		_name = logro.getString("_name");
 		_obtencion = logro.getString("_obtencion");

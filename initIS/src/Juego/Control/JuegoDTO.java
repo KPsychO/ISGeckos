@@ -41,7 +41,7 @@ public class JuegoDTO {
 		
 	}
 
-	public JuegoDTO(JSONObject juego) {
+	public JuegoDTO(@SuppressWarnings("exports") JSONObject juego) {
 		
 		set_id(juego.getString("_id"));
 		_title = juego.getString("_title");
