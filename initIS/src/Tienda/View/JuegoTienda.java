@@ -1,15 +1,8 @@
 package Tienda.View;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.*;
 
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 import Juego.Control.JuegoDTO;
 
@@ -67,10 +60,10 @@ public class JuegoTienda extends JPanel {
 		JPanel auxPanel = new JPanel(new FlowLayout());
 		
 		JLabel pegi = new JLabel();
-		pegi.setText(String.valueOf(_juegoDTO.getPegi()));
+		pegi.setText(String.valueOf(_juegoDTO.get_pegi()));
 		
 		JLabel price = new JLabel();
-		price.setText(String.valueOf((float)_juegoDTO.getPrice()/100) + " $ ");
+		price.setText(String.valueOf((float)_juegoDTO.get_price()/100) + " $ ");
 		
 		auxPanel.add(new JLabel(" Pegi: "));
 		auxPanel.add(pegi);
@@ -79,7 +72,7 @@ public class JuegoTienda extends JPanel {
 		auxPanel.add(price);
 		
 		JLabel title = new JLabel();
-		title.setText(" Title: " + _juegoDTO.getTitle());
+		title.setText(" Title: " + _juegoDTO.get_title());
 		
 		_contents.add(title, BorderLayout.NORTH);
 		_contents.add(auxPanel, BorderLayout.SOUTH);
@@ -93,7 +86,7 @@ public class JuegoTienda extends JPanel {
 		_desc.setMinimumSize(new Dimension(200, 100));
 		_desc.setPreferredSize(new Dimension(200, 100));
 		JTextArea tArea = new JTextArea();
-		tArea.setText(_juegoDTO.getDesc());
+		tArea.setText(_juegoDTO.get_desc());
 		tArea.setEditable(false);
 		
 		JScrollPane sPane = new JScrollPane(tArea);

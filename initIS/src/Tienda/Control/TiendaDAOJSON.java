@@ -6,9 +6,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.json.JSONTokener;
+import org.json.*;
 
 import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
@@ -17,7 +15,6 @@ public class TiendaDAOJSON implements TiendaDAO {
 
 	@Override
 	public List<JuegoDTO> getPublishedGames() {
-		
 		List<JuegoDTO> list = new ArrayList<JuegoDTO>();
 		try {
 			InputStream input = new FileInputStream("./src/resources/PublishedGames.txt");
@@ -94,7 +91,8 @@ public class TiendaDAOJSON implements TiendaDAO {
 			e.printStackTrace();
 		}
 		
-		for(UsuarioDTO u : list) {
+		//Si no se encuentra se devuelve 0?
+		for (UsuarioDTO u : list) {
 			
 			if (u.getId().equals(user_id))
 				ret = u.getBalance();

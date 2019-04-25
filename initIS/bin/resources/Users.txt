@@ -1,0 +1,92 @@
+[
+  {
+    "_id": "5cc0768a21870543d18fd7f4",
+    "_username": "veniam",
+    "_balance": 183282360
+  },
+  {
+    "_id": "5cc0768a3e2a4ffa08659dad",
+    "_username": "est",
+    "_balance": 62767384
+  },
+  {
+    "_id": "5cc0768a939d5953ec7285b8",
+    "_username": "dolor",
+    "_balance": 3744929
+  },
+  {
+    "_id": "5cc0768ab22e5383850c929d",
+    "_username": "ad",
+    "_balance": 193729072
+  },
+  {
+    "_id": "5cc0768a7b930510a48feb78",
+    "_username": "voluptate",
+    "_balance": 15199981
+  },
+  {
+    "_id": "5cc0768a2abe7f9bb17d2ca7",
+    "_username": "et",
+    "_balance": 7485440
+  },
+  {
+    "_id": "5cc0768a7a82452ec53e36d8",
+    "_username": "elit",
+    "_balance": 171151806
+  },
+  {
+    "_id": "5cc0768aab91074b6ad631e4",
+    "_username": "culpa",
+    "_balance": 1870069
+  },
+  {
+    "_id": "5cc0768a0c7e0d14924bd105",
+    "_username": "Lorem",
+    "_balance": 118571244
+  },
+  {
+    "_id": "5cc0768adeba739a9e172703",
+    "_username": "elit",
+    "_balance": 46677240
+  },
+  {
+    "_id": "5cc0768a7c4620461204be33",
+    "_username": "sunt",
+    "_balance": 185823517
+  },
+  {
+    "_id": "5cc0768ace13441d8df24d81",
+    "_username": "occaecat",
+    "_balance": 85506289
+  },
+  {
+    "_id": "5cc0768a7e375f842b5d7aca",
+    "_username": "pariatur",
+    "_balance": 7486186
+  },
+  {
+    "_id": "5cc0768a7b036a614654906f",
+    "_username": "reprehenderit",
+    "_balance": 157011722
+  },
+  {
+    "_id": "5cc0768a77daeb9d1fe791db",
+    "_username": "pariatur",
+    "_balance": 106499337
+  },
+  {
+    "_id": "5cc0768af2de7de9cd5b3c70",
+    "_username": "est",
+    "_balance": 119914984
+  },
+  {
+    "_id": "5cc0768ad32bd218a0e6da21",
+    "_username": "nostrud",
+    "_balance": 119588453
+  },
+  {
+    "_id": "5cc0768a6cd6f1cd6302d302",
+    "_username": "mollit",
+    "_balance": 169405350
+  }
+] 
