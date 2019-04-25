@@ -10,9 +10,9 @@ public class TiendaDTO {
 	// Clase transfer para el tratamiento de datos necesarios para el objeto tienda
 	// Contiene los metodos CRUD necesarios
 	
-	String user_id;
-	List<JuegoDTO> juegosEnTienda = new ArrayList<JuegoDTO>();
-	TiendaDAO dao;
+	private String user_id;
+	private List<JuegoDTO> juegosEnTienda = new ArrayList<JuegoDTO>();
+	private TiendaDAO dao;
 	
 	public TiendaDTO(String user_id) {
 		
