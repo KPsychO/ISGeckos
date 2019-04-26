@@ -119,7 +119,7 @@ public class MainWindow extends JFrame{
 		panel.setLayout(new BoxLayout(panel,BoxLayout.X_AXIS));
 		JPanel aux = new JPanel();
 		aux.setLayout(new BoxLayout(aux,BoxLayout.Y_AXIS));
-		JButton buttonIcon = new JButton(new ImageIcon("images.png"));
+		JButton buttonIcon = new JButton(new ImageIcon("./src/resources/usuario.png"));
 		aux.add(buttonIcon);
 		aux.add(new JLabel((" ")));
 		panel.add(aux);

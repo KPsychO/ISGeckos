@@ -18,6 +18,8 @@ import javax.swing.border.EtchedBorder;
 import Juego.Control.JuegoDTO;
 
 public class MainViewJuego extends JPanel{
+
+	private static final long serialVersionUID = 1L;
 	
 	JuegoDTO _juegoDTO;
 	JLabel _icon;
