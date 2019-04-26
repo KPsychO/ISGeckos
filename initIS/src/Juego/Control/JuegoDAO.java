@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface JuegoDAO {
 	
-	public abstract List<LogroDAO> getLogros(String _id);
+	public abstract List<LogroDTO> getLogros(String _id);
 	
 }
