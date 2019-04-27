@@ -1,10 +1,14 @@
 package Tienda.View;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
 import Juego.Control.JuegoDTO;
+import Juego.View.MainViewJuego;
+import viewer.MainWindow;
 
 public class JuegoTienda extends JPanel {
 
@@ -12,13 +16,16 @@ public class JuegoTienda extends JPanel {
 	
 	JuegoDTO _juegoDTO;
 	
-	JLabel _icon;
+	JButton _icon;
 	JPanel _contents;
 	JPanel _desc;
+	
+	
 	
 	public JuegoTienda(JuegoDTO juego) {
 		
 		_juegoDTO = juego;
+		
 		initGUI();
 		this.setVisible(true);
 		
@@ -50,8 +57,16 @@ public class JuegoTienda extends JPanel {
 	
 	private void createIcon() {
 		
-		_icon = new JLabel(new ImageIcon("./src/resources/game_icon.jpg"));
+		_icon = new JButton(new ImageIcon("./src/resources/game_icon.jpg"));
+		_icon.addActionListener(new CargarButton());
 		
+	}
+	
+	class CargarButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			System.out.println(_juegoDTO.get_title());
+			firePropertyChange("HI", null, _juegoDTO);
+		}
 	}
 	
 	private void createContents() {
@@ -90,6 +105,8 @@ public class JuegoTienda extends JPanel {
 		tArea.setEditable(false);
 		
 		JScrollPane sPane = new JScrollPane(tArea);
+		
+
 		_desc.add(sPane, BorderLayout.CENTER);
 		
 	}

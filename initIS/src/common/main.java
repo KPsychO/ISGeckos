@@ -14,7 +14,6 @@ public class main {
 		
 		// Aqui pones tu mierda DAO para cojer datos
 		TiendaDAO tiendaDAO = new TiendaDAOJSON();
-		JSONObject js = new JSONObject();
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {

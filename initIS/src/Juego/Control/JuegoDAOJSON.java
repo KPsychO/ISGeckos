@@ -14,8 +14,8 @@ public class JuegoDAOJSON implements JuegoDAO{
 
 	@Override
 	//Necesitamos un JSON con todos los logros, con el id del juego al que pertenecen
-	public List<LogroDAO> getLogros(String _id) {
-		ArrayList<LogroDAO> logros = new ArrayList<LogroDAO>();
+	public List<LogroDTO> getLogros(String _id) {
+		ArrayList<LogroDTO> logros = new ArrayList<LogroDTO>();
 		InputStream input;
 		try {
 			input = new FileInputStream("./src/resources/PublishedGames.txt");
@@ -27,7 +27,8 @@ public class JuegoDAOJSON implements JuegoDAO{
 				
 				//Comprobamos si el logro es del juego actual
 				if (logro.getString("_id").equals(_id)) {
-					logros.add(new LogroDAO(logro));
+					LogroDAOJSON ldj = new LogroDAOJSON();
+					logros.add(ldj.getLogro(logro));
 				}
 				
 			}

@@ -14,7 +14,7 @@ public class JuegoDTO {
 	private int _pegi;
 	private int _price;
 	private List<String> _genres;
-	private List<LogroDAO> _achievements;
+	private List<LogroDTO> _achievements;
 	
 	JuegoDAO dao;
 	
@@ -117,11 +117,11 @@ public class JuegoDTO {
 		this._genres = _genres;
 	}
 
-	public List<LogroDAO> get_achievements() {
+	public List<LogroDTO> get_achievements() {
 		return _achievements;
 	}
 
-	public void set_achievements(List<LogroDAO> _achievements) {
+	public void set_achievements(List<LogroDTO> _achievements) {
 		this._achievements = _achievements;
 	}
 	

@@ -2,55 +2,8 @@ package Juego.Control;
 
 import org.json.JSONObject;
 
-public class LogroDAO {
+public interface LogroDAO{
+
+	public abstract LogroDTO getLogro(JSONObject logro);
 	
-	private String _id;
-	private String _name;
-	private String _obtencion;
-	
-	public LogroDAO(String id, String name, String obtencion) {
-		_id = id;
-		_name = name;
-		_obtencion = obtencion;
-	}
-	
-	public LogroDAO(@SuppressWarnings("exports") JSONObject logro) {
-		_id = logro.getString("_id");
-		_name = logro.getString("_name");
-		_obtencion = logro.getString("_obtencion");
-	}
-	
-	public void updateName(String name) {
-		if (name != null)
-			_name = name;
-	}
-	
-	public void updateObtencion(String obtencion) {
-		if (obtencion != null)
-			_obtencion = obtencion;
-	}
-
-	public String get_id() {
-		return _id;
-	}
-
-	public void set_id(String _id) {
-		this._id = _id;
-	}
-
-	public String get_name() {
-		return _name;
-	}
-
-	public void set_name(String _name) {
-		this._name = _name;
-	}
-
-	public String get_obtencion() {
-		return _obtencion;
-	}
-
-	public void set_obtencion(String _obtencion) {
-		this._obtencion = _obtencion;
-	}
 }

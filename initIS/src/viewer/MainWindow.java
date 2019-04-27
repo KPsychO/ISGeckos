@@ -2,6 +2,10 @@ package viewer;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -10,15 +14,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Juego.Control.JuegoDTO;
+import Juego.View.MainViewJuego;
 import Tienda.View.MainViewTienda;
 
 public class MainWindow extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	
-	JPanel menuPanel;
-	JPanel headerPanel;
-	JPanel principalPanel;
+	private JPanel menuPanel;
+	private JPanel headerPanel;
+	private JPanel principalPanel;
 	
 	public MainWindow() {
 		super("Gecko");
@@ -27,10 +33,7 @@ public class MainWindow extends JFrame{
 		
 		initComponent();
 		
-		this.getContentPane().setLayout(new BorderLayout());
-		this.getContentPane().add(headerPanel, BorderLayout.NORTH);
-		this.getContentPane().add(menuPanel, BorderLayout.WEST);
-		this.getContentPane().add(principalPanel, BorderLayout.CENTER);
+		ponCosas();
 		
 		/*
 		JLabel lnorth = new JLabel("Region norte");
@@ -39,12 +42,43 @@ public class MainWindow extends JFrame{
 		this.getContentPane().add(lnorth, BorderLayout.NORTH);
 		*/
 	}
+	
+	private void ponCosas() {
+		
+		this.getContentPane().removeAll();
+		
+		this.getContentPane().setLayout(new BorderLayout());
+		this.getContentPane().add(headerPanel, BorderLayout.NORTH);
+		this.getContentPane().add(menuPanel, BorderLayout.WEST);
+		this.getContentPane().add(principalPanel, BorderLayout.CENTER);
+		
+		principalPanel.addPropertyChangeListener(new PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+            	try {
+            		principalPanel = new MainViewJuego((JuegoDTO)e.getNewValue());
+        			reinicia();
+            	}
+            	catch(Exception e1) {
+            		;
+            	}
+            }
+        });
+		
+	}
+	
+	public void reinicia() {
+		//this.removeAll();
+		ponCosas();
+		
+		this.validate();
+	}
 
 	private void initComponent() {
 		menuPanel = initMenuPanel();
 		headerPanel = initHeaderPanel();
-		// Aqui pones tu mierda "SubsistemaVentanaPrincipalPene23"
-		principalPanel = new MainViewTienda("estonohacenadaporahora"); 
+		principalPanel = new MainViewTienda("");
 	}
 
 	private JPanel initMenuPanel() {
@@ -54,6 +88,7 @@ public class MainWindow extends JFrame{
 		panel.setLayout(la);
 		
 		JButton buttonTienda = new JButton("Tienda");
+		buttonTienda.addActionListener(new TiendaButton());
 		panel.add(buttonTienda);
 		buttonTienda.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
@@ -91,6 +126,14 @@ public class MainWindow extends JFrame{
 		panel.add(new JLabel(" "));
 		panel.add(new JLabel("Usuario"));
 		return panel;
+	}
+	
+	class TiendaButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			
+			principalPanel = new MainViewTienda("");
+			reinicia();
+		}
 	}
 	
 }
