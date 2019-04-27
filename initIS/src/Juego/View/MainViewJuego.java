@@ -1,8 +1,6 @@
 package Juego.View;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -12,7 +10,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
 import Juego.Control.JuegoDTO;
@@ -76,7 +80,7 @@ public class MainViewJuego extends JPanel{
 		FlowLayout dos = new FlowLayout();
 		JPanel precioycomprar = new JPanel();
 		JLabel precio = new JLabel("Comprar");
-		JButton comprar = new JButton(Double.toString(_juegoDTO.get_price() / 100.0) + " €");
+		JButton comprar = new JButton(Double.toString(_juegoDTO.get_price() / 100.0) + " ï¿½");
 		precioycomprar.setLayout(dos);
 		precioycomprar.add(precio);
 		precioycomprar.add(comprar);

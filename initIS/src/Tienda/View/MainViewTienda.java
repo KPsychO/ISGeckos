@@ -6,19 +6,17 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 
 import Juego.Control.JuegoDTO;
 import Tienda.Control.TiendaDTO;
-import viewer.MainWindow;
 
 public class MainViewTienda extends JPanel{
 
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
 	private boolean _click;
 	
 	TiendaDTO _tiendaDTO;
