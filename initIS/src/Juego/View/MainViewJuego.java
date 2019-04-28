@@ -1,8 +1,6 @@
 package Juego.View;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -12,7 +10,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
 import Juego.Control.JuegoDTO;
@@ -76,17 +80,17 @@ public class MainViewJuego extends JPanel{
 		FlowLayout dos = new FlowLayout();
 		JPanel precioycomprar = new JPanel();
 		JLabel precio = new JLabel("Comprar");
-		JButton comprar = new JButton(Double.toString(_juegoDTO.get_price() / 100.0) + " €");
+		JButton comprar = new JButton(Double.toString(_juegoDTO.get_price() / 100.0) + " $ ");
 		precioycomprar.setLayout(dos);
 		precioycomprar.add(precio);
 		precioycomprar.add(comprar);
 		
-        JTextArea texto = new JTextArea(20, 25);
-        texto.setWrapStyleWord(true);
-        texto.setLineWrap(true);
+        JTextArea descLong = new JTextArea(20, 25);
+        descLong.setWrapStyleWord(true);
+        descLong.setLineWrap(true);
 
-        texto.append(_juegoDTO.get_desc());
-        JScrollPane scroll = new JScrollPane(texto, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        descLong.append(_juegoDTO.get_descLong());
+        JScrollPane scroll = new JScrollPane(descLong, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         
         izq.setLayout(layout);
         izq.add(icon);
@@ -107,29 +111,40 @@ public class MainViewJuego extends JPanel{
         der.setLayout(layoutDer);
         GridLayout derecha = new GridLayout(3, 1);
         
-        JTextArea console = new JTextArea(15, 15);
-        console.append(_juegoDTO.get_desc());
-        console.setWrapStyleWord(true);
-        console.setLineWrap(true);
+        JTextArea descShort = new JTextArea(15, 15);
+        descShort.append(_juegoDTO.get_descShort());
+        descShort.setWrapStyleWord(true);
+        descShort.setLineWrap(true);
         JPanel mainPanel = new JPanel(new BorderLayout());
-        JScrollPane vertical = new JScrollPane(console, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        JScrollPane vertical = new JScrollPane(descShort, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         vertical.setPreferredSize(new Dimension(200, 100));
         mainPanel.add(vertical);
 
-        Date date = Calendar.getInstance().getTime();  
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-hh-dd hh:mm:ss");  
-        String strDate = dateFormat.format(date);  
-        JLabel fecha = new JLabel(strDate);
+        JLabel fecha = new JLabel(_juegoDTO.get_date());
         fecha.setHorizontalAlignment(JLabel.CENTER);
         fecha.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         
-        JLabel etiquetas = new JLabel("Etiquetas");
-        etiquetas.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+        JPanel generos = new JPanel();
+        BoxLayout genL = new BoxLayout(generos, BoxLayout.Y_AXIS);
+        generos.setLayout(genL);
+        
+        JLabel tituloGeneros = new JLabel("Generos");
+        tituloGeneros.setFont(new Font("Calibri", Font.BOLD, 16));
+        generos.add(tituloGeneros);
+        
+        JPanel etiquetas = new JPanel();
+        for (String et : _juegoDTO.get_genres()) {
+        	JLabel jl = new JLabel(et);
+        	jl.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+        	etiquetas.add(jl);
+        }
+        generos.add(etiquetas);
+        generos.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		
 		der.setLayout(derecha);
 		der.add(mainPanel);
 		der.add(fecha);
-		der.add(etiquetas);
+		der.add(generos);
 		
 		_rightS = der;
 

@@ -13,7 +13,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import Juego.Control.JuegoDTO;
 import Juego.View.MainViewJuego;
 import Tienda.View.MainViewTienda;
@@ -83,6 +82,7 @@ public class MainWindow extends JFrame{
 
 	private JPanel initMenuPanel() {
 		JPanel panel = new JPanel();
+		
 
 		BoxLayout la = new BoxLayout(panel, BoxLayout.Y_AXIS);
 		panel.setLayout(la);

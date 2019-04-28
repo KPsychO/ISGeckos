@@ -1,14 +1,20 @@
 package Tienda.View;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 import Juego.Control.JuegoDTO;
-import Juego.View.MainViewJuego;
-import viewer.MainWindow;
 
 public class JuegoTienda extends JPanel {
 
@@ -64,7 +70,7 @@ public class JuegoTienda extends JPanel {
 	
 	class CargarButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			System.out.println(_juegoDTO.get_title());
+			// System.out.println(_juegoDTO.get_title());
 			firePropertyChange("HI", null, _juegoDTO);
 		}
 	}
@@ -101,7 +107,7 @@ public class JuegoTienda extends JPanel {
 		_desc.setMinimumSize(new Dimension(200, 100));
 		_desc.setPreferredSize(new Dimension(200, 100));
 		JTextArea tArea = new JTextArea();
-		tArea.setText(_juegoDTO.get_desc());
+		tArea.setText(_juegoDTO.get_descShort());
 		tArea.setEditable(false);
 		
 		JScrollPane sPane = new JScrollPane(tArea);

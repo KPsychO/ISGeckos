@@ -1,0 +1,29 @@
+Para generarlos, ir a: https://www.json-generator.com/
+
+[
+'{{repeat(30)}}',
+  {
+    _id: '{{objectId()}}',
+    _title: '{{lorem(1, "words")}}',
+    _price: '{{integer(1, 20000)}}',
+    _pegi: '{{integer(3, 18)}}',
+    _descLong: '{{lorem(100, "words")}}',
+    _descShort: '{{lorem(20, "words")}}',
+    _date: '{{date(new Date(1980, 0, 1), new Date(), "YYYY-MM-dd")}}',
+    _version: '{{integer(3, 18)}}',
+    _versionNotes: '{{lorem(20, "words")}}',
+
+    _genres: [
+      '{{repeat(1, 7)}}',
+      '{{random("action", "adventure", "role-playing", "simulation", "strategy", "sports", "puzzle", "idle")}}'
+    ],
+    
+    _achievements: [
+       '{{repeat(5, 20)}}',
+      {
+        _name: '{{lorem(1, "words")}}',
+        _getMode: '{{lorem(integer(15, 30), "words")}}'
+      }
+    ]
+  }
+]
