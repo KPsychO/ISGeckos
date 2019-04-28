@@ -17,18 +17,19 @@ public class TiendaDAOJSON implements TiendaDAO {
 	public List<JuegoDTO> getPublishedGames() {
 		List<JuegoDTO> list = new ArrayList<JuegoDTO>();
 		try {
-			InputStream input = new FileInputStream("./src/resources/PublishedGames.txt");
+			InputStream input = new FileInputStream("./src/resources/NewGames.txt");
 			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
 			for (Object o : jsonInput) {
-				
+				/*
 				JSONObject oJ = new JSONObject(new JSONTokener(o.toString()));
 				String id = oJ.get("_id").toString();
 				String title = oJ.get("_title").toString();
 				int price = Integer.valueOf(oJ.get("_price").toString());
 				int pegi = Integer.valueOf(oJ.get("_pegi").toString());
 				String desc = oJ.get("_desc").toString();
-				
-				list.add(new JuegoDTO(id, title, price, pegi, desc));
+				*/
+				JSONObject oJ = new JSONObject(new JSONTokener(o.toString()));
+				list.add(new JuegoDTO(oJ));
 				
 			}
 			
@@ -44,18 +45,19 @@ public class TiendaDAOJSON implements TiendaDAO {
 		
 		List<JuegoDTO> list = new ArrayList<JuegoDTO>();
 		try {
-			InputStream input = new FileInputStream("./src/resources/OwnedGames.txt");
+			InputStream input = new FileInputStream("./src/resources/NewGames.txt");
 			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
 			for (Object o : jsonInput) {
-				
+				/*
 				JSONObject oJ = new JSONObject(new JSONTokener(o.toString()));
 				String id = oJ.get("_id").toString();
 				String title = oJ.get("_title").toString();
 				int price = Integer.valueOf(oJ.get("_price").toString());
 				int pegi = Integer.valueOf(oJ.get("_pegi").toString());
 				String desc = oJ.get("_desc").toString();
-				
-				list.add(new JuegoDTO(id, title, price, pegi, desc));
+				*/
+				JSONObject oJ = new JSONObject(new JSONTokener(o.toString()));
+				list.add(new JuegoDTO(oJ));
 				
 			}
 			

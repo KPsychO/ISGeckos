@@ -107,7 +107,7 @@ public class JuegoTienda extends JPanel {
 		_desc.setMinimumSize(new Dimension(200, 100));
 		_desc.setPreferredSize(new Dimension(200, 100));
 		JTextArea tArea = new JTextArea();
-		tArea.setText(_juegoDTO.get_desc());
+		tArea.setText(_juegoDTO.get_descShort());
 		tArea.setEditable(false);
 		
 		JScrollPane sPane = new JScrollPane(tArea);
