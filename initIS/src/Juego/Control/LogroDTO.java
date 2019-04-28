@@ -1,7 +1,5 @@
 package Juego.Control;
 
-import org.json.JSONObject;
-
 public class LogroDTO {
 	
 	private String _name;
