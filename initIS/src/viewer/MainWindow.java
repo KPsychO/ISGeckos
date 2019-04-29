@@ -13,8 +13,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import Formulario.View.ViewFormulario;
 import Juego.Control.JuegoDTO;
 import Juego.View.MainViewJuego;
 import Tienda.View.MainViewTienda;
@@ -58,7 +56,6 @@ public class MainWindow extends JFrame{
             @Override
             public void propertyChange(PropertyChangeEvent e) {
             	try {
-            		//principalPanel = new ViewFormulario();
             		principalPanel = new MainViewJuego((JuegoDTO)e.getNewValue());
         			reinicia();
             	}
@@ -85,6 +82,7 @@ public class MainWindow extends JFrame{
 
 	private JPanel initMenuPanel() {
 		JPanel panel = new JPanel();
+		
 
 		BoxLayout la = new BoxLayout(panel, BoxLayout.Y_AXIS);
 		panel.setLayout(la);
@@ -110,15 +108,6 @@ public class MainWindow extends JFrame{
 		JButton buttonSoporte = new JButton("Soporte");
 		buttonSoporte.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(buttonSoporte);
-		
-		panel.add(new JLabel(" "));
-		
-		JButton buttonFormulario = new JButton("Formulario");
-		buttonFormulario.setAlignmentX(Component.CENTER_ALIGNMENT);
-		buttonFormulario.addActionListener(new FormularioButton());
-		panel.add(buttonFormulario);
-		
-		
 
 		panel.add(new JLabel(" "));
 
@@ -130,7 +119,7 @@ public class MainWindow extends JFrame{
 		panel.setLayout(new BoxLayout(panel,BoxLayout.X_AXIS));
 		JPanel aux = new JPanel();
 		aux.setLayout(new BoxLayout(aux,BoxLayout.Y_AXIS));
-		JButton buttonIcon = new JButton(new ImageIcon("images.png"));
+		JButton buttonIcon = new JButton(new ImageIcon("./src/resources/usuario.png"));
 		aux.add(buttonIcon);
 		aux.add(new JLabel((" ")));
 		panel.add(aux);
@@ -143,14 +132,6 @@ public class MainWindow extends JFrame{
 		public void actionPerformed(ActionEvent arg0) {
 			
 			principalPanel = new MainViewTienda("");
-			reinicia();
-		}
-	}
-	
-	class FormularioButton implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			
-			principalPanel = new ViewFormulario();
 			reinicia();
 		}
 	}
