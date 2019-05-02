@@ -55,16 +55,21 @@ public class MainWindow extends JFrame{
 		this.getContentPane().add(principalPanel, BorderLayout.CENTER);
 		
 		principalPanel.addPropertyChangeListener(new PropertyChangeListener() {
-
             @Override
             public void propertyChange(PropertyChangeEvent e) {
             	try {
-            		//principalPanel = new ViewFormulario();
-            		principalPanel = new MainViewJuego((JuegoDTO)e.getNewValue());
-        			reinicia();
+            		if (e.getPropertyName().equals("JuegoTienda")) {
+            			principalPanel = new MainViewJuego((JuegoDTO)e.getNewValue());
+            			reinicia();
+            		}
+            		else if (e.getPropertyName().equals("SoporteCancelar")) {
+            			principalPanel = new MainViewTienda("");
+            			reinicia();
+            		}
+            		
             	}
             	catch(Exception e1) {
-            		;
+            		//Nada
             	}
             }
         });
@@ -72,7 +77,6 @@ public class MainWindow extends JFrame{
 	}
 	
 	public void reinicia() {
-		//this.removeAll();
 		ponCosas();
 		
 		this.validate();

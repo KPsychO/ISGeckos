@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
 
 import IncidenciasMejoras.Control.IncidenciasDAOJSON;
 import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
@@ -34,6 +35,7 @@ public class MainViewIncidenciasJuego extends JPanel implements ActionListener{
 		imJSON = new IncidenciasDAOJSON();
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		initGUI();
+		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 	}
 	
 	private void initGUI() {
