@@ -15,7 +15,9 @@ import javax.swing.JSeparator;
 import Formulario.Control.FormularioDTO;
 import viewer.MainWindow;
 
-public class MainViewPublicacion extends JPanel{
+
+//Que se pretende hacer con esta clase?
+public class MainViewPublicacion extends JPanel {
 	
 	
 	

@@ -1,10 +1,16 @@
 package Formulario.Control;
 
 import java.util.List;
+
+import org.json.JSONArray;
+
 import Formulario.Control.FormularioDTO;
 
 public interface FormularioDAO {
-	public abstract List<FormularioDTO>getFormularies();
-	public abstract boolean insertFormulary(List<FormularioDTO> list, FormularioDTO newForm);
+	
+	public abstract JSONArray getFormularies();
+	
+	//Por que esto era un boolean?
+	public abstract void insertFormulary(FormularioDTO newForm);
 	
 }

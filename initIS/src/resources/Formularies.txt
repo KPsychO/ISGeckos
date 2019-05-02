@@ -1,0 +1,14 @@
+[{
+    "_date": "2019-05-02",
+    "_price": 123,
+    "_descLong": "Un bonito pene flacido va a parar a un monte",
+    "_title": "Pene flacido",
+    "_pegi": 3,
+    "_genres": [
+        "action",
+        "role-playing",
+        "simulation"
+    ],
+    "_id": "bc7888af-44b9-428e-99e9-b0fd8891c8f7",
+    "_descShort": "Un bonito pene flacido"
+}]
