@@ -18,6 +18,7 @@ import Formulario.View.ViewFormulario;
 import Juego.Control.JuegoDTO;
 import Juego.View.MainViewJuego;
 import Tienda.View.MainViewTienda;
+import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 
 public class MainWindow extends JFrame{
 
@@ -108,6 +109,7 @@ public class MainWindow extends JFrame{
 		panel.add(new JLabel(" "));
 
 		JButton buttonSoporte = new JButton("Soporte");
+		buttonSoporte.addActionListener(new SoporteButton());
 		buttonSoporte.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(buttonSoporte);
 		
@@ -151,6 +153,14 @@ public class MainWindow extends JFrame{
 		public void actionPerformed(ActionEvent arg0) {
 			
 			principalPanel = new ViewFormulario();
+			reinicia();
+		}
+	}
+	
+	class SoporteButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			
+			principalPanel = new MainViewIncidenciasJugador("");
 			reinicia();
 		}
 	}
