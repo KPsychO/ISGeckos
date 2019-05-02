@@ -80,17 +80,17 @@ public class MainViewJuego extends JPanel{
 		FlowLayout dos = new FlowLayout();
 		JPanel precioycomprar = new JPanel();
 		JLabel precio = new JLabel("Comprar");
-		JButton comprar = new JButton(Double.toString(_juegoDTO.get_price() / 100.0) + " $ ");
+		JButton comprar = new JButton(Double.toString(_juegoDTO.get_price() / 100.0) + " �");
 		precioycomprar.setLayout(dos);
 		precioycomprar.add(precio);
 		precioycomprar.add(comprar);
 		
-        JTextArea descLong = new JTextArea(20, 25);
-        descLong.setWrapStyleWord(true);
-        descLong.setLineWrap(true);
+        JTextArea texto = new JTextArea(20, 25);
+        texto.setWrapStyleWord(true);
+        texto.setLineWrap(true);
 
-        descLong.append(_juegoDTO.get_descLong());
-        JScrollPane scroll = new JScrollPane(descLong, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        texto.append(_juegoDTO.get_desc());
+        JScrollPane scroll = new JScrollPane(texto, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         
         izq.setLayout(layout);
         izq.add(icon);
@@ -111,40 +111,29 @@ public class MainViewJuego extends JPanel{
         der.setLayout(layoutDer);
         GridLayout derecha = new GridLayout(3, 1);
         
-        JTextArea descShort = new JTextArea(15, 15);
-        descShort.append(_juegoDTO.get_descShort());
-        descShort.setWrapStyleWord(true);
-        descShort.setLineWrap(true);
+        JTextArea console = new JTextArea(15, 15);
+        console.append(_juegoDTO.get_desc());
+        console.setWrapStyleWord(true);
+        console.setLineWrap(true);
         JPanel mainPanel = new JPanel(new BorderLayout());
-        JScrollPane vertical = new JScrollPane(descShort, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        JScrollPane vertical = new JScrollPane(console, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         vertical.setPreferredSize(new Dimension(200, 100));
         mainPanel.add(vertical);
 
-        JLabel fecha = new JLabel(_juegoDTO.get_date());
+        Date date = Calendar.getInstance().getTime();  
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-hh-dd hh:mm:ss");  
+        String strDate = dateFormat.format(date);  
+        JLabel fecha = new JLabel(strDate);
         fecha.setHorizontalAlignment(JLabel.CENTER);
         fecha.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         
-        JPanel generos = new JPanel();
-        BoxLayout genL = new BoxLayout(generos, BoxLayout.Y_AXIS);
-        generos.setLayout(genL);
-        
-        JLabel tituloGeneros = new JLabel("Generos");
-        tituloGeneros.setFont(new Font("Calibri", Font.BOLD, 16));
-        generos.add(tituloGeneros);
-        
-        JPanel etiquetas = new JPanel();
-        for (String et : _juegoDTO.get_genres()) {
-        	JLabel jl = new JLabel(et);
-        	jl.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-        	etiquetas.add(jl);
-        }
-        generos.add(etiquetas);
-        generos.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+        JLabel etiquetas = new JLabel("Etiquetas");
+        etiquetas.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		
 		der.setLayout(derecha);
 		der.add(mainPanel);
 		der.add(fecha);
-		der.add(generos);
+		der.add(etiquetas);
 		
 		_rightS = der;
 

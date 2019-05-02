@@ -8,11 +8,9 @@ public class JuegoDTO {
 
 	private String _id;
 	private String _title;
-	private String _descLong;
-	private String _descShort;
+	private String _desc;
+	private String _version;
 	private String _notes;
-	private String _date;
-	private int _version;
 	private int _pegi;
 	private int _price;
 	private List<String> _genres;
@@ -23,51 +21,38 @@ public class JuegoDTO {
 	// la imagen "thumb"
 	
 
-	public JuegoDTO(String id, String title, int price, int pegi, int version, 
-			String descL, String descS, List<String> genres, List<LogroDTO> achievements) {
+	public JuegoDTO(String id, String title, int price, int pegi, String desc) {
 		
 		dao = new JuegoDAOJSON();
-		crearJuego(id, title, price, pegi, version, descL, descS, genres, achievements);
+		crearJuego(id, title, price, pegi, desc);
 
 	}
 	
-	private void crearJuego(String id, String title, int price, int pegi, int version, 
-			String descL, String descS, List<String> genres, List<LogroDTO> achievements) {
+	private void crearJuego(String id, String title, int price, int pegi, String desc) {
 		
-		_id = id;
+		set_id(id);
 		_title = title;
-		_descLong = descL;
-		_descShort = descS;
+		_desc = desc;
 		_pegi = pegi;
 		_price = price;
-		_version = version;
-		_genres = genres;
-		_achievements = achievements;
+		_genres = new ArrayList<String>();
+		//_achievements = dao.getLogros(get_id()); //Hay que hacer los JSON de logros
+		_genres = new ArrayList<String>(); //Como hacemos los generos de los games?
 		
 	}
 
 	public JuegoDTO(@SuppressWarnings("exports") JSONObject juego) {
-		dao = new JuegoDAOJSON();
 		
-		_id = juego.getString("_id");
+		set_id(juego.getString("_id"));
 		_title = juego.getString("_title");
-		_descLong = juego.getString("_descLong");
-		_descShort = juego.getString("_descShort");
-		
-		//Alguien puede mirar porque coño esto no funciona con el nuevo JSon??
-		//_pegi = Integer.getInteger(juego.getString("_pegi"));
-		//_price = Integer.getInteger(juego.getString("_price"));
-		///_version = Integer.getInteger(juego.getString("_version"));
-		
-		_pegi = (int)juego.get("_pegi");
-		_price = (int)juego.get("_price");
-		_version = (int)juego.get("_version");
-		_date = juego.getString("_date");
-		_genres = dao.getGenres(juego.getJSONArray("_genres"));
-		_achievements = dao.getLogros(juego.getJSONArray("_achievements"));
+		_desc = juego.getString("_desc");
+		_pegi = Integer.getInteger(juego.getString("_pegi"));
+		_price = Integer.getInteger(juego.getString("_price"));
+		_genres = new ArrayList<String>();
+		//_achievements = dao.getLogros(get_id());
 		
 	}
-
+	
 	public String get_id() {
 		return _id;
 	}
@@ -84,20 +69,20 @@ public class JuegoDTO {
 		this._title = _title;
 	}
 
-	public String get_descLong() {
-		return _descLong;
+	public String get_desc() {
+		return _desc;
 	}
 
-	public void set_descLong(String _descLong) {
-		this._descLong = _descLong;
+	public void set_desc(String _desc) {
+		this._desc = _desc;
 	}
 
-	public String get_descShort() {
-		return _descShort;
+	public String get_version() {
+		return _version;
 	}
 
-	public void set_descShort(String _descShort) {
-		this._descShort = _descShort;
+	public void set_version(String _version) {
+		this._version = _version;
 	}
 
 	public String get_notes() {
@@ -106,22 +91,6 @@ public class JuegoDTO {
 
 	public void set_notes(String _notes) {
 		this._notes = _notes;
-	}
-
-	public String get_date() {
-		return _date;
-	}
-
-	public void set_date(String _date) {
-		this._date = _date;
-	}
-
-	public int get_version() {
-		return _version;
-	}
-
-	public void set_version(int _version) {
-		this._version = _version;
 	}
 
 	public int get_pegi() {

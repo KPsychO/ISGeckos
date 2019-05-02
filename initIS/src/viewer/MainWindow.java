@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Formulario.View.ViewFormulario;
+import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 import Juego.Control.JuegoDTO;
 import Juego.View.MainViewJuego;
 import Tienda.View.MainViewTienda;
@@ -58,7 +58,6 @@ public class MainWindow extends JFrame{
             @Override
             public void propertyChange(PropertyChangeEvent e) {
             	try {
-            		//principalPanel = new ViewFormulario();
             		principalPanel = new MainViewJuego((JuegoDTO)e.getNewValue());
         			reinicia();
             	}
@@ -108,17 +107,9 @@ public class MainWindow extends JFrame{
 		panel.add(new JLabel(" "));
 
 		JButton buttonSoporte = new JButton("Soporte");
+		buttonSoporte.addActionListener(new SoporteButton());
 		buttonSoporte.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(buttonSoporte);
-		
-		panel.add(new JLabel(" "));
-		
-		JButton buttonFormulario = new JButton("Formulario");
-		buttonFormulario.setAlignmentX(Component.CENTER_ALIGNMENT);
-		buttonFormulario.addActionListener(new FormularioButton());
-		panel.add(buttonFormulario);
-		
-		
 
 		panel.add(new JLabel(" "));
 
@@ -141,16 +132,15 @@ public class MainWindow extends JFrame{
 	
 	class TiendaButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			
 			principalPanel = new MainViewTienda("");
 			reinicia();
 		}
 	}
 	
-	class FormularioButton implements ActionListener {
+	class SoporteButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			principalPanel = new ViewFormulario();
+			principalPanel = new MainViewIncidenciasJugador("");
 			reinicia();
 		}
 	}

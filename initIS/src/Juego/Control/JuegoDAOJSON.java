@@ -13,30 +13,32 @@ import org.json.JSONTokener;
 public class JuegoDAOJSON implements JuegoDAO{
 
 	@Override
-	public List<LogroDTO> getLogros(JSONArray arrayLogros) {
+	//Necesitamos un JSON con todos los logros, con el id del juego al que pertenecen
+	public List<LogroDTO> getLogros(String _id) {
 		ArrayList<LogroDTO> logros = new ArrayList<LogroDTO>();
-		
-		for (Object o : arrayLogros) {
-
-			JSONObject logro = new JSONObject(new JSONTokener(o.toString()));
-			logros.add(new LogroDAOJSON().getLogro(logro));
+		InputStream input;
+		try {
+			input = new FileInputStream("./src/resources/PublishedGames.txt");
+			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
 			
+			for (Object o : jsonInput) {
+				
+				JSONObject logro = new JSONObject(new JSONTokener(o.toString()));
+				
+				//Comprobamos si el logro es del juego actual
+				if (logro.getString("_id").equals(_id)) {
+					LogroDAOJSON ldj = new LogroDAOJSON();
+					logros.add(ldj.getLogro(logro));
+				}
+				
+			}
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return logros;
-	}
-
-	@Override
-	public List<String> getGenres(@SuppressWarnings("exports") JSONArray arrayGenres) {
-		ArrayList<String> genres = new ArrayList<String>();
-		
-		for (Object o : arrayGenres) {
-
-			genres.add(o.toString());
-			
-		}
-		
-		return genres;
 	}
 	
 

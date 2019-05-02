@@ -1,0 +1,49 @@
+[
+{ 
+ "_type": "DenJug",
+ "_id_user": "dsd", 
+ "_id_user_denun": "veniam", 
+ "_desc": ": : : dsdasd", 
+ "_coment": "gfadf",
+ }, 
+{ 
+ "_type": "DenJug",
+ "_id_user": "wqer", 
+ "_id_user_denun": "est", 
+ "_desc": ": : : dsdahfdgsd", 
+ "_coment": "dfs",
+ }, 
+{ 
+ "_type": "DenJug",
+ "_id_user": "erdf", 
+ "_id_user_denun": "dolor", 
+ "_desc": ": : : dsfdgdfgdasd", 
+ "_coment": "gffdgdadf",
+ }, 
+{ 
+ "_type": "DenJug",
+ "_id_user": "4ewr", 
+ "_id_user_denun": "ad", 
+ "_desc": ": : : dfgfgd", 
+ "_coment": "gfahgfdf",
+ }, 
+{ 
+ "_type": "IncJug",
+ "_id_user": "Jose", 
+ "_desc": ": : : Cual es el problema que tienes?", 
+ "_coment": "Comenta mas a fondo el motivo",
+ }, 
+{ 
+ "_type": "IncJue",
+ "_id_user": "Javier",
+ "_id": "39482095sdad", 
+ "_desc": ": : Que le pasa al juego?", 
+ "_coment": "Comenta mas a fondo el motivo",
+ }, 
+{ 
+ "_type": "IncJug",
+ "_id_user": "", 
+ "_desc": ": Cual es el problema que tienes?", 
+ "_coment": "Comenta mas a fondo el motivo",
+ }, 
+]
