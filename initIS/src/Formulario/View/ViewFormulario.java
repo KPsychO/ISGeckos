@@ -6,10 +6,13 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -23,12 +26,16 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
+import javax.swing.table.DefaultTableModel;
 
 import Formulario.Control.FormularioDTO;
+import Juego.Control.LogroDTO;
 import viewer.MainWindow;
 
 public class ViewFormulario extends JPanel{
@@ -42,6 +49,8 @@ public class ViewFormulario extends JPanel{
 	private JTextArea descShortField;
 	private JTextArea version;
 	private JTextArea versionNotes;
+	private JTextField name_logro;
+	private JTextField obt_logro;
 	//Cajas
 	private JCheckBox action;
     private JCheckBox adventure;
@@ -51,6 +60,9 @@ public class ViewFormulario extends JPanel{
     private JCheckBox sports;
     private JCheckBox puzzle;
     private JCheckBox idle;
+    
+    //Tabla logros
+    private JTable tabla_logros;
 	
 	//Faltan los generos y los logros
 	
@@ -195,18 +207,64 @@ public class ViewFormulario extends JPanel{
         
         generos.add(genres);
         generos.add(cajas);
+        
+        
+        //LOGROS
+        JPanel logros = new JPanel();
+        BoxLayout logrosL = new BoxLayout(logros, BoxLayout.Y_AXIS);
+        logros.setLayout(logrosL);
+        
+        JPanel logro_name = new JPanel();
+        JLabel logro_title = new JLabel("LOGROS:  ");
+        logro_title.setPreferredSize(new Dimension(125, 20));
+        JButton add_logro = new JButton("AÑADIR");
+        add_logro.setPreferredSize(new Dimension(sizex/2, 20));
+        add_logro.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){  
+            	if (!name_logro.getText().equals("") && !obt_logro.getText().equals("")) {
+            		DefaultTableModel model = (DefaultTableModel) tabla_logros.getModel();
+            		model.addRow(new Object[]{name_logro.getText(), obt_logro.getText()});
+            	}
+        }  
+        });
+        
+        JButton remove_rows = new JButton("ELIMINAR");
+        remove_rows.setPreferredSize(new Dimension(sizex / 2, 20));
+        remove_rows.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){  
+            	removeSelectedRows();
+        }  
+        });
+        
+        logro_name.add(logro_title);
+        logro_name.add(add_logro);
+        logro_name.add(remove_rows);
+        
+        JPanel logro_properties = new JPanel();
+        
+        name_logro = new JTextField("Nombre");
+        CreateFocusListenerForFields(name_logro);
+        name_logro.setPreferredSize(new Dimension(125,25));
+        
+        obt_logro = new JTextField("Obtencion");
+        CreateFocusListenerForFields(obt_logro);
+        obt_logro.setPreferredSize(new Dimension(sizex,25));
+        
+        logro_properties.add(name_logro);
+        logro_properties.add(obt_logro);
+        
+        logros.add(logro_name);
+        logros.add(logro_properties);
+        
+        //Tabla de logros
+        JPanel tabla = new JPanel();
+        String[] columnas = {"Nombre", "Obtencion"};
+        
+        tabla_logros = new JTable(new DefaultTableModel(columnas, 0));
+        tabla_logros.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+        tabla_logros.setPreferredSize(new Dimension(125+sizex, 100));
 
-      //ERRORPANEL  
-        /*
-        JPanel errorpanel = new JPanel();
-        errorlabel = new JLabel();
-        errorlabel.setText("");
-        errorlabel.setForeground(Color.red);
-        errorlabel.setEnabled(false);
-        errorlabel.setPreferredSize(new Dimension(300,20));
-        errorpanel.add(errorlabel,BorderLayout.PAGE_END);
-        campos.add(errorpanel);
-         */
+        tabla.add(tabla_logros);
         
         //Añadir todo
         campos.add(titulopanel);
@@ -215,12 +273,38 @@ public class ViewFormulario extends JPanel{
         campos.add(descSPanel);
         campos.add(descLPanel);
         campos.add(generos);
+        campos.add(logros);
+        campos.add(tabla);
         
         JScrollPane full = new JScrollPane(campos, 
-        		JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        
+        		JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        full.getVerticalScrollBar().setUnitIncrement(15);
         this.add(full);
         
+	}
+	
+	public void removeSelectedRows(){
+		   DefaultTableModel model = (DefaultTableModel) tabla_logros.getModel();
+		   int[] rows = tabla_logros.getSelectedRows();
+		   for(int i=0;i<rows.length;i++){
+		     model.removeRow(rows[i]-i);
+		   }
+		}
+	
+	public void CreateFocusListenerForFields(JTextField txt)
+	{
+	    txt.addFocusListener(new FocusListener() 
+	    {
+	        @Override
+	        public void focusGained(FocusEvent e) {
+	        	txt.setText("");
+	        }
+
+			@Override
+			public void focusLost(FocusEvent e) {
+
+			}
+	    });
 	}
 	
 	private void createBottom() {
@@ -272,6 +356,7 @@ public class ViewFormulario extends JPanel{
 	                	tipoError = "Lo has enviado de puta madre socio";
 	                	String ok = "Enviado correctamente";
 	                	JOptionPane.showMessageDialog(null, tipoError, ok, JOptionPane.INFORMATION_MESSAGE);
+	                	
 	                	FormularioDTO formulario = getFormulario();
 	                	_formularioDTO.insert(formulario);
 
@@ -299,7 +384,7 @@ public class ViewFormulario extends JPanel{
 			dto.set_descLong(descLongField.getText());
 			dto.set_date(fecha());
 			selectGenres(dto);
-			
+			dto.set_achievements(get_logros());
 			
 			return dto;
 		}
@@ -321,5 +406,16 @@ public class ViewFormulario extends JPanel{
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			LocalDate localDate = LocalDate.now();
 			return dtf.format(localDate); //2016/11/16
+		}
+		
+		private List<LogroDTO> get_logros(){
+			
+			List<LogroDTO> lista_logros = new ArrayList<LogroDTO>();
+			
+			DefaultTableModel model = (DefaultTableModel) tabla_logros.getModel();
+			for (int i = 0; i < tabla_logros.getRowCount(); i++)
+				lista_logros.add(new LogroDTO(model.getValueAt(i, 0).toString(), model.getValueAt(i, 1).toString()));
+			
+			return lista_logros;
 		}
 }

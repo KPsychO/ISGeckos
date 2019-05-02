@@ -74,7 +74,7 @@ public class FormularioDAOJSON implements FormularioDAO{
 		obj.put("_date", newForm.get_date());
 		obj.put("_descLong", newForm.get_descLong());
 		obj.put("_genres", newForm.get_genres());
-		
+		obj.put("_achievements", newForm.get_achievements());
 		
 		JSONArray formularios = getFormularies();
 		formularios.put(obj);

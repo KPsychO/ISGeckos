@@ -61,7 +61,7 @@ public class JuegoDTO {
 		
 		_pegi = (int)juego.get("_pegi");
 		_price = (int)juego.get("_price");
-		_version = (int)juego.get("_version");
+		//_version = (int)juego.get("_version");
 		_date = juego.getString("_date");
 		_genres = dao.getGenres(juego.getJSONArray("_genres"));
 		_achievements = dao.getLogros(juego.getJSONArray("_achievements"));

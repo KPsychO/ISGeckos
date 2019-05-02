@@ -3,11 +3,11 @@ package Juego.Control;
 public class LogroDTO {
 	
 	private String _name;
-	private String _obtencion;
+	private String _getMode;
 	
-	public LogroDTO(String name, String obtencion) {
+	public LogroDTO(String name, String getMode) {
 		_name = name;
-		_obtencion = obtencion;
+		_getMode = getMode;
 	}
 
 	public void updateName(String name) {
@@ -15,9 +15,9 @@ public class LogroDTO {
 			_name = name;
 	}
 	
-	public void updateObtencion(String obtencion) {
-		if (obtencion != null)
-			_obtencion = obtencion;
+	public void updateObtencion(String getMode) {
+		if (getMode != null)
+			_getMode = getMode;
 	}
 
 	public String get_name() {
@@ -28,11 +28,11 @@ public class LogroDTO {
 		this._name = _name;
 	}
 
-	public String get_obtencion() {
-		return _obtencion;
+	public String get_getMode() {
+		return _getMode;
 	}
 
-	public void set_obtencion(String _obtencion) {
-		this._obtencion = _obtencion;
+	public void set_getMode(String _getMode) {
+		this._getMode = _getMode;
 	}
 }
