@@ -27,7 +27,7 @@ public class JuegoDAOJSON implements JuegoDAO{
 	}
 
 	@Override
-	public List<String> getGenres(JSONArray arrayGenres) {
+	public List<String> getGenres(@SuppressWarnings("exports") JSONArray arrayGenres) {
 		ArrayList<String> genres = new ArrayList<String>();
 		
 		for (Object o : arrayGenres) {
