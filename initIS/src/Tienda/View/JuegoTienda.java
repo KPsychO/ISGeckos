@@ -71,7 +71,7 @@ public class JuegoTienda extends JPanel {
 	class CargarButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			// System.out.println(_juegoDTO.get_title());
-			firePropertyChange("HI", null, _juegoDTO);
+			firePropertyChange("JuegoTienda", null, _juegoDTO);
 		}
 	}
 	
@@ -106,12 +106,15 @@ public class JuegoTienda extends JPanel {
 		_desc.setMaximumSize(new Dimension(200, 100));
 		_desc.setMinimumSize(new Dimension(200, 100));
 		_desc.setPreferredSize(new Dimension(200, 100));
+		
 		JTextArea tArea = new JTextArea();
 		tArea.setText(_juegoDTO.get_descShort());
 		tArea.setEditable(false);
+		//Arregla la mierda de que la scrollbar inicie a la derecha
+		tArea.setSelectionStart(0);
+		tArea.setSelectionEnd(0);
 		
 		JScrollPane sPane = new JScrollPane(tArea);
-		
 
 		_desc.add(sPane, BorderLayout.CENTER);
 		

@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
 
 import IncidenciasMejoras.Control.IncidenciasDAOJSON;
 import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
@@ -34,6 +35,7 @@ public class MainViewDenunciasJuego extends JPanel implements ActionListener{
 		imJSON = new IncidenciasDAOJSON();
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		initGUI();
+		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 	}
 	
 	private void initGUI() {
@@ -64,7 +66,7 @@ public class MainViewDenunciasJuego extends JPanel implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("aceptar")) {
-			imJSON.getListIncidencias();
+			//imJSON.getListIncidencias();
 			//Aqui faltan los usuarios y el denunciado
 			imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("DenJue", "Jose", null, "fasjknfa13w", descText.getText(), comenText.getText()));
 			JOptionPane.showMessageDialog(getParent(), "Has enviado la Denuncia/Incidencia");
