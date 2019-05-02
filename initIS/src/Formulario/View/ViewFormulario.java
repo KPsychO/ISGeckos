@@ -77,11 +77,11 @@ public class ViewFormulario extends JPanel{
 	}
 	
 	private void initGUI() {
+		
 		configPanel();
 		createFormulary();
 		createBottom();
 		
-		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 	}
 
 	private void configPanel() {

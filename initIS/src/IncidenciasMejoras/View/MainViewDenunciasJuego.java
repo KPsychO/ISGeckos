@@ -66,7 +66,7 @@ public class MainViewDenunciasJuego extends JPanel implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("aceptar")) {
-			imJSON.getListIncidencias();
+			//imJSON.getListIncidencias();
 			//Aqui faltan los usuarios y el denunciado
 			imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("DenJue", "Jose", null, "fasjknfa13w", descText.getText(), comenText.getText()));
 			JOptionPane.showMessageDialog(getParent(), "Has enviado la Denuncia/Incidencia");
