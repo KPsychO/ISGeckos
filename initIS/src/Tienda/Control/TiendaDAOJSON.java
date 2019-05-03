@@ -81,11 +81,12 @@ public class TiendaDAOJSON implements TiendaDAO {
 			for (Object o : jsonInput) {
 				
 				JSONObject oJ = new JSONObject(new JSONTokener(o.toString()));
+				/*
 				String id = oJ.get("_id").toString();
 				String username = oJ.get("_username").toString();
 				int balance = Integer.valueOf(oJ.get("_balance").toString());
-				
-				list.add(new UsuarioDTO(id, username, balance));
+				*/
+				list.add(new UsuarioDTO(oJ));
 				
 			}
 			
@@ -96,8 +97,8 @@ public class TiendaDAOJSON implements TiendaDAO {
 		//Si no se encuentra se devuelve 0?
 		for (UsuarioDTO u : list) {
 			
-			if (u.getId().equals(user_id))
-				ret = u.getBalance();
+			if (u.get_user_id().equals(user_id))
+				ret = u.get_balance();
 			
 		}
 		
