@@ -23,7 +23,9 @@ import Juego.Control.JuegoDTO;
 import Juego.View.MainViewJuego;
 import Tienda.View.ComprarJuego;
 import Tienda.View.MainViewTienda;
+import Usuario.View.MainWindowCrearCuenta;
 import Usuario.View.MainWindowIniciarSesion;
+import Usuario.View.MainWindowPerfilUsuario;
 
 public class MainWindow extends JFrame{
 
@@ -75,6 +77,15 @@ public class MainWindow extends JFrame{
             			principalPanel = new ComprarJuego((JuegoDTO)e.getNewValue());
             			reinicia();
             		}
+            		else if (e.getPropertyName().equals("CrearCuenta")){
+            			principalPanel = new MainWindowCrearCuenta();
+            			reinicia();
+            		}
+            		else if (e.getPropertyName().equals("IniciarSesion")){
+            			principalPanel = new MainWindowPerfilUsuario();
+            			reinicia();
+            		}
+            		
             		
             	}
             	catch(Exception e1) {
