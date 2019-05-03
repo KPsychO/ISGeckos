@@ -1,92 +1,201 @@
 [
   {
-    "_id": "5cc0768a21870543d18fd7f4",
-    "_username": "veniam",
-    "_balance": 183282360
+    "_user_id": "5cccb59e72d4f0b1b2bdb32d",
+    "_username": "Audra Santana",
+    "_password": "in",
+    "_email": "audrasantana@comtours.com",
+    "_pais": "Malta",
+    "_balance": 523537,
+    "_descripcion": "Amet pariatur sint eu dolore. Consectetur consectetur fugiat anim incididunt adipisicing commodo occaecat pariatur exercitation dolore irure consequat. Mollit nostrud Lorem ullamco ea laborum ex velit consectetur. Amet quis aliquip amet nostrud nostrud officia aliquip. Cillum Lorem veniam veniam labore ex duis ut. Excepteur deserunt mollit ullamco excepteur aliquip Lorem enim dolor laboris deserunt irure adipisicing dolore consequat. Velit excepteur consequat enim pariatur voluptate qui incididunt et enim amet eu aliqua deserunt.\r\n",
+    "_genres": [
+      "admin"
+    ]
   },
   {
-    "_id": "5cc0768a3e2a4ffa08659dad",
-    "_username": "est",
-    "_balance": 62767384
+    "_user_id": "5cccb59ed3516cf1ddbc25bb",
+    "_username": "Carolyn Waters",
+    "_password": "veniam",
+    "_email": "carolynwaters@comtours.com",
+    "_pais": "Brunei Darussalam",
+    "_balance": 276251,
+    "_descripcion": "Quis pariatur pariatur commodo tempor id esse et. Ad irure ex qui non velit eu. Labore duis ad in duis enim elit irure cillum ullamco occaecat consequat ex. Aliqua et veniam officia irure incididunt amet ad aliquip. Aliquip aute eu tempor deserunt ullamco elit. Ad minim voluptate adipisicing pariatur sunt commodo magna id voluptate. Excepteur proident ipsum non ea elit occaecat in est ullamco duis ea aute ullamco.\r\n",
+    "_genres": [
+      "admin",
+      "admin",
+      "user"
+    ]
   },
   {
-    "_id": "5cc0768a939d5953ec7285b8",
-    "_username": "dolor",
-    "_balance": 3744929
+    "_user_id": "5cccb59ea6eee64a24391f8a",
+    "_username": "Jeanne Anderson",
+    "_password": "sint",
+    "_email": "jeanneanderson@comtours.com",
+    "_pais": "Slovenia",
+    "_balance": 568012,
+    "_descripcion": "Cupidatat excepteur exercitation occaecat veniam. Anim reprehenderit incididunt quis dolor. Consectetur proident ipsum deserunt non aliquip reprehenderit esse adipisicing nisi aliquip anim tempor non reprehenderit. Eiusmod reprehenderit eiusmod minim deserunt labore ad duis. Incididunt exercitation occaecat ipsum et cupidatat nostrud ullamco incididunt. Dolor ex sit cillum tempor irure elit. Ad minim ex consectetur amet aute officia Lorem id.\r\n",
+    "_genres": [
+      "admin",
+      "admin",
+      "developer"
+    ]
   },
   {
-    "_id": "5cc0768ab22e5383850c929d",
-    "_username": "ad",
-    "_balance": 193729072
+    "_user_id": "5cccb59e353685e03b7e299e",
+    "_username": "Elba Goodwin",
+    "_password": "labore",
+    "_email": "elbagoodwin@comtours.com",
+    "_pais": "Lebanon",
+    "_balance": 896031,
+    "_descripcion": "Sunt non irure minim aute qui veniam labore sint tempor ad veniam id dolore. Laboris sint reprehenderit sint laborum consequat sunt. Incididunt consectetur aliqua labore qui ea deserunt laboris do ad dolore dolore. Nostrud eiusmod eu mollit culpa voluptate deserunt occaecat est id occaecat sint consectetur. Pariatur esse sint sint elit ad eu.\r\n",
+    "_genres": [
+      "developer",
+      "developer"
+    ]
   },
   {
-    "_id": "5cc0768a7b930510a48feb78",
-    "_username": "voluptate",
-    "_balance": 15199981
+    "_user_id": "5cccb59e2c19488735d70e19",
+    "_username": "Cain Ross",
+    "_password": "tempor",
+    "_email": "cainross@comtours.com",
+    "_pais": "Kuwait",
+    "_balance": 195769,
+    "_descripcion": "Eu quis tempor est cillum nisi adipisicing laborum esse cupidatat ad labore dolore culpa. Culpa irure excepteur consectetur dolore velit minim fugiat. Minim eu nostrud mollit aute. Amet laborum ut magna ut ea nostrud officia laboris. Occaecat et laboris ut ut sint adipisicing laborum laboris et culpa et.\r\n",
+    "_genres": [
+      "user",
+      "developer"
+    ]
   },
   {
-    "_id": "5cc0768a2abe7f9bb17d2ca7",
-    "_username": "et",
-    "_balance": 7485440
+    "_user_id": "5cccb59e506c8b2599370efb",
+    "_username": "Karen Robertson",
+    "_password": "laborum",
+    "_email": "karenrobertson@comtours.com",
+    "_pais": "Burundi",
+    "_balance": 659447,
+    "_descripcion": "Dolore ex aliquip aliqua ut sit irure nulla voluptate in ex non minim reprehenderit. Veniam ut ipsum sunt ea excepteur voluptate voluptate. Ad consequat ut ullamco adipisicing.\r\n",
+    "_genres": [
+      "admin",
+      "developer"
+    ]
   },
   {
-    "_id": "5cc0768a7a82452ec53e36d8",
-    "_username": "elit",
-    "_balance": 171151806
+    "_user_id": "5cccb59e8afd69d6f25a57e2",
+    "_username": "Regina Norton",
+    "_password": "pariatur",
+    "_email": "reginanorton@comtours.com",
+    "_pais": "Haiti",
+    "_balance": 127539,
+    "_descripcion": "Do enim eiusmod proident esse anim qui pariatur adipisicing. Duis voluptate nulla deserunt esse deserunt ex est in dolore aliqua deserunt tempor ut. Ipsum minim eu Lorem et nisi Lorem voluptate exercitation fugiat aliquip dolor occaecat. Pariatur id veniam duis exercitation esse dolor. Mollit officia duis deserunt nisi aliquip. Tempor duis fugiat amet exercitation officia tempor do veniam velit proident qui quis.\r\n",
+    "_genres": [
+      "user",
+      "admin"
+    ]
   },
   {
-    "_id": "5cc0768aab91074b6ad631e4",
-    "_username": "culpa",
-    "_balance": 1870069
+    "_user_id": "5cccb59ec0d0b5b7c4a85be4",
+    "_username": "Mullen Collier",
+    "_password": "ex",
+    "_email": "mullencollier@comtours.com",
+    "_pais": "Morocco",
+    "_balance": 815071,
+    "_descripcion": "Ea do aute dolore enim fugiat voluptate nostrud qui proident anim anim. Eu irure ex sit mollit pariatur laborum id minim ullamco id velit ad ullamco ut. Ad cupidatat ea reprehenderit veniam pariatur ea duis aliquip veniam. Ipsum nostrud dolore officia laboris deserunt eiusmod amet duis.\r\n",
+    "_genres": [
+      "admin",
+      "user",
+      "developer"
+    ]
   },
   {
-    "_id": "5cc0768a0c7e0d14924bd105",
-    "_username": "Lorem",
-    "_balance": 118571244
+    "_user_id": "5cccb59ec7b89afbb4a5b912",
+    "_username": "Lucia Holmes",
+    "_password": "qui",
+    "_email": "luciaholmes@comtours.com",
+    "_pais": "Virgin Islands (British)",
+    "_balance": 938132,
+    "_descripcion": "Duis consequat aute labore duis. Amet deserunt laborum labore quis consequat esse voluptate eu nulla aliquip. Esse esse quis exercitation Lorem reprehenderit reprehenderit aliqua enim excepteur officia sint minim.\r\n",
+    "_genres": [
+      "admin",
+      "admin",
+      "developer"
+    ]
   },
   {
-    "_id": "5cc0768adeba739a9e172703",
-    "_username": "elit",
-    "_balance": 46677240
+    "_user_id": "5cccb59e215c11426d06351c",
+    "_username": "Bobbie Brennan",
+    "_password": "est",
+    "_email": "bobbiebrennan@comtours.com",
+    "_pais": "Marshall Islands",
+    "_balance": 701447,
+    "_descripcion": "Sunt cillum reprehenderit nulla consectetur qui quis ut eiusmod pariatur. Pariatur duis Lorem ex officia mollit proident eiusmod. Excepteur sint aute officia nostrud mollit laborum pariatur adipisicing.\r\n",
+    "_genres": [
+      "developer",
+      "user",
+      "developer"
+    ]
   },
   {
-    "_id": "5cc0768a7c4620461204be33",
-    "_username": "sunt",
-    "_balance": 185823517
+    "_user_id": "5cccb59e507abd3c43f51128",
+    "_username": "Caroline Powell",
+    "_password": "culpa",
+    "_email": "carolinepowell@comtours.com",
+    "_pais": "Niue",
+    "_balance": 91542,
+    "_descripcion": "Magna deserunt proident aute proident aliquip voluptate. Enim ad et voluptate incididunt cillum aliqua occaecat non magna dolor aliqua et fugiat. Culpa ad mollit commodo consectetur exercitation mollit eu non incididunt officia qui ut.\r\n",
+    "_genres": [
+      "developer",
+      "admin"
+    ]
   },
   {
-    "_id": "5cc0768ace13441d8df24d81",
-    "_username": "occaecat",
-    "_balance": 85506289
+    "_user_id": "5cccb59ecd8f27d59aee0efb",
+    "_username": "Marilyn Hensley",
+    "_password": "irure",
+    "_email": "marilynhensley@comtours.com",
+    "_pais": "Korea (North)",
+    "_balance": 236381,
+    "_descripcion": "Dolore consequat eiusmod aliqua tempor magna est. Occaecat fugiat et id adipisicing cillum. Lorem dolor quis quis ipsum dolore cupidatat consequat esse in amet veniam esse laborum. Lorem officia ea anim amet dolor id nisi magna excepteur ea. Eiusmod sint deserunt mollit enim aute aliquip dolore. Exercitation eiusmod elit et esse aliqua cillum anim.\r\n",
+    "_genres": [
+      "developer",
+      "user"
+    ]
   },
   {
-    "_id": "5cc0768a7e375f842b5d7aca",
-    "_username": "pariatur",
-    "_balance": 7486186
+    "_user_id": "5cccb59e8439e623bd65f831",
+    "_username": "Genevieve Vasquez",
+    "_password": "adipisicing",
+    "_email": "genevievevasquez@comtours.com",
+    "_pais": "United States",
+    "_balance": 17665,
+    "_descripcion": "Anim sit ea laboris adipisicing fugiat pariatur aliquip quis. Et consequat in ipsum excepteur proident. Officia veniam exercitation excepteur adipisicing deserunt occaecat nulla eu fugiat laboris est deserunt esse Lorem. Qui esse sint reprehenderit enim et dolor ut mollit. Sit est consectetur pariatur sunt laborum Lorem. Nisi dolore mollit non magna esse eiusmod. Occaecat pariatur velit fugiat aliqua laboris.\r\n",
+    "_genres": [
+      "user",
+      "user"
+    ]
   },
   {
-    "_id": "5cc0768a7b036a614654906f",
-    "_username": "reprehenderit",
-    "_balance": 157011722
+    "_user_id": "5cccb59e5952b1747845e38f",
+    "_username": "Patrice Cantu",
+    "_password": "enim",
+    "_email": "patricecantu@comtours.com",
+    "_pais": "Kiribati",
+    "_balance": 470208,
+    "_descripcion": "Adipisicing deserunt consequat aute quis sunt. Consectetur elit nostrud quis enim non velit labore ut culpa pariatur elit veniam incididunt. Enim et est id magna consectetur nostrud dolor qui tempor duis. Id ut nulla adipisicing non occaecat id dolore incididunt cupidatat exercitation. In excepteur quis dolor ut veniam eiusmod Lorem aliquip officia. Do elit laborum commodo exercitation reprehenderit eiusmod laborum ea anim enim.\r\n",
+    "_genres": [
+      "developer",
+      "user",
+      "admin"
+    ]
   },
   {
-    "_id": "5cc0768a77daeb9d1fe791db",
-    "_username": "pariatur",
-    "_balance": 106499337
-  },
-  {
-    "_id": "5cc0768af2de7de9cd5b3c70",
-    "_username": "est",
-    "_balance": 119914984
-  },
-  {
-    "_id": "5cc0768ad32bd218a0e6da21",
-    "_username": "nostrud",
-    "_balance": 119588453
-  },
-  {
-    "_id": "5cc0768a6cd6f1cd6302d302",
-    "_username": "mollit",
-    "_balance": 169405350
+    "_user_id": "5cccb59ebea6ad098d2151f9",
+    "_username": "Christian Pratt",
+    "_password": "incididunt",
+    "_email": "christianpratt@comtours.com",
+    "_pais": "Turkey",
+    "_balance": 513749,
+    "_descripcion": "Lorem proident eu cillum in incididunt. Voluptate laborum do ad ea dolore mollit minim deserunt sit esse. Voluptate irure irure aute anim cillum adipisicing enim excepteur laborum nostrud.\r\n",
+    "_genres": [
+      "developer"
+    ]
   }
-] 
+]

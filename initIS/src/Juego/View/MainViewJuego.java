@@ -28,6 +28,8 @@ public class MainViewJuego extends JPanel{
 	JPanel _leftS;
 	JPanel _center;
 	JPanel _rightS;
+	JPanel _valoraciones;
+	JLabel _labelValoraciones;
 	
 	public MainViewJuego(JuegoDTO dto) {
 		
@@ -38,7 +40,6 @@ public class MainViewJuego extends JPanel{
 		
 	}
 	
-
 	private void initGUI() {
 		
 		leftSide();
@@ -61,6 +62,13 @@ public class MainViewJuego extends JPanel{
 		jp.add(_leftS);
 		jp.add(_rightS);
 		this.add(jp);
+		
+		_valoraciones = new JPanel();
+		_labelValoraciones = new JLabel("Valoraciones");
+		_valoraciones.add(_labelValoraciones);
+		
+		this.add(_valoraciones);
+				
 		
 		this.setVisible(true);
 		

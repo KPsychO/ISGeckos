@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -33,29 +35,37 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		
 		JSONObject obj = new JSONObject();
 		
-		obj.put ("_tipoCuenta", us.getTipoCuenta()); 
-		obj.put ("_balance", us.getBalance());
-		obj.put ("_avatar", us.getAvatar()); 
-		obj.put ("_descripcion", us.getDescripcion()); 
-		obj.put ("_email", us.getEmail()); 
-		obj.put ("_pais", us.getPais()); 
-		obj.put ("_password", us.getPassword()); 
-		obj.put ("_user_id", us.getUserId()); 
-		obj.put ("_username", us.getUsername()); 
+		obj.put ("_tipoCuenta", us.get_types()); 
+		obj.put ("_balance", us.get_balance());
+		obj.put ("_avatar", us.get_avatar()); 
+		obj.put ("_descripcion", us.get_desc()); 
+		obj.put ("_email", us.get_email()); 
+		obj.put ("_pais", us.get_country()); 
+		obj.put ("_password", us.get_password()); 
+		obj.put ("_user_id", us.get_user_id()); 
+		obj.put ("_username", us.get_username()); 
 			
 		JSONArray usu = getListUsuarios();
-				
-		try (FileWriter file = new FileWriter("./src/resources/Formularies.txt")) {
-			usu.put(obj);
-			file.write(usu.toString(4));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		usu.put(obj);
 		
 		try (FileWriter file = new FileWriter("./src/resources/Usuarios.txt")) {
 			file.write(usu.toString(4));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
+	}
+
+	@Override
+	public List<tipoCuenta> getTipos(JSONArray tiposArray) {
+		ArrayList<tipoCuenta> lista = new ArrayList<tipoCuenta>();
+		
+		for (Object o : tiposArray) {
+			
+			lista.add(tipoCuenta.valueOf(o.toString()));
+			
+		}
+		
+		
+		return lista;
 	}
 }
