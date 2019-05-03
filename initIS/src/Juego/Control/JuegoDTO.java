@@ -54,10 +54,14 @@ public class JuegoDTO {
 		_descLong = juego.getString("_descLong");
 		_descShort = juego.getString("_descShort");
 		
-		_pegi = juego.getInt("_pegi");
-		_price = juego.getInt("_price");
-		//_version = juego.getInt("_version");
-
+		//Alguien puede mirar porque coño esto no funciona con el nuevo JSon??
+		//_pegi = Integer.getInteger(juego.getString("_pegi"));
+		//_price = Integer.getInteger(juego.getString("_price"));
+		///_version = Integer.getInteger(juego.getString("_version"));
+		
+		_pegi = (int)juego.get("_pegi");
+		_price = (int)juego.get("_price");
+		//_version = (int)juego.get("_version");
 		_date = juego.getString("_date");
 		_genres = dao.getGenres(juego.getJSONArray("_genres"));
 		_achievements = dao.getLogros(juego.getJSONArray("_achievements"));

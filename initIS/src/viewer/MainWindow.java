@@ -23,6 +23,7 @@ import Juego.Control.JuegoDTO;
 import Juego.View.MainViewJuego;
 import Tienda.View.ComprarJuego;
 import Tienda.View.MainViewTienda;
+import Usuario.View.MainWindowIniciarSesion;
 
 public class MainWindow extends JFrame{
 
@@ -126,8 +127,7 @@ public class MainWindow extends JFrame{
 		buttonFormulario.setAlignmentX(Component.CENTER_ALIGNMENT);
 		buttonFormulario.addActionListener(new FormularioButton());
 		panel.add(buttonFormulario);
-		
-		
+	
 		return panel;
 	}
 
@@ -138,6 +138,7 @@ public class MainWindow extends JFrame{
 		JPanel west = new JPanel();
 		
 		JButton buttonIcon = new JButton(new ImageIcon("./src/resources/usuario.png"));
+		buttonIcon.addActionListener(new UserButton());
 		west.add(buttonIcon);
 		 
 		JPanel east = new JPanel();
@@ -187,5 +188,15 @@ public class MainWindow extends JFrame{
 			reinicia();
 		}
 	}
+	
+	class UserButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			
+			principalPanel = new MainWindowIniciarSesion();
+			reinicia();
+		}
+	}
+	
+	
 	
 }
