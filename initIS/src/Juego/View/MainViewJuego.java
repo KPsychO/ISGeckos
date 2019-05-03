@@ -80,15 +80,7 @@ public class MainViewJuego extends JPanel{
 		JLabel precio = new JLabel("Comprar");
 		JButton comprar = new JButton(Double.toString(_juegoDTO.get_price() / 100.0) + " $ ");
 		
-		comprar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-			}
-		});
+		comprar.addActionListener(new ComprarButton());
 		
 		precioycomprar.setLayout(dos);
 		precioycomprar.add(precio);
@@ -157,5 +149,11 @@ public class MainViewJuego extends JPanel{
 		
 		_rightS = der;
 
+	}
+	
+	class ComprarButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			firePropertyChange("ComprarJuego", null, _juegoDTO);
+		}
 	}
 }
