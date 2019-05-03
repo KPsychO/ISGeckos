@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
 import IncidenciasMejoras.Control.IncidenciasDAOJSON;
@@ -48,6 +51,7 @@ public class MainViewIncidenciasJugador extends JPanel implements ActionListener
 		JLabel desc = new JLabel();
 		desc.setText("Descripcion: ");
 		descText = new JTextArea("Cual es el problema que tienes?");
+		CreateFocusListenerForFields(descText);
 		descText.setWrapStyleWord(true);
 	    descText.setLineWrap(true);
 		descText.setPreferredSize(new Dimension(500, 200));
@@ -58,6 +62,7 @@ public class MainViewIncidenciasJugador extends JPanel implements ActionListener
 		JLabel comen = new JLabel();
 		comen.setText("Comentario: ");
 		comenText = new JTextArea("Comenta mas a fondo el motivo");
+		CreateFocusListenerForFields(comenText);
 		comenText.setPreferredSize(new Dimension(500, 200));
 		JScrollPane comenScroll = new JScrollPane(comenText, 
         		JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -86,9 +91,25 @@ public class MainViewIncidenciasJugador extends JPanel implements ActionListener
 	    this.add(all);
 	}
 	
+	public void CreateFocusListenerForFields(JTextArea txt)
+	{
+	    txt.addFocusListener(new FocusListener() 
+	    {
+	        @Override
+	        public void focusGained(FocusEvent e) {
+	        	txt.setText("");
+	        }
+
+			@Override
+			public void focusLost(FocusEvent e) {
+
+			}
+	    });
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("aceptar")) {
-			imJSON.insertarIncidenciasMejoras(new IncidenciasMejorasDTO ("IncJug", user, null, null, descText.getText(), comenText.getText()));
+			imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("IncJug", user, null, null, descText.getText(), comenText.getText()));
 			JOptionPane.showMessageDialog(getParent(), "Has enviado la incidencia");
 			firePropertyChange("Soporte", null, null);
 		}
