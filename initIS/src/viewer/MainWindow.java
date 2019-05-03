@@ -2,10 +2,7 @@ package viewer;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -19,14 +16,12 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EtchedBorder;
-import javax.swing.plaf.LayerUI;
 
 import Formulario.View.ViewFormulario;
+import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 import Juego.Control.JuegoDTO;
 import Juego.View.MainViewJuego;
 import Tienda.View.MainViewTienda;
-import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 
 public class MainWindow extends JFrame{
 
@@ -49,6 +44,7 @@ public class MainWindow extends JFrame{
 		initComponent();
 		
 		ponCosas();
+
 
 	}
 	

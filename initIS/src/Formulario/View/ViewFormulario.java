@@ -40,6 +40,8 @@ import viewer.MainWindow;
 
 public class ViewFormulario extends JPanel{
 	
+	private static final long serialVersionUID = 1L;
+
 	private JLabel errorlabel;
 	
 	private JTextArea titleField;
@@ -217,7 +219,7 @@ public class ViewFormulario extends JPanel{
         JPanel logro_name = new JPanel();
         JLabel logro_title = new JLabel("LOGROS:  ");
         logro_title.setPreferredSize(new Dimension(125, 20));
-        JButton add_logro = new JButton("AÑADIR");
+        JButton add_logro = new JButton("Aï¿½ADIR");
         add_logro.setPreferredSize(new Dimension(sizex/2, 20));
         add_logro.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
@@ -266,7 +268,7 @@ public class ViewFormulario extends JPanel{
 
         tabla.add(tabla_logros);
         
-        //Añadir todo
+        //Aï¿½adir todo
         campos.add(titulopanel);
         campos.add(preciocpanel);
         campos.add(edadPanel);
@@ -337,7 +339,7 @@ public class ViewFormulario extends JPanel{
 	            		}
 	            		
 	            	} catch (NumberFormatException exception) {
-	            		tipoError = "Edad no válida";
+	            		tipoError = "Edad no vï¿½lida";
 	            	}
 	            	
 	            
@@ -346,7 +348,7 @@ public class ViewFormulario extends JPanel{
 		               || priceField.getText().equals("")
 		               || ageField.getText().equals("")
 		               || descLongField.getText().equals("")) {
-	                	tipoError = "Hay un campo incorrecto o vacío";
+	                	tipoError = "Hay un campo incorrecto o vacï¿½o";
 	                	JOptionPane.showMessageDialog(null, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
 		            }
 	                else if(tipoError != "") { //hay error

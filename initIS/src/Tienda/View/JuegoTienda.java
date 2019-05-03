@@ -70,7 +70,6 @@ public class JuegoTienda extends JPanel {
 	
 	class CargarButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			// System.out.println(_juegoDTO.get_title());
 			firePropertyChange("JuegoTienda", null, _juegoDTO);
 		}
 	}
