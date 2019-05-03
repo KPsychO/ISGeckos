@@ -1,7 +1,5 @@
 package IncidenciasMejoras.Control;
 
-import java.util.List;
-
 import org.json.JSONArray;
 
 public interface IncidenciasDAO {

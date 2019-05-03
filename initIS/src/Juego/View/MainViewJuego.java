@@ -5,10 +5,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -81,6 +79,17 @@ public class MainViewJuego extends JPanel{
 		JPanel precioycomprar = new JPanel();
 		JLabel precio = new JLabel("Comprar");
 		JButton comprar = new JButton(Double.toString(_juegoDTO.get_price() / 100.0) + " $ ");
+		
+		comprar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+			}
+		});
+		
 		precioycomprar.setLayout(dos);
 		precioycomprar.add(precio);
 		precioycomprar.add(comprar);

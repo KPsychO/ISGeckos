@@ -1,8 +1,5 @@
 package Juego.Control;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +9,7 @@ import org.json.JSONTokener;
 
 public class JuegoDAOJSON implements JuegoDAO{
 
+	@SuppressWarnings("exports")
 	@Override
 	public List<LogroDTO> getLogros(JSONArray arrayLogros) {
 		ArrayList<LogroDTO> logros = new ArrayList<LogroDTO>();
