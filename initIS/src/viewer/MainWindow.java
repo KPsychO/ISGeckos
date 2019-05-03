@@ -21,6 +21,7 @@ import Formulario.View.ViewFormulario;
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 import Juego.Control.JuegoDTO;
 import Juego.View.MainViewJuego;
+import Tienda.View.ComprarJuego;
 import Tienda.View.MainViewTienda;
 
 public class MainWindow extends JFrame{
@@ -67,6 +68,10 @@ public class MainWindow extends JFrame{
             		}
             		else if (e.getPropertyName().equals("Soporte")) {
             			principalPanel = new MainViewTienda("");
+            			reinicia();
+            		}
+            		else if (e.getPropertyName().equals("ComprarJuego")){
+            			principalPanel = new ComprarJuego((JuegoDTO)e.getNewValue());
             			reinicia();
             		}
             		
