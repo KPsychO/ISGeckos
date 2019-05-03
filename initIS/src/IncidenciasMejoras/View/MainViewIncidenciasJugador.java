@@ -1,5 +1,6 @@
 package IncidenciasMejoras.View;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,33 +12,26 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
 import IncidenciasMejoras.Control.IncidenciasDAOJSON;
 import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
-import Tienda.View.MainViewTienda;
 
 public class MainViewIncidenciasJugador extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
 
-	
-	MainViewTienda observed;
-	private JPanel descr;
-	private JPanel coment;
-	private JPanel buttons;
 	private JButton aceptar;
 	private JButton cancelar;
 	private JTextArea comenText;
-	private JTextField descText;
+	private JTextArea descText;
 	private IncidenciasDAOJSON imJSON;
 	private String user;
+	private JPanel _panel;
 	
 	public MainViewIncidenciasJugador(String usuario) {
-		descr = new JPanel();
-		coment = new JPanel();
-		buttons = new JPanel();
 		user = usuario;
 		imJSON = new IncidenciasDAOJSON();
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -46,54 +40,55 @@ public class MainViewIncidenciasJugador extends JPanel implements ActionListener
 	}
 	
 	private void initGUI() {
+		this.setLayout(new BorderLayout());
+		_panel = new JPanel();
+		_panel.setLayout(new BoxLayout(_panel, BoxLayout.Y_AXIS));
+		
+		JPanel campos = new JPanel();
+        BoxLayout experimentLayout = new BoxLayout(campos, BoxLayout.Y_AXIS);
+        campos.setLayout(experimentLayout);
+        
 		JLabel desc = new JLabel();
-		desc.setText("Descripcion:   ");
-		descText = new JTextField("Cual es el problema que tienes?");
+		desc.setText("Descripcion: ");
+		descText = new JTextArea("Cual es el problema que tienes?");
 		CreateFocusListenerForFields(descText);
-		descText.setPreferredSize(new Dimension(600, 25));
-		
+		descText.setWrapStyleWord(true);
+	    descText.setLineWrap(true);
+		descText.setPreferredSize(new Dimension(500, 200));
+		JScrollPane descScroll = new JScrollPane(descText, 
+        		JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        descScroll.setPreferredSize(new Dimension(500, 50));
+
 		JLabel comen = new JLabel();
-		comen.setText("Comentario:   ");
+		comen.setText("Comentario: ");
 		comenText = new JTextArea("Comenta mas a fondo el motivo");
-		comenText.setWrapStyleWord(true);
-		comenText.setLineWrap(true);
-		comenText.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		CreateFocusListenerForFields(comenText);
-		comenText.setPreferredSize(new Dimension(600, 200));
-		
+		comenText.setPreferredSize(new Dimension(500, 200));
+		JScrollPane comenScroll = new JScrollPane(comenText, 
+        		JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        comenScroll.setPreferredSize(new Dimension(500, 50));
 		aceptar = new JButton("Aceptar");
 		aceptar.setActionCommand("aceptar");
 		aceptar.addActionListener(this);
-		
 		cancelar = new JButton("Cancelar");
 		cancelar.setActionCommand("cancelar");
 		cancelar.addActionListener(this);
 		
-		descr.add(desc);
-		descr.add(descText);
-		coment.add(comen);
-		coment.add(comenText);
+		campos.add(desc);
+		campos.add(descScroll);
+		campos.add(comen);
+		campos.add(comenScroll);
+		
+		JPanel buttons;
+		buttons = new JPanel();
 		buttons.add(aceptar);
 		buttons.add(cancelar);
-		this.add(descr);
-		this.add(coment);
-		this.add(buttons);
-	}
-	
-	public void CreateFocusListenerForFields(JTextField txt)
-	{
-	    txt.addFocusListener(new FocusListener() 
-	    {
-	        @Override
-	        public void focusGained(FocusEvent e) {
-	        	txt.setText("");
-	        }
-
-			@Override
-			public void focusLost(FocusEvent e) {
-
-			}
-	    });
+		campos.add(buttons);
+		
+		JScrollPane all = new JScrollPane(campos, 
+	        		JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	        all.getVerticalScrollBar().setUnitIncrement(15);
+	    this.add(all);
 	}
 	
 	public void CreateFocusListenerForFields(JTextArea txt)
@@ -114,25 +109,13 @@ public class MainViewIncidenciasJugador extends JPanel implements ActionListener
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("aceptar")) {
-			//imJSON.getListIncidencias();
-			//Aqui faltan los usuarios y el denunciado
 			imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("IncJug", user, null, null, descText.getText(), comenText.getText()));
-			JOptionPane.showMessageDialog(getParent(), "Has enviado la Denuncia/Incidencia");
+			JOptionPane.showMessageDialog(getParent(), "Has enviado la incidencia");
 			firePropertyChange("Soporte", null, null);
 		}
 		else if (e.getActionCommand().equals("cancelar")) {
-			JOptionPane.showMessageDialog(getParent(), "Has cancelado la Denuncia/Incidencia");
+			JOptionPane.showMessageDialog(getParent(), "Has cancelado la incidencia");
 			firePropertyChange("Soporte", null, null);
-			/*
-			firePropertyChange("Hola", null, null);
-			observed.addPropertyChangeListener(new PropertyChangeListener() {
-				@Override
-		        public void propertyChange(PropertyChangeEvent e) {
-					firePropertyChange(e.getPropertyName(), e.getOldValue(), e.getNewValue());
-		        }
-		    });
-			 */
-			
 		}
 	}
 
