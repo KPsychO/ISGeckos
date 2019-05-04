@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import Biblioteca.View.MainViewBiblioteca;
+import Biblioteca.Control.*;
 import Formulario.View.ViewFormulario;
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 import Juego.Control.JuegoDTO;
@@ -27,9 +29,14 @@ import Tienda.View.ComprarJuego;
 import Tienda.View.MainViewTienda;
 import Usuario.Control.UsuarioDTO;
 import Usuario.Control.tipoCuenta;
-import Usuario.View.MainWindowCrearCuenta;
 import Usuario.View.MainWindowIniciarSesion;
-import Usuario.View.MainWindowPerfilUsuario;
+
+//*
+import Usuario.View.MainWindowAcuerdoSuscriptor;
+import Usuario.View.MainWindowCrearCuenta;
+import Usuario.View.MainWindowEliminarCuenta;
+import Usuario.View.MainWindowModificarCuenta;
+import Usuario.View.MainWindowPerfilUsuario; //*/
 
 public class MainWindow extends JFrame{
 
@@ -93,7 +100,10 @@ public class MainWindow extends JFrame{
             			principalPanel = new MainWindowPerfilUsuario((UsuarioDTO) e.getNewValue());
             			reinicia();
             		}
-            		
+            		else if (e.getPropertyName().equals("Biblioteca")){
+            			principalPanel = new MainViewBiblioteca((BibliotecaDTO)e.getNewValue());
+            			reinicia();
+            		}
             		
             	}
             	catch(Exception e1) {
@@ -142,6 +152,7 @@ public class MainWindow extends JFrame{
 
 		JButton buttonBiblio = new JButton("Biblioteca");
 		buttonBiblio.setAlignmentX(Component.CENTER_ALIGNMENT);
+		buttonBiblio.addActionListener(new BibliotecaButton());
 		panel.add(buttonBiblio);
 
 		JButton buttonCom = new JButton("Comunidad");
@@ -213,14 +224,6 @@ public class MainWindow extends JFrame{
 		}
 	}
 	
-	class GestionButton implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			
-			principalPanel = new MainViewPublicacion();
-			reinicia();
-		}
-	}
-	
 	class SoporteButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
@@ -233,10 +236,20 @@ public class MainWindow extends JFrame{
 		public void actionPerformed(ActionEvent arg0) {
 			
 			principalPanel = new MainWindowIniciarSesion();
+			//principalPanel = new MainWindowAcuerdoSuscriptor();
+			//principalPanel = new MainWindowCrearCuenta();
+			//principalPanel = new MainWindowEliminarCuenta();
+			//principalPanel = new MainWindowModificarCuenta();
+			//principalPanel = new MainWindowPerfilUsuario(null);
 			reinicia();
 		}
 	}
 	
-	
+	class BibliotecaButton implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+			principalPanel = new MainViewBiblioteca("");
+			reinicia();
+		}
+	}
 	
 }
