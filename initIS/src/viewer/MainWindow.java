@@ -193,6 +193,12 @@ public class MainWindow extends JFrame{
 		buttonFormulario.addActionListener(new FormularioButton());
 		buttonFormulario.setEnabled(state_developer);
 		panel.add(buttonFormulario);
+		
+		JButton buttonGestion = new JButton("Publicacion");
+		buttonGestion.setAlignmentX(Component.CENTER_ALIGNMENT);
+		buttonGestion.addActionListener(new GestionButton());
+		buttonGestion.setEnabled(state_developer);
+		panel.add(buttonGestion);
 	
 		return panel;
 	}
@@ -243,6 +249,14 @@ public class MainWindow extends JFrame{
 		public void actionPerformed(ActionEvent arg0) {
 			
 			principalPanel = new ViewFormulario();
+			reinicia();
+		}
+	}
+	
+	class GestionButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			
+			principalPanel = new MainViewPublicacion();
 			reinicia();
 		}
 	}
