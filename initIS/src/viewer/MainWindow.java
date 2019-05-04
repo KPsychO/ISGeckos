@@ -23,6 +23,7 @@ import Biblioteca.View.MainViewBiblioteca;
 import Comunidad.View.MainViewComunidad;
 import Comunidad.View.MainViewPerfilUsuarioDenunciado;
 import Biblioteca.Control.*;
+import Formulario.View.MainViewPublicacion;
 import Formulario.View.ViewFormulario;
 import IncidenciasMejoras.View.MainViewDenunciasJugador;
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
