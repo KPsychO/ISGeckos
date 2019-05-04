@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -22,7 +24,7 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		JSONArray list = new JSONArray();
 		
 		try {
-			InputStream input = new FileInputStream("./src/resources/Usuarios.txt");
+			InputStream input = new FileInputStream("./src/resources/Users.txt");
 			list  = new JSONArray(new JSONTokener(input));
 			
 		} catch (FileNotFoundException e) {
@@ -37,7 +39,7 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		
 		obj.put ("_tipoCuenta", us.get_types()); 
 		obj.put ("_balance", us.get_balance());
-		obj.put ("_avatar", us.get_avatar()); 
+		//obj.put ("_avatar", us.get_avatar()); 
 		obj.put ("_descripcion", us.get_desc()); 
 		obj.put ("_email", us.get_email()); 
 		obj.put ("_pais", us.get_country()); 
@@ -65,7 +67,33 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 			
 		}
 		
-		
 		return lista;
 	}
+	
+	public UsuarioDTO login(String username, String password) {
+		
+		JSONArray users = getListUsuarios();
+		
+		for (Object o : users) {
+			
+			JSONObject user = new JSONObject(new JSONTokener(o.toString()));
+			
+			if (user.getString("_username").equals(username)) {
+				
+				if (user.getString("_password").equals(password))
+					return new UsuarioDTO(user);
+				else {
+					String error = "Contraseña incorrecta";
+					JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		}
+		
+		return null;
+		
+	}
 }
+
+
+
+

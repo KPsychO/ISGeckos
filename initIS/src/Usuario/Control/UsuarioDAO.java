@@ -12,4 +12,6 @@ public interface UsuarioDAO {
 	
 	public List<tipoCuenta> getTipos(JSONArray tiposArray);
 	
+	public UsuarioDTO login (String username, String password);
+	
 }

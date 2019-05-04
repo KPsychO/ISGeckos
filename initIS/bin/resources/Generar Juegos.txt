@@ -39,10 +39,10 @@ Generar Usuarios:
     _username: '{{firstName()}} {{surname()}}',
     _password: '{{lorem(1, "words")}}',
     _email: '{{email()}}',
-    _pais: '{{country()}}',
+    _country: '{{country()}}',
     _balance: '{{integer(10, 999999)}}',
-    _descripcion: '{{lorem(1, "paragraphs")}}',
-    _genres: [
+    _desc: '{{lorem(1, "paragraphs")}}',
+    _types: [
       '{{repeat(1, 3)}}',
       '{{random("user", "developer", "admin")}}'
     ]

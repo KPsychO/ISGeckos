@@ -20,7 +20,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
 //import Formulario.Control.FormularioDTO;
-import Usuario.Control.UsuarioDTO;
+import Usuario.Control.*;
 //import IncidenciasMejoras.Control.IncidenciasDAOJSON;
 //import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
 //import Tienda.View.MainViewTienda;
@@ -41,11 +41,11 @@ public class MainWindowPerfilUsuario extends JPanel implements ActionListener{
 	private JButton cerrar;
 	private JButton eliminar;
 	
-	public MainWindowPerfilUsuario () {
+	public MainWindowPerfilUsuario (UsuarioDTO dto) {
 		initGUI();
 		this.setVisible(true);
 	}
-	
+
 	private void initGUI() {
 		//configPanel();
 		createPerfilUsuario();

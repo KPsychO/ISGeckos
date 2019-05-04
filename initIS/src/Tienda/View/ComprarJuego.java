@@ -82,6 +82,8 @@ public class ComprarJuego extends JPanel{
 		//Arregla la mierda de que la scrollbar inicie a la derecha
 		tArea.setSelectionStart(0);
 		tArea.setSelectionEnd(0);
+		tArea.setWrapStyleWord(true);
+		tArea.setLineWrap(true);
 		
 		JScrollPane sPane = new JScrollPane(tArea);
 

@@ -12,7 +12,7 @@ public class UsuarioDTO {
 	
 	private List<tipoCuenta> _types;
 	private int _balance;
-	private ImageIcon _avatar;
+	//private ImageIcon _avatar;
 	
 	private String _user_id;
 	private String _username;
@@ -22,14 +22,13 @@ public class UsuarioDTO {
 	private String _country;
 	
 	private UsuarioDAO dao;
-	
 
 	private List<UsuarioDTO> users = new ArrayList<UsuarioDTO>();
 	
 	public UsuarioDTO(
 			List<tipoCuenta> types,
 			int balance,
-			ImageIcon avatar,
+			//ImageIcon avatar,
 			String desc,
 			String email,
 			String country,
@@ -40,7 +39,7 @@ public class UsuarioDTO {
 		dao = new UsuarioDAOJSON();
 		_types = types;
 		_balance = balance;
-		_avatar = avatar;
+		//_avatar = avatar;
 		_desc = desc;
 		_email = email;
 		_country = country;
@@ -85,14 +84,6 @@ public class UsuarioDTO {
 
 	public void set_balance(int _balance) {
 		this._balance = _balance;
-	}
-
-	public ImageIcon get_avatar() {
-		return _avatar;
-	}
-
-	public void set_avatar(ImageIcon _avatar) {
-		this._avatar = _avatar;
 	}
 
 	public String get_user_id() {

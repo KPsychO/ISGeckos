@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultButtonModel;
@@ -15,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Formulario.View.ViewFormulario;
@@ -23,7 +25,11 @@ import Juego.Control.JuegoDTO;
 import Juego.View.MainViewJuego;
 import Tienda.View.ComprarJuego;
 import Tienda.View.MainViewTienda;
+import Usuario.Control.UsuarioDTO;
+import Usuario.Control.tipoCuenta;
+import Usuario.View.MainWindowCrearCuenta;
 import Usuario.View.MainWindowIniciarSesion;
+import Usuario.View.MainWindowPerfilUsuario;
 
 public class MainWindow extends JFrame{
 
@@ -44,10 +50,7 @@ public class MainWindow extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		initComponent();
-		
 		ponCosas();
-
-
 	}
 	
 	private void ponCosas() {
@@ -72,20 +75,49 @@ public class MainWindow extends JFrame{
             			reinicia();
             		}
             		else if (e.getPropertyName().equals("ComprarJuego")){
-            			principalPanel = new ComprarJuego((JuegoDTO)e.getNewValue());
+            			if (state_unregistered) {
+            				String tipoError = "Tienes que estar logeado para comprar juegos";
+            				JOptionPane.showMessageDialog(MainWindow.this, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
+            			}
+            			else {
+            				principalPanel = new ComprarJuego((JuegoDTO)e.getNewValue());
+            				reinicia();
+            			}
+            		}
+            		else if (e.getPropertyName().equals("CrearCuenta")){
+            			principalPanel = new MainWindowCrearCuenta();
             			reinicia();
             		}
+            		else if (e.getPropertyName().equals("IniciarSesion")){
+            			changeBoxes((UsuarioDTO) e.getNewValue());
+            			principalPanel = new MainWindowPerfilUsuario((UsuarioDTO) e.getNewValue());
+            			reinicia();
+            		}
+            		
             		
             	}
             	catch(Exception e1) {
             		//Nada
             	}
             }
+
+			private void changeBoxes(UsuarioDTO user) {
+				List<tipoCuenta> types = user.get_types();
+				
+				state_unregistered = types.contains(tipoCuenta.unregistered) ?  true : false;
+				state_user = types.contains(tipoCuenta.user) ?  true : false;
+				state_developer = types.contains(tipoCuenta.developer) ?  true : false;
+				state_admin = types.contains(tipoCuenta.admin) ?  true : false;
+				
+			}
         });
 		
 	}
 	
 	public void reinicia() {
+		menuPanel = initMenuPanel();
+		headerPanel = initHeaderPanel();
+		
 		ponCosas();
 		
 		this.validate();
@@ -116,7 +148,6 @@ public class MainWindow extends JFrame{
 		buttonCom.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(buttonCom);
 		
-
 		JButton buttonSoporte = new JButton("Soporte");
 		buttonSoporte.addActionListener(new SoporteButton());
 		buttonSoporte.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -126,6 +157,7 @@ public class MainWindow extends JFrame{
 		JButton buttonFormulario = new JButton("Formulario");
 		buttonFormulario.setAlignmentX(Component.CENTER_ALIGNMENT);
 		buttonFormulario.addActionListener(new FormularioButton());
+		buttonFormulario.setEnabled(state_developer);
 		panel.add(buttonFormulario);
 	
 		return panel;
