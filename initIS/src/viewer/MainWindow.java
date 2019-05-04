@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Biblioteca.View.MainViewBiblioteca;
+import Comunidad.View.MainViewComunidad;
 import Biblioteca.Control.*;
 import Formulario.View.ViewFormulario;
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
@@ -156,6 +157,7 @@ public class MainWindow extends JFrame{
 		panel.add(buttonBiblio);
 
 		JButton buttonCom = new JButton("Comunidad");
+		buttonCom.addActionListener(new ComunidadButton());
 		buttonCom.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(buttonCom);
 		
@@ -220,6 +222,14 @@ public class MainWindow extends JFrame{
 		public void actionPerformed(ActionEvent arg0) {
 			
 			principalPanel = new ViewFormulario();
+			reinicia();
+		}
+	}
+	
+	class ComunidadButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			
+			principalPanel = new MainViewComunidad("");
 			reinicia();
 		}
 	}
