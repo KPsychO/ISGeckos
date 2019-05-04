@@ -70,7 +70,7 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		return lista;
 	}
 	
-	public boolean login(String username, String password) {
+	public UsuarioDTO login(String username, String password) {
 		
 		JSONArray users = getListUsuarios();
 		
@@ -81,16 +81,15 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 			if (user.getString("_username").equals(username)) {
 				
 				if (user.getString("_password").equals(password))
-					return true;
+					return new UsuarioDTO(user);
 				else {
 					String error = "Contraseña incorrecta";
 					JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
-			
 		}
 		
-		return false;
+		return null;
 		
 	}
 }

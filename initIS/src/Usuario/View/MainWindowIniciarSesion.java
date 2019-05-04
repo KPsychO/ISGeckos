@@ -143,11 +143,7 @@ public class MainWindowIniciarSesion extends JPanel{
         iniciarSesion.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
             	if (!username.getText().equals("") && !password.getText().equals("")) {
-            		if (dao.login(username.getText(), password.getText())) {
-            			System.out.println("x");
-            			firePropertyChange("IniciarSesion", null, username);
-            		}
-            			
+            		firePropertyChange("IniciarSesion", null, dao.login(username.getText(), password.getText()));
             	}
             }  
         });

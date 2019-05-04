@@ -69,10 +69,6 @@ public class UsuarioDTO {
 			users.remove(us);
 		}
 	}
-	
-	public boolean login(String username, String password) {
-		return dao.login(username, password);
-	}
 
 	public List<tipoCuenta> get_types() {
 		return _types;
