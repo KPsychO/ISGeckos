@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import Biblioteca.View.MainViewBiblioteca;
+import Biblioteca.Control.*;
 import Formulario.View.ViewFormulario;
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 import Juego.Control.JuegoDTO;
@@ -98,7 +100,10 @@ public class MainWindow extends JFrame{
             			principalPanel = new MainWindowPerfilUsuario((UsuarioDTO) e.getNewValue());
             			reinicia();
             		}
-            		
+            		else if (e.getPropertyName().equals("Biblioteca")){
+            			principalPanel = new MainViewBiblioteca((BibliotecaDTO)e.getNewValue());
+            			reinicia();
+            		}
             		
             	}
             	catch(Exception e1) {
@@ -239,6 +244,11 @@ public class MainWindow extends JFrame{
 		}
 	}
 	
-	
+	class BibliotecaButton implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+			principalPanel = new MainViewBiblioteca("");
+			reinicia();
+		}
+	}
 	
 }
