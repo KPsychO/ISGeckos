@@ -20,10 +20,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Biblioteca.View.MainViewBiblioteca;
+import Comunidad.View.MainViewComunidad;
 import Biblioteca.Control.*;
 import Formulario.View.ViewFormulario;
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 import Juego.Control.JuegoDTO;
+import Juego.View.MainViewDeveloper;
 import Juego.View.MainViewJuego;
 import Tienda.View.ComprarJuego;
 import Tienda.View.MainViewTienda;
@@ -96,12 +98,21 @@ public class MainWindow extends JFrame{
             			reinicia();
             		}
             		else if (e.getPropertyName().equals("IniciarSesion")){
-            			changeBoxes((UsuarioDTO) e.getNewValue());
-            			principalPanel = new MainWindowPerfilUsuario((UsuarioDTO) e.getNewValue());
-            			reinicia();
+            			UsuarioDTO user = (UsuarioDTO) e.getNewValue();
+            			changeBoxes(user);
+            			if (user.isDev())
+            				principalPanel = new MainViewDeveloper(user);
+            			else
+            				principalPanel = new MainWindowPerfilUsuario(user);
+        				reinicia();
             		}
             		else if (e.getPropertyName().equals("Biblioteca")){
             			principalPanel = new MainViewBiblioteca((BibliotecaDTO)e.getNewValue());
+            			reinicia();
+            		}
+            		
+            		else if (e.getPropertyName().equals("VerEnTienda")){
+            			principalPanel = new MainViewJuego((JuegoDTO)e.getNewValue());
             			reinicia();
             		}
             		
@@ -157,6 +168,7 @@ public class MainWindow extends JFrame{
 
 		JButton buttonCom = new JButton("Comunidad");
 		buttonCom.setAlignmentX(Component.CENTER_ALIGNMENT);
+		buttonCom.addActionListener(new ComunidadButton());
 		panel.add(buttonCom);
 		
 		JButton buttonSoporte = new JButton("Soporte");
@@ -248,6 +260,13 @@ public class MainWindow extends JFrame{
 	class BibliotecaButton implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 			principalPanel = new MainViewBiblioteca("");
+			reinicia();
+		}
+	}
+	
+	class ComunidadButton implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+			principalPanel = new MainViewComunidad("unreg");
 			reinicia();
 		}
 	}

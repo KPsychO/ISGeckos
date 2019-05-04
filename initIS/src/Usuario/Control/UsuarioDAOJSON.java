@@ -24,6 +24,7 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		JSONArray list = new JSONArray();
 		
 		try {
+			
 			InputStream input = new FileInputStream("./src/resources/Users.txt");
 			list  = new JSONArray(new JSONTokener(input));
 			
@@ -92,6 +93,28 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		return null;
 		
 	}
+
+	@Override
+	public UsuarioDTO getUser(String username) {
+		
+		JSONArray users = getListUsuarios();
+		
+		for (Object o : users) {
+			
+			JSONObject user = new JSONObject(new JSONTokener(o.toString()));
+			
+			if (user.getString("_username").equals(username)) {
+				
+				return new UsuarioDTO(user);
+				
+			}
+		}
+		
+		return null;
+		
+	}
+	
+	
 }
 
 

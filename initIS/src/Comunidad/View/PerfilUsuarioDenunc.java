@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
-
+import javax.swing.border.EtchedBorder;
 
 import Usuario.Control.UsuarioDTO;
 
@@ -33,8 +33,6 @@ public class PerfilUsuarioDenunc extends JPanel{
 		initGUI();
 	}
 
-	
-	
 	private void initGUI() {
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		this.setMaximumSize(new Dimension(600, 200));

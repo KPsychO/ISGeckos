@@ -22,8 +22,6 @@ public class UsuarioDTO {
 	private String _country;
 	
 	private UsuarioDAO dao;
-
-	private List<UsuarioDTO> users = new ArrayList<UsuarioDTO>();
 	
 	public UsuarioDTO(
 			List<tipoCuenta> types,
@@ -64,14 +62,12 @@ public class UsuarioDTO {
 		
 	}
 
-	public void eliminarUsuario(UsuarioDTO us) {
-		if(users.contains(us)) {
-			users.remove(us);
-		}
-	}
-
 	public List<tipoCuenta> get_types() {
 		return _types;
+	}
+	
+	public boolean isDev() {
+		return _types.contains(tipoCuenta.developer);
 	}
 
 	public void set_types(List<tipoCuenta> _types) {
@@ -133,15 +129,5 @@ public class UsuarioDTO {
 	public void set_country(String _country) {
 		this._country = _country;
 	}
-
-	public List<UsuarioDTO> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<UsuarioDTO> users) {
-		this.users = users;
-	}
-	
-
 
 }
