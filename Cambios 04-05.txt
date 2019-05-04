@@ -1,0 +1,7 @@
+Cambios realizados en otras clases:
+-- MainWindow - añadida en ponCosas() en el propertyChange el else if de Biblioteca
+
+Cosas propias añadidas:
+-- resources - añadido un fichero de prueba para una biblioteca PruebaBibl
+-- resources - añadido un fichero Biblioteca con los ids de usarios y sus bibliotecas (todavia sin usar)
+-- Todo el package Biblioteca
