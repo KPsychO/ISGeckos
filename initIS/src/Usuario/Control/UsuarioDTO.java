@@ -11,6 +11,7 @@ import org.json.JSONObject;
 public class UsuarioDTO {
 	
 	private List<tipoCuenta> _types;
+	private List<UsuarioDTO> _users;
 	private int _balance;
 	//private ImageIcon _avatar;
 	
@@ -22,8 +23,6 @@ public class UsuarioDTO {
 	private String _country;
 	
 	private UsuarioDAO dao;
-
-	private List<UsuarioDTO> users = new ArrayList<UsuarioDTO>();
 	
 	public UsuarioDTO(
 			List<tipoCuenta> types,
@@ -63,11 +62,20 @@ public class UsuarioDTO {
 		_types = dao.getTipos(user.getJSONArray("_types"));
 		
 	}
+	
+	public UsuarioDTO(String usuario) {
+		dao = new UsuarioDAOJSON();
+		_users = dao.lista();
+	}
 
 	public void eliminarUsuario(UsuarioDTO us) {
-		if(users.contains(us)) {
-			users.remove(us);
+		if(_users.contains(us)) {
+			_users.remove(us);
 		}
+	}
+	
+	public boolean isDev() {
+		return _types.contains(tipoCuenta.developer);
 	}
 
 	public List<tipoCuenta> get_types() {
@@ -135,13 +143,7 @@ public class UsuarioDTO {
 	}
 
 	public List<UsuarioDTO> getUsers() {
-		return users;
+		return _users;
 	}
-
-	public void setUsers(List<UsuarioDTO> users) {
-		this.users = users;
-	}
-	
-
 
 }

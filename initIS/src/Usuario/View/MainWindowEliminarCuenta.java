@@ -61,7 +61,7 @@ public class MainWindowEliminarCuenta extends JPanel implements ActionListener{
         
         passwordLabel = new JLabel();
         passwordLabel.setPreferredSize(new Dimension(200,20));
-        passwordLabel.setText("PASSWORD:  ");
+        passwordLabel.setText("Password:  ");
         
         password = new JTextArea();
         password.setPreferredSize(new Dimension(sizex,25));
@@ -77,7 +77,7 @@ public class MainWindowEliminarCuenta extends JPanel implements ActionListener{
         
         confirmPasswordLabel = new JLabel();
         confirmPasswordLabel.setPreferredSize(new Dimension(200,20));
-        confirmPasswordLabel.setText("CONFIRM PASSWORD:  ");
+        confirmPasswordLabel.setText("Confirm password:  ");
         
         confirmPassword = new JTextArea();
         confirmPassword.setPreferredSize(new Dimension(sizex,25));

@@ -46,7 +46,7 @@ public class MainViewBiblioteca extends JPanel{
 		
 		this.setLayout(new BorderLayout());
 		_panel = new JPanel();
-		_panel.setLayout(new GridLayout(0, 3, 10, 10));
+		_panel.setLayout(new GridLayout(0, _bibliotecaDTO.get_juegosEnBiblioteca().size(), 10, 10));
 		
 	}
 	

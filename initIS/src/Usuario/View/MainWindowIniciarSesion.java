@@ -90,7 +90,7 @@ public class MainWindowIniciarSesion extends JPanel{
         
         JLabel userLabel = new JLabel();
         userLabel.setPreferredSize(new Dimension(125,20));
-        userLabel.setText("USERNAME:  ");
+        userLabel.setText("Username:  ");
         
         username = new JTextArea();
         username.setPreferredSize(new Dimension(sizex,25));
@@ -106,7 +106,7 @@ public class MainWindowIniciarSesion extends JPanel{
         
         JLabel passwordLabel = new JLabel();
         passwordLabel.setPreferredSize(new Dimension(125,20));
-        passwordLabel.setText("PASSWORD:  ");
+        passwordLabel.setText("Password:  ");
         
         password = new JTextArea();
         password.setPreferredSize(new Dimension(sizex,25));

@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultButtonModel;
@@ -16,31 +15,14 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Biblioteca.View.MainViewBiblioteca;
-import Comunidad.View.MainViewComunidad;
-import Comunidad.View.MainViewPerfilUsuarioDenunciado;
-import Biblioteca.Control.*;
 import Formulario.View.ViewFormulario;
-import IncidenciasMejoras.View.MainViewDenunciasJugador;
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 import Juego.Control.JuegoDTO;
-import Juego.View.MainViewDeveloper;
 import Juego.View.MainViewJuego;
-import Tienda.View.ComprarJuego;
 import Tienda.View.MainViewTienda;
-import Usuario.Control.UsuarioDTO;
-import Usuario.Control.tipoCuenta;
-import Usuario.View.MainWindowIniciarSesion;
-
-//*
-import Usuario.View.MainWindowAcuerdoSuscriptor;
-import Usuario.View.MainWindowCrearCuenta;
-import Usuario.View.MainWindowEliminarCuenta;
-import Usuario.View.MainWindowModificarCuenta;
-import Usuario.View.MainWindowPerfilUsuario; //*/
 
 public class MainWindow extends JFrame{
 
@@ -61,7 +43,10 @@ public class MainWindow extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		initComponent();
+		
 		ponCosas();
+
+
 	}
 	
 	private void ponCosas() {
@@ -81,48 +66,15 @@ public class MainWindow extends JFrame{
             			principalPanel = new MainViewJuego((JuegoDTO)e.getNewValue());
             			reinicia();
             		}
-            		else if (e.getPropertyName().equals("DenunciarJugador")) {
-            			principalPanel = new MainViewDenunciasJugador("");
-            			reinicia();
-            		}
             		else if (e.getPropertyName().equals("Soporte")) {
             			principalPanel = new MainViewTienda("");
             			reinicia();
             		}
-            		else if (e.getPropertyName().equals("ComprarJuego")){
-            			if (state_unregistered) {
-            				String tipoError = "Tienes que estar logeado para comprar juegos";
-            				JOptionPane.showMessageDialog(MainWindow.this, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
-            			}
-            			else {
-            				principalPanel = new ComprarJuego((JuegoDTO)e.getNewValue());
-            				reinicia();
-            			}
-            		}
-            		else if (e.getPropertyName().equals("CrearCuenta")){
-            			principalPanel = new MainWindowCrearCuenta();
-            			reinicia();
-            		}
-            		else if (e.getPropertyName().equals("IniciarSesion")){
-            			UsuarioDTO user = (UsuarioDTO) e.getNewValue();
-            			changeBoxes(user);
-            			if (user.isDev())
-            				principalPanel = new MainViewDeveloper(user);
-            			else
-            				principalPanel = new MainWindowPerfilUsuario(user);
-        				reinicia();
-            		}
             		else if (e.getPropertyName().equals("Biblioteca")){
-            			principalPanel = new MainViewBiblioteca((BibliotecaDTO)e.getNewValue());
-            			reinicia();
-            		}
-            		else if (e.getPropertyName().equals("PerfilUsuarioDenunciado")){
-            			principalPanel = new MainViewPerfilUsuarioDenunciado(null);
-            			reinicia();
-            		}
-            		
-            		else if (e.getPropertyName().equals("VerEnTienda")){
-            			principalPanel = new MainViewJuego((JuegoDTO)e.getNewValue());
+            			principalPanel = new MainViewBiblioteca("");
+            			//Si alguien sabe por qué esto no va que lo diga, porque esto creo que es lo necesario para que se muestren bien los
+            			// juegos si se actualizan o instalan
+            			//principalPanel = new MainViewBiblioteca((BibliotecaDTO)e.getNewValue());
             			reinicia();
             		}
             		
@@ -131,24 +83,11 @@ public class MainWindow extends JFrame{
             		//Nada
             	}
             }
-
-			private void changeBoxes(UsuarioDTO user) {
-				List<tipoCuenta> types = user.get_types();
-				
-				state_unregistered = types.contains(tipoCuenta.unregistered) ?  true : false;
-				state_user = types.contains(tipoCuenta.user) ?  true : false;
-				state_developer = types.contains(tipoCuenta.developer) ?  true : false;
-				state_admin = types.contains(tipoCuenta.admin) ?  true : false;
-				
-			}
         });
 		
 	}
 	
 	public void reinicia() {
-		menuPanel = initMenuPanel();
-		headerPanel = initHeaderPanel();
-		
 		ponCosas();
 		
 		this.validate();
@@ -157,7 +96,7 @@ public class MainWindow extends JFrame{
 	private void initComponent() {
 		menuPanel = initMenuPanel();
 		headerPanel = initHeaderPanel();
-		principalPanel = new MainViewTienda("");
+		principalPanel = new MainViewBiblioteca("");
 	}
 
 	private JPanel initMenuPanel() {
@@ -177,11 +116,10 @@ public class MainWindow extends JFrame{
 		panel.add(buttonBiblio);
 
 		JButton buttonCom = new JButton("Comunidad");
-		buttonCom.addActionListener(new ComunidadButton());
 		buttonCom.setAlignmentX(Component.CENTER_ALIGNMENT);
-		buttonCom.addActionListener(new ComunidadButton());
 		panel.add(buttonCom);
 		
+
 		JButton buttonSoporte = new JButton("Soporte");
 		buttonSoporte.addActionListener(new SoporteButton());
 		buttonSoporte.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -191,9 +129,9 @@ public class MainWindow extends JFrame{
 		JButton buttonFormulario = new JButton("Formulario");
 		buttonFormulario.setAlignmentX(Component.CENTER_ALIGNMENT);
 		buttonFormulario.addActionListener(new FormularioButton());
-		buttonFormulario.setEnabled(state_developer);
 		panel.add(buttonFormulario);
-	
+		
+		
 		return panel;
 	}
 
@@ -204,7 +142,6 @@ public class MainWindow extends JFrame{
 		JPanel west = new JPanel();
 		
 		JButton buttonIcon = new JButton(new ImageIcon("./src/resources/usuario.png"));
-		buttonIcon.addActionListener(new UserButton());
 		west.add(buttonIcon);
 		 
 		JPanel east = new JPanel();
@@ -247,31 +184,10 @@ public class MainWindow extends JFrame{
 		}
 	}
 	
-	class ComunidadButton implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			
-			principalPanel = new MainViewComunidad("unreg");
-			reinicia();
-		}
-	}
-	
 	class SoporteButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			principalPanel = new MainViewIncidenciasJugador("");
-			reinicia();
-		}
-	}
-	
-	class UserButton implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			
-			principalPanel = new MainWindowIniciarSesion();
-			//principalPanel = new MainWindowAcuerdoSuscriptor();
-			//principalPanel = new MainWindowCrearCuenta();
-			//principalPanel = new MainWindowEliminarCuenta();
-			//principalPanel = new MainWindowModificarCuenta();
-			//principalPanel = new MainWindowPerfilUsuario(null);
 			reinicia();
 		}
 	}
