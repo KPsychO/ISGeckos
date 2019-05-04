@@ -250,7 +250,7 @@ public class MainWindow extends JFrame{
 	class ComunidadButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			principalPanel = new MainViewComunidad("");
+			principalPanel = new MainViewComunidad("unreg");
 			reinicia();
 		}
 	}
@@ -279,13 +279,6 @@ public class MainWindow extends JFrame{
 	class BibliotecaButton implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 			principalPanel = new MainViewBiblioteca("");
-			reinicia();
-		}
-	}
-	
-	class ComunidadButton implements ActionListener{
-		public void actionPerformed(ActionEvent arg0) {
-			principalPanel = new MainViewComunidad("unreg");
 			reinicia();
 		}
 	}

@@ -11,6 +11,7 @@ import org.json.JSONObject;
 public class UsuarioDTO {
 	
 	private List<tipoCuenta> _types;
+	private List<UsuarioDTO> _users;
 	private int _balance;
 	//private ImageIcon _avatar;
 	
@@ -64,12 +65,12 @@ public class UsuarioDTO {
 	
 	public UsuarioDTO(String usuario) {
 		dao = new UsuarioDAOJSON();
-		users = dao.lista();
+		_users = dao.lista();
 	}
 
 	public void eliminarUsuario(UsuarioDTO us) {
-		if(users.contains(us)) {
-			users.remove(us);
+		if(_users.contains(us)) {
+			_users.remove(us);
 		}
 	}
 	
@@ -79,10 +80,6 @@ public class UsuarioDTO {
 
 	public List<tipoCuenta> get_types() {
 		return _types;
-	}
-	
-	public boolean isDev() {
-		return _types.contains(tipoCuenta.developer);
 	}
 
 	public void set_types(List<tipoCuenta> _types) {
@@ -143,6 +140,10 @@ public class UsuarioDTO {
 
 	public void set_country(String _country) {
 		this._country = _country;
+	}
+
+	public List<UsuarioDTO> getUsers() {
+		return _users;
 	}
 
 }

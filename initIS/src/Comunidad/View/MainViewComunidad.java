@@ -32,14 +32,10 @@ public class MainViewComunidad extends JPanel {
 	private JPanel _panel;
 	private UsuarioDAO dao;
 	
-	public MainViewComunidad(String usuario) {
-		dao = new UsuarioDAOJSON();
-		_user = dao.getUser(usuario);
 	private static int i = 0;
 	private static int j = 0;
 	private boolean encontrado = false;
-	private UsuarioDTO _user;
-	private JPanel _panel;
+
 	private List<UsuarioDTO> users;
 	private PerfilUsuarioDenunc pud;
 	private List<PerfilUsuarioDenunc> perfil;
@@ -48,6 +44,7 @@ public class MainViewComunidad extends JPanel {
 	public MainViewComunidad(String usuario) {
 		_user = new UsuarioDTO(usuario);
 		perfil = new ArrayList<PerfilUsuarioDenunc>();
+		dao = new UsuarioDAOJSON();
 		initGUI();
 		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 	}
