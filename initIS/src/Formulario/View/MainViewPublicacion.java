@@ -19,7 +19,7 @@ import org.json.JSONObject;
 
 import Formulario.Control.FormularioDTO;
 
-//En la pestaña publicación, se aceptarán o rechazarán los formularios enviados por un administrador
+//En la pestaÃ±a publicaciÃ³n, se aceptarÃ¡n o rechazarÃ¡n los formularios enviados por un administrador
 public class MainViewPublicacion extends JPanel {
 	
 	int n = 0;
@@ -61,9 +61,7 @@ public class MainViewPublicacion extends JPanel {
 	private void showFormulary(int n) {
 		
 		JSONArray form = new JSONArray();
-		
 		form = _formularioDTO.getFormularies();
-		
 		FormularioDTO formulary = new FormularioDTO(form.getJSONObject(n));
 
 		this.titulo.setText("TITULO :  " + formulary.get_title());
@@ -145,7 +143,7 @@ public class MainViewPublicacion extends JPanel {
 				JSONArray form = new JSONArray();
 				form = _formularioDTO.getFormularies();
 				if(form.length() == 0) {
-					JOptionPane.showMessageDialog(null, "No hay más formulariuos", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No hay mÃ¡s formulariuos", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				else if(n < form.length() - 1){
 					showFormulary(n);
@@ -155,7 +153,9 @@ public class MainViewPublicacion extends JPanel {
 					showFormulary(n);
 					n = 0;
 				}
+				
 			}
+	           
 
 	        });
 		
@@ -166,7 +166,7 @@ public class MainViewPublicacion extends JPanel {
 				JSONArray form = new JSONArray();
 				form = _formularioDTO.getFormularies();
 				if(form.length() == 0) {
-					JOptionPane.showMessageDialog(null, "No hay más formulariuos", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No hay mÃ¡s formulariuos", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				else if(n > 0){
 					showFormulary(n);
