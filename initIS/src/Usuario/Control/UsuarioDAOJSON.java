@@ -18,15 +18,20 @@ import org.json.JSONTokener;
 //import Usuario.Control.UsuarioDTO;
 
 public class UsuarioDAOJSON implements UsuarioDAO {
+	List<UsuarioDTO> listUser;
 
 	public JSONArray getListUsuarios() {
 		
 		JSONArray list = new JSONArray();
-		
+		listUser= new ArrayList<UsuarioDTO>();
 		try {
 			InputStream input = new FileInputStream("./src/resources/Users.txt");
 			list  = new JSONArray(new JSONTokener(input));
-			
+			for (Object o : list) {
+				
+				JSONObject oJ = new JSONObject(new JSONTokener(o.toString()));
+				listUser.add(new UsuarioDTO(oJ));
+			}
 		} catch (FileNotFoundException e) {
 		}
 		return list;
@@ -83,7 +88,7 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 				if (user.getString("_password").equals(password))
 					return new UsuarioDTO(user);
 				else {
-					String error = "Contraseña incorrecta";
+					String error = "Contraseï¿½a incorrecta";
 					JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -91,6 +96,11 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		
 		return null;
 		
+	}
+	
+	public List<UsuarioDTO> lista(){
+		getListUsuarios();
+		return listUser;
 	}
 }
 
