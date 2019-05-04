@@ -19,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import Formulario.View.MainViewPublicacion;
 import Formulario.View.ViewFormulario;
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 import Juego.Control.JuegoDTO;
@@ -158,13 +157,8 @@ public class MainWindow extends JFrame{
 		JButton buttonFormulario = new JButton("Formulario");
 		buttonFormulario.setAlignmentX(Component.CENTER_ALIGNMENT);
 		buttonFormulario.addActionListener(new FormularioButton());
-		//buttonFormulario.setEnabled(state_developer); lo comento por que tengo que debugear
+		buttonFormulario.setEnabled(state_developer);
 		panel.add(buttonFormulario);
-		
-		JButton buttonGestion = new JButton("Publicacion");
-		buttonGestion.setAlignmentX(Component.CENTER_ALIGNMENT);
-		buttonGestion.addActionListener(new GestionButton());
-		panel.add(buttonGestion);
 	
 		return panel;
 	}
@@ -215,14 +209,6 @@ public class MainWindow extends JFrame{
 		public void actionPerformed(ActionEvent arg0) {
 			
 			principalPanel = new ViewFormulario();
-			reinicia();
-		}
-	}
-	
-	class GestionButton implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			
-			principalPanel = new MainViewPublicacion();
 			reinicia();
 		}
 	}
