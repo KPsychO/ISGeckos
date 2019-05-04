@@ -13,14 +13,18 @@ public class JuegoEnPropiedadDTO extends JuegoDTO{
 	private JuegoEnPropiedadDAO _dao;
 	
 	public JuegoEnPropiedadDTO(JSONObject juegoEnPropiedad) {
+		
 		super(juegoEnPropiedad);
 		this._hoursPlayed =  juegoEnPropiedad.getInt("_hoursPlayed");
 		this._lastEx = juegoEnPropiedad.getString("_lastEx");
 		this._actVersion = juegoEnPropiedad.getInt("_actVers");
 		this._installed = juegoEnPropiedad.getBoolean("_installed");
+		
 	}
-	/*
+	
+	//Esto va a ser necesario al comprar juegos
 	public JuegoEnPropiedadDTO(JuegoDTO game) {
+		
 		super(game);
 		this._hoursPlayed = 0;
 		this._actVersion = game.get_version();
@@ -28,7 +32,7 @@ public class JuegoEnPropiedadDTO extends JuegoDTO{
 		this._installed = false;
 		
 	}
-	 */
+	 
 	public JSONObject JuegoEnPropiedadToJSON() {
 		_dao = new JuegoEnPropiedadDAOJSON();
 		

@@ -64,6 +64,20 @@ public class JuegoDTO {
 		
 	}
 
+	public JuegoDTO(JuegoDTO game) {
+		
+		_id = game._id;
+		_title = game._title;
+		_descLong = game._descLong;
+		_descShort = game._descShort;
+		_pegi = game._pegi;
+		_price = game._price;
+		_version = game._version;
+		_genres = game._genres;
+		_achievements = game._achievements;
+		
+	}
+
 	public String get_id() {
 		return _id;
 	}

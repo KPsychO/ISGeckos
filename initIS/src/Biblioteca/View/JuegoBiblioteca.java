@@ -72,6 +72,7 @@ public class JuegoBiblioteca extends JPanel{
 		title.setMinimumSize(new Dimension(100,100));
 		title.setPreferredSize(new Dimension(100,100));
 		title.setText(" Title: " + _juegoEnPropiedadDTO.get_title());
+		
 		JButton buttonPlay = new JButton("JUGAR");
 		buttonPlay.setMaximumSize(new Dimension(100, 100));
 		buttonPlay.setMinimumSize(new Dimension(100,100));

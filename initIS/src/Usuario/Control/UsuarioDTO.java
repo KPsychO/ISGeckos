@@ -69,6 +69,10 @@ public class UsuarioDTO {
 			users.remove(us);
 		}
 	}
+	
+	public boolean isDev() {
+		return _types.contains(tipoCuenta.developer);
+	}
 
 	public List<tipoCuenta> get_types() {
 		return _types;
