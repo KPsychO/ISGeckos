@@ -9,3 +9,4 @@ initIS/src/resources/IncidenciasMejoras.txt
 *.class
 initIS/bin/Usuario/Control/UsuarioDTO.class
 initIS/bin/viewer/MainWindow$1.class
+*.class
