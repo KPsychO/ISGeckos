@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.json.JSONArray;
 
+import Usuario.Control.UsuarioDTO;
+
 public interface JuegoDAO {
 	
 	@SuppressWarnings("exports")
@@ -11,5 +13,7 @@ public interface JuegoDAO {
 
 	@SuppressWarnings("exports")
 	public abstract List<String> getGenres(JSONArray jsonArray);
+	
+	public abstract List<JuegoDTO> getJuegosDeveloper(UsuarioDTO dev);
 	
 }

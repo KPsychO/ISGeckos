@@ -7,6 +7,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import Usuario.Control.UsuarioDTO;
+
 public class JuegoDAOJSON implements JuegoDAO{
 
 	@SuppressWarnings("exports")
@@ -35,6 +37,13 @@ public class JuegoDAOJSON implements JuegoDAO{
 		}
 		
 		return genres;
+	}
+
+	@Override
+	public List<JuegoDTO> getJuegosDeveloper(UsuarioDTO dev) {
+		
+		
+		return null;
 	}
 	
 
