@@ -63,6 +63,11 @@ public class UsuarioDTO {
 		_types = dao.getTipos(user.getJSONArray("_types"));
 		
 	}
+	
+	public UsuarioDTO(String usuario) {
+		dao = new UsuarioDAOJSON();
+		users = dao.lista();
+	}
 
 	public void eliminarUsuario(UsuarioDTO us) {
 		if(users.contains(us)) {
