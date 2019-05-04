@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Formulario.Control.FormularioDAO;
@@ -41,14 +42,17 @@ public class FormularioDTO {
 		
 	}
 	
-	public FormularioDTO(JSONObject formulario) {
+	public FormularioDTO(JSONObject formulario) {//CUIDADO CON LOS NOMBRES!
 		
 		dao = new FormularioDAOJSON();
 		_id = UUID.randomUUID().toString();
 		_title = formulario.getString("_title");
-		_descShort = formulario.getString("_desc");
-		_pegi = Integer.getInteger(formulario.getString("_pegi"));
-		_price = Integer.getInteger(formulario.getString("_price"));
+		_descShort = formulario.getString("_descShort");
+		_descLong = formulario.getString("_descLong");
+		_pegi = formulario.getInt("_pegi");
+		_price = formulario.getInt("_price");
+		
+		
 		
 	}
 	
@@ -70,7 +74,11 @@ public class FormularioDTO {
 	
 	public void insert (FormularioDTO x) {
 		dao.insertFormulary(x);
-	} 
+	}
+	
+	public JSONArray getFormularies(){
+		return dao.getFormularies();
+	}
 	
 	public void addGenres(String g) {
 		_genres.add(g);
