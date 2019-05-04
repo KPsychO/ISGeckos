@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -72,7 +71,6 @@ public class JuegoBiblioteca extends JPanel{
 		title.setMinimumSize(new Dimension(100,100));
 		title.setPreferredSize(new Dimension(100,100));
 		title.setText(" Title: " + _juegoEnPropiedadDTO.get_title());
-		
 		JButton buttonPlay = new JButton("JUGAR");
 		buttonPlay.setMaximumSize(new Dimension(100, 100));
 		buttonPlay.setMinimumSize(new Dimension(100,100));
@@ -119,8 +117,6 @@ public class JuegoBiblioteca extends JPanel{
 		frame.setLayout(new BorderLayout());
 		frame.setMinimumSize(new Dimension(300,100));
 		frame.setPreferredSize(new Dimension(300,100));
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
 		
 		JLabel label = new JLabel("Error. Actualice primero", SwingConstants.CENTER);
 		
@@ -150,8 +146,6 @@ public class JuegoBiblioteca extends JPanel{
 		frame.setLayout(new BorderLayout());
 		frame.setMinimumSize(new Dimension(300,100));
 		frame.setPreferredSize(new Dimension(300,100));
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
 		
 		JLabel label = new JLabel("Error. Instale primero", SwingConstants.CENTER);
 		
@@ -179,8 +173,6 @@ public class JuegoBiblioteca extends JPanel{
 		frame.setLayout(new BorderLayout());
 		frame.setMinimumSize(new Dimension(1000,800));
 		frame.setPreferredSize(new Dimension(1000,800));
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
 		
 		JLabel label = new JLabel("El juego \"" + _juegoEnPropiedadDTO.get_title() + "\" se está ejecutando", SwingConstants.CENTER);
 		

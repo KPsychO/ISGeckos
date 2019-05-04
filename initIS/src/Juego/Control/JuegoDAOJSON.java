@@ -1,16 +1,11 @@
 package Juego.Control;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-
-import Usuario.Control.UsuarioDTO;
 
 public class JuegoDAOJSON implements JuegoDAO{
 
@@ -41,31 +36,6 @@ public class JuegoDAOJSON implements JuegoDAO{
 		
 		return genres;
 	}
-
-	@Override
-	public List<JuegoDTO> getJuegosDeveloper(UsuarioDTO dev) {
-		List<JuegoDTO> list = new ArrayList<JuegoDTO>();
-		try {
-			InputStream input = new FileInputStream("./src/resources/DeveloperGames.txt");
-			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
-			
-			for (Object o : jsonInput) {
-				
-				JSONObject juego = new JSONObject(new JSONTokener(o.toString()));
-				
-				if (juego.getString("_developer").equals(dev.get_username()))
-					list.add(new JuegoDTO(juego));
-				
-			}
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
-	
-	
 	
 
 }

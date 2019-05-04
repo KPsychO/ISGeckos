@@ -2,9 +2,7 @@ package viewer;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -26,7 +24,6 @@ import Biblioteca.Control.*;
 import Formulario.View.ViewFormulario;
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 import Juego.Control.JuegoDTO;
-import Juego.View.MainViewDeveloper;
 import Juego.View.MainViewJuego;
 import Tienda.View.ComprarJuego;
 import Tienda.View.MainViewTienda;
@@ -58,10 +55,6 @@ public class MainWindow extends JFrame{
 		super("Gecko");
 		this.setSize(800, 800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//Hace que el jframe aparezca en la mitad de la pantalla
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-
 		
 		initComponent();
 		ponCosas();
@@ -103,17 +96,9 @@ public class MainWindow extends JFrame{
             			reinicia();
             		}
             		else if (e.getPropertyName().equals("IniciarSesion")){
-            			UsuarioDTO user = (UsuarioDTO) e.getNewValue();
-            			changeBoxes(user);
-            			if (user.isDev()) {
-            				principalPanel = new MainViewDeveloper(user);
-            				reinicia();
-            			}
-            			else {
-            				principalPanel = new MainWindowPerfilUsuario(user);
-            				reinicia();
-            			}
-            				
+            			changeBoxes((UsuarioDTO) e.getNewValue());
+            			principalPanel = new MainWindowPerfilUsuario((UsuarioDTO) e.getNewValue());
+            			reinicia();
             		}
             		else if (e.getPropertyName().equals("Biblioteca")){
             			principalPanel = new MainViewBiblioteca((BibliotecaDTO)e.getNewValue());

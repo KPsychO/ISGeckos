@@ -82,7 +82,7 @@ public class MainWindowModificarCuenta extends JPanel implements ActionListener{
         
         paisLabel = new JLabel();
         paisLabel.setPreferredSize(new Dimension(200,20));
-        paisLabel.setText("PAIS DE RESIDENCIA:  ");
+        paisLabel.setText("Pais de residencia:  ");
         
         pais = new JTextArea();
         pais.setPreferredSize(new Dimension(sizex,25));
@@ -98,7 +98,7 @@ public class MainWindowModificarCuenta extends JPanel implements ActionListener{
         
         descripcionLabel = new JLabel();
         descripcionLabel.setPreferredSize(new Dimension(200,20));
-        descripcionLabel.setText("DESCRIPCION:  ");
+        descripcionLabel.setText("Descripcion:  ");
         
         descripcion = new JTextArea();
         descripcion.setPreferredSize(new Dimension(sizex,sizex));

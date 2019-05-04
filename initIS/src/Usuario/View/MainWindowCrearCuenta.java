@@ -67,7 +67,7 @@ public class MainWindowCrearCuenta extends JPanel implements ActionListener{
         
         usernameLabel = new JLabel();
         usernameLabel.setPreferredSize(new Dimension(200,20));
-        usernameLabel.setText("USERNAME:  ");
+        usernameLabel.setText("Username: ");
         
         username = new JTextArea();
         username.setPreferredSize(new Dimension(sizex,25));
@@ -83,7 +83,7 @@ public class MainWindowCrearCuenta extends JPanel implements ActionListener{
         
         passwordLabel = new JLabel();
         passwordLabel.setPreferredSize(new Dimension(200,20));
-        passwordLabel.setText("PASSWORD:  ");
+        passwordLabel.setText("Password:  ");
         
         password = new JTextArea();
         password.setPreferredSize(new Dimension(sizex,25));
@@ -99,7 +99,7 @@ public class MainWindowCrearCuenta extends JPanel implements ActionListener{
         
         confirmPasswordLabel = new JLabel();
         confirmPasswordLabel.setPreferredSize(new Dimension(200,20));
-        confirmPasswordLabel.setText("CONFIRM PASSWORD:  ");
+        confirmPasswordLabel.setText("Confirm password:  ");
         
         confirmPassword = new JTextArea();
         confirmPassword.setPreferredSize(new Dimension(sizex,25));
@@ -115,7 +115,7 @@ public class MainWindowCrearCuenta extends JPanel implements ActionListener{
         
         emailLabel = new JLabel();
         emailLabel.setPreferredSize(new Dimension(200,20));
-        emailLabel.setText("EMAIL:  ");
+        emailLabel.setText("Email:  ");
         
         email = new JTextArea();
         email.setPreferredSize(new Dimension(sizex,25));
@@ -131,7 +131,7 @@ public class MainWindowCrearCuenta extends JPanel implements ActionListener{
         
         confirmEmailLabel = new JLabel();
         confirmEmailLabel.setPreferredSize(new Dimension(200,20));
-        confirmEmailLabel.setText("CONFIRM EMAIL:  ");
+        confirmEmailLabel.setText("Confirm email:  ");
         
         confirmEmail = new JTextArea();
         confirmEmail.setPreferredSize(new Dimension(sizex,25));

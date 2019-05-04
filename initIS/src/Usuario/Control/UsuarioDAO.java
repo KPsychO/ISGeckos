@@ -14,6 +14,4 @@ public interface UsuarioDAO {
 	
 	public UsuarioDTO login (String username, String password);
 	
-	public List<UsuarioDTO> lista();
-	
 }
