@@ -213,6 +213,14 @@ public class MainWindow extends JFrame{
 		}
 	}
 	
+	class GestionButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			
+			principalPanel = new MainViewPublicacion();
+			reinicia();
+		}
+	}
+	
 	class SoporteButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
