@@ -223,8 +223,7 @@ public class ViewFormulario extends JPanel{
         add_logro.setPreferredSize(new Dimension(sizex/2, 20));
         add_logro.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
-            	if (!name_logro.getText().equals("") && !obt_logro.getText().equals("") &&
-            			!name_logro.getText().equals("Nombre") && !obt_logro.getText().equals("Obtencion")) {
+            	if (!name_logro.getText().equals("") && !obt_logro.getText().equals("")) {
             		DefaultTableModel model = (DefaultTableModel) tabla_logros.getModel();
             		model.addRow(new Object[]{name_logro.getText(), obt_logro.getText()});
             	}
@@ -269,7 +268,7 @@ public class ViewFormulario extends JPanel{
 
         tabla.add(tabla_logros);
         
-        //Aï¿½adir todo
+        //Añadir todo
         campos.add(titulopanel);
         campos.add(preciocpanel);
         campos.add(edadPanel);
@@ -350,15 +349,15 @@ public class ViewFormulario extends JPanel{
 		               || ageField.getText().equals("")
 		               || descLongField.getText().equals("")) {
 	                	tipoError = "Hay un campo incorrecto o vacï¿½o";
-	                	JOptionPane.showMessageDialog(ViewFormulario.this, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
+	                	JOptionPane.showMessageDialog(null, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
 		            }
 	                else if(tipoError != "") { //hay error
-	                	JOptionPane.showMessageDialog(ViewFormulario.this, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
+	                	JOptionPane.showMessageDialog(null, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
 	                }
 	                else { //no hay error
-	                	tipoError = "Lo has enviado de puta madre socio";
+	                	tipoError = "Formulario enviado correctamente";
 	                	String ok = "Enviado correctamente";
-	                	JOptionPane.showMessageDialog(ViewFormulario.this, tipoError, ok, JOptionPane.INFORMATION_MESSAGE);
+	                	JOptionPane.showMessageDialog(null, tipoError, ok, JOptionPane.INFORMATION_MESSAGE);
 	                	
 	                	FormularioDTO formulario = getFormulario();
 	                	_formularioDTO.insert(formulario);
