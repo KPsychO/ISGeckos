@@ -21,8 +21,10 @@ import javax.swing.JPanel;
 
 import Biblioteca.View.MainViewBiblioteca;
 import Comunidad.View.MainViewComunidad;
+import Comunidad.View.MainViewPerfilUsuarioDenunciado;
 import Biblioteca.Control.*;
 import Formulario.View.ViewFormulario;
+import IncidenciasMejoras.View.MainViewDenunciasJugador;
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 import Juego.Control.JuegoDTO;
 import Juego.View.MainViewDeveloper;
@@ -79,6 +81,10 @@ public class MainWindow extends JFrame{
             			principalPanel = new MainViewJuego((JuegoDTO)e.getNewValue());
             			reinicia();
             		}
+            		else if (e.getPropertyName().equals("DenunciarJugador")) {
+            			principalPanel = new MainViewDenunciasJugador("");
+            			reinicia();
+            		}
             		else if (e.getPropertyName().equals("Soporte")) {
             			principalPanel = new MainViewTienda("");
             			reinicia();
@@ -108,6 +114,10 @@ public class MainWindow extends JFrame{
             		}
             		else if (e.getPropertyName().equals("Biblioteca")){
             			principalPanel = new MainViewBiblioteca((BibliotecaDTO)e.getNewValue());
+            			reinicia();
+            		}
+            		else if (e.getPropertyName().equals("PerfilUsuarioDenunciado")){
+            			principalPanel = new MainViewPerfilUsuarioDenunciado(null);
             			reinicia();
             		}
             		
@@ -167,6 +177,7 @@ public class MainWindow extends JFrame{
 		panel.add(buttonBiblio);
 
 		JButton buttonCom = new JButton("Comunidad");
+		buttonCom.addActionListener(new ComunidadButton());
 		buttonCom.setAlignmentX(Component.CENTER_ALIGNMENT);
 		buttonCom.addActionListener(new ComunidadButton());
 		panel.add(buttonCom);
@@ -232,6 +243,14 @@ public class MainWindow extends JFrame{
 		public void actionPerformed(ActionEvent arg0) {
 			
 			principalPanel = new ViewFormulario();
+			reinicia();
+		}
+	}
+	
+	class ComunidadButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			
+			principalPanel = new MainViewComunidad("");
 			reinicia();
 		}
 	}
