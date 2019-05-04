@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
 import org.json.JSONObject;
@@ -30,6 +31,8 @@ public class MainViewComunidad extends JPanel {
 	
 	private UsuarioDTO _user;
 	private JPanel _panel;
+	private JPanel _buscar;
+	private JPanel _total;
 	private UsuarioDAO dao;
 	
 	private static int i = 0;
@@ -51,13 +54,17 @@ public class MainViewComunidad extends JPanel {
 
 	private void initGUI() {
 		this.setLayout(new BorderLayout());
-		
 		_panel = new JPanel();
-		_panel.setLayout(new BoxLayout(_panel, BoxLayout.Y_AXIS));
-		
+		//_panel.setLayout(new BoxLayout(_panel, BoxLayout.Y_AXIS));
+
+		_total = new JPanel();
+		_total.setLayout(new BoxLayout(_total, BoxLayout.Y_AXIS));
+
+		_buscar = new JPanel();
+		//_buscar.setLayout(new BoxLayout(_buscar, BoxLayout.X_AXIS));
+
         users = _user.getUsers();
-		_panel = new JPanel();
-		JTextArea buscarNombre = new JTextArea(""); 
+		JTextField buscarNombre = new JTextField(""); 
 		buscarNombre.setPreferredSize(new Dimension(200, 20));
 		JButton buscar = new JButton("Buscar");
         buscar.addActionListener(new ActionListener(){  
@@ -75,15 +82,21 @@ public class MainViewComunidad extends JPanel {
 	            	if (!encontrado) {
 	        			JOptionPane.showMessageDialog(getParent(), "No hay ningun usuario con ese nombre");
 	            	}
-	            	}
+	            }
+            	else {
+            		for (UsuarioDTO us : users) {	
+            			perfil.get(j).setVisible(true);
+            			j++;
+            		}
             	}
+            }
         });
         
         List<UsuarioDTO> users = getUsers();
 		
-		_panel.add(buscarNombre);
-        _panel.add(buscar);
 		_panel.setLayout(new BoxLayout(_panel, BoxLayout.Y_AXIS));
+		_buscar.add(buscarNombre);
+        _buscar.add(buscar);
 		for (UsuarioDTO us : users) {	
 			pud = new PerfilUsuarioDenunc(us);
 			perfil.add(pud);
@@ -95,15 +108,25 @@ public class MainViewComunidad extends JPanel {
 	            }
 	        });
 			_panel.add(perfil.get(i));
-			perfil.get(i).setVisible(false);
+			perfil.get(i).setVisible(true);
 			_panel.add(new JSeparator());
 			i++;
 		}
 		i = 0;
-		JScrollPane jsp = new JScrollPane(_panel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
+		_total.add(_buscar);
+		JScrollPane jsp = new JScrollPane(_panel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		jsp.getVerticalScrollBar().setUnitIncrement(20);
 
-		this.add(jsp);
+		_total.add(jsp);
+		this.add(_total);
+		/*_total.add(_buscar);
+		_total.add(_panel);
+		JScrollPane jsp = new JScrollPane(_total);
+		jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+		jsp.getVerticalScrollBar().setUnitIncrement(20);
+		this.add(jsp);*/
 	}
 	
 	private List<UsuarioDTO> getUsers(){
