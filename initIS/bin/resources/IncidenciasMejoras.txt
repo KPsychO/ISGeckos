@@ -44,11 +44,5 @@
         "_coment": "Comenta mas a fondo el motivo",
         "_type": "IncJug",
         "_desc": "Cual es el problema que tienes?"
-    },
-    {
-        "_id_user": "",
-        "_coment": "Comenta mas a fondo el motivo",
-        "_type": "IncJug",
-        "_desc": "Cual es el problema que tienes?"
     }
 ]

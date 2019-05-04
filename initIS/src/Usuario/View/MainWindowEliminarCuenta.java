@@ -14,7 +14,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
@@ -34,7 +33,7 @@ public class MainWindowEliminarCuenta extends JPanel implements ActionListener{
 	private JLabel confirmPasswordLabel;
 	private JTextArea confirmPassword;
 	private JCheckBox ok;
-	//private JLabel confirmar;
+	private JLabel confirmar;
 	private JButton eliminar;
 	
 	public MainWindowEliminarCuenta () {
@@ -49,53 +48,6 @@ public class MainWindowEliminarCuenta extends JPanel implements ActionListener{
 	
 	private void createEliminarCuenta() {
 		
-		JPanel generalPanel = new JPanel();
-        BoxLayout generalLayout = new BoxLayout(generalPanel, BoxLayout.Y_AXIS);
-        generalPanel.setLayout(generalLayout);
-        int sizex = 200;
-        
-        //PASSWORD
-        JPanel passwordPanel = new JPanel();
-        BoxLayout passwordLayout = new BoxLayout(passwordPanel, BoxLayout.X_AXIS);
-        passwordPanel.setLayout(passwordLayout);
-        
-        passwordLabel = new JLabel();
-        passwordLabel.setPreferredSize(new Dimension(200,20));
-        passwordLabel.setText("PASSWORD:  ");
-        
-        password = new JTextArea();
-        password.setPreferredSize(new Dimension(sizex,25));
-        password.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-        
-        passwordPanel.add(passwordLabel);
-        passwordPanel.add(password);
-        
-        //CONFIRMPASSWORD
-        JPanel confirmPasswordPanel = new JPanel();
-        BoxLayout confirmPasswordLayout = new BoxLayout(confirmPasswordPanel, BoxLayout.X_AXIS);
-        confirmPasswordPanel.setLayout(confirmPasswordLayout);
-        
-        confirmPasswordLabel = new JLabel();
-        confirmPasswordLabel.setPreferredSize(new Dimension(200,20));
-        confirmPasswordLabel.setText("CONFIRM PASSWORD:  ");
-        
-        confirmPassword = new JTextArea();
-        confirmPassword.setPreferredSize(new Dimension(sizex,25));
-        confirmPassword.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-        
-        confirmPasswordPanel.add(confirmPasswordLabel);
-        confirmPasswordPanel.add(confirmPassword);
-        
-        ok = new JCheckBox("Proceder a la eliminacion de mi cuenta");
-        eliminar = new JButton ("ELIMINAR CUENTA");
-        
-        generalPanel.add(passwordPanel);
-        generalPanel.add(confirmPasswordPanel);
-        generalPanel.add(ok);
-        generalPanel.add(eliminar);
-        
-        this.add(generalPanel);
-        
 	}
 	
 	@Override
