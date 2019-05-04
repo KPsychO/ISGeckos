@@ -73,7 +73,7 @@ public class MainViewComunidad extends JPanel {
             	if (!buscarNombre.getText().equals("")) {
 	            	for (UsuarioDTO us : users) {	
             			perfil.get(j).setVisible(false);
-	            		if (buscarNombre.getText().equals(us.get_username())) {
+	            		if (us.get_username().toLowerCase().contains(buscarNombre.getText().toLowerCase())) {
 	            			perfil.get(j).setVisible(true);
 	            			encontrado = true;
 	            		}
