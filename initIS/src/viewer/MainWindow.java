@@ -152,6 +152,7 @@ public class MainWindow extends JFrame{
 
 		JButton buttonBiblio = new JButton("Biblioteca");
 		buttonBiblio.setAlignmentX(Component.CENTER_ALIGNMENT);
+		buttonBiblio.addActionListener(new BibliotecaButton());
 		panel.add(buttonBiblio);
 
 		JButton buttonCom = new JButton("Comunidad");
