@@ -55,6 +55,7 @@ public class MainViewJuego extends JPanel{
 		
 		GridLayout grid = new GridLayout(1, 2);
 		
+		
 		JPanel jp = new JPanel();
 		
 		jp.setLayout(grid);
