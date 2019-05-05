@@ -5,134 +5,161 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
-import javax.swing.table.DefaultTableModel;
 
-//import Formulario.Control.FormularioDTO;
-import Usuario.Control.*;
-//import IncidenciasMejoras.Control.IncidenciasDAOJSON;
-//import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
-//import Tienda.View.MainViewTienda;
+import Biblioteca.Control.BibliotecaDTO;
+import Usuario.Control.UsuarioDTO;
 
-public class MainWindowPerfilUsuario extends JPanel implements ActionListener{
+public class MainWindowPerfilUsuario extends JPanel{
 	private static final long serialVersionUID = 1L;
 
-	private JLabel avatarLabel;
-	private JLabel usernameLabel;
-	private JLabel paisLabel;
-	private JLabel tipoCuentaLabel;
-	//private JLabel _estado;
-	private JLabel descripcionLabel;
-	//private JLabel _descripcion;
-	private JButton modificar;
+	private UsuarioDTO _dto;
+	
+	private JPanel _icon;
+	private JPanel _buttons;
+	private JPanel _desc;
+	
+	//Botones
 	private JButton insignias;
 	private JButton biblioteca;
-	private JButton cerrar;
-	private JButton eliminar;
+	private JButton cerrarSesion;
+	private JButton elimCuenta;
+	private JButton modPerfil; 
+	private JButton formulario;
+	private JButton publicacion;
 	
-	public MainWindowPerfilUsuario (UsuarioDTO dto) {
-		initGUI(dto);
-		this.setVisible(true);
+	public MainWindowPerfilUsuario(UsuarioDTO dto) {
+		_dto = dto;
+		initGUI();
 	}
 
-	private void initGUI(UsuarioDTO dto) {
-		//configPanel();
-		createPerfilUsuario(dto);
+	private void initGUI() {
+		
+		JPanel izq = new JPanel();
+		izq.setLayout(new BoxLayout(izq, BoxLayout.Y_AXIS));
+		
+		//Avatar, nombre y nivel?
+		JPanel avatar_name_level = new JPanel();
+		avatar_name_level.setPreferredSize(new Dimension(300, 120));
+		JLabel icono = new JLabel(new ImageIcon("./src/resources/usuario.png"));
+		icono.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		icono.setPreferredSize(new Dimension(120, 120));
+		icono.setAlignmentX(LEFT_ALIGNMENT);
+		
+		//Nombre y nivel
+		JPanel name_level_estado = new JPanel();
+		name_level_estado.setLayout(new BoxLayout(name_level_estado, BoxLayout.Y_AXIS));
+		JLabel name = new JLabel("Name: " + _dto.get_username());
+		JLabel level = new JLabel("Level: 0");
+		JLabel estado = new JLabel("Estado: bien");
+		name_level_estado.add(name);
+		name_level_estado.add(level);
+		name_level_estado.add(estado);
+		
+		avatar_name_level.add(icono);
+		avatar_name_level.add(name_level_estado);
+		
+		//Desc
+		JTextArea desc = new JTextArea(_dto.get_desc());
+		desc.setPreferredSize(new Dimension(300, 100));
+		desc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		//Modificar perfil
+		
+		izq.add(avatar_name_level);
+		izq.add(desc);
+		
+		//Panel derecho
+		JPanel der = new JPanel();
+		der.setLayout(new GridLayout(7, 1));
+		
+		//Botones
+		insignias = new JButton("INSIGNIAS");
+		insignias.addActionListener(new insigniasButton());
+		
+		biblioteca = new JButton("BIBLIOTECA");
+		biblioteca.addActionListener(new bibliotecaButton());
+		
+		cerrarSesion = new JButton("CERRAR SESION");
+		cerrarSesion.addActionListener(new cerrarSesionButton());
+		
+		elimCuenta = new JButton("ELIMINAR CUENTA");
+		elimCuenta.addActionListener(new elimCuentaButton());
+		
+		modPerfil = new JButton("MODIFICAR PERFIL");
+		modPerfil.addActionListener(new modPerfilButton());
+		
+		formulario = new JButton("FORMULARIO");
+		formulario.addActionListener(new formularioButton());
+		
+		publicacion = new JButton("PUBLICACION");
+		publicacion.addActionListener(new publicacionButton());
+		
+		setButtons();
+		
+		der.add(insignias);
+		der.add(biblioteca);
+		
+		//Aqui iran publicacion y formulario
+		der.add(formulario);
+		der.add(publicacion);
+		
+		der.add(cerrarSesion);
+		der.add(modPerfil);
+		der.add(elimCuenta);
+		
+		this.add(izq);
+		this.add(new JSeparator());
+		this.add(der);
+		
 	}
 	
-	private void createPerfilUsuario(UsuarioDTO dto) {
-		
-		JPanel generalPanel = new JPanel();
-        BoxLayout generalLayout = new BoxLayout(generalPanel, BoxLayout.X_AXIS);
-        generalPanel.setLayout(generalLayout);
-        //int sizex = 200;
-        
-        JPanel izquierdaPanel = new JPanel();
-        BoxLayout izquierdaLayout = new BoxLayout(izquierdaPanel, BoxLayout.Y_AXIS);
-        izquierdaPanel.setLayout(izquierdaLayout);
-        
-        JPanel avatarPanel = new JPanel();
-        BoxLayout avatarLayout = new BoxLayout(avatarPanel, BoxLayout.X_AXIS);
-        avatarPanel.setLayout(avatarLayout);
-        
-        ImageIcon img = new ImageIcon("./src/resources/usuario.png");
-        avatarLabel = new JLabel(img, JLabel.CENTER);
-        
-        //USERNAME & PAIS
-        JPanel usernamePanel = new JPanel();
-        BoxLayout usernameLayout = new BoxLayout(usernamePanel, BoxLayout.Y_AXIS);
-        usernamePanel.setLayout(usernameLayout);
-        
-        usernameLabel = new JLabel();
-        usernameLabel.setPreferredSize(new Dimension(200,20));
-        usernameLabel.setText("Username: " + dto.get_username());
-        
-        paisLabel = new JLabel();
-        paisLabel.setPreferredSize(new Dimension(200,20));
-        paisLabel.setText("Pais de residencia: " + dto.get_country());
-        
-        usernamePanel.add(usernameLabel);
-        usernamePanel.add(paisLabel);
-        
-        avatarPanel.add(avatarLabel);
-        avatarPanel.add(usernamePanel);
-        
-        //TIPO DE CUENTA
-        tipoCuentaLabel = new JLabel();
-        tipoCuentaLabel.setPreferredSize(new Dimension(200,20));
-        tipoCuentaLabel.setText("Tipo de cuenta: " + dto.get_types());
-        
-        //DESCRIPCION
-        descripcionLabel = new JLabel();
-        descripcionLabel.setPreferredSize(new Dimension(200,200));
-        descripcionLabel.setText("Descripcion: " + dto.get_desc());
-        
-        modificar = new JButton ("MODIFICAR PERFIL");
-        
-        izquierdaPanel.add(avatarPanel);
-        izquierdaPanel.add(tipoCuentaLabel);
-        izquierdaPanel.add(descripcionLabel);
-        izquierdaPanel.add(modificar);
-        
-        JPanel derechaPanel = new JPanel();
-        BoxLayout derechaLayout = new BoxLayout(derechaPanel, BoxLayout.Y_AXIS);
-        derechaPanel.setLayout(derechaLayout);
-        
-        insignias = new JButton ("INSIGNIAS");
-        biblioteca = new JButton ("BIBLIOTECA");
-        cerrar = new JButton ("CERRAR SESION");
-        eliminar = new JButton ("ELIMINAR CUENTA");
-        
-        derechaPanel.add(insignias);
-        derechaPanel.add(biblioteca);
-        derechaPanel.add(cerrar);
-        derechaPanel.add(eliminar);
-        
-        generalPanel.add(izquierdaPanel);
-        generalPanel.add(derechaPanel);
-        
-        this.add(generalPanel);
-     
-        
+	private void setButtons() {
+		formulario.setEnabled(_dto.isDev());
+		publicacion.setEnabled(_dto.isAdmin());
 	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+
+	class insigniasButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			firePropertyChange("Insignias", null, _dto);
+		}
+	}
+	class bibliotecaButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			firePropertyChange("Biblioteca", null, new BibliotecaDTO(_dto));
+		}
+	}
+	class cerrarSesionButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			firePropertyChange("CerrarSesion", null, _dto);
+		}
+	}
+	class elimCuentaButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			firePropertyChange("ElimCuenta", null, _dto);
+		}
+	}
+	class modPerfilButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			firePropertyChange("ModPerfil", null, _dto);
+		}
+	}
+	class formularioButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			firePropertyChange("Formulario", null, _dto);
+		}
+	}
+	class publicacionButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			firePropertyChange("Publicacion", null, _dto);
+		}
 	}
 
 }

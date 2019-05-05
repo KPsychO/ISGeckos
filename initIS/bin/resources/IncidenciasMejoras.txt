@@ -50,5 +50,17 @@
         "_coment": "Comenta mas a fondo el motivo",
         "_type": "IncJug",
         "_desc": "Cual es el problema que tienes?"
+    },
+    {
+        "_id_user_denun": "Jaime",
+        "_id_user": "Jose",
+        "_coment": "Coasdfmotivo",
+        "_desc": "sadfador"
+    },
+    {
+        "_id_user_denun": "Jaime",
+        "_id_user": "Jose",
+        "_coment": "Comenta mas a fondo el motivo",
+        "_desc": "Motivo por el que denuncias al jugador"
     }
 ]

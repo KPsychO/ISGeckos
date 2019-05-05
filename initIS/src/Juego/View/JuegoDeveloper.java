@@ -88,8 +88,6 @@ public class JuegoDeveloper extends JPanel{
 		this.add(js2);
 		this.add(_desc);
 		
-		
-		
 	}
 	
 	class VerEnTienda implements ActionListener {

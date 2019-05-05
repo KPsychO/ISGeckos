@@ -119,11 +119,19 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		
 	}
 	
-	
-	
 	public List<UsuarioDTO> lista(){
 		getListUsuarios();
 		return listUser;
+	}
+
+	public UsuarioDTO getUnregUser() {
+
+		JSONArray users = getListUsuarios();
+		
+		JSONObject user = users.getJSONObject(0);
+		
+		return new UsuarioDTO(user);
+		
 	}
 }
 
