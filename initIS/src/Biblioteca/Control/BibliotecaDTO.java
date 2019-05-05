@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Juego.Control.JuegoDTO;
+import Usuario.Control.UsuarioDTO;
 
 public class BibliotecaDTO {
 
@@ -24,6 +25,12 @@ public class BibliotecaDTO {
 		this._juegosEnBiblioteca = dto.get_juegosEnBiblioteca();
 	}
 	
+	public BibliotecaDTO(UsuarioDTO dto) {
+		_userId = dto.get_user_id();
+		_dao = new BibliotecaDAOJSON();
+		createJuegosEnBiblioteca();
+	}
+
 	public BibliotecaDAO get_dao() {
 		return _dao;
 	}

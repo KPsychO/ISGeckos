@@ -77,6 +77,10 @@ public class UsuarioDTO {
 	public boolean isDev() {
 		return _types.contains(tipoCuenta.developer);
 	}
+	
+	public boolean isAdmin() {
+		return _types.contains(tipoCuenta.admin);
+	}
 
 	public List<tipoCuenta> get_types() {
 		return _types;

@@ -2,7 +2,9 @@ package viewer;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -23,6 +25,7 @@ import Biblioteca.View.MainViewBiblioteca;
 import Comunidad.View.MainViewComunidad;
 import Comunidad.View.MainViewPerfilUsuarioDenunciado;
 import Biblioteca.Control.*;
+import Formulario.View.MainViewPublicacion;
 import Formulario.View.ViewFormulario;
 import IncidenciasMejoras.View.MainViewDenunciasJugador;
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
@@ -31,6 +34,7 @@ import Juego.View.MainViewDeveloper;
 import Juego.View.MainViewJuego;
 import Tienda.View.ComprarJuego;
 import Tienda.View.MainViewTienda;
+import Usuario.Control.UsuarioDAOJSON;
 import Usuario.Control.UsuarioDTO;
 import Usuario.Control.tipoCuenta;
 import Usuario.View.MainWindowIniciarSesion;
@@ -55,14 +59,23 @@ public class MainWindow extends JFrame{
 	private Boolean state_developer = false;
 	private Boolean state_admin = false;
 	
+	private UsuarioDTO _current_user;
+	
 	public MainWindow() {
 		super("Gecko");
 		this.setSize(800, 800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		//Hace que el jframe se coloque en mitad de la pantalla
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+		
 		initComponent();
 		ponCosas();
+		
+		_current_user = new UsuarioDAOJSON().getUnregUser();
 	}
+	
 	
 	private void ponCosas() {
 		
@@ -104,12 +117,9 @@ public class MainWindow extends JFrame{
             			reinicia();
             		}
             		else if (e.getPropertyName().equals("IniciarSesion")){
-            			UsuarioDTO user = (UsuarioDTO) e.getNewValue();
-            			changeBoxes(user);
-            			if (user.isDev())
-            				principalPanel = new MainViewDeveloper(user);
-            			else
-            				principalPanel = new MainWindowPerfilUsuario(user);
+            			_current_user = (UsuarioDTO) e.getNewValue();
+            			changeBoxes(_current_user);
+            			principalPanel = new MainWindowPerfilUsuario(_current_user);
         				reinicia();
             		}
             		else if (e.getPropertyName().equals("Biblioteca")){
@@ -119,10 +129,23 @@ public class MainWindow extends JFrame{
             		else if (e.getPropertyName().equals("PerfilUsuarioDenunciado")){
             			principalPanel = new MainViewPerfilUsuarioDenunciado(null);
             			reinicia();
-            		}
-            		
+            		}	
             		else if (e.getPropertyName().equals("VerEnTienda")){
             			principalPanel = new MainViewJuego((JuegoDTO)e.getNewValue());
+            			reinicia();
+            		}
+            		else if (e.getPropertyName().equals("Formulario")){
+            			principalPanel = new ViewFormulario();
+            			reinicia();
+            		}
+            		else if (e.getPropertyName().equals("Publicacion")){
+            			principalPanel = new MainViewPublicacion();
+            			reinicia();
+            		}
+            		else if (e.getPropertyName().equals("CerrarSesion")){
+            			_current_user = new UsuarioDAOJSON().getUnregUser();
+            			changeBoxes(_current_user);
+            			principalPanel = new MainWindowIniciarSesion();
             			reinicia();
             		}
             		
@@ -264,7 +287,7 @@ public class MainWindow extends JFrame{
 	class ComunidadButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			principalPanel = new MainViewComunidad("unreg");
+			principalPanel = new MainViewComunidad(_current_user.get_username());
 			reinicia();
 		}
 	}
@@ -280,7 +303,10 @@ public class MainWindow extends JFrame{
 	class UserButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			principalPanel = new MainWindowIniciarSesion();
+			if (_current_user.get_user_id().equals("0"))
+				principalPanel = new MainWindowIniciarSesion();
+			else
+				principalPanel = new MainWindowPerfilUsuario(_current_user);
 			//principalPanel = new MainWindowAcuerdoSuscriptor();
 			//principalPanel = new MainWindowCrearCuenta();
 			//principalPanel = new MainWindowEliminarCuenta();

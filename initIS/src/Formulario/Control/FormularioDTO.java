@@ -12,8 +12,8 @@ import Juego.Control.LogroDTO;
 
 public class FormularioDTO {
 
-	//En esta primera versi√≥n, solo pido: titulo, descripcion, precio y edad
-	//Cuando est√© listo a√±adir√© las dem√°s que sean necesarias
+	//En esta primera versiÛn, solo pido: titulo, descripcion, precio y edad
+	//Cuando estÈ listo aÒadirÈ las dem·s que sean necesarias
 	
 	private String _id;
 	private String _title;
@@ -42,17 +42,14 @@ public class FormularioDTO {
 		
 	}
 	
-	public FormularioDTO(JSONObject formulario) {//CUIDADO CON LOS NOMBRES!
+	public FormularioDTO(JSONObject formulario) {
 		
 		dao = new FormularioDAOJSON();
 		_id = UUID.randomUUID().toString();
 		_title = formulario.getString("_title");
-		_descShort = formulario.getString("_descShort");
-		_descLong = formulario.getString("_descLong");
-		_pegi = formulario.getInt("_pegi");
-		_price = formulario.getInt("_price");
-		
-		
+		_descShort = formulario.getString("_desc");
+		_pegi = Integer.getInteger(formulario.getString("_pegi"));
+		_price = Integer.getInteger(formulario.getString("_price"));
 		
 	}
 	
@@ -74,11 +71,7 @@ public class FormularioDTO {
 	
 	public void insert (FormularioDTO x) {
 		dao.insertFormulary(x);
-	}
-	
-	public JSONArray getFormularies(){
-		return dao.getFormularies();
-	}
+	} 
 	
 	public void addGenres(String g) {
 		_genres.add(g);
@@ -178,6 +171,11 @@ public class FormularioDTO {
 
 	public void set_achievements(List<LogroDTO> _achievements) {
 		this._achievements = _achievements;
+	}
+
+	public JSONArray getFormularies() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
