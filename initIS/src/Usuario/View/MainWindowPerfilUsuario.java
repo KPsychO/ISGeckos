@@ -58,11 +58,16 @@ public class MainWindowPerfilUsuario extends JPanel{
 		JPanel name_level_estado = new JPanel();
 		name_level_estado.setLayout(new BoxLayout(name_level_estado, BoxLayout.Y_AXIS));
 		JLabel name = new JLabel("Name: " + _dto.get_username());
-		JLabel level = new JLabel("Level: 0");
-		JLabel estado = new JLabel("Estado: bien");
+		
+		//JLabel level = new JLabel("Level: 0");
+		//JLabel estado = new JLabel("Estado: bien");
+		
+		JLabel pais = new JLabel ("Pais: " + _dto.get_country());
+		JLabel juegos = new JLabel ("Juegos en biblioteca: 5");
+		
 		name_level_estado.add(name);
-		name_level_estado.add(level);
-		name_level_estado.add(estado);
+		name_level_estado.add(pais);
+		name_level_estado.add(juegos);
 		
 		avatar_name_level.add(icono);
 		avatar_name_level.add(name_level_estado);

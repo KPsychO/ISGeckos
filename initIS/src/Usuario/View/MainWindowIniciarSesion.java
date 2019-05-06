@@ -161,6 +161,7 @@ public class MainWindowIniciarSesion extends JPanel{
         crearCuenta.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
             	firePropertyChange("CrearCuenta", null, null);
+            	
             }  
         });
         
