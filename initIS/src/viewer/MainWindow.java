@@ -303,15 +303,17 @@ public class MainWindow extends JFrame{
 	class UserButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			if (_current_user.get_user_id().equals("0"))
+			if (_current_user.get_user_id().equals("0")) {
 				principalPanel = new MainWindowIniciarSesion();
+				//principalPanel = new MainWindowAcuerdoSuscriptor();
+				//principalPanel = new MainWindowCrearCuenta();
+				//principalPanel = new MainWindowEliminarCuenta();
+				//principalPanel = new MainWindowModificarCuenta();
+				//principalPanel = new MainWindowPerfilUsuario(null);
+		}
 			else
 				principalPanel = new MainWindowPerfilUsuario(_current_user);
-			//principalPanel = new MainWindowAcuerdoSuscriptor();
-			//principalPanel = new MainWindowCrearCuenta();
-			//principalPanel = new MainWindowEliminarCuenta();
-			//principalPanel = new MainWindowModificarCuenta();
-			//principalPanel = new MainWindowPerfilUsuario(null);
+			
 			reinicia();
 		}
 	}

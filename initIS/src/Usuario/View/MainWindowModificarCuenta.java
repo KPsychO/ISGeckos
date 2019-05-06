@@ -70,7 +70,9 @@ public class MainWindowModificarCuenta extends JPanel implements ActionListener{
         avatarLabel = new JLabel(img, JLabel.CENTER);
        // panel.add(avatarLabel);
         
-        avatarButton = new JFileChooser();
+        avatarButton = new JFileChooser("./src/resources");
+        
+        
      
         avatarPanel.add(avatarLabel);
         avatarPanel.add(avatarButton);
