@@ -26,7 +26,7 @@ import Usuario.Control.UsuarioDTO;
 //import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
 //import Tienda.View.MainViewTienda;
 
-public class MainWindowCrearCuenta extends JPanel implements ActionListener{
+public class MainWindowCrearCuenta extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private JLabel usernameLabel;
@@ -143,12 +143,7 @@ public class MainWindowCrearCuenta extends JPanel implements ActionListener{
         empresaDesarrolladora = new JCheckBox("Empresa desarrolladora");
         ok = new JButton ("CONTINUAR");
        
-        ok.addActionListener(new ActionListener(){  
-            public void actionPerformed(ActionEvent e){  
-            	firePropertyChange("AcuerdoSuscriptor", null, null);
-            	
-            }  
-        });
+        ok.addActionListener(new continuarButton());
         
         generalPanel.add(usernamePanel);
         generalPanel.add(passwordPanel);
@@ -161,10 +156,29 @@ public class MainWindowCrearCuenta extends JPanel implements ActionListener{
         this.add(generalPanel);
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	class continuarButton implements ActionListener {
+			 public void actionPerformed(ActionEvent e){  
+				 if (!username.getText().isEmpty() && !password.getText().isEmpty() && !email.getText().isEmpty()) {
+					 
+					 //COMPROBAR QUE EL NOMBRE DE USUARIO NO EXISTE ACTUALMENTE EN LA LISTA DE USUARIOS
+					 
+					if (password.getText().equals(confirmPassword.getText()) && email.getText().equals(confirmEmail.getText())) {
+					 
+						if(empresaDesarrolladora.isSelected()) {
+							//Crear usuario tipo empresa desarrolladora
+							//Usando como username:username
+							//Como password: password
+							//Como email: email
+						}
+						else {
+							//Crear usuario
+							//Usando como username:username
+							//Como password: password
+							//Como email: email
+						}
+						firePropertyChange("IniciarSesion", null, null);	 
+					}
+				 }
+			 }
 	}
-
 }

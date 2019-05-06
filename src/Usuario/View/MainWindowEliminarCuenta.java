@@ -26,9 +26,11 @@ import Usuario.Control.UsuarioDTO;
 //import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
 //import Tienda.View.MainViewTienda;
 
-public class MainWindowEliminarCuenta extends JPanel implements ActionListener{
+public class MainWindowEliminarCuenta extends JPanel{
 	private static final long serialVersionUID = 1L;
 
+	private UsuarioDTO _dto;
+	
 	private JLabel passwordLabel;
 	private JTextArea password;
 	private JLabel confirmPasswordLabel;
@@ -37,9 +39,10 @@ public class MainWindowEliminarCuenta extends JPanel implements ActionListener{
 	//private JLabel confirmar;
 	private JButton eliminar;
 	
-	public MainWindowEliminarCuenta () {
+	public MainWindowEliminarCuenta (UsuarioDTO dto) {
+		_dto = dto;
 		initGUI();
-		this.setVisible(true);
+		//this.setVisible(true);
 	}
 	
 	private void initGUI() {
@@ -88,13 +91,7 @@ public class MainWindowEliminarCuenta extends JPanel implements ActionListener{
         
         ok = new JCheckBox("Proceder a la eliminacion de mi cuenta");
         eliminar = new JButton ("ELIMINAR CUENTA");
-        eliminar.addActionListener(new ActionListener(){  
-            public void actionPerformed(ActionEvent e){  
-            	if (ok.isSelected()) {
-            		firePropertyChange("IniciarSesion", null, null);
-            	}
-            }  
-        });
+        eliminar.addActionListener(new continuarButton());
         
         generalPanel.add(passwordPanel);
         generalPanel.add(confirmPasswordPanel);
@@ -105,10 +102,16 @@ public class MainWindowEliminarCuenta extends JPanel implements ActionListener{
         
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	class continuarButton implements ActionListener {
+		 public void actionPerformed(ActionEvent e){ 
+			 if (ok.isSelected()) {
+				 if (!password.getText().isEmpty() && password.getText().equals(confirmPassword.getText())) {
+					 if (password.getText() == _dto.get_password()) {
+						 //ELIMINAR USUARIO DE LA LISTA _dto.eliminarUsuario();
+						 firePropertyChange("IniciarSesion", null, null);
+					 }
+				 }
+			 }
+		 }
 	}
-
 }

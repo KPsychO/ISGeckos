@@ -132,12 +132,12 @@ public class MainWindow extends JFrame{
             		}
             		
             		else if (e.getPropertyName().equals("EliminarCuenta")){
-            			principalPanel = new MainWindowEliminarCuenta();
+            			principalPanel = new MainWindowEliminarCuenta(_current_user);
         				reinicia();
             		}
             		
             		else if (e.getPropertyName().equals("ModificarCuenta")){
-            			principalPanel = new MainWindowModificarCuenta();
+            			principalPanel = new MainWindowModificarCuenta(_current_user);
         				reinicia();
             		}
             		
