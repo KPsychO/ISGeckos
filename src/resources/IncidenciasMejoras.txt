@@ -1,0 +1,66 @@
+[
+    {
+        "_id_user_Denun": "5cc0768adeba739a9e172703",
+        "_id_user": "5cc0768a21870543d18fd7f4",
+        "_coment": "gfadf",
+        "_type": "DenJug",
+        "_desc": "dsdasd"
+    },
+    {
+        "_id_user_Denun": "5cc0768a0c7e0d14924bd105",
+        "_id_user": "5cc0768adeba739a9e172703",
+        "_coment": "dfs",
+        "_type": "DenJug",
+        "_desc": "dsdahfdgsd"
+    },
+    {
+        "_id_user_Denun": "5cc0768a7a82452ec53e36d8",
+        "_id_user": "5cc0768aab91074b6ad631e4",
+        "_coment": "gffdgdadf",
+        "_type": "DenJug",
+        "_desc": "dsfdgdfgdasd"
+    },
+    {
+        "_id_user_Denun": "5cc0768a7e375f842b5d7aca",
+        "_id_user": "5cc0768a7b036a614654906f",
+        "_coment": "gfahgfdf",
+        "_type": "DenJug",
+        "_desc": "dfgfgd"
+    },
+    {
+        "_id_user": "5cc0768a3e2a4ffa08659dad",
+        "_coment": "Comenta mas a fondo el motivo",
+        "_type": "IncJug",
+        "_desc": "Cual es el problema que tienes?"
+    },
+    {
+        "_id_user": "5cc0768a939d5953ec7285b8",
+        "_coment": "Comenta mas a fondo el motivo",
+        "_type": "IncJug",
+        "_desc": "Cual es el problema que tienes?"
+    },
+    {
+        "_id_user": "5cc0768a7b930510a48feb78",
+        "_coment": "Comenta mas a fondo el motivo",
+        "_type": "IncJug",
+        "_desc": "Cual es el problema que tienes?"
+    },
+    {
+        "_id_user": "",
+        "_coment": "Comenta mas a fondo el motivo",
+        "_type": "IncJug",
+        "_desc": "Cual es el problema que tienes?"
+    },
+    {
+        "_id_user_denun": "Jaime",
+        "_id_user": "Jose",
+        "_coment": "Coasdfmotivo",
+        "_desc": "sadfador"
+    },
+    {
+        "_id_user_denun": "Jaime",
+        "_id_user": "Jose",
+        "_coment": "Comenta mas a fondo el motivo",
+        "_desc": "Motivo por el que denuncias al jugador"
+    }
+]
