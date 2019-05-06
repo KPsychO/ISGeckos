@@ -95,7 +95,7 @@ public class MainWindow extends JFrame{
             			reinicia();
             		}
             		else if (e.getPropertyName().equals("DenunciarJugador")) {
-            			principalPanel = new MainViewDenunciasJugador("");
+            			principalPanel = new MainViewDenunciasJugador(_current_user, (UsuarioDTO) e.getNewValue());
             			reinicia();
             		}
             		else if (e.getPropertyName().equals("Soporte")) {
@@ -127,7 +127,7 @@ public class MainWindow extends JFrame{
             			reinicia();
             		}
             		else if (e.getPropertyName().equals("PerfilUsuarioDenunciado")){
-            			principalPanel = new MainViewPerfilUsuarioDenunciado(null);
+            			principalPanel = new MainViewPerfilUsuarioDenunciado(_current_user, (UsuarioDTO) e.getNewValue());
             			reinicia();
             		}	
             		else if (e.getPropertyName().equals("VerEnTienda")){
@@ -287,7 +287,7 @@ public class MainWindow extends JFrame{
 	class ComunidadButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			principalPanel = new MainViewComunidad(_current_user.get_username());
+			principalPanel = new MainViewComunidad(_current_user);
 			reinicia();
 		}
 	}
@@ -295,7 +295,7 @@ public class MainWindow extends JFrame{
 	class SoporteButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			principalPanel = new MainViewIncidenciasJugador("");
+			principalPanel = new MainViewIncidenciasJugador(_current_user);
 			reinicia();
 		}
 	}
@@ -303,17 +303,15 @@ public class MainWindow extends JFrame{
 	class UserButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			if (_current_user.get_user_id().equals("0")) {
+			if (_current_user.get_user_id().equals("0"))
 				principalPanel = new MainWindowIniciarSesion();
-				//principalPanel = new MainWindowAcuerdoSuscriptor();
-				//principalPanel = new MainWindowCrearCuenta();
-				//principalPanel = new MainWindowEliminarCuenta();
-				//principalPanel = new MainWindowModificarCuenta();
-				//principalPanel = new MainWindowPerfilUsuario(null);
-		}
 			else
 				principalPanel = new MainWindowPerfilUsuario(_current_user);
-			
+			//principalPanel = new MainWindowAcuerdoSuscriptor();
+			//principalPanel = new MainWindowCrearCuenta();
+			//principalPanel = new MainWindowEliminarCuenta();
+			//principalPanel = new MainWindowModificarCuenta();
+			//principalPanel = new MainWindowPerfilUsuario(null);
 			reinicia();
 		}
 	}
