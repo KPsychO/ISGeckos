@@ -72,6 +72,14 @@ public class FormularioDTO {
 		return aux;
 	}
 	
+	public void insertGame(int n) {
+		dao.insertGame(n);
+	}
+	
+	public void deleteFormulary(int n) {
+		dao.deleteFormulary(n);
+	}
+	
 	public void insert (FormularioDTO x) {
 		dao.insertFormulary(x);
 	}

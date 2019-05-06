@@ -53,4 +53,45 @@ public class FormularioDAOJSON implements FormularioDAO{
 
 	}
 
+	@Override
+	public void deleteFormulary(int n) {
+		JSONArray arr = new JSONArray();
+		arr = getFormularies();
+		arr.remove(n);
+		
+		try (FileWriter file = new FileWriter("./src/resources/Formularies.txt")) {
+			file.write(arr.toString(4));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void insertGame(int n) {
+		
+		JSONArray arrJ = new JSONArray();
+		JSONArray arrF = new JSONArray();
+		
+		try {
+			InputStream input = new FileInputStream("./src/resources/NewGames.txt");
+			arrJ = new JSONArray(new JSONTokener(input));
+			
+			arrF = getFormularies();
+			arrJ.put(arrF.get(n));
+			//
+			try (FileWriter file = new FileWriter("./src/resources/NewGames.txt")) {
+				file.write(arrJ.toString(4));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		} catch (FileNotFoundException e) {
+			;
+		}
+		
+		
+	}
+	
+	
+
 }
