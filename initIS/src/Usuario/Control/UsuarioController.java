@@ -2,86 +2,64 @@ package Usuario.Control;
 
 import javax.swing.JPanel;
 
+import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 import Usuario.View.MainWindowAcuerdoSuscriptor;
 import Usuario.View.MainWindowCrearCuenta;
 import Usuario.View.MainWindowEliminarCuenta;
 import Usuario.View.MainWindowIniciarSesion;
 import Usuario.View.MainWindowModificarCuenta;
 import Usuario.View.MainWindowPerfilUsuario;
+import common.Controller;
 
-public class UsuarioController {
+public class UsuarioController extends Controller{
+	
+	private UsuarioDTO _dto;
+	
+	public UsuarioController(UsuarioDTO dto) {
+		
+		_dto = dto;
+		
+	}
 
 	
 	@Override
 	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
-		if (panel.equals("Soporte"))
-			return new MainViewIncidenciasJugador(user);
-		else if (panel.equals("DenunciarJugador"))
-			return new MainViewDenunciasJugador(user, (UsuarioDTO) o);
+		if (panel.equals("BotonInicio")) {
+			
+			if (user.isUnregistered())
+				return new MainWindowIniciarSesion();
+			else
+				return new MainWindowPerfilUsuario(user);
+			
+		}
+			
+		else if (panel.equals("botonModificarCuenta"))
+			return new MainWindowModificarCuenta(user);
+		
+		else if (panel.equals("ModificarCuenta")) 
+			return new MainWindowPerfilUsuario(user);
+		
+		else if (panel.equals("botonEliminarCuenta")) 
+			return new MainWindowEliminarCuenta(user);
+		
+		else if (panel.equals("EliminarCuenta")) 
+			return new MainWindowIniciarSesion();
+		
+		else if (panel.equals("CerrarSesion")) 
+			return new MainWindowIniciarSesion();
+		
+		else if (panel.equals("botonCrearCuenta")) 
+			return new MainWindowAcuerdoSuscriptor();
+		
+		else if (panel.equals("AcuerdoSuscriptor")) 
+			return new MainWindowCrearCuenta();
+		
+		else if (panel.equals("CrearCuenta")) 
+			return new MainWindowIniciarSesion();
+		
 		else
 			return null;
 	}
 	
-	//Controller de usuario
-	
-	//Acceso a perfil de usuario
-	else if (e.getPropertyName().equals("IniciarSesion")){
-		_current_user = (UsuarioDTO)e.getNewValue();
-		changeBoxes (_current_user);
-		principalPanel = new MainWindowPerfilUsuario(_current_user);
-		reinicia();
-	}
-	
-	//Acceso a pantalla Modificar
-	else if (e.getPropertyName().equals("botonModificarCuenta")){
-		principalPanel = new MainWindowModificarCuenta(_current_user);
-		reinicia();
-	}
-	
-	//Tras modificar perfil
-	else if (e.getPropertyName().equals("ModificarCuenta")) {
-		principalPanel = new MainWindowPerfilUsuario(_current_user);
-		reinicia();
-	}
-	
-	//Acceso a pantalla Eliminar
-	else if (e.getPropertyName().equals("botonEliminarCuenta")){
-		principalPanel = new MainWindowEliminarCuenta(_current_user);
-		reinicia();
-	}
-	
-	//Tras eliminarCuenta
-	else if (e.getPropertyName().equals("EliminarCuenta")){
-		_current_user = new UsuarioDAOJSON().getUnregUser();
-		changeBoxes(_current_user);
-		principalPanel = new MainWindowIniciarSesion();
-		reinicia();
-	}
-	
-	//Cerrar sesion
-	else if (e.getPropertyName().equals("CerrarSesion")){
-		_current_user = new UsuarioDAOJSON().getUnregUser();
-		changeBoxes(_current_user);
-		principalPanel = new MainWindowIniciarSesion();
-		reinicia();
-	}
-	
-	//Boton crear cuenta
-	else if (e.getPropertyName().equals("botonCrearCuenta")){
-		principalPanel = new MainWindowAcuerdoSuscriptor();
-		reinicia();
-	}
-	
-	//Acuerdo de suscriptor
-	else if (e.getPropertyName().equals("AcuerdoSuscriptor")){
-		principalPanel = new MainWindowCrearCuenta();
-		reinicia();
-	}
-	
-	//CrearCuenta
-	else if (e.getPropertyName().equals("CrearCuenta")){
-		principalPanel = new MainWindowIniciarSesion();
-		reinicia();
-	}
 
 }

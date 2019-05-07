@@ -200,13 +200,9 @@ public class MainWindow extends JFrame{
 	
 	class UserButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			/*
-			if (_current_user.isUnregistered()) {
-				firePropertyChange("IniciarSesion", null, null);
-			}
-			else
-				firePropertyChange("PerfilUsuario", null, null);
-			*/
+			
+			firePropertyChange("BotonInicio", null, null);
+
 		}
 	}
 	

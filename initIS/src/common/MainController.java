@@ -11,6 +11,7 @@ import Comunidad.View.ComunidadController;
 import IncidenciasMejoras.Control.IncidenciasMejorasController;
 import Juego.Control.JuegoController;
 import Tienda.Control.TiendaController;
+import Usuario.Control.UsuarioController;
 import Usuario.Control.UsuarioDTO;
 import Usuario.Control.tipoCuenta;
 import viewer.MainWindow;
@@ -24,7 +25,8 @@ public class MainController {
 		new JuegoController(),
 		new TiendaController(),
 		new ComunidadController(),
-		new IncidenciasMejorasController()
+		new IncidenciasMejorasController(),
+		new UsuarioController(new UsuarioDTO(null, 0, null, null, null, null, "0000000000", null))
 	};
 
 	@SuppressWarnings("unused")
