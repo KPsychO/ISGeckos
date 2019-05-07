@@ -37,8 +37,11 @@ import Tienda.View.MainViewTienda;
 import Usuario.Control.UsuarioDAOJSON;
 import Usuario.Control.UsuarioDTO;
 import Usuario.Control.tipoCuenta;
+import Usuario.View.MainWindowAcuerdoSuscriptor;
 import Usuario.View.MainWindowCrearCuenta;
+import Usuario.View.MainWindowEliminarCuenta;
 import Usuario.View.MainWindowIniciarSesion;
+import Usuario.View.MainWindowModificarCuenta;
 import Usuario.View.MainWindowPerfilUsuario;
 
 public class MainWindow extends JFrame{
@@ -122,7 +125,9 @@ public class MainWindow extends JFrame{
             		
             		else if (e.getPropertyName().equals("PerfilUsuario")){
             			_current_user = (UsuarioDTO)e.getNewValue();
+            			
             			if (_current_user != null) {
+            				changeBoxes(_current_user);
             				principalPanel = new MainWindowPerfilUsuario(_current_user);
             				reinicia();
             			}

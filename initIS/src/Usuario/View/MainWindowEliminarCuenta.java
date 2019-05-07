@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
+import Usuario.Control.UsuarioDTO;
+
 public class MainWindowEliminarCuenta extends JPanel{
 	private static final long serialVersionUID = 1L;
 

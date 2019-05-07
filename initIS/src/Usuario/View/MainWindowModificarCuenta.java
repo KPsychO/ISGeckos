@@ -14,6 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
+import Usuario.Control.UsuarioDTO;
+
 public class MainWindowModificarCuenta extends JPanel {
 	private static final long serialVersionUID = 1L;
 
