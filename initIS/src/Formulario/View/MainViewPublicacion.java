@@ -22,21 +22,23 @@ public class MainViewPublicacion extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
-	int n = 0;
-	FormularioDTO _formularioDTO;
-	JPanel _panel;
-	
-	//NO ESTOY SEGURO
-    JPanel titulopanel;
-    JLabel titulo;
-    JPanel preciopanel;
-    JLabel precio;
-    JPanel pegipanel;
-    JLabel pegi;
-    JPanel shortpanel;
-    JLabel shortdes;
-    JPanel longpanel;
-    JLabel longdes;
+	private int n = 0;
+	private FormularioDTO _formularioDTO;
+	private JPanel _panel;
+
+    //NO ESTOY SEGURO
+    private JPanel titulopanel;
+    private JLabel titulo;
+    private JPanel preciopanel;
+    private JLabel precio;
+    private JPanel pegipanel;
+    private JLabel pegi;
+    private JPanel shortpanel;
+    private JLabel shortdes;
+    private JPanel longpanel;
+    private JLabel longdes;
+    private JPanel numpanel;
+    private JLabel num;
 
 	
 
@@ -75,6 +77,8 @@ public class MainViewPublicacion extends JPanel {
 		this.shortdes.setText("DESCRIPCION :  " + formulary.get_descShort());
 		
 		this.longdes.setText("DETALLES :  " + formulary.get_descLong());
+		
+		this.num.setText("NUMERO :  " + n);
 		
 	}
 	
@@ -115,20 +119,30 @@ public class MainViewPublicacion extends JPanel {
         longdes.setPreferredSize(new Dimension(500,20));
         longdes.setText("DETALLES :  " );
         
+        this.numpanel = new JPanel();
+        this.num = new JLabel();
+        
+        num.setPreferredSize(new Dimension(500,20));
+        num.setText("NUMERO :  " );
+        
         titulopanel.add(titulo);
         preciopanel.add(precio);
         pegipanel.add(pegi);
         shortpanel.add(shortdes);
         longpanel.add(longdes);
+        numpanel.add(num);
         
         campos.add(titulopanel);
         campos.add(preciopanel);
         campos.add(pegipanel);
         campos.add(shortpanel);
         campos.add(longpanel);
+        campos.add(numpanel);
         
         campos.add(Box.createVerticalStrut(20));
         this.add(campos);
+        
+        showFormulary(n);
 		
 	}
 	
@@ -147,15 +161,15 @@ public class MainViewPublicacion extends JPanel {
 				JSONArray form = new JSONArray();
 				form = new FormularioDAOJSON().getFormularies();
 				if(form.length() == 0) {
-					JOptionPane.showMessageDialog(null, "No hay más formulariuos", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No hay mas formulariuos", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				else if(n < form.length() - 1){
-					showFormulary(n);
 					n++;
+					showFormulary(n);
 				}
 				else if (n == form.length() - 1){
-					showFormulary(n);
 					n = 0;
+					showFormulary(n);
 				}
 				
 			}
@@ -163,44 +177,75 @@ public class MainViewPublicacion extends JPanel {
 
 	        });
 		
-			back.addActionListener(new ActionListener() {
+		back.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				JSONArray form = new JSONArray();
 				form = new FormularioDAOJSON().getFormularies();
 				if(form.length() == 0) {
-					JOptionPane.showMessageDialog(null, "No hay más formulariuos", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No hay mmas formulariuos", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				else if(n > 0){
-					showFormulary(n);
 					n--;
+					showFormulary(n);
 				}
 				else if (n == 0){
-					showFormulary(n);
 					n = form.length() - 1;
+					showFormulary(n);
 				}	
 			}
 
 	        });
 			
-			delete.addActionListener(new ActionListener() {
+		delete.addActionListener(new ActionListener() {
 				
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					_formularioDTO.deleteFormulary(n);
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				_formularioDTO.deleteFormulary(n);
+				
+				JSONArray form = new JSONArray();
+				form = new FormularioDAOJSON().getFormularies();
+				
+				if(form.length() == 0) {
+					JOptionPane.showMessageDialog(null, "No hay mas formularios", "Error", JOptionPane.ERROR_MESSAGE);
+					firePropertyChange("PerfilUsuarioCurrent", null, null);
 				}
+				else if(n < form.length() - 1){
+					showFormulary(n);
+				}
+				else if (n >= form.length() - 1){
+					n = 0;
+					showFormulary(n);
+				}
+			}
 
-		    });
+	    });
 			
-			accept.addActionListener(new ActionListener() {
+		accept.addActionListener(new ActionListener() {
 				
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					_formularioDTO.insertGame(n);
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				_formularioDTO.insertGame(n);
+				_formularioDTO.deleteFormulary(n);
+				
+				JSONArray form = new JSONArray();
+				form = new FormularioDAOJSON().getFormularies();
+				
+				if(form.length() == 0) {
+					JOptionPane.showMessageDialog(null, "No hay mas formularios", "Error", JOptionPane.ERROR_MESSAGE);
+					firePropertyChange("PerfilUsuarioCurrent", null, null);
 				}
+				else if(n < form.length() - 1){
+					showFormulary(n);
+				}
+				else if (n >= form.length() - 1){
+					n = 0;
+					showFormulary(n);
+				}
+			}
 
-		    });
+	    });
 		
 		
 		inferior.add(back);

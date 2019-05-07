@@ -115,18 +115,6 @@ public class MainWindow extends JFrame{
 		buttonSoporte.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(buttonSoporte);
 		
-		JButton buttonFormulario = new JButton("Formulario");
-		buttonFormulario.setAlignmentX(Component.CENTER_ALIGNMENT);
-		buttonFormulario.addActionListener(new FormularioButton());
-		buttonFormulario.setEnabled(state_developer);
-		panel.add(buttonFormulario);
-		
-		JButton buttonGestion = new JButton("Publicacion");
-		buttonGestion.setAlignmentX(Component.CENTER_ALIGNMENT);
-		buttonGestion.addActionListener(new GestionButton());
-		buttonGestion.setEnabled(state_developer);
-		panel.add(buttonGestion);
-	
 		return panel;
 	}
 

@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import Comunidad.View.ComunidadController;
-import Formulario.Control.PublicacionController;
+import Formulario.Control.FormularioController;
 import IncidenciasMejoras.Control.IncidenciasMejorasController;
 import Juego.Control.JuegoController;
 import Tienda.Control.TiendaController;
@@ -20,15 +20,15 @@ import viewer.MainWindow;
 public class MainController {
 	
 	private MainWindow mw;
-	private UsuarioDTO _current_user;
+	private static UsuarioDTO _current_user;
 	
 	private Controller[] controllers = {
 		new JuegoController(),
 		new TiendaController(),
 		new ComunidadController(),
 		new IncidenciasMejorasController(),
-		new PublicacionController(),
-		new UsuarioController(new UsuarioDTO(null, 0, null, null, null, null, "0000000000", null))
+		new FormularioController(),
+		new UsuarioController(new UsuarioDTO(null, 0, null, null, null, null, "0000000000", null), this)
 		
 	};
 
@@ -43,7 +43,7 @@ public class MainController {
 			public void run() {
 				mw = new MainWindow();
 				mw.setVisible(true);
-				mw.reinicia(((TiendaController)controllers[1]).getPanel("Tienda", null, _current_user));
+				mw.reinicia(((TiendaController)controllers[1]).getPanel("Tienda", null, _current_user), _current_user);
 				
 				mw.addPropertyChangeListener(new PropertyChangeListener() {
 		            @Override
@@ -56,7 +56,7 @@ public class MainController {
 			            	for (Controller c : controllers) {
 			        			newPanel = c.getPanel(e.getPropertyName(), e.getNewValue(), _current_user);
 			        			if (newPanel != null) {
-			        				mw.reinicia(newPanel);
+			        				mw.reinicia(newPanel, _current_user);
 			        				break;
 			        			}
 			        		}
@@ -65,6 +65,10 @@ public class MainController {
 		        });
 			}
 		});
+	}
+
+	public void modifyUser(UsuarioDTO o) {
+		_current_user = o;
 	}
 	
 }

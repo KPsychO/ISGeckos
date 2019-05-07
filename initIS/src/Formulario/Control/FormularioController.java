@@ -12,7 +12,7 @@ import Formulario.View.MainViewPublicacion;
 import Usuario.Control.UsuarioDTO;
 
 
-public class PublicacionController extends Controller{
+public class FormularioController extends Controller{
 
 	@Override
 	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {

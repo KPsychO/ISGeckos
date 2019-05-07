@@ -25,7 +25,7 @@ public class TiendaController extends Controller{
 	
 	public TiendaController() {
 		_dao = new TiendaDAOJSON();
-		_TiendaDTO = new TiendaDTO(createJuegosEnTienda());
+		_TiendaDTO = new TiendaDTO(getJuegosEnTienda());
 	}
 
 	
@@ -59,7 +59,7 @@ public class TiendaController extends Controller{
 		
 	}
 	
-	private List<JuegoDTO> createJuegosEnTienda() {
+	public List<JuegoDTO> getJuegosEnTienda() {
 		List<JuegoDTO> juegosEnTienda = _dao.getPublishedGames();
 		
 		return juegosEnTienda;
@@ -79,17 +79,14 @@ public class TiendaController extends Controller{
 		
 	}
 
-	public List<JuegoDTO> getJuegosEnTienda() {
-		
-		return _TiendaDTO.getJuegosEnTienda();
-		
-	}
-
 	@Override
 	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
 		
-		if (panel.equals("Tienda"))
+		if (panel.equals("Tienda")) {
+			getJuegosEnTienda();
 			return new MainViewTienda(this, user);
+		}
+			
 		
 		else if (panel.equals("ComprarJuego"))
 			return new ComprarJuego((JuegoDTO) o); 

@@ -18,7 +18,7 @@ public class TiendaDAOJSON implements TiendaDAO {
 	public List<JuegoDTO> getPublishedGames() {
 		List<JuegoDTO> list = new ArrayList<JuegoDTO>();
 		try {
-			InputStream input = new FileInputStream("./src/resources/Games.txt");
+			InputStream input = new FileInputStream("./src/resources/NewGames.txt");
 			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
 			for (Object o : jsonInput) {
 				JSONObject oJ = new JSONObject(new JSONTokener(o.toString()));

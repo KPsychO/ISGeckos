@@ -26,10 +26,10 @@ public class MainViewTienda extends JPanel {
 	@SuppressWarnings("unused")
 	private boolean _click;
 
-	TiendaController _tiendaController;
-	JPanel _panel;
-	JPanel aux;
-	List<JuegoDTO> _games;
+	private static TiendaController _tiendaController;
+	private JPanel _panel;
+	private JPanel aux;
+	private List<JuegoDTO> _games;
 
 	public MainViewTienda(TiendaController crtl, UsuarioDTO user) {
 		_tiendaController = crtl;

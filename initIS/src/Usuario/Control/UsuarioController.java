@@ -45,6 +45,8 @@ public class UsuarioController extends Controller{
 			_mc.modifyUser((UsuarioDTO) o);
 			return new MainWindowPerfilUsuario((UsuarioDTO) o);
 		}
+		else if (panel.equals("PerfilUsuarioCurrent"))
+			return new MainWindowPerfilUsuario(user);
 		else if (panel.equals("botonModificarCuenta"))
 			return new MainWindowModificarCuenta(user);
 		

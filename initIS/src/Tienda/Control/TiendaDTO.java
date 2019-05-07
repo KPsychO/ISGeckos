@@ -12,7 +12,6 @@ public class TiendaDTO {
 	
 	private List<JuegoDTO> _juegosEnTienda;
 
-	
 	public TiendaDTO(List<JuegoDTO> juegosEnTienda) {
 		
 		_juegosEnTienda = juegosEnTienda;
