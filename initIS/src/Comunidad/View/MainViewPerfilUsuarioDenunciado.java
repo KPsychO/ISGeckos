@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.border.EtchedBorder;
 
 import Usuario.Control.UsuarioDTO;
 
@@ -79,6 +80,7 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 	        
 	        descripcion = new JTextArea();
 	        descripcion.setPreferredSize(new Dimension(150,150));
+			descripcion.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 	        descripcion.setEditable(false);
 	        descripcion.setText(usDen.get_desc());
 	        	        
