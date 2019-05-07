@@ -9,9 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
 
 import Usuario.Control.UsuarioDTO;
 
@@ -23,7 +21,7 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 		private JLabel usernameLabel;
 		private JLabel paisLabel;
 		private JLabel descripcionLabel;
-		private JTextField descripcion;
+		private JTextArea descripcion;
 		private JButton denunciar;
 		private UsuarioDTO usDen;
 		
@@ -79,7 +77,7 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 	        descripcionLabel.setPreferredSize(new Dimension(200,20));
 	        descripcionLabel.setText("Descripcion: ");
 	        
-	        descripcion = new JTextField();
+	        descripcion = new JTextArea();
 	        descripcion.setPreferredSize(new Dimension(150,150));
 	        descripcion.setEditable(false);
 	        descripcion.setText(usDen.get_desc());
