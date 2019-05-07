@@ -90,10 +90,10 @@ public class TiendaController extends Controller{
 		
 		if (panel.equals("Tienda"))
 			return new MainViewTienda(this, user);
-		
 		else if (panel.equals("ComprarJuego"))
 			return new ComprarJuego((JuegoDTO) o); 
-		
+		else if (panel.equals("SoporteATienda"))
+			return new MainViewTienda(this, user);
 		else
 			return null;
 		
