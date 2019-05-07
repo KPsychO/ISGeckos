@@ -20,13 +20,15 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Biblioteca.View.MainViewBiblioteca;
+import Formulario.View.ViewFormulario;
 //import Formulario.Control.FormularioDTO;
 import Usuario.Control.UsuarioDTO;
 //import IncidenciasMejoras.Control.IncidenciasDAOJSON;
 //import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
 //import Tienda.View.MainViewTienda;
 
-public class MainWindowAcuerdoSuscriptor extends JPanel implements ActionListener{
+public class MainWindowAcuerdoSuscriptor extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	private JLabel acuerdoSuscriptor;
@@ -71,7 +73,10 @@ public class MainWindowAcuerdoSuscriptor extends JPanel implements ActionListene
         acuerdo.getVerticalScrollBar().setUnitIncrement(15);
         
         ok = new JCheckBox("He leido y acepto el acuerdo");
+       
         boton = new JButton ("CONTINUAR");
+        boton.addActionListener(new continuarButton());
+        
         
         generalPanel.add(acuerdo);
         generalPanel.add(ok);
@@ -79,11 +84,13 @@ public class MainWindowAcuerdoSuscriptor extends JPanel implements ActionListene
 		
         this.add(generalPanel);
 	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
+
+	class continuarButton implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if (ok.isSelected()) {
+        		firePropertyChange("CrearCuenta", null, null);
+        	}
+		}
+	}
 }

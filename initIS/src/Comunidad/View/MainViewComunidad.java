@@ -44,8 +44,8 @@ public class MainViewComunidad extends JPanel {
 	private List<PerfilUsuarioDenunc> perfil;
 
 	
-	public MainViewComunidad(UsuarioDTO usuario) {
-		_user = new UsuarioDTO(usuario.get_username());
+	public MainViewComunidad(String usuario) {
+		_user = new UsuarioDTO(usuario);
 		perfil = new ArrayList<PerfilUsuarioDenunc>();
 		dao = new UsuarioDAOJSON();
 		initGUI();

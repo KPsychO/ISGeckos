@@ -148,12 +148,12 @@ public class MainWindowPerfilUsuario extends JPanel{
 	}
 	class elimCuentaButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("ElimCuenta", null, _dto);
+			firePropertyChange("EliminarCuenta", null, _dto);
 		}
 	}
 	class modPerfilButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("ModPerfil", null, _dto);
+			firePropertyChange("ModificarCuenta", null, _dto);
 		}
 	}
 	class formularioButton implements ActionListener {

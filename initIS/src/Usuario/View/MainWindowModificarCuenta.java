@@ -28,9 +28,11 @@ import Usuario.Control.UsuarioDTO;
 //import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
 //import Tienda.View.MainViewTienda;
 
-public class MainWindowModificarCuenta extends JPanel implements ActionListener{
+public class MainWindowModificarCuenta extends JPanel {
 	private static final long serialVersionUID = 1L;
 
+	private UsuarioDTO _dto;
+	
 	private JLabel avatarLabel;
 	private JFileChooser avatarButton;
 	private JLabel paisLabel;
@@ -39,9 +41,10 @@ public class MainWindowModificarCuenta extends JPanel implements ActionListener{
 	private JTextArea descripcion;
 	private JButton ok;
 	
-	public MainWindowModificarCuenta () {
+	public MainWindowModificarCuenta (UsuarioDTO dto) {
+		_dto = dto;
 		initGUI();
-		this.setVisible(true);
+		//this.setVisible(true);
 	}
 	
 	private void initGUI() {
@@ -66,14 +69,13 @@ public class MainWindowModificarCuenta extends JPanel implements ActionListener{
         avatarLabel.setText("AVATAR");
         */
         
+        
+        //PONER COMO AVATAR LA IMAGEN SELECCIONADA EN EL JFILECHOOSER
         ImageIcon img = new ImageIcon("./src/resources/usuario.png");
         avatarLabel = new JLabel(img, JLabel.CENTER);
-       // panel.add(avatarLabel);
-        
         avatarButton = new JFileChooser("./src/resources");
         
         
-     
         avatarPanel.add(avatarLabel);
         avatarPanel.add(avatarButton);
         
@@ -110,6 +112,7 @@ public class MainWindowModificarCuenta extends JPanel implements ActionListener{
         descripcionPanel.add(descripcion);
         
         ok = new JButton ("GUARDAR CAMBIOS");
+        ok.addActionListener(new guardarButton());
         
         generalPanel.add(avatarPanel);
         generalPanel.add(paisPanel);
@@ -124,10 +127,15 @@ public class MainWindowModificarCuenta extends JPanel implements ActionListener{
         
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	class guardarButton implements ActionListener {
+		public void actionPerformed(ActionEvent e){  
+			if (!pais.getText().isEmpty())
+				_dto.set_country(pais.getText());
+			if (!descripcion.getText().isEmpty())
+				_dto.set_desc(descripcion.getText());
+			
+    		firePropertyChange("PerfilUsuario", null, null);
+		} 
 	}
 
 }

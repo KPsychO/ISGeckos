@@ -95,7 +95,7 @@ public class MainWindow extends JFrame{
             			reinicia();
             		}
             		else if (e.getPropertyName().equals("DenunciarJugador")) {
-            			principalPanel = new MainViewDenunciasJugador(_current_user, (UsuarioDTO) e.getNewValue());
+            			principalPanel = new MainViewDenunciasJugador("");
             			reinicia();
             		}
             		else if (e.getPropertyName().equals("Soporte")) {
@@ -117,17 +117,36 @@ public class MainWindow extends JFrame{
             			reinicia();
             		}
             		else if (e.getPropertyName().equals("IniciarSesion")){
-            			_current_user = (UsuarioDTO) e.getNewValue();
-            			changeBoxes(_current_user);
+            			principalPanel = new MainWindowIniciarSesion();
+        				reinicia();
+            		}
+            		
+            		else if (e.getPropertyName().equals("PerfilUsuario")){
             			principalPanel = new MainWindowPerfilUsuario(_current_user);
         				reinicia();
             		}
+            		
+            		else if (e.getPropertyName().equals("AcuerdoSuscriptor")){
+            			principalPanel = new MainWindowAcuerdoSuscriptor();
+        				reinicia();
+            		}
+            		
+            		else if (e.getPropertyName().equals("EliminarCuenta")){
+            			principalPanel = new MainWindowEliminarCuenta(_current_user);
+        				reinicia();
+            		}
+            		
+            		else if (e.getPropertyName().equals("ModificarCuenta")){
+            			principalPanel = new MainWindowModificarCuenta(_current_user);
+        				reinicia();
+            		}
+            		
             		else if (e.getPropertyName().equals("Biblioteca")){
             			principalPanel = new MainViewBiblioteca((BibliotecaDTO)e.getNewValue());
             			reinicia();
             		}
             		else if (e.getPropertyName().equals("PerfilUsuarioDenunciado")){
-            			principalPanel = new MainViewPerfilUsuarioDenunciado(_current_user, (UsuarioDTO) e.getNewValue());
+            			principalPanel = new MainViewPerfilUsuarioDenunciado(null);
             			reinicia();
             		}	
             		else if (e.getPropertyName().equals("VerEnTienda")){
@@ -287,7 +306,7 @@ public class MainWindow extends JFrame{
 	class ComunidadButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			principalPanel = new MainViewComunidad(_current_user);
+			principalPanel = new MainViewComunidad(_current_user.get_username());
 			reinicia();
 		}
 	}
@@ -295,7 +314,7 @@ public class MainWindow extends JFrame{
 	class SoporteButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			principalPanel = new MainViewIncidenciasJugador(_current_user);
+			principalPanel = new MainViewIncidenciasJugador("");
 			reinicia();
 		}
 	}
@@ -303,15 +322,17 @@ public class MainWindow extends JFrame{
 	class UserButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			if (_current_user.get_user_id().equals("0"))
+			if (_current_user.get_user_id().equals("0")) {
 				principalPanel = new MainWindowIniciarSesion();
+				//principalPanel = new MainWindowAcuerdoSuscriptor();
+				//principalPanel = new MainWindowCrearCuenta();
+				//principalPanel = new MainWindowEliminarCuenta();
+				//principalPanel = new MainWindowModificarCuenta();
+				//principalPanel = new MainWindowPerfilUsuario(null);
+		}
 			else
 				principalPanel = new MainWindowPerfilUsuario(_current_user);
-			//principalPanel = new MainWindowAcuerdoSuscriptor();
-			//principalPanel = new MainWindowCrearCuenta();
-			//principalPanel = new MainWindowEliminarCuenta();
-			//principalPanel = new MainWindowModificarCuenta();
-			//principalPanel = new MainWindowPerfilUsuario(null);
+			
 			reinicia();
 		}
 	}

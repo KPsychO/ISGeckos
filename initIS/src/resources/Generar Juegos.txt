@@ -23,7 +23,6 @@ Generar Juegos:
     _achievements: [
        '{{repeat(5, 20)}}',
       {
-        _achievements_id: '{{objectId()}}',
         _name: '{{lorem(1, "words")}}',
         _getMode: '{{lorem(integer(15, 30), "words")}}'
       }

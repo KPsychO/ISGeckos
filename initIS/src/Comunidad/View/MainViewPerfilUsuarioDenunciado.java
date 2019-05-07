@@ -1,7 +1,6 @@
 package Comunidad.View;
 
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,9 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.JTextArea;
-import javax.swing.border.EtchedBorder;
+
 
 import Usuario.Control.UsuarioDTO;
 
@@ -21,8 +18,6 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 	
 		private static final long serialVersionUID = 1L;
 
-		private UsuarioDTO user;
-		private UsuarioDTO usDen;
 		private JLabel avatarLabel;
 		private JLabel usernameLabel;
 		private JLabel paisLabel;
@@ -32,74 +27,87 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 		//private JLabel _descripcion;
 		private JButton denunciar;
 		
-		public MainViewPerfilUsuarioDenunciado (UsuarioDTO user, UsuarioDTO usDen) {
-			this.user = user;
-			this.usDen = usDen;
+		public MainViewPerfilUsuarioDenunciado (String user) {
 			initGUI();
 			this.setVisible(true);
 		}
 
 		private void initGUI() {
-			JPanel izq = new JPanel();
-			izq.setLayout(new BoxLayout(izq, BoxLayout.Y_AXIS));
-			
-			//Avatar, nombre y nivel?
-			JPanel avatar_name_level = new JPanel();
-			avatar_name_level.setPreferredSize(new Dimension(300, 120));
-			JLabel icono = new JLabel(new ImageIcon("./src/resources/usuario.png"));
-			icono.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			icono.setPreferredSize(new Dimension(120, 120));
-			icono.setAlignmentX(LEFT_ALIGNMENT);
-			
-			//Nombre y nivel
-			JPanel name_level_estado = new JPanel();
-			name_level_estado.setLayout(new BoxLayout(name_level_estado, BoxLayout.Y_AXIS));
-			JLabel name = new JLabel("Name: " + usDen.get_username());
-			
-			//JLabel level = new JLabel("Level: 0");
-			//JLabel estado = new JLabel("Estado: bien");
-			
-			JLabel pais = new JLabel ("Pais: " + usDen.get_country());
-			JLabel juegos = new JLabel ("Juegos en biblioteca: 5");
-			
-			name_level_estado.add(name);
-			name_level_estado.add(pais);
-			name_level_estado.add(juegos);
-			
-			avatar_name_level.add(icono);
-			avatar_name_level.add(name_level_estado);
-			
-			//Desc
-			JTextArea desc = new JTextArea(usDen.get_desc());
-			desc.setPreferredSize(new Dimension(300, 100));
-			desc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			desc.setEditable(false);
-			//Modificar perfil
-			
-			izq.add(avatar_name_level);
-			izq.add(desc);
-			
-			//Panel derecho
-			JPanel der = new JPanel();
-			der.setLayout(new GridLayout(1, 1));
-			
-			//Botones
-			denunciar = new JButton("Denunciar");
-			denunciar.setActionCommand("aceptar");
-			denunciar.addActionListener(this);			
-			
-			der.add(denunciar);
-			
-			this.add(izq);
-			this.add(new JSeparator());
-			this.add(der);
+			createPerfilUsuario();
 		}
 		
+		private void createPerfilUsuario() {
+			
+			JPanel generalPanel = new JPanel();
+	        BoxLayout generalLayout = new BoxLayout(generalPanel, BoxLayout.X_AXIS);
+	        generalPanel.setLayout(generalLayout);
+	        //int sizex = 200;
+	        
+	        JPanel izquierdaPanel = new JPanel();
+	        BoxLayout izquierdaLayout = new BoxLayout(izquierdaPanel, BoxLayout.Y_AXIS);
+	        izquierdaPanel.setLayout(izquierdaLayout);
+	        
+	        JPanel avatarPanel = new JPanel();
+	        BoxLayout avatarLayout = new BoxLayout(avatarPanel, BoxLayout.X_AXIS);
+	        avatarPanel.setLayout(avatarLayout);
+	        
+	        ImageIcon img = new ImageIcon("./src/resources/usuario.png");
+	        avatarLabel = new JLabel(img, JLabel.CENTER);
+	        
+	        //USERNAME & PAIS
+	        JPanel usernamePanel = new JPanel();
+	        BoxLayout usernameLayout = new BoxLayout(usernamePanel, BoxLayout.Y_AXIS);
+	        usernamePanel.setLayout(usernameLayout);
+	        
+	        usernameLabel = new JLabel();
+	        usernameLabel.setPreferredSize(new Dimension(200,20));
+	        usernameLabel.setText("Username: ");
+	        
+	        paisLabel = new JLabel();
+	        paisLabel.setPreferredSize(new Dimension(200,20));
+	        paisLabel.setText("Pais de residencia: ");
+	        
+	        usernamePanel.add(usernameLabel);
+	        usernamePanel.add(paisLabel);
+	        
+	        avatarPanel.add(avatarLabel);
+	        avatarPanel.add(usernamePanel);
+	        
+	        //TIPO DE CUENTA
+	        tipoCuentaLabel = new JLabel();
+	        tipoCuentaLabel.setPreferredSize(new Dimension(200,20));
+	        tipoCuentaLabel.setText("Tipo de cuenta: ");
+	        
+	        //DESCRIPCION
+	        descripcionLabel = new JLabel();
+	        descripcionLabel.setPreferredSize(new Dimension(200,200));
+	        descripcionLabel.setText("Descripcion: ");
+	        	        
+	        izquierdaPanel.add(avatarPanel);
+	        izquierdaPanel.add(tipoCuentaLabel);
+	        izquierdaPanel.add(descripcionLabel);
+	        
+	        JPanel derechaPanel = new JPanel();
+	        BoxLayout derechaLayout = new BoxLayout(derechaPanel, BoxLayout.Y_AXIS);
+	        derechaPanel.setLayout(derechaLayout);
+	        
+	        denunciar = new JButton("Denunciar");
+			denunciar.setActionCommand("denunciar");
+			denunciar.addActionListener(this);
+	        derechaPanel.add(denunciar);
+	        
+	        generalPanel.add(izquierdaPanel);
+	        generalPanel.add(derechaPanel);
+	        
+	        this.add(generalPanel);
+	     
+	        
+		}
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand().equals("denunciar")) {
-				firePropertyChange("DenunciarJugador", null, usDen);
+				firePropertyChange("DenunciarJugador", null, null);
 			}
 		}
 
