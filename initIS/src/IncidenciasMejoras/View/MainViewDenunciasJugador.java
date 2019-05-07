@@ -51,6 +51,7 @@ public class MainViewDenunciasJugador extends JPanel implements ActionListener{
 		descText = new JTextArea("Motivo por el que denuncias al jugador");
 		descText.setPreferredSize(new Dimension(600, 25));
 		CreateFocusListenerForFields(descText);
+		descText.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		JLabel comen = new JLabel();
 		comen.setText("Comentario: ");
 		comenText = new JTextField("Comenta mas a fondo el motivo");
