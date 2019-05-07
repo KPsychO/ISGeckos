@@ -16,25 +16,37 @@ public class TiendaController extends Controller{
 	private TiendaDAO _dao;
 	TiendaDTO _TiendaDTO;
 	
-	public TiendaController() {
+	public TiendaController(UsuarioDTO user) {
 		
 		_dao = new TiendaDAOJSON();
+		_TiendaDTO = new TiendaDTO(createJuegosEnTienda(user));
+		
+	}
+	
+	public TiendaController() {
+		_dao = new TiendaDAOJSON();
 		_TiendaDTO = new TiendaDTO(createJuegosEnTienda());
+	}
+
+	
+
+	public void changeUser(UsuarioDTO newUser) {
+		
+		_TiendaDTO = new TiendaDTO(createJuegosEnTienda(newUser));
 		
 	}
 
 
-	private List<JuegoDTO> createJuegosEnTienda() {
+	private List<JuegoDTO> createJuegosEnTienda(UsuarioDTO user) {
 		
 		List<JuegoDTO> pubGames = new ArrayList<JuegoDTO>();
-		//List<JuegoDTO> ownGames = new ArrayList<JuegoDTO>();
+		List<JuegoDTO> ownGames = new ArrayList<JuegoDTO>();
 		
-		//List<JuegoDTO> juegosEnTienda = new ArrayList<JuegoDTO>();
+		List<JuegoDTO> juegosEnTienda = new ArrayList<JuegoDTO>();
 		
 		pubGames = _dao.getPublishedGames();
 		
-		/*
-		ownGames = _dao.getOwnedGames(user);
+		ownGames = _dao.getOwnedGames(user.get_user_id());
 		
 		for(JuegoDTO j : pubGames) {
 			
@@ -44,9 +56,13 @@ public class TiendaController extends Controller{
 		}
 		
 		return juegosEnTienda;
-		*/
-		return pubGames;
 		
+	}
+	
+	private List<JuegoDTO> createJuegosEnTienda() {
+		List<JuegoDTO> juegosEnTienda = _dao.getPublishedGames();
+		
+		return juegosEnTienda;
 	}
 	
 	public void comprarJuego(JuegoDTO juego) {
@@ -70,13 +86,13 @@ public class TiendaController extends Controller{
 	}
 
 	@Override
-	public JPanel getPanel(String panel, Object newValue) {
+	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
 		
 		if (panel.equals("Tienda"))
-			return new MainViewTienda(this);
+			return new MainViewTienda(this, user);
 		
 		else if (panel.equals("ComprarJuego"))
-			return new ComprarJuego((JuegoDTO) newValue); 
+			return new ComprarJuego((JuegoDTO) o); 
 		
 		else
 			return null;
