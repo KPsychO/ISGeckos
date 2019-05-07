@@ -3,12 +3,15 @@ package IncidenciasMejoras.View;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
@@ -25,7 +28,7 @@ public class MainViewDenunciasJugador extends JPanel implements ActionListener{
 	private JPanel buttons;
 	private JButton aceptar;
 	private JTextField comenText;
-	private JTextField descText;
+	private JTextArea descText;
 	private IncidenciasDAOJSON imJSON;
 	private UsuarioDTO us;
 	private UsuarioDTO usDen;
@@ -45,12 +48,14 @@ public class MainViewDenunciasJugador extends JPanel implements ActionListener{
 	private void initGUI() {
 		JLabel desc = new JLabel();
 		desc.setText("Descripcion: ");
-		descText = new JTextField("Motivo por el que denuncias al jugador");
-		descText.setPreferredSize(new Dimension(500, 200));
+		descText = new JTextArea("Motivo por el que denuncias al jugador");
+		descText.setPreferredSize(new Dimension(600, 25));
+		CreateFocusListenerForFields(descText);
 		JLabel comen = new JLabel();
 		comen.setText("Comentario: ");
 		comenText = new JTextField("Comenta mas a fondo el motivo");
-		comenText.setPreferredSize(new Dimension(500, 200));
+		comenText.setPreferredSize(new Dimension(600, 200));
+		CreateFocusListenerForFields(comenText);
 		aceptar = new JButton("Aceptar");
 		aceptar.setActionCommand("aceptar");
 		aceptar.addActionListener(this);
@@ -68,11 +73,43 @@ public class MainViewDenunciasJugador extends JPanel implements ActionListener{
 		this.add(buttons);
 	}
 	
+	public void CreateFocusListenerForFields(JTextField txt)
+	{
+	    txt.addFocusListener(new FocusListener() 
+	    {
+	        @Override
+	        public void focusGained(FocusEvent e) {
+	        	txt.setText("");
+	        }
+
+			@Override
+			public void focusLost(FocusEvent e) {
+
+			}
+	    });
+	}
+	
+	public void CreateFocusListenerForFields(JTextArea txt)
+	{
+	    txt.addFocusListener(new FocusListener() 
+	    {
+	        @Override
+	        public void focusGained(FocusEvent e) {
+	        	txt.setText("");
+	        }
+
+			@Override
+			public void focusLost(FocusEvent e) {
+
+			}
+	    });
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("aceptar")) {
 			//imJSON.getListIncidencias();
 			//Aqui faltan los usuarios y el denunciado
-			imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("DenJug", "Jose", "Jaime", null, descText.getText(), comenText.getText()));
+			imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("DenJug", us.get_user_id(), "Jaime", null, descText.getText(), comenText.getText()));
 			JOptionPane.showMessageDialog(getParent(), "Has enviado la Denuncia/Incidencia");
 		}
 		else if (e.getActionCommand().equals("cancelar")) {
