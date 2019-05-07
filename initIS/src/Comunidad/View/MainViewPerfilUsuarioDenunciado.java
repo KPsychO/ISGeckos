@@ -81,6 +81,8 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 	        descripcion = new JTextArea();
 	        descripcion.setPreferredSize(new Dimension(150,150));
 			descripcion.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		    descripcion.setWrapStyleWord(true);
+		    descripcion.setLineWrap(true);
 	        descripcion.setEditable(false);
 	        descripcion.setText(usDen.get_desc());
 	        	        
