@@ -9,6 +9,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import Usuario.Control.UsuarioDTO;
 
@@ -19,8 +22,8 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 		private JLabel avatarLabel;
 		private JLabel usernameLabel;
 		private JLabel paisLabel;
-		private JLabel tipoCuentaLabel;
 		private JLabel descripcionLabel;
+		private JTextField descripcion;
 		private JButton denunciar;
 		private UsuarioDTO usDen;
 		
@@ -62,7 +65,7 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 	        usernameLabel.setText("Username: " + usDen.get_username());
 	        
 	        paisLabel = new JLabel();
-	        paisLabel.setPreferredSize(new Dimension(200,20));
+	        paisLabel.setPreferredSize(new Dimension(200,100));
 	        paisLabel.setText("Pais de residencia: " + usDen.get_country());
 	        
 	        usernamePanel.add(usernameLabel);
@@ -73,12 +76,15 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 	        
 	        //DESCRIPCION
 	        descripcionLabel = new JLabel();
-	        descripcionLabel.setPreferredSize(new Dimension(200,200));
-	        descripcionLabel.setText("Descripcion: " + usDen.get_desc());
+	        descripcionLabel.setPreferredSize(new Dimension(200,20));
+	        descripcionLabel.setText("Descripcion: ");
+	        
+	        descripcion = new JTextField();
+	        descripcion.setPreferredSize(new Dimension(150,150));
+	        descripcion.setEditable(false);
+	        descripcion.setText(usDen.get_desc());
 	        	        
 	        izquierdaPanel.add(avatarPanel);
-	        izquierdaPanel.add(descripcionLabel);
-	        
 	        JPanel derechaPanel = new JPanel();
 	        BoxLayout derechaLayout = new BoxLayout(derechaPanel, BoxLayout.Y_AXIS);
 	        derechaPanel.setLayout(derechaLayout);
@@ -87,6 +93,8 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 			denunciar.setActionCommand("denunciar");
 			denunciar.addActionListener(this);
 	        derechaPanel.add(denunciar);
+	        izquierdaPanel.add(descripcionLabel);
+	        izquierdaPanel.add(descripcion);
 	        
 	        generalPanel.add(izquierdaPanel);
 	        generalPanel.add(derechaPanel);
