@@ -82,7 +82,7 @@ public class PerfilUsuarioDenunc extends JPanel{
 	
 	class CargarButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("PerfilUsuarioDenunciado", null, _user);
+			firePropertyChange("PerfilUsuarioDenunciado", _user, null);
 		}
 	}
 
