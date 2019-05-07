@@ -10,18 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.border.EtchedBorder;
-import javax.swing.table.DefaultTableModel;
-
-import Biblioteca.View.MainViewBiblioteca;
-import Formulario.View.ViewFormulario;
-//import Formulario.Control.FormularioDTO;
-import Usuario.Control.UsuarioDTO;
-//import IncidenciasMejoras.Control.IncidenciasDAOJSON;
-//import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
-//import Tienda.View.MainViewTienda;
 
 public class MainWindowAcuerdoSuscriptor extends JPanel{
 	private static final long serialVersionUID = 1L;

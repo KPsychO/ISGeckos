@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import org.json.JSONArray;
 
+import Juego.View.MainViewDeveloper;
 import Juego.View.MainViewJuego;
 import Usuario.Control.UsuarioDTO;
 import common.Controller;
@@ -27,6 +28,9 @@ public class JuegoController extends Controller{
 		
 		else if (panel.equals("VerEnTienda"))
 			return new MainViewJuego(juego);
+		
+		else if (panel.equals("Desarrolladora"))
+			return new MainViewDeveloper(user);
 		
 		else
 			return null;

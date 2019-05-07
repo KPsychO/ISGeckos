@@ -30,6 +30,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 	private JButton modPerfil; 
 	private JButton formulario;
 	private JButton publicacion;
+	private JButton developer;
 	
 	public MainWindowPerfilUsuario(UsuarioDTO dto) {
 		_dto = dto;
@@ -113,6 +114,9 @@ public class MainWindowPerfilUsuario extends JPanel{
 		publicacion = new JButton("PUBLICACION");
 		publicacion.addActionListener(new publicacionButton());
 		
+		developer = new JButton("DESARROLLADORA");
+		developer.addActionListener(new desarrolladoraButton());
+		
 		setButtons();
 		
 		der.add(biblioteca);
@@ -124,6 +128,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 		der.add(cerrarSesion);
 		der.add(modPerfil);
 		der.add(elimCuenta);
+		der.add(developer);
 		
 		this.add(izq);
 		this.add(new JSeparator());
@@ -132,6 +137,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 	
 	private void setButtons() {
 		formulario.setEnabled(_dto.isDev());
+		developer.setEnabled(_dto.isDev());
 		publicacion.setEnabled(_dto.isAdmin());
 	}
 
@@ -164,6 +170,11 @@ public class MainWindowPerfilUsuario extends JPanel{
 	class publicacionButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			firePropertyChange("Publicacion", null, _dto);
+		}
+	}
+	class desarrolladoraButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			firePropertyChange("Desarrolladora", null, _dto);
 		}
 	}
 
