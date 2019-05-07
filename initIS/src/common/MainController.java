@@ -1,6 +1,4 @@
 package common;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -10,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import Comunidad.View.ComunidadController;
+import Formulario.Control.PublicacionController;
 import IncidenciasMejoras.Control.IncidenciasMejorasController;
 import Juego.Control.JuegoController;
 import Tienda.Control.TiendaController;
@@ -21,14 +20,16 @@ import viewer.MainWindow;
 public class MainController {
 	
 	private MainWindow mw;
-	private static UsuarioDTO _current_user;
+	private UsuarioDTO _current_user;
 	
 	private Controller[] controllers = {
 		new JuegoController(),
 		new TiendaController(),
 		new ComunidadController(),
 		new IncidenciasMejorasController(),
-		new UsuarioController(new UsuarioDTO(null, 0, null, null, null, null, "0000000000", null), this)
+		new PublicacionController(),
+		new UsuarioController(new UsuarioDTO(null, 0, null, null, null, null, "0000000000", null))
+		
 	};
 
 	@SuppressWarnings("unused")
@@ -40,38 +41,30 @@ public class MainController {
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				
 				mw = new MainWindow();
 				mw.setVisible(true);
-				mw.reinicia(((TiendaController)controllers[1]).getPanel("Tienda", null, _current_user), _current_user);
-				mw.addPropertyChangeListener(new Properties());
+				mw.reinicia(((TiendaController)controllers[1]).getPanel("Tienda", null, _current_user));
 				
+				mw.addPropertyChangeListener(new PropertyChangeListener() {
+		            @Override
+		            public void propertyChange(PropertyChangeEvent e) {
+		            	if (e.getPropertyName().equals("UserChange")) {
+		            		_current_user = (UsuarioDTO)e.getNewValue();
+		            	}
+		            	else {
+		            		JPanel newPanel = new JPanel();
+			            	for (Controller c : controllers) {
+			        			newPanel = c.getPanel(e.getPropertyName(), e.getNewValue(), _current_user);
+			        			if (newPanel != null) {
+			        				mw.reinicia(newPanel);
+			        				break;
+			        			}
+			        		}
+		            	}
+		            }
+		        });
 			}
 		});
 	}
 	
-	public void modifyUser(UsuarioDTO user) {
-		if (user != null)
-			_current_user = user;
-	}
-	
-	private class Properties implements PropertyChangeListener {
-
-		@Override
-		public void propertyChange(PropertyChangeEvent e) {
-			if (e.getPropertyName().equals("UserChange")) {
-        		_current_user = (UsuarioDTO)e.getNewValue();
-        	}
-        	else {
-        		JPanel newPanel = new JPanel();
-            	for (Controller c : controllers) {
-        			newPanel = c.getPanel(e.getPropertyName(), e.getNewValue(), _current_user);
-        			if (newPanel != null) {
-        				mw.reinicia(newPanel, _current_user);
-        				break;
-        			}
-        		}
-        	}
-		}
-	}
 }
