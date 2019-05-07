@@ -1,11 +1,7 @@
 package Usuario.Control;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.ImageIcon;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class UsuarioDTO {
@@ -48,6 +44,7 @@ public class UsuarioDTO {
 		
 	}
 	
+	@SuppressWarnings("exports")
 	public UsuarioDTO(JSONObject user) {
 		
 		dao = new UsuarioDAOJSON();
@@ -72,6 +69,7 @@ public class UsuarioDTO {
 		if(_users.contains(us)) {
 			_users.remove(us);
 		}
+		
 	}
 	
 	public boolean isDev() {
@@ -148,6 +146,10 @@ public class UsuarioDTO {
 
 	public List<UsuarioDTO> getUsers() {
 		return _users;
+	}
+	
+	public boolean isUnregistered() {
+		return this._types.contains(tipoCuenta.unregistered);		
 	}
 
 }

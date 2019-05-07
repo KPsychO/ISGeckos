@@ -2,11 +2,6 @@
 initIS/.classpath
 initIS/.project
 *.prefs
+*.class
 initIS/src/resources/IncidenciasMejoras.txt
 initIS/src/resources/IncidenciasMejoras.txt
-*.class
-*.class
-*.class
-initIS/bin/Usuario/Control/UsuarioDTO.class
-initIS/bin/viewer/MainWindow$1.class
-*.class

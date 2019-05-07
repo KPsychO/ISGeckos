@@ -3,15 +3,10 @@ package Biblioteca.View;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,6 +18,8 @@ import Biblioteca.Control.JuegoEnPropiedadDTO;
 
 public class JuegoBiblioteca extends JPanel{
 
+	private static final long serialVersionUID = 1L;
+	
 	JButton _icon;
 	JPanel _contents;
 	JuegoEnPropiedadDTO _juegoEnPropiedadDTO;
@@ -174,7 +171,7 @@ public class JuegoBiblioteca extends JPanel{
 		frame.setMinimumSize(new Dimension(1000,800));
 		frame.setPreferredSize(new Dimension(1000,800));
 		
-		JLabel label = new JLabel("El juego \"" + _juegoEnPropiedadDTO.get_title() + "\" se está ejecutando", SwingConstants.CENTER);
+		JLabel label = new JLabel("El juego \"" + _juegoEnPropiedadDTO.get_title() + "\" se estï¿½ ejecutando", SwingConstants.CENTER);
 		
 		frame.add(label, BorderLayout.CENTER);
 		frame.setVisible(true);

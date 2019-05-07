@@ -12,8 +12,8 @@ import Juego.Control.LogroDTO;
 
 public class FormularioDTO {
 
-	//En esta primera versión, solo pido: titulo, descripcion, precio y edad
-	//Cuando esté listo añadiré las demás que sean necesarias
+	//En esta primera versiï¿½n, solo pido: titulo, descripcion, precio y edad
+	//Cuando estï¿½ listo aï¿½adirï¿½ las demï¿½s que sean necesarias
 	
 	private String _id;
 	private String _title;
@@ -21,6 +21,7 @@ public class FormularioDTO {
 	private String _descShort;
 	private String _notes;
 	private String _date;
+	@SuppressWarnings("unused")
 	private String _developer; //Para esto es necesario que funcione el usuario, asi que...
 	private int _version;
 	private int _pegi;

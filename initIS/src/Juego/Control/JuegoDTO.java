@@ -31,6 +31,32 @@ public class JuegoDTO {
 
 	}
 	
+	public JuegoDTO(String id) {
+		
+		dao = new JuegoDAOJSON();
+		List<JuegoDTO> games = dao.getJuegos();
+		
+		for (JuegoDTO g : games) {
+			
+			if (g._id.equals(id)) {
+				this._achievements = g._achievements;
+				this._date = g._date;
+				this._descLong = g._descLong;
+				this._descShort = g._descShort;
+				this._genres = g._genres;
+				this._id = g._id;
+				this._notes = g._notes;
+				this._pegi = g._pegi;
+				this._price = g._price;
+				this._title = g._title;
+				this._version = g._version;
+				break;
+			}
+			
+		}
+		
+	}
+	
 	private void crearJuego(String id, String title, int price, int pegi, int version, 
 			String descL, String descS, List<String> genres, List<LogroDTO> achievements) {
 		

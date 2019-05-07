@@ -1,42 +1,32 @@
 package Formulario.View;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Formulario.Control.FormularioDTO;
 import Juego.Control.LogroDTO;
-import viewer.MainWindow;
 
 public class ViewFormulario extends JPanel{
 	
@@ -49,7 +39,9 @@ public class ViewFormulario extends JPanel{
 	private JTextArea ageField;
 	private JTextArea descLongField;
 	private JTextArea descShortField;
+	@SuppressWarnings("unused")
 	private JTextArea version;
+	@SuppressWarnings("unused")
 	private JTextArea versionNotes;
 	private JTextField name_logro;
 	private JTextField obt_logro;
@@ -92,6 +84,7 @@ public class ViewFormulario extends JPanel{
 		_panel.setLayout(new BoxLayout(_panel, BoxLayout.Y_AXIS));
 	}
 	
+	@SuppressWarnings("unused")
 	private void createFormulary() {
 		JPanel campos = new JPanel();
         BoxLayout experimentLayout = new BoxLayout(campos, BoxLayout.Y_AXIS);
@@ -315,7 +308,8 @@ public class ViewFormulario extends JPanel{
 		JButton confirm = new JButton("Aceptar");
 
 		confirm.addActionListener(new ActionListener() {
-	            @Override
+	            @SuppressWarnings("unused")
+				@Override
 	            public void actionPerformed(ActionEvent e) {
 	            	
 	            	int aux;
@@ -372,6 +366,7 @@ public class ViewFormulario extends JPanel{
 		this.add(inferior, BorderLayout.PAGE_END);
 	}
 		
+		@SuppressWarnings("unused")
 		private void showError(String error,boolean enable) {
 			errorlabel.setText(error);
 			errorlabel.setEnabled(enable);
