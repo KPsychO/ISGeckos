@@ -1,12 +1,18 @@
 package common;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import Comunidad.View.ComunidadController;
+import IncidenciasMejoras.Control.IncidenciasMejorasController;
 import Juego.Control.JuegoController;
 import Tienda.Control.TiendaController;
 import Usuario.Control.UsuarioDTO;
+import Usuario.Control.tipoCuenta;
 import viewer.MainWindow;
 
 public class MainController {
@@ -16,11 +22,17 @@ public class MainController {
 	
 	private Controller[] controllers = {
 		new JuegoController(),
-		new TiendaController()
+		new TiendaController(),
+		new ComunidadController(),
+		new IncidenciasMejorasController()
 	};
 
 	@SuppressWarnings("unused")
 	public MainController() {
+		
+		List<tipoCuenta> types = new ArrayList<tipoCuenta>();
+		types.add(tipoCuenta.unregistered);
+		_current_user = new UsuarioDTO(types, 0, null, null, null, null, "0000000000", null);
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {

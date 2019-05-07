@@ -77,7 +77,6 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 	        descripcionLabel.setText("Descripcion: " + usDen.get_desc());
 	        	        
 	        izquierdaPanel.add(avatarPanel);
-	        izquierdaPanel.add(tipoCuentaLabel);
 	        izquierdaPanel.add(descripcionLabel);
 	        
 	        JPanel derechaPanel = new JPanel();
