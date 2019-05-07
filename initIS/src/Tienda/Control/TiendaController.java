@@ -3,29 +3,37 @@ package Tienda.Control;
 import java.util.ArrayList;
 import java.util.List;
 
-import Juego.Control.JuegoDTO;
-import Usuario.Control.UsuarioDTO;
+import javax.swing.JPanel;
 
-public class TiendaController {
+import Juego.Control.JuegoDTO;
+import Tienda.View.ComprarJuego;
+import Tienda.View.MainViewTienda;
+import Usuario.Control.UsuarioDTO;
+import common.Controller;
+
+public class TiendaController extends Controller{
 	
 	private TiendaDAO _dao;
 	TiendaDTO _TiendaDTO;
 	
-	public TiendaController(UsuarioDTO user) {
+	public TiendaController() {
 		
 		_dao = new TiendaDAOJSON();
-		_TiendaDTO = new TiendaDTO(user, createJuegosEnTienda(user.get_user_id()));
+		_TiendaDTO = new TiendaDTO(createJuegosEnTienda());
 		
 	}
-	
-	private List<JuegoDTO> createJuegosEnTienda(String user) {
+
+
+	private List<JuegoDTO> createJuegosEnTienda() {
 		
 		List<JuegoDTO> pubGames = new ArrayList<JuegoDTO>();
-		List<JuegoDTO> ownGames = new ArrayList<JuegoDTO>();
+		//List<JuegoDTO> ownGames = new ArrayList<JuegoDTO>();
 		
-		List<JuegoDTO> juegosEnTienda = new ArrayList<JuegoDTO>();
+		//List<JuegoDTO> juegosEnTienda = new ArrayList<JuegoDTO>();
 		
 		pubGames = _dao.getPublishedGames();
+		
+		/*
 		ownGames = _dao.getOwnedGames(user);
 		
 		for(JuegoDTO j : pubGames) {
@@ -36,6 +44,8 @@ public class TiendaController {
 		}
 		
 		return juegosEnTienda;
+		*/
+		return pubGames;
 		
 	}
 	
@@ -58,5 +68,19 @@ public class TiendaController {
 		return _TiendaDTO.getJuegosEnTienda();
 		
 	}
-	
+
+	@Override
+	public JPanel getPanel(String panel, Object newValue) {
+		
+		if (panel.equals("Tienda"))
+			return new MainViewTienda(this);
+		
+		else if (panel.equals("ComprarJuego"))
+			return new ComprarJuego((JuegoDTO) newValue); 
+		
+		else
+			return null;
+		
+	}
+
 }

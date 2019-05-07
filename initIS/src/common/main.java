@@ -14,19 +14,7 @@ public class main {
 	public static void main(String[] args) {
 		
 		MainController c = new MainController();
-		
-		
-		/*
-		// Aqui pones tu mierda DAO para cojer datos
-		TiendaDAO tiendaDAO = new TiendaDAOJSON();
-		
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				final MainWindow v = new MainWindow();
-				v.setVisible(true);
-			}
-		});
-		*/
+
 	}
 	
 }

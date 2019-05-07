@@ -31,9 +31,8 @@ public class MainViewTienda extends JPanel {
 	JPanel aux;
 	List<JuegoDTO> _games;
 
-	public MainViewTienda(UsuarioDTO user) {
-
-		_tiendaController = new TiendaController(user);
+	public MainViewTienda(TiendaController crtl) {
+		_tiendaController = crtl;
 		_click = false;
 		_games = _tiendaController.getJuegosEnTienda();
 
