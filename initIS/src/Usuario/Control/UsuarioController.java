@@ -1,5 +1,6 @@
 package Usuario.Control;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
@@ -10,18 +11,21 @@ import Usuario.View.MainWindowIniciarSesion;
 import Usuario.View.MainWindowModificarCuenta;
 import Usuario.View.MainWindowPerfilUsuario;
 import common.Controller;
+import common.MainController;
 
 public class UsuarioController extends Controller{
 	
+	private static MainController _mc;
+	
 	private UsuarioDTO _dto;
 	
-	public UsuarioController(UsuarioDTO dto) {
+	public UsuarioController(UsuarioDTO dto, MainController mc) {
 		
+		_mc = mc;
 		_dto = dto;
 		
 	}
 
-	
 	@Override
 	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
 		if (panel.equals("IniciarSesion")) {
@@ -34,8 +38,12 @@ public class UsuarioController extends Controller{
 		}
 			
 		else if (panel.equals("PerfilUsuario")) {
-			user = (UsuarioDTO) o;
-			return new MainWindowPerfilUsuario(user);
+			if (o == null) {
+				JOptionPane.showMessageDialog(null, "Username o password incorrecto/s", "Error", JOptionPane.ERROR_MESSAGE);
+				return null;
+			}
+			_mc.modifyUser((UsuarioDTO) o);
+			return new MainWindowPerfilUsuario((UsuarioDTO) o);
 		}
 		else if (panel.equals("botonModificarCuenta"))
 			return new MainWindowModificarCuenta(user);

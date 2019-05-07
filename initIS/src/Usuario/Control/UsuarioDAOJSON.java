@@ -78,7 +78,7 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		return lista;
 	}
 	
-	public UsuarioDTO login(String username, String password) {
+	public UsuarioDTO login (String username, String password) {
 		
 		JSONArray users = getListUsuarios();
 		
@@ -93,10 +93,8 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 					//System.out.println("password iguales");
 					return new UsuarioDTO(user);
 				}
-				else {
-					String error = "Contrasena incorrecta";
-					JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
-				}
+				else
+					return null;
 			}
 		}
 		

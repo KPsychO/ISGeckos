@@ -76,11 +76,12 @@ public class MainWindow extends JFrame{
 		
 	}
 	
-	public void reinicia(JPanel newPanel) {
+	public void reinicia(JPanel newPanel, UsuarioDTO user) {
 		menuPanel = initMenuPanel();
 		headerPanel = initHeaderPanel();
 		if (newPanel != null)
 			principalPanel = newPanel;
+		changeBoxes(user);
 		
 		ponCosas();
 		
@@ -113,7 +114,6 @@ public class MainWindow extends JFrame{
 		buttonSoporte.addActionListener(new SoporteButton());
 		buttonSoporte.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(buttonSoporte);
-		
 		
 		JButton buttonFormulario = new JButton("Formulario");
 		buttonFormulario.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -201,7 +201,7 @@ public class MainWindow extends JFrame{
 	class UserButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			firePropertyChange("BotonInicio", null, null);
+			firePropertyChange("IniciarSesion", null, null);
 
 		}
 	}

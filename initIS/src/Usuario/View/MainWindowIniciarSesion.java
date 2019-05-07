@@ -38,11 +38,11 @@ public class MainWindowIniciarSesion extends JPanel{
     private JButton iniciarSesion;
     private JButton crearCuenta;
     
-    UsuarioDAO dao;
+    private UsuarioDAO _dao;
     private JPanel _panel;
 	
 	public MainWindowIniciarSesion() {
-		dao = new UsuarioDAOJSON();
+		_dao = new UsuarioDAOJSON();
 		initGUI();
 		this.setVisible(true);
 	}
@@ -155,10 +155,8 @@ public class MainWindowIniciarSesion extends JPanel{
 	
 	class iniciarButton implements ActionListener {
 		 public void actionPerformed(ActionEvent e){  
-         	//if (!username.getText().equals("") && !password.getText().equals("")) {	
-			 if (username.getText().equals("dev") && password.getText().equals("dev"))
-         		firePropertyChange("PerfilUsuario", null, dao.login(username.getText(), password.getText()));
-         	//}
+			 if (!username.getText().equals("") && !password.getText().equals(""))
+         		firePropertyChange("PerfilUsuario", null, _dao.login(username.getText(), password.getText()));
          }  
 
 	}
