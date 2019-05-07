@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -412,7 +413,8 @@ public class MainViewFormulario extends JPanel{
 		
 		DefaultTableModel model = (DefaultTableModel) tabla_logros.getModel();
 		for (int i = 0; i < tabla_logros.getRowCount(); i++)
-			lista_logros.add(new LogroDTO(model.getValueAt(i, 0).toString(), model.getValueAt(i, 1).toString()));
+			lista_logros.add(new LogroDTO(model.getValueAt(i, 0).toString(), 
+					model.getValueAt(i, 1).toString(), UUID.randomUUID().toString()));
 		
 		return lista_logros;
 	}
