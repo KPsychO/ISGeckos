@@ -117,11 +117,11 @@ public class MainViewIncidenciasJugador extends JPanel implements ActionListener
 		if (e.getActionCommand().equals("aceptar")) {
 			imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("IncJug", user.get_user_id(), null, null, descText.getText(), comenText.getText()));
 			JOptionPane.showMessageDialog(getParent(), "Has enviado la Denuncia/Incidencia");
-			//firePropertyChange("Soporte", null, null);
+			firePropertyChange("SoporteATienda", null, null);
 		}
 		else if (e.getActionCommand().equals("cancelar")) {
 			JOptionPane.showMessageDialog(getParent(), "Has cancelado la Denuncia/Incidencia");
-			//firePropertyChange("Soporte", null, null);
+			firePropertyChange("SoporteATienda", null, null);
 		}
 	}
 
