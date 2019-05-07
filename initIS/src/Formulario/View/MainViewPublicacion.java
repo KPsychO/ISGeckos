@@ -11,16 +11,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.border.EtchedBorder;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import Formulario.Control.FormularioDTO;
 
 //En la pestaña publicación, se aceptarán o rechazarán los formularios enviados por un administrador
 public class MainViewPublicacion extends JPanel {
+	
+	private static final long serialVersionUID = 1L;
 	
 	int n = 0;
 	FormularioDTO _formularioDTO;

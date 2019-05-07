@@ -34,6 +34,7 @@ public class BibliotecaDAOJSON implements BibliotecaDAO{
 		return list;
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public void writeBiblJSON(List<JuegoEnPropiedadDTO> gameList, String userId) {
 		try {

@@ -1,23 +1,20 @@
 package Biblioteca.View;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 
 import Biblioteca.Control.BibliotecaDTO;
 import Biblioteca.Control.JuegoEnPropiedadDTO;
 
 public class MainViewBiblioteca extends JPanel{
 
+	private static final long serialVersionUID = 1L;
 	BibliotecaDTO _bibliotecaDTO;
 	JPanel _panel;
 	

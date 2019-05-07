@@ -20,6 +20,7 @@ import org.json.JSONTokener;
 public class UsuarioDAOJSON implements UsuarioDAO {
 	List<UsuarioDTO> listUser;
 
+	@SuppressWarnings("exports")
 	public JSONArray getListUsuarios() {
 		
 		JSONArray list = new JSONArray();
@@ -63,6 +64,7 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		}	
 	}
 
+	@SuppressWarnings("exports")
 	@Override
 	public List<tipoCuenta> getTipos(JSONArray tiposArray) {
 		ArrayList<tipoCuenta> lista = new ArrayList<tipoCuenta>();

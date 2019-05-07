@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -21,30 +22,24 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import Biblioteca.Control.BibliotecaDTO;
 import Biblioteca.View.MainViewBiblioteca;
 import Comunidad.View.MainViewComunidad;
 import Comunidad.View.MainViewPerfilUsuarioDenunciado;
-import Biblioteca.Control.*;
 import Formulario.View.MainViewPublicacion;
 import Formulario.View.ViewFormulario;
 import IncidenciasMejoras.View.MainViewDenunciasJugador;
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 import Juego.Control.JuegoDTO;
-import Juego.View.MainViewDeveloper;
 import Juego.View.MainViewJuego;
 import Tienda.View.ComprarJuego;
 import Tienda.View.MainViewTienda;
 import Usuario.Control.UsuarioDAOJSON;
 import Usuario.Control.UsuarioDTO;
 import Usuario.Control.tipoCuenta;
-import Usuario.View.MainWindowIniciarSesion;
-
-//*
-import Usuario.View.MainWindowAcuerdoSuscriptor;
 import Usuario.View.MainWindowCrearCuenta;
-import Usuario.View.MainWindowEliminarCuenta;
-import Usuario.View.MainWindowModificarCuenta;
-import Usuario.View.MainWindowPerfilUsuario; //*/
+import Usuario.View.MainWindowIniciarSesion;
+import Usuario.View.MainWindowPerfilUsuario;
 
 public class MainWindow extends JFrame{
 
@@ -66,6 +61,11 @@ public class MainWindow extends JFrame{
 		this.setSize(800, 800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		// esto debe llamar a un controller, no un DAO
+		List<tipoCuenta> types = new ArrayList<tipoCuenta>();
+		types.add(tipoCuenta.unregistered);
+		_current_user = new UsuarioDTO(types, 0, null, null, null, null, "0000000000", null);
+		
 		//Hace que el jframe se coloque en mitad de la pantalla
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -73,7 +73,6 @@ public class MainWindow extends JFrame{
 		initComponent();
 		ponCosas();
 		
-		_current_user = new UsuarioDAOJSON().getUnregUser();
 	}
 	
 	
@@ -99,7 +98,7 @@ public class MainWindow extends JFrame{
             			reinicia();
             		}
             		else if (e.getPropertyName().equals("Soporte")) {
-            			principalPanel = new MainViewTienda("");
+            			principalPanel = new MainViewTienda(_current_user);
             			reinicia();
             		}
             		else if (e.getPropertyName().equals("ComprarJuego")){
@@ -180,7 +179,7 @@ public class MainWindow extends JFrame{
 	private void initComponent() {
 		menuPanel = initMenuPanel();
 		headerPanel = initHeaderPanel();
-		principalPanel = new MainViewTienda("");
+		principalPanel = new MainViewTienda(_current_user);
 	}
 
 	private JPanel initMenuPanel() {
@@ -263,7 +262,7 @@ public class MainWindow extends JFrame{
 	class TiendaButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			principalPanel = new MainViewTienda("");
+			principalPanel = new MainViewTienda(_current_user);
 			reinicia();
 		}
 	}
@@ -303,7 +302,7 @@ public class MainWindow extends JFrame{
 	class UserButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			if (_current_user.get_user_id().equals("0")) {
+			if (_current_user.isUnregistered()) {
 				principalPanel = new MainWindowIniciarSesion();
 				//principalPanel = new MainWindowAcuerdoSuscriptor();
 				//principalPanel = new MainWindowCrearCuenta();

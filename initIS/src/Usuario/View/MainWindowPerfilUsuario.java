@@ -1,6 +1,5 @@
 package Usuario.View;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -23,8 +22,11 @@ public class MainWindowPerfilUsuario extends JPanel{
 
 	private UsuarioDTO _dto;
 	
+	@SuppressWarnings("unused")
 	private JPanel _icon;
+	@SuppressWarnings("unused")
 	private JPanel _buttons;
+	@SuppressWarnings("unused")
 	private JPanel _desc;
 	
 	//Botones

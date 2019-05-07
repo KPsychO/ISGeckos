@@ -101,16 +101,34 @@ public class ComprarJuego extends JPanel{
 		JLabel nombre = new JLabel("Nombre:");
 		JLabel apell = new JLabel("Apellidos:");
 		JLabel edad = new JLabel("Edad:");
-		JLabel cuenta = new JLabel("Cuenta");
-		JLabel cvv = new JLabel("CVV");
+		JLabel cuenta = new JLabel("Cuenta:");
+		JLabel cvv = new JLabel("CVV:");
 		JLabel cad = new JLabel("Fecha caducidad:");
 		
 		JTextField tfnombre = new JTextField();
+		tfnombre.setMaximumSize(new Dimension(400, 25));
+		tfnombre.setMinimumSize(new Dimension(400, 25));
+		tfnombre.setPreferredSize(new Dimension(400, 25));
 		JTextField tfapell = new JTextField();
+		tfapell.setMaximumSize(new Dimension(400, 25));
+		tfapell.setMinimumSize(new Dimension(400, 25));
+		tfapell.setPreferredSize(new Dimension(400, 25));
 		JTextField tfedad = new JTextField();
+		tfedad.setMaximumSize(new Dimension(400, 25));
+		tfedad.setMinimumSize(new Dimension(400, 25));
+		tfedad.setPreferredSize(new Dimension(400, 25));
 		JTextField tfcuenta = new JTextField();
+		tfcuenta.setMaximumSize(new Dimension(400, 25));
+		tfcuenta.setMinimumSize(new Dimension(400, 25));
+		tfcuenta.setPreferredSize(new Dimension(400, 25));
 		JTextField tfcvv = new JTextField();
+		tfcvv.setMaximumSize(new Dimension(400, 25));
+		tfcvv.setMinimumSize(new Dimension(400, 25));
+		tfcvv.setPreferredSize(new Dimension(400, 25));
 		JTextField tfcad = new JTextField();
+		tfcad.setMaximumSize(new Dimension(400, 25));
+		tfcad.setMinimumSize(new Dimension(400, 25));
+		tfcad.setPreferredSize(new Dimension(400, 25));
 		
 		form.add(nombre);
 		form.add(tfnombre);

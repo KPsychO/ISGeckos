@@ -62,5 +62,11 @@
         "_id_user": "Jose",
         "_coment": "Comenta mas a fondo el motivo",
         "_desc": "Motivo por el que denuncias al jugador"
+    },
+    {
+        "_id_user": "",
+        "_coment": "Comenta mas a fondo el motivo",
+        "_type": "IncJug",
+        "_desc": "Cual es el problema que tienes?"
     }
 ]

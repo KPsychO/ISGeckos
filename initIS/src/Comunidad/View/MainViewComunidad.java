@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
@@ -68,7 +67,8 @@ public class MainViewComunidad extends JPanel {
 		buscarNombre.setPreferredSize(new Dimension(200, 20));
 		JButton buscar = new JButton("Buscar");
         buscar.addActionListener(new ActionListener(){  
-            public void actionPerformed(ActionEvent e){  
+            @SuppressWarnings("unused")
+			public void actionPerformed(ActionEvent e){  
             	j = 0;
             	if (!buscarNombre.getText().equals("")) {
 	            	for (UsuarioDTO us : users) {	
