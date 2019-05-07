@@ -134,6 +134,8 @@ public class MainViewPublicacion extends JPanel {
 		JPanel inferior = new JPanel();
 		JButton next = new JButton(">>>");
 		JButton back = new JButton("<<<");
+		JButton delete = new JButton("DELETE");
+		JButton accept = new JButton ("ACCEPT");
 		
 
 		next.addActionListener(new ActionListener() {
@@ -175,16 +177,34 @@ public class MainViewPublicacion extends JPanel {
 				else if (n == 0){
 					showFormulary(n);
 					n = form.length() - 1;
-				}
-				
+				}	
 			}
-	           
 
 	        });
+			
+			delete.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					_formularioDTO.deleteFormulary(n);
+				}
+
+		    });
+			
+			accept.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					_formularioDTO.insertGame(n);
+				}
+
+		    });
 		
 		
 		inferior.add(back);
 		inferior.add(next);
+		inferior.add(delete);
+		inferior.add(accept);
 		
 		this.add(inferior, BorderLayout.SOUTH);
 		
