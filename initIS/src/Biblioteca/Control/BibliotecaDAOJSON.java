@@ -27,7 +27,7 @@ public class BibliotecaDAOJSON implements BibliotecaDAO{
 			
 			for (Object o : jsonInput) {
 				JSONObject oJ = new JSONObject(new JSONTokener(o.toString()));
-				list.add(new JuegoEnPropiedadDTO(new JuegoController(), oJ));				
+				list.add(new JuegoEnPropiedadDTO(oJ));				
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

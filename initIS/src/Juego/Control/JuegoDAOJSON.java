@@ -13,8 +13,6 @@ import org.json.JSONTokener;
 import Usuario.Control.UsuarioDTO;
 
 public class JuegoDAOJSON implements JuegoDAO{
-	
-	JuegoController controller;
 
 	@SuppressWarnings("exports")
 	@Override
@@ -55,7 +53,7 @@ public class JuegoDAOJSON implements JuegoDAO{
 			for (Object o : jsonInput) {
 				
 				JSONObject juego = new JSONObject(new JSONTokener(o.toString()));
-				list.add(new JuegoDTO(controller, juego));
+				list.add(new JuegoDTO(juego));
 				
 			}
 			
@@ -78,7 +76,7 @@ public class JuegoDAOJSON implements JuegoDAO{
 			for (Object o : jsonInput) {
 				
 				JSONObject juego = new JSONObject(new JSONTokener(o.toString()));
-				lista.add(new JuegoDTO(controller, juego));
+				lista.add(new JuegoDTO(juego));
 				
 			}
 			

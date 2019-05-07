@@ -15,8 +15,8 @@ public class MainController {
 	private UsuarioDTO _current_user;
 	
 	private Controller[] controllers = {
-		new TiendaController(),
-		new JuegoController()
+		new JuegoController(),
+		new TiendaController()
 	};
 
 	@SuppressWarnings("unused")
@@ -26,7 +26,7 @@ public class MainController {
 			public void run() {
 				mw = new MainWindow();
 				mw.setVisible(true);
-				mw.reinicia(((TiendaController)controllers[0]).getPanel("Tienda", null, _current_user));
+				mw.reinicia(((TiendaController)controllers[1]).getPanel("Tienda", null, _current_user));
 				
 				mw.addPropertyChangeListener(new PropertyChangeListener() {
 		            @Override

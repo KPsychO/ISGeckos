@@ -12,8 +12,8 @@ public class JuegoEnPropiedadDTO extends JuegoDTO{
 	private boolean _installed;
 	private JuegoEnPropiedadDAO _dao;
 	
-	public JuegoEnPropiedadDTO(JuegoController jc, JSONObject juegoEnPropiedad) {
-		super(jc, juegoEnPropiedad);
+	public JuegoEnPropiedadDTO(JSONObject juegoEnPropiedad) {
+		super(juegoEnPropiedad);
 		this._hoursPlayed =  juegoEnPropiedad.getInt("_hoursPlayed");
 		this._lastEx = juegoEnPropiedad.getString("_lastEx");
 		this._actVersion = juegoEnPropiedad.getInt("_actVers");

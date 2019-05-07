@@ -23,19 +23,15 @@ public class JuegoDTO {
 	// la imagen "thumb"
 	
 
-	public JuegoDTO(JuegoController jc, String id, String title, int price, int pegi, int version, 
+	public JuegoDTO(String id, String title, int price, int pegi, int version, 
 			String descL, String descS, List<String> genres, List<LogroDTO> achievements) {
 		
-		if (jc != null)
-			_jc = jc;
 		crearJuego(id, title, price, pegi, version, descL, descS, genres, achievements);
 
 	}
 	
-	public JuegoDTO(JuegoController jc, String id) {
+	public JuegoDTO(String id) {
 		
-		if (jc != null)
-			_jc = jc;
 		JuegoDTO g = _jc.getJuego(id);
 		
 		this._achievements = g._achievements;
@@ -67,9 +63,7 @@ public class JuegoDTO {
 		
 	}
 
-	public JuegoDTO(JuegoController jc,  JSONObject juego) {
-		if (jc != null)
-			_jc = jc;
+	public JuegoDTO(JSONObject juego) {
 		
 		_id = juego.getString("_id");
 		_title = juego.getString("_title");
@@ -84,6 +78,10 @@ public class JuegoDTO {
 		_genres = _jc.getGenres(juego.getJSONArray("_genres"));
 		_achievements = _jc.getLogros(juego.getJSONArray("_achievements"));
 		
+	}
+
+	public JuegoDTO(JuegoController juegoController) {
+		_jc = juegoController;
 	}
 
 	public String get_id() {

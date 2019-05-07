@@ -17,6 +17,7 @@ public class JuegoController extends Controller{
 	public JuegoController() {
 		
 		_dao = new JuegoDAOJSON();
+		new JuegoDTO(this);
 		
 	}
 
