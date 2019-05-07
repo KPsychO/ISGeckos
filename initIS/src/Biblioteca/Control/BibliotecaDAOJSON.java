@@ -13,6 +13,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import Juego.Control.JuegoController;
+
 public class BibliotecaDAOJSON implements BibliotecaDAO{
 
 	@Override
@@ -25,7 +27,7 @@ public class BibliotecaDAOJSON implements BibliotecaDAO{
 			
 			for (Object o : jsonInput) {
 				JSONObject oJ = new JSONObject(new JSONTokener(o.toString()));
-				list.add(new JuegoEnPropiedadDTO(oJ));				
+				list.add(new JuegoEnPropiedadDTO(new JuegoController(), oJ));				
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

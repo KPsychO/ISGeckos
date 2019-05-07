@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.json.*;
 
+import Juego.Control.JuegoController;
 import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
 
@@ -21,7 +22,7 @@ public class TiendaDAOJSON implements TiendaDAO {
 			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
 			for (Object o : jsonInput) {
 				JSONObject oJ = new JSONObject(new JSONTokener(o.toString()));
-				list.add(new JuegoDTO(oJ));
+				list.add(new JuegoDTO(new JuegoController(), oJ));
 				
 			}
 			
@@ -46,7 +47,7 @@ public class TiendaDAOJSON implements TiendaDAO {
 				
 				for(Object i : items) {
 					
-					list.add(new JuegoDTO(i.toString()));
+					list.add(new JuegoDTO(new JuegoController(), i.toString()));
 					
 				}
 				

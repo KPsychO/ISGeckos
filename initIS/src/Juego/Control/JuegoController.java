@@ -1,12 +1,24 @@
 package Juego.Control;
 
+import java.util.List;
+
 import javax.swing.JPanel;
+
+import org.json.JSONArray;
 
 import Juego.View.MainViewJuego;
 import Usuario.Control.UsuarioDTO;
 import common.Controller;
 
 public class JuegoController extends Controller{
+	
+	JuegoDAO _dao;
+	
+	public JuegoController() {
+		
+		_dao = new JuegoDAOJSON();
+		
+	}
 
 	public JPanel getPanel(String panel, UsuarioDTO user, JuegoDTO juego) {
 		if (panel.equals("JuegoTienda"))
@@ -29,6 +41,27 @@ public class JuegoController extends Controller{
 		
 		else
 			return null;
+	}
+
+	public JuegoDTO getJuego(String id) {
+		List<JuegoDTO> games = _dao.getJuegos();
+		
+		for (JuegoDTO g : games) {
+			
+			if (g.get_id().equals(id)) {
+				return g;
+			}
+			
+		}
+		return null;
+	}
+
+	public List<String> getGenres(JSONArray jsonArray) {
+		return _dao.getGenres(jsonArray);
+	}
+
+	public List<LogroDTO> getLogros(JSONArray jsonArray) {
+		return _dao.getLogros(jsonArray);
 	}
 
 	
