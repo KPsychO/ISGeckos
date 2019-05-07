@@ -9,7 +9,7 @@ public class UsuarioDTO {
 	private List<tipoCuenta> _types;
 	private List<UsuarioDTO> _users;
 	private int _balance;
-	//private ImageIcon _avatar;
+	private String _avatarPath;
 	
 	private String _user_id;
 	private String _username;
@@ -96,6 +96,14 @@ public class UsuarioDTO {
 		this._balance = _balance;
 	}
 
+	public String getAvatarPath () {
+		return _avatarPath;
+	}
+	
+	public void setAvatarPath (String avatarPath) {
+		this._avatarPath = avatarPath;
+	}
+	
 	public String get_user_id() {
 		return _user_id;
 	}

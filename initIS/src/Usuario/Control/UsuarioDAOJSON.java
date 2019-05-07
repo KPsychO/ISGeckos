@@ -87,11 +87,14 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 			JSONObject user = new JSONObject(new JSONTokener(o.toString()));
 			
 			if (user.getString("_username").equals(username)) {
+				//System.out.println("username iguales");
 				
-				if (user.getString("_password").equals(password))
+				if (user.getString("_password").equals(password)) {
+					//System.out.println("password iguales");
 					return new UsuarioDTO(user);
+				}
 				else {
-					String error = "Contrase�a incorrecta";
+					String error = "Contrasena incorrecta";
 					JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}

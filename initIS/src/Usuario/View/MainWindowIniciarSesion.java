@@ -14,6 +14,7 @@ import javax.swing.border.EtchedBorder;
 import Usuario.Control.UsuarioDAO;
 import Usuario.Control.UsuarioDAOJSON;
 
+
 public class MainWindowIniciarSesion extends JPanel{
 	private static final long serialVersionUID = 1L;
 
@@ -154,9 +155,10 @@ public class MainWindowIniciarSesion extends JPanel{
 	
 	class iniciarButton implements ActionListener {
 		 public void actionPerformed(ActionEvent e){  
-         	if (!username.getText().equals("") && !password.getText().equals("")) {
+         	//if (!username.getText().equals("") && !password.getText().equals("")) {	
+			 if (username.getText().equals("dev") && password.getText().equals("dev"))
          		firePropertyChange("PerfilUsuario", null, dao.login(username.getText(), password.getText()));
-         	}
+         	//}
          }  
 
 	}

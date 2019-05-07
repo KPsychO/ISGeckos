@@ -22,13 +22,6 @@ public class MainWindowPerfilUsuario extends JPanel{
 
 	private UsuarioDTO _dto;
 	
-	@SuppressWarnings("unused")
-	private JPanel _icon;
-	@SuppressWarnings("unused")
-	private JPanel _buttons;
-	@SuppressWarnings("unused")
-	private JPanel _desc;
-	
 	//Botones
 	private JButton insignias;
 	private JButton biblioteca;
@@ -51,10 +44,19 @@ public class MainWindowPerfilUsuario extends JPanel{
 		//Avatar, nombre y nivel?
 		JPanel avatar_name_level = new JPanel();
 		avatar_name_level.setPreferredSize(new Dimension(300, 120));
-		JLabel icono = new JLabel(new ImageIcon("./src/resources/usuario.png"));
-		icono.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		icono.setPreferredSize(new Dimension(120, 120));
-		icono.setAlignmentX(LEFT_ALIGNMENT);
+		
+		String path = _dto.getAvatarPath();
+		ImageIcon img;
+		
+		if (path == null)
+			img = new ImageIcon("./src/resources/usuario.png");
+		else 
+			img = new ImageIcon(path);
+		
+        JLabel avatarLabel = new JLabel(img, JLabel.CENTER);
+        avatarLabel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+        avatarLabel.setPreferredSize(new Dimension(120, 120));
+        avatarLabel.setAlignmentX(LEFT_ALIGNMENT);
 		
 		//Nombre y nivel
 		JPanel name_level_estado = new JPanel();
@@ -63,7 +65,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 		
 		//JLabel level = new JLabel("Level: 0");
 		//JLabel estado = new JLabel("Estado: bien");
-		
+				
 		JLabel pais = new JLabel ("Pais: " + _dto.get_country());
 		JLabel juegos = new JLabel ("Juegos en biblioteca: 5");
 		
@@ -71,12 +73,14 @@ public class MainWindowPerfilUsuario extends JPanel{
 		name_level_estado.add(pais);
 		name_level_estado.add(juegos);
 		
-		avatar_name_level.add(icono);
+		avatar_name_level.add(avatarLabel);
 		avatar_name_level.add(name_level_estado);
 		
 		//Desc
+				
 		JTextArea desc = new JTextArea(_dto.get_desc());
 		desc.setPreferredSize(new Dimension(300, 100));
+		desc.setEditable(false);
 		desc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		//Modificar perfil
 		
@@ -88,8 +92,8 @@ public class MainWindowPerfilUsuario extends JPanel{
 		der.setLayout(new GridLayout(7, 1));
 		
 		//Botones
-		insignias = new JButton("INSIGNIAS");
-		insignias.addActionListener(new insigniasButton());
+		//insignias = new JButton("INSIGNIAS");
+		//insignias.addActionListener(new insigniasButton());
 		
 		biblioteca = new JButton("BIBLIOTECA");
 		biblioteca.addActionListener(new bibliotecaButton());
@@ -111,7 +115,6 @@ public class MainWindowPerfilUsuario extends JPanel{
 		
 		setButtons();
 		
-		der.add(insignias);
 		der.add(biblioteca);
 		
 		//Aqui iran publicacion y formulario
@@ -124,8 +127,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 		
 		this.add(izq);
 		this.add(new JSeparator());
-		this.add(der);
-		
+		this.add(der);		
 	}
 	
 	private void setButtons() {
@@ -133,11 +135,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 		publicacion.setEnabled(_dto.isAdmin());
 	}
 
-	class insigniasButton implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("Insignias", null, _dto);
-		}
-	}
+
 	class bibliotecaButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			firePropertyChange("Biblioteca", null, new BibliotecaDTO(_dto));
@@ -150,12 +148,12 @@ public class MainWindowPerfilUsuario extends JPanel{
 	}
 	class elimCuentaButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("EliminarCuenta", null, _dto);
+			firePropertyChange("botonEliminarCuenta", null, _dto);
 		}
 	}
 	class modPerfilButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("ModificarCuenta", null, _dto);
+			firePropertyChange("botonModificarCuenta", null, _dto);
 		}
 	}
 	class formularioButton implements ActionListener {

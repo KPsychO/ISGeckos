@@ -7,6 +7,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -83,8 +84,12 @@ public class MainWindowAcuerdoSuscriptor extends JPanel{
 	class continuarButton implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (ok.isSelected()) {
-        		firePropertyChange("CrearCuenta", null, null);
+        		firePropertyChange("AcuerdoSuscriptor", null, null);
         	}
+			else {
+				String tipoError = "Debes aceptar el acuerdo para continuar";
+				JOptionPane.showMessageDialog(MainWindowAcuerdoSuscriptor.this, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 }

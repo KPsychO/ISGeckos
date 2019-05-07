@@ -143,28 +143,28 @@ public class MainWindowCrearCuenta extends JPanel {
 	}
 	
 	class continuarButton implements ActionListener {
-			 public void actionPerformed(ActionEvent e){  
-				 if (!username.getText().isEmpty() && !password.getText().isEmpty() && !email.getText().isEmpty()) {
-					 
-					 //COMPROBAR QUE EL NOMBRE DE USUARIO NO EXISTE ACTUALMENTE EN LA LISTA DE USUARIOS
-					 
-					if (password.getText().equals(confirmPassword.getText()) && email.getText().equals(confirmEmail.getText())) {
-					 
-						if(empresaDesarrolladora.isSelected()) {
-							//Crear usuario tipo empresa desarrolladora
-							//Usando como username:username
-							//Como password: password
-							//Como email: email
-						}
-						else {
-							//Crear usuario
-							//Usando como username:username
-							//Como password: password
-							//Como email: email
-						}
-						firePropertyChange("IniciarSesion", null, null);	 
+		public void actionPerformed(ActionEvent e){  
+			 if (!username.getText().isEmpty() && !password.getText().isEmpty() && !email.getText().isEmpty()) {
+				 
+				 //COMPROBAR QUE EL NOMBRE DE USUARIO NO EXISTE ACTUALMENTE EN LA LISTA DE USUARIOS
+				 
+				if (password.getText().equals(confirmPassword.getText()) && email.getText().equals(confirmEmail.getText())) {
+				 
+					if(empresaDesarrolladora.isSelected()) {
+						//Crear usuario tipo empresa desarrolladora
+						//Usando como username:username
+						//Como password: password
+						//Como email: email
 					}
-				 }
+					else {
+						//Crear usuario
+						//Usando como username:username
+						//Como password: password
+						//Como email: email
+					}
+					firePropertyChange("CrearCuenta", null, null);	 
+				}
 			 }
+		 }
 	}
 }

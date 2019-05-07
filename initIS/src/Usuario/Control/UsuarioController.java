@@ -24,8 +24,8 @@ public class UsuarioController extends Controller{
 	
 	@Override
 	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
-		if (panel.equals("BotonInicio")) {
-			
+		if (panel.equals("IniciarSesion")) {
+		
 			if (user.isUnregistered())
 				return new MainWindowIniciarSesion();
 			else
@@ -33,6 +33,10 @@ public class UsuarioController extends Controller{
 			
 		}
 			
+		else if (panel.equals("PerfilUsuario")) {
+			user = (UsuarioDTO) o;
+			return new MainWindowPerfilUsuario(user);
+		}
 		else if (panel.equals("botonModificarCuenta"))
 			return new MainWindowModificarCuenta(user);
 		
