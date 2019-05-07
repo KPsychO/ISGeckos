@@ -50,7 +50,6 @@ public class FormularioDAOJSON implements FormularioDAO{
 			e.printStackTrace();
 		}
 
-
 	}
 
 	@Override
@@ -88,10 +87,5 @@ public class FormularioDAOJSON implements FormularioDAO{
 		} catch (FileNotFoundException e) {
 			;
 		}
-		
-		
 	}
-	
-	
-
 }

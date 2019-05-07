@@ -122,8 +122,12 @@ public class MainWindow extends JFrame{
             		}
             		
             		else if (e.getPropertyName().equals("PerfilUsuario")){
-            			principalPanel = new MainWindowPerfilUsuario(_current_user);
-        				reinicia();
+            			_current_user = (UsuarioDTO)e.getNewValue();
+            			if (_current_user != null) {
+            				principalPanel = new MainWindowPerfilUsuario(_current_user);
+            				reinicia();
+            			}
+            			
             		}
             		
             		else if (e.getPropertyName().equals("AcuerdoSuscriptor")){

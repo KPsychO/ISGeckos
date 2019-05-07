@@ -17,6 +17,7 @@ import javax.swing.border.EtchedBorder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import Formulario.Control.FormularioDAOJSON;
 import Formulario.Control.FormularioDTO;
 
 //En la pestaña publicación, se aceptarán o rechazarán los formularios enviados por un administrador
@@ -61,7 +62,9 @@ public class MainViewPublicacion extends JPanel {
 	private void showFormulary(int n) {
 		
 		JSONArray form = new JSONArray();
-		form = _formularioDTO.getFormularies();
+		
+		form = new FormularioDAOJSON().getFormularies();
+		
 		FormularioDTO formulary = new FormularioDTO(form.getJSONObject(n));
 
 		this.titulo.setText("TITULO :  " + formulary.get_title());
@@ -143,7 +146,7 @@ public class MainViewPublicacion extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				JSONArray form = new JSONArray();
-				form = _formularioDTO.getFormularies();
+				form = new FormularioDAOJSON().getFormularies();
 				if(form.length() == 0) {
 					JOptionPane.showMessageDialog(null, "No hay más formulariuos", "Error", JOptionPane.ERROR_MESSAGE);
 				}
@@ -166,7 +169,7 @@ public class MainViewPublicacion extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				JSONArray form = new JSONArray();
-				form = _formularioDTO.getFormularies();
+				form = new FormularioDAOJSON().getFormularies();
 				if(form.length() == 0) {
 					JOptionPane.showMessageDialog(null, "No hay más formulariuos", "Error", JOptionPane.ERROR_MESSAGE);
 				}
