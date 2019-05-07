@@ -13,6 +13,10 @@ public class main {
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		
+		MainController c = new MainController();
+		
+		
+		/*
 		// Aqui pones tu mierda DAO para cojer datos
 		TiendaDAO tiendaDAO = new TiendaDAOJSON();
 		
@@ -22,6 +26,7 @@ public class main {
 				v.setVisible(true);
 			}
 		});
+		*/
 	}
 	
 }

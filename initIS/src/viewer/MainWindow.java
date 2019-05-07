@@ -91,6 +91,7 @@ public class MainWindow extends JFrame{
 		principalPanel.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent e) {
+            	firePropertyChange(e.getPropertyName(), null, e.getNewValue());
             	try {
             		if (e.getPropertyName().equals("JuegoTienda")) {
             			principalPanel = new MainViewJuego((JuegoDTO)e.getNewValue());
