@@ -117,11 +117,34 @@ public class MainWindow extends JFrame{
             			reinicia();
             		}
             		else if (e.getPropertyName().equals("IniciarSesion")){
-            			_current_user = (UsuarioDTO) e.getNewValue();
-            			changeBoxes(_current_user);
-            			principalPanel = new MainWindowPerfilUsuario(_current_user);
+            			principalPanel = new MainWindowIniciarSesion();
         				reinicia();
             		}
+            		
+            		else if (e.getPropertyName().equals("PerfilUsuario")){
+            			_current_user = (UsuarioDTO)e.getNewValue();
+            			if (_current_user != null) {
+            				principalPanel = new MainWindowPerfilUsuario(_current_user);
+            				reinicia();
+            			}
+            			
+            		}
+            		
+            		else if (e.getPropertyName().equals("AcuerdoSuscriptor")){
+            			principalPanel = new MainWindowAcuerdoSuscriptor();
+        				reinicia();
+            		}
+            		
+            		else if (e.getPropertyName().equals("EliminarCuenta")){
+            			principalPanel = new MainWindowEliminarCuenta(_current_user);
+        				reinicia();
+            		}
+            		
+            		else if (e.getPropertyName().equals("ModificarCuenta")){
+            			principalPanel = new MainWindowModificarCuenta(_current_user);
+        				reinicia();
+            		}
+            		
             		else if (e.getPropertyName().equals("Biblioteca")){
             			principalPanel = new MainViewBiblioteca((BibliotecaDTO)e.getNewValue());
             			reinicia();

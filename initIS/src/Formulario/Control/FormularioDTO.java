@@ -47,9 +47,9 @@ public class FormularioDTO {
 		dao = new FormularioDAOJSON();
 		_id = UUID.randomUUID().toString();
 		_title = formulario.getString("_title");
-		_descShort = formulario.getString("_desc");
-		_pegi = Integer.getInteger(formulario.getString("_pegi"));
-		_price = Integer.getInteger(formulario.getString("_price"));
+		_descShort = formulario.getString("_descShort");
+		_pegi = formulario.getInt("_pegi");
+		_price = formulario.getInt("_price");
 		
 	}
 	
@@ -67,6 +67,14 @@ public class FormularioDTO {
 		aux = " {" +  " \"_title\": \"" + this._title + "\", \"_price\": "  
 				+ this._price + ", \"_pegi\": " + this._pegi +  ", \"_desc\": " + this._descShort + "} " ;
 		return aux;
+	}
+	
+	public void insertGame(int n) {
+		dao.insertGame(n);
+	}
+	
+	public void deleteFormulary(int n) {
+		dao.deleteFormulary(n);
 	}
 	
 	public void insert (FormularioDTO x) {

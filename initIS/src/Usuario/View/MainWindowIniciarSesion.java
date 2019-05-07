@@ -141,13 +141,7 @@ public class MainWindowIniciarSesion extends JPanel{
         
         iniciarSesion = new JButton("INICIAR SESION");
         iniciarSesion.setPreferredSize(new Dimension((125 + sizex)/2, 20));
-        iniciarSesion.addActionListener(new ActionListener(){  
-            public void actionPerformed(ActionEvent e){  
-            	if (!username.getText().equals("") && !password.getText().equals("")) {
-            		firePropertyChange("IniciarSesion", null, dao.login(username.getText(), password.getText()));
-            	}
-            }  
-        });
+        iniciarSesion.addActionListener(new iniciarButton());
         
         /*
         izquierdaPanel.add(userPanel);
@@ -158,12 +152,7 @@ public class MainWindowIniciarSesion extends JPanel{
         
         crearCuenta = new JButton("CREAR CUENTA");
         crearCuenta.setPreferredSize(new Dimension((125 + sizex)/2, 20));
-        crearCuenta.addActionListener(new ActionListener(){  
-            public void actionPerformed(ActionEvent e){  
-            	firePropertyChange("CrearCuenta", null, null);
-            	
-            }  
-        });
+        crearCuenta.addActionListener(new crearButton());
         
         botones.add(iniciarSesion);
         botones.add(crearCuenta);
@@ -175,6 +164,21 @@ public class MainWindowIniciarSesion extends JPanel{
         
         this.add(generalPanel);
         
+	}
+	
+	class iniciarButton implements ActionListener {
+		 public void actionPerformed(ActionEvent e){  
+         	if (!username.getText().equals("") && !password.getText().equals("")) {
+         		firePropertyChange("PerfilUsuario", null, dao.login(username.getText(), password.getText()));
+         	}
+         }  
+
+	}
+	
+	class crearButton implements ActionListener {
+		public void actionPerformed(ActionEvent e){  
+        	firePropertyChange("AcuerdoSuscriptor", null, null);
+        }  
 	}
 
 }
