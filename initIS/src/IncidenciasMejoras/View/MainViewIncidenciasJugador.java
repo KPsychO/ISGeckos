@@ -18,6 +18,7 @@ import javax.swing.border.EtchedBorder;
 import IncidenciasMejoras.Control.IncidenciasDAOJSON;
 import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
 import Tienda.View.MainViewTienda;
+import Usuario.Control.UsuarioDTO;
 
 public class MainViewIncidenciasJugador extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
@@ -32,9 +33,9 @@ public class MainViewIncidenciasJugador extends JPanel implements ActionListener
 	private JTextArea comenText;
 	private JTextField descText;
 	private IncidenciasDAOJSON imJSON;
-	private String user;
+	private UsuarioDTO user;
 	
-	public MainViewIncidenciasJugador(String usuario) {
+	public MainViewIncidenciasJugador(UsuarioDTO usuario) {
 		descr = new JPanel();
 		coment = new JPanel();
 		buttons = new JPanel();
@@ -114,25 +115,13 @@ public class MainViewIncidenciasJugador extends JPanel implements ActionListener
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("aceptar")) {
-			//imJSON.getListIncidencias();
-			//Aqui faltan los usuarios y el denunciado
-			imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("IncJug", user, null, null, descText.getText(), comenText.getText()));
+			imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("IncJug", user.get_user_id(), null, null, descText.getText(), comenText.getText()));
 			JOptionPane.showMessageDialog(getParent(), "Has enviado la Denuncia/Incidencia");
-			firePropertyChange("Soporte", null, null);
+			//firePropertyChange("Soporte", null, null);
 		}
 		else if (e.getActionCommand().equals("cancelar")) {
 			JOptionPane.showMessageDialog(getParent(), "Has cancelado la Denuncia/Incidencia");
-			firePropertyChange("Soporte", null, null);
-			/*
-			firePropertyChange("Hola", null, null);
-			observed.addPropertyChangeListener(new PropertyChangeListener() {
-				@Override
-		        public void propertyChange(PropertyChangeEvent e) {
-					firePropertyChange(e.getPropertyName(), e.getOldValue(), e.getNewValue());
-		        }
-		    });
-			 */
-			
+			//firePropertyChange("Soporte", null, null);
 		}
 	}
 

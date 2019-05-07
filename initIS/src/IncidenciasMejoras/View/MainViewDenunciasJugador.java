@@ -14,11 +14,11 @@ import javax.swing.border.EtchedBorder;
 
 import IncidenciasMejoras.Control.IncidenciasDAOJSON;
 import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
+import Usuario.Control.UsuarioDTO;
 
 public class MainViewDenunciasJugador extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
 
-	
 	//extends 
 	private JPanel descr;
 	private JPanel coment;
@@ -27,12 +27,16 @@ public class MainViewDenunciasJugador extends JPanel implements ActionListener{
 	private JTextField comenText;
 	private JTextField descText;
 	private IncidenciasDAOJSON imJSON;
+	private UsuarioDTO us;
+	private UsuarioDTO usDen;
 	
-	public MainViewDenunciasJugador(String usuario) {
+	public MainViewDenunciasJugador(UsuarioDTO usuario, UsuarioDTO usDen) {
 		descr = new JPanel();
 		coment = new JPanel();
 		buttons = new JPanel();
 		imJSON = new IncidenciasDAOJSON();
+		us = usuario;
+		this.usDen = usDen;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		initGUI();
 		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
