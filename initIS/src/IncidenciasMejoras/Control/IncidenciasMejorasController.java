@@ -12,7 +12,7 @@ public class IncidenciasMejorasController extends Controller {
 	@Override
 	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
 		if (panel.equals("Soporte"))
-			return new MainViewIncidenciasJugador((UsuarioDTO) o);
+			return new MainViewIncidenciasJugador(user);
 		else if (panel.equals("DenunciarJugador"))
 			return new MainViewDenunciasJugador(user, (UsuarioDTO) o);
 		else
