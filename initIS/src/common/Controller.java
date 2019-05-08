@@ -38,13 +38,13 @@ public class Controller {
 		_controllerFormulario = new ControllerFormulario(this);
 		_controllerValoraciones = new ControllerValoraciones(this);
 		_controllerUsuario = new ControllerUsuario(this, _current_user);
-		
-		_mw = new MainWindow();
+		_tiendaControler = new TiendaController(this, _current_user);
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				//Pistacho, hasta que no hagas tu controller esto no va a funcar
-				_mw.reinicia(null, _current_user);
+				_mw = new MainWindow();
+				_mw.reinicia(getTienda(), _current_user);
 			}
 		});
 		
@@ -71,7 +71,7 @@ public class Controller {
 	@SuppressWarnings("exports")
 	public JPanel getTienda() {
 
-		return _tiendaControler.getTienda();
+		return _tiendaControler.getTienda(_current_user);
 
 	}
 	

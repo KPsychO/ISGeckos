@@ -12,17 +12,17 @@ import Tienda.View.MainViewTienda;
 import Usuario.Control.UsuarioDTO;
 import common.Controller;
 
-public class TiendaController extends Controller{
+public class TiendaController{
 	
 	private TiendaDAO _dao;
 	TiendaDTO _TiendaDTO;
 	Controller _controller;
 	
-	public TiendaController(Controller cont) {
+	public TiendaController(Controller cont, UsuarioDTO user) {
 		
 		_controller = cont;
 		_dao = new TiendaDAOJSON();
-		_TiendaDTO = new TiendaDTO(createJuegosEnTienda(_controller.getCurrentUser()));
+		_TiendaDTO = new TiendaDTO(createJuegosEnTienda(user));
 		
 	}
 	
@@ -86,9 +86,9 @@ public class TiendaController extends Controller{
 		
 	}
 	
-	public JPanel getTienda() {
+	public JPanel getTienda(UsuarioDTO user) {
 		
-		return new MainViewTienda(this, _controller.getCurrentUser());
+		return new MainViewTienda(this, user);
 		
 	}
 	

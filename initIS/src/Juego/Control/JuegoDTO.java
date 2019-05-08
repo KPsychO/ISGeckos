@@ -2,6 +2,7 @@ package Juego.Control;
 
 import java.util.*;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class JuegoDTO {
@@ -53,7 +54,7 @@ public class JuegoDTO {
 	
 	private void crearJuego(String id, String title, int price, int pegi, int version, 
 			String descL, String descS, List<String> genres, List<LogroDTO> achievements) {
-		
+		_dao = new JuegoDAOJSON();
 		_id = id;
 		_title = title;
 		_descLong = descL;
@@ -68,6 +69,8 @@ public class JuegoDTO {
 
 	@SuppressWarnings("exports")
 	public JuegoDTO(JSONObject juego) {
+		
+		_dao = new JuegoDAOJSON();
 		
 		_id = juego.getString("_id");
 		_title = juego.getString("_title");

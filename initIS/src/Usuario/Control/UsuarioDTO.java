@@ -170,4 +170,13 @@ public class UsuarioDTO {
 		return this._types.contains(tipoCuenta.unregistered);		
 	}
 
+	public UsuarioDTO getUsuarioID(String ID) {
+		
+		for (UsuarioDTO dto : _users) {
+			if (dto.get_user_id().equals(ID))
+				return dto;
+		}
+		return null;
+	}
+
 }
