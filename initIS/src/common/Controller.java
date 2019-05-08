@@ -2,18 +2,25 @@ package common;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import Comunidad.View.ControllerComunidad;
+import Formulario.Control.ControllerFormulario;
 import IncidenciasMejoras.Control.ControllerIncidenciasMejoras;
 import IncidenciasMejoras.View.MainViewDenunciasJugador;
 import Juego.Control.ControllerJuego;
 import Juego.Control.JuegoDTO;
+import Usuario.Control.ControllerUsuario;
 import Usuario.Control.UsuarioDTO;
 import valoraciones.ControllerValoraciones;
 
 public class Controller {
 	//Poner vuestros controller aqui
-	private ControllerValoraciones _controllerValoraciones;
+	
 	private ControllerJuego _controllerJuego;
 	private ControllerIncidenciasMejoras _controllerIncidenciasMejoras;
+	private ControllerComunidad _controllerComunidad;
+	private ControllerFormulario _controllerFormulario;
+	private ControllerValoraciones _controllerValoraciones;
+	private ControllerUsuario _controllerUsuario;
 	
 	private MainWindow _mw;
 	
@@ -22,6 +29,14 @@ public class Controller {
 	public Controller() {
 		
 		_current_user = new UsuarioDTO("0000000000");
+		
+		_controllerJuego = new ControllerJuego(this);
+		_controllerIncidenciasMejoras = new ControllerIncidenciasMejoras(this);
+		_controllerComunidad = new ControllerComunidad(this);
+		_controllerFormulario = new ControllerFormulario(this);
+		_controllerValoraciones = new ControllerValoraciones(this);
+		_controllerUsuario = new ControllerUsuario(this, _current_user);
+		
 		_mw = new MainWindow();
 		
 		SwingUtilities.invokeLater(new Runnable() {
