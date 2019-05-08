@@ -14,6 +14,8 @@ import javax.swing.border.EtchedBorder;
 
 import IncidenciasMejoras.Control.IncidenciasDAOJSON;
 import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
+import Juego.Control.JuegoDTO;
+import Usuario.Control.UsuarioDTO;
 
 public class MainViewDenunciasJuego extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
@@ -27,12 +29,15 @@ public class MainViewDenunciasJuego extends JPanel implements ActionListener{
 	private JTextField comenText;
 	private JTextField descText;
 	private IncidenciasDAOJSON imJSON;
+	private UsuarioDTO user;
+	private JuegoDTO game;
 	
-	public MainViewDenunciasJuego(String usuario) {
+	public MainViewDenunciasJuego(UsuarioDTO usuario, JuegoDTO juego) {
 		descr = new JPanel();
 		coment = new JPanel();
 		buttons = new JPanel();
 		imJSON = new IncidenciasDAOJSON();
+		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		initGUI();
 		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -68,7 +73,7 @@ public class MainViewDenunciasJuego extends JPanel implements ActionListener{
 		if (e.getActionCommand().equals("aceptar")) {
 			//imJSON.getListIncidencias();
 			//Aqui faltan los usuarios y el denunciado
-			imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("DenJue", "", null, "fasjknfa13w", descText.getText(), comenText.getText()));
+			imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("DenJue", user.get_user_id(), null, game.get_id(), descText.getText(), comenText.getText()));
 			JOptionPane.showMessageDialog(getParent(), "Has enviado la Denuncia/Incidencia");
 		}
 		else if (e.getActionCommand().equals("cancelar")) {
