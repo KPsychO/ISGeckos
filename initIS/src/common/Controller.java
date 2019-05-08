@@ -66,10 +66,10 @@ public class Controller {
 			setPrincipalPanel(_controllerComunidad.getComunidadPanel(_current_user));
 			break;
 		case Soporte:
-			//setPrincipalPanel(_controllerIncidenciasMejoras.getIncidenciasMejorasPanel());
+			setPrincipalPanel(_controllerIncidenciasMejoras.getIncidenciasMejorasPanel(_current_user));
 			break;
 		case Usuario:
-			//setPrincipalPanel(_controllerUsuario.getIconoPanel());
+			setPrincipalPanel(_controllerUsuario.getIconoPanel(_current_user));
 			break;
 		default:
 			break;

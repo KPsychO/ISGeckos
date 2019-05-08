@@ -11,38 +11,27 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
+import Usuario.Control.ControllerUsuario;
+import Usuario.Control.EventoUsuario;
 import Usuario.Control.UsuarioDAO;
 import Usuario.Control.UsuarioDAOJSON;
 
 
 public class MainWindowIniciarSesion extends JPanel{
 	private static final long serialVersionUID = 1L;
-
-	/*MainViewTienda observed;
-	private JPanel descr;
-	private JPanel coment;
-	private JPanel buttons;
-	private JButton aceptar;
-	private JButton cancelar;
-	private JTextArea comenText;
-	private JTextField descText;
-	//private IncidenciasDAOJSON imJSON;
-	private String user;
-	
-	//private Jpanel*/
 	
 	private JTextArea username;
 	private JTextArea password;
-	//private JCheckBox empresa;
-    //private JCheckBox admin;
     private JButton iniciarSesion;
     private JButton crearCuenta;
     
     private UsuarioDAO _dao;
+    private ControllerUsuario _cu;
     private JPanel _panel;
 	
-	public MainWindowIniciarSesion() {
+	public MainWindowIniciarSesion(ControllerUsuario cu) {
 		_dao = new UsuarioDAOJSON();
+		_cu = cu;
 		initGUI();
 		this.setVisible(true);
 	}
@@ -53,7 +42,7 @@ public class MainWindowIniciarSesion extends JPanel{
 	}
 	
 	private void configPanel() {
-		//this.setLayout(new BorderLayout());
+
 		_panel = new JPanel();
 		_panel.setLayout(new BoxLayout(_panel, BoxLayout.Y_AXIS));
 	}
@@ -63,12 +52,6 @@ public class MainWindowIniciarSesion extends JPanel{
         BoxLayout generalLayout = new BoxLayout(generalPanel, BoxLayout.Y_AXIS);
         generalPanel.setLayout(generalLayout);
         int sizex = 200;
-		
-        /*
-        JPanel izquierdaPanel = new JPanel();
-        BoxLayout izquierdaLayout = new BoxLayout(izquierdaPanel, BoxLayout.Y_AXIS);
-        izquierdaPanel.setLayout(izquierdaLayout);
-		*/
         
         //USERNAME
         JPanel userPanel = new JPanel();
@@ -102,40 +85,11 @@ public class MainWindowIniciarSesion extends JPanel{
         passwordPanel.add(passwordLabel);
         passwordPanel.add(password);
         
-        //TIPO DE CUENTA
-        /*
-        JPanel tipoUsuario = new JPanel();
-        
-        BoxLayout tipoUsuarioLayout = new BoxLayout(tipoUsuario, BoxLayout.Y_AXIS);
-        tipoUsuario.setLayout(tipoUsuarioLayout);
-        //JLabel genres = new JLabel("GENEROS:  ");
-        //genres.setPreferredSize(new Dimension(125,20));
-        
-        JPanel cajas = new JPanel();
-        //GridLayout cajasL = new GridLayout(4, 2);
-        //cajas.setLayout(cajasL);
-        cajas.setPreferredSize(new Dimension(sizex, 75));
-        empresa = new JCheckBox("Empresa desarrolladora");
-        admin = new JCheckBox("Permisos administrador");
-        
-        cajas.add(empresa);
-        cajas.add(admin);
-        
-        tipoUsuario.add(cajas);
-        */
-        
         JPanel botones = new JPanel();
         
         iniciarSesion = new JButton("INICIAR SESION");
         iniciarSesion.setPreferredSize(new Dimension((125 + sizex)/2, 20));
         iniciarSesion.addActionListener(new iniciarButton());
-        
-        /*
-        izquierdaPanel.add(userPanel);
-        izquierdaPanel.add(passwordPanel);
-        //izquierdaPanel.add(tipoUsuario);
-        izquierdaPanel.add(iniciarSesion);
-        */
         
         crearCuenta = new JButton("CREAR CUENTA");
         crearCuenta.setPreferredSize(new Dimension((125 + sizex)/2, 20));
@@ -147,23 +101,23 @@ public class MainWindowIniciarSesion extends JPanel{
         generalPanel.add(userPanel);
         generalPanel.add(passwordPanel);
         generalPanel.add(botones);
-        //generalPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-        
+
         this.add(generalPanel);
         
 	}
 	
 	class iniciarButton implements ActionListener {
 		 public void actionPerformed(ActionEvent e){  
-			 if (!username.getText().equals("") && !password.getText().equals(""))
-         		firePropertyChange("PerfilUsuario", null, _dao.login(username.getText(), password.getText()));
+			 if (!username.getText().equals("") && !password.getText().equals("")) {
+				 _cu.evento(EventoUsuario.PerfilUsuario, _dao.login(username.getText(), password.getText()));
+			 }
          }  
 
 	}
 	
 	class crearButton implements ActionListener {
 		public void actionPerformed(ActionEvent e){  
-        	firePropertyChange("AcuerdoSuscriptor", null, null);
+			_cu.evento(EventoUsuario.BotonCrearCuenta, null);
         }  
 	}
 

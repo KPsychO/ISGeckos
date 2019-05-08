@@ -11,6 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import Usuario.Control.ControllerUsuario;
+import Usuario.Control.EventoUsuario;
+
 public class MainWindowAcuerdoSuscriptor extends JPanel{
 	private static final long serialVersionUID = 1L;
 
@@ -19,7 +22,12 @@ public class MainWindowAcuerdoSuscriptor extends JPanel{
 	//private JLabel aceptar;
 	private JButton boton;
 	
-	public MainWindowAcuerdoSuscriptor () {
+	private ControllerUsuario _cu;
+	
+	public MainWindowAcuerdoSuscriptor (ControllerUsuario cu) {
+		
+		_cu = cu;
+		
 		initGUI();
 		this.setVisible(true);
 	}
@@ -72,6 +80,7 @@ public class MainWindowAcuerdoSuscriptor extends JPanel{
 	class continuarButton implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (ok.isSelected()) {
+				_cu.evento(EventoUsuario.AcuerdoSuscriptor, null);
         		firePropertyChange("AcuerdoSuscriptor", null, null);
         	}
 			else {

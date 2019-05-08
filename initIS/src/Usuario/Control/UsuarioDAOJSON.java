@@ -19,10 +19,10 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 	List<UsuarioDTO> listUser;
 
 	@SuppressWarnings("exports")
-	public JSONArray getListUsuarios() {
+	public JSONArray getListUsuariosJson() {
 		
 		JSONArray list = new JSONArray();
-		listUser= new ArrayList<UsuarioDTO>();
+		listUser = new ArrayList<UsuarioDTO>();
 		try {
 			
 			InputStream input = new FileInputStream("./src/resources/Users.txt");
@@ -52,7 +52,7 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		obj.put ("_user_id", us.get_user_id()); 
 		obj.put ("_username", us.get_username()); 
 			
-		JSONArray usu = getListUsuarios();
+		JSONArray usu = getListUsuariosJson();
 		usu.put(obj);
 		
 		try (FileWriter file = new FileWriter("./src/resources/Usuarios.txt")) {
@@ -78,7 +78,7 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 	
 	public UsuarioDTO login (String username, String password) {
 		
-		JSONArray users = getListUsuarios();
+		JSONArray users = getListUsuariosJson();
 		
 		for (Object o : users) {
 			
@@ -103,7 +103,7 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 	@Override
 	public UsuarioDTO getUser(String username) {
 		
-		JSONArray users = getListUsuarios();
+		JSONArray users = getListUsuariosJson();
 		
 		for (Object o : users) {
 			
@@ -121,13 +121,13 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 	}
 	
 	public List<UsuarioDTO> lista(){
-		getListUsuarios();
+		getListUsuariosJson();
 		return listUser;
 	}
 
 	public UsuarioDTO getUnregUser() {
 
-		JSONArray users = getListUsuarios();
+		JSONArray users = getListUsuariosJson();
 		
 		JSONObject user = users.getJSONObject(0);
 		
@@ -137,7 +137,7 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 
 	@Override
 	public UsuarioDTO getUserID(String id) {
-		JSONArray users = getListUsuarios();
+		JSONArray users = getListUsuariosJson();
 		
 		for (Object o : users) {
 			

@@ -7,7 +7,7 @@ import org.json.JSONArray;
 public interface UsuarioDAO {
 
 	@SuppressWarnings("exports")
-	public abstract JSONArray getListUsuarios();
+	public abstract JSONArray getListUsuariosJson();
 	
 	public void insertarUsuario(UsuarioDTO us);
 	

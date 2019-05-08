@@ -44,4 +44,8 @@ public class ControllerIncidenciasMejoras {
 		}
 	}
 
+	public JPanel getIncidenciasMejorasPanel(UsuarioDTO dto) {
+		return new MainViewIncidenciasJugador(dto, this);
+	}
+
 }

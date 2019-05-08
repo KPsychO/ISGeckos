@@ -8,6 +8,7 @@ import Usuario.View.MainWindowIniciarSesion;
 import Usuario.View.MainWindowPerfilUsuario;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import Usuario.Control.EventoUsuario;
 import Usuario.Control.UsuarioDTO;
@@ -28,45 +29,36 @@ public class ControllerUsuario {
 		switch (e) {
 		
 		case PerfilUsuario:
-			if (_user.isUnregistered()) 
-				_controller.setPrincipalPanel(new MainWindowIniciarSesion());
-			else
-				_controller.setPrincipalPanel(new MainWindowPerfilUsuario(_user));
-			break;
-		case PerfilUsuarioCurrent:
-			_controller.setPrincipalPanel(new MainWindowPerfilUsuario(_user));
-			break;
-		
-		case BotonModificarCuenta:
-			_controller.setPrincipalPanel(new MainWindowModificarCuenta(_user));
+			if (_user != null) {
+				_controller.setCurrentUser(_user);
+				_controller.setPrincipalPanel(new MainWindowPerfilUsuario(_user, this));
+			}
+			
 			break;
 			
 		case ModificarCuenta:
-			_controller.setPrincipalPanel(new MainWindowPerfilUsuario(_user));
-			break;
-		
-		case BotonEliminarCuenta: 
-			_controller.setPrincipalPanel(new MainWindowEliminarCuenta(_user));
+			_controller.setPrincipalPanel(new MainWindowPerfilUsuario(_user, this));
 			break;
 		
 		case EliminarCuenta:
-			_controller.setPrincipalPanel(new MainWindowIniciarSesion());
+			_controller.setPrincipalPanel(new MainWindowIniciarSesion(this));
 			break;
 		
 		case CerrarSesion: 
-			_controller.setPrincipalPanel(new MainWindowIniciarSesion());
+			_controller.setCurrentUser(getUsuarioUnreg());
+			_controller.setPrincipalPanel(new MainWindowIniciarSesion(this));
 			break;
 		
 		case BotonCrearCuenta: 
-			_controller.setPrincipalPanel(new MainWindowAcuerdoSuscriptor());
+			_controller.setPrincipalPanel(new MainWindowAcuerdoSuscriptor(this));
 			break;
 			
 		case AcuerdoSuscriptor: 
-			_controller.setPrincipalPanel(new MainWindowCrearCuenta());
+			_controller.setPrincipalPanel(new MainWindowCrearCuenta(this));
 			break;
 			
 		case CrearCuenta:
-			_controller.setPrincipalPanel(new MainWindowIniciarSesion());
+			_controller.setPrincipalPanel(new MainWindowIniciarSesion(this));
 			break;
 			
 		default: break;
@@ -76,5 +68,17 @@ public class ControllerUsuario {
 	
 	public UsuarioDTO getUsuarioId(String ID) {
 		return _user.getUsuarioID(ID);
+	}
+	
+	public UsuarioDTO getUsuarioUnreg() {
+		return _user.getUsuarioID("0000000000");
+	}
+
+
+	public JPanel getIconoPanel(UsuarioDTO dto) {
+		if (dto.isUnregistered())
+			return new MainWindowIniciarSesion(this);
+		else
+			return new MainWindowPerfilUsuario(dto, this);
 	}
 }

@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
+import Usuario.Control.ControllerUsuario;
+
 public class MainWindowCrearCuenta extends JPanel {
 	private static final long serialVersionUID = 1L;
 
@@ -29,7 +31,10 @@ public class MainWindowCrearCuenta extends JPanel {
 	private JCheckBox empresaDesarrolladora;
 	private JButton ok;
 	
-	public MainWindowCrearCuenta () {
+	private ControllerUsuario _cu;
+	
+	public MainWindowCrearCuenta (ControllerUsuario cu) {
+		_cu = cu;
 		initGUI();
 		this.setVisible(true);
 	}
@@ -145,9 +150,7 @@ public class MainWindowCrearCuenta extends JPanel {
 	class continuarButton implements ActionListener {
 		public void actionPerformed(ActionEvent e){  
 			 if (!username.getText().isEmpty() && !password.getText().isEmpty() && !email.getText().isEmpty()) {
-				 
-				 //COMPROBAR QUE EL NOMBRE DE USUARIO NO EXISTE ACTUALMENTE EN LA LISTA DE USUARIOS
-				 
+
 				if (password.getText().equals(confirmPassword.getText()) && email.getText().equals(confirmEmail.getText())) {
 				 
 					if(empresaDesarrolladora.isSelected()) {

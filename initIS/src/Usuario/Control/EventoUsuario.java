@@ -3,13 +3,15 @@ package Usuario.Control;
 
 public enum EventoUsuario {
 		PerfilUsuario,
-		PerfilUsuarioCurrent,
-		BotonModificarCuenta,
+		CrearCuenta,
 		ModificarCuenta,
-		BotonEliminarCuenta, 
 		EliminarCuenta,
 		CerrarSesion, 
 		BotonCrearCuenta,
-		AcuerdoSuscriptor, 
-		CrearCuenta
+		AcuerdoSuscriptor,
+		Biblioteca,
+		Formulario,
+		Desarrolladora,
+		RevIncMej
+		
 }
