@@ -8,20 +8,7 @@ import IncidenciasMejoras.View.MainViewRevisionMensajes;
 import Usuario.Control.UsuarioDTO;
 import common.Controller;
 
-public class IncidenciasMejorasController extends Controller {
+public class IncidenciasMejorasController  {
 
-	@Override
-	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
-		if (panel.equals("Soporte"))
-			return new MainViewIncidenciasJugador(user);
-		else if (panel.equals("DenunciarJugador"))
-			return new MainViewDenunciasJugador(user, (UsuarioDTO) o);
-		/*
-		else if (panel.equals("revIncMej"))
-			return new MainViewRevisionMensajes(user);
-			*/
-		else
-			return null;
-	}
 
 }
