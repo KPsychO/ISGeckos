@@ -31,6 +31,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 	private JButton formulario;
 	private JButton publicacion;
 	private JButton developer;
+	private JButton revisionMensajes;
 	
 	public MainWindowPerfilUsuario(UsuarioDTO dto) {
 		_dto = dto;
@@ -90,7 +91,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 		
 		//Panel derecho
 		JPanel der = new JPanel();
-		der.setLayout(new GridLayout(7, 1));
+		der.setLayout(new GridLayout(8, 1));
 		
 		//Botones
 		//insignias = new JButton("INSIGNIAS");
@@ -117,6 +118,9 @@ public class MainWindowPerfilUsuario extends JPanel{
 		developer = new JButton("DESARROLLADORA");
 		developer.addActionListener(new desarrolladoraButton());
 		
+		revisionMensajes = new JButton("REVISION INCIDENCIAS/DENUNCIAS");
+		revisionMensajes.addActionListener(new inciMejButton());
+		
 		setButtons();
 		
 		der.add(biblioteca);
@@ -129,6 +133,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 		der.add(modPerfil);
 		der.add(elimCuenta);
 		der.add(developer);
+		der.add(revisionMensajes);
 		
 		this.add(izq);
 		this.add(new JSeparator());
@@ -139,8 +144,8 @@ public class MainWindowPerfilUsuario extends JPanel{
 		formulario.setEnabled(_dto.isDev());
 		developer.setEnabled(_dto.isDev());
 		publicacion.setEnabled(_dto.isAdmin());
+		revisionMensajes.setEnabled(_dto.isAdmin());
 	}
-
 
 	class bibliotecaButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
@@ -175,6 +180,11 @@ public class MainWindowPerfilUsuario extends JPanel{
 	class desarrolladoraButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			firePropertyChange("Desarrolladora", null, _dto);
+		}
+	}
+	class inciMejButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			firePropertyChange("revIncMej", null, _dto);
 		}
 	}
 
