@@ -5,5 +5,3 @@ initIS/.project
 *.class
 initIS/src/resources/IncidenciasMejoras.txt
 initIS/src/resources/IncidenciasMejoras.txt
-*.class
-initIS/bin/resources/NewGames.txt
