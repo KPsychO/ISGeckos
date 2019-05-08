@@ -6,6 +6,7 @@ import IncidenciasMejoras.Control.ControllerIncidenciasMejoras;
 import IncidenciasMejoras.View.MainViewDenunciasJugador;
 import Juego.Control.ControllerJuego;
 import Juego.Control.JuegoDTO;
+import Tienda.Control.TiendaController;
 import Usuario.Control.UsuarioDTO;
 import valoraciones.ControllerValoraciones;
 
@@ -14,6 +15,7 @@ public class Controller {
 	private ControllerValoraciones _controllerValoraciones;
 	private ControllerJuego _controllerJuego;
 	private ControllerIncidenciasMejoras _controllerIncidenciasMejoras;
+	private TiendaController _tiendaControler;
 	
 	private MainWindow _mw;
 	
@@ -40,21 +42,22 @@ public class Controller {
 		_current_user = user;
 	}
 	
-	//Me encanta hacer esto
 	public boolean isRegistered() {
 		return !_current_user.isUnregistered();
 	}
 	
-	// Diego
+	@SuppressWarnings("exports")
 	public JPanel getComprarJuego(JuegoDTO _juego) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return _tiendaControler.getComprarJuego(_juego);
+
 	}
-	
-	// Diego
+
+	@SuppressWarnings("exports")
 	public JPanel getTienda() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return _tiendaControler.getTienda();
+
 	}
 	
 	//Jin
@@ -67,5 +70,19 @@ public class Controller {
 		_current_user = _controllerUsuario.getUsuarioID(ID);
 	}
 	*/
+	
+	// Sergio
+	
+	public void anadirJuegoComprado(JuegoDTO j) {
+		
+		// sirve para anadir el juego que se compre a la bilio.
+		
+	}
+	
+	public UsuarioDTO getCurrentUser() {
+		
+		return _current_user;
+		
+	}
 
 }

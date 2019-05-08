@@ -16,15 +16,13 @@ public class TiendaController extends Controller{
 	
 	private TiendaDAO _dao;
 	TiendaDTO _TiendaDTO;
-	UsuarioDTO _user;
-	BibliotecaController _bilioCont;
+	Controller _controller;
 	
-	public TiendaController(UsuarioDTO user) {
+	public TiendaController(Controller cont) {
 		
-		_user = user;
-		// _bilioCont = new BibliotecaController(_user);  Hasta que no este biblioteca, no se añaden juegos
+		_controller = cont;
 		_dao = new TiendaDAOJSON();
-		_TiendaDTO = new TiendaDTO(createJuegosEnTienda(user));
+		_TiendaDTO = new TiendaDTO(createJuegosEnTienda(_controller.getCurrentUser()));
 		
 	}
 	
@@ -69,10 +67,10 @@ public class TiendaController extends Controller{
 	
 	public boolean comprarJuego(JuegoDTO juego) {
 		
-		if(_user.get_balance() >= juego.get_price()) {
+		if(_controller.getCurrentUser().get_balance() >= juego.get_price()) {
 		
 			_TiendaDTO.comprarJuego(juego);
-			_bilioCont.anadirJuego(juego);
+			_controller.anadirJuegoComprado(juego);
 			
 			return true;
 		
@@ -87,22 +85,16 @@ public class TiendaController extends Controller{
 		_TiendaDTO.deleteTienda();
 		
 	}
-
-	@SuppressWarnings("exports")
-	@Override
-	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
+	
+	public JPanel getTienda() {
 		
-		if (panel.equals("Tienda")) {
-			getJuegosEnTienda();
-			return new MainViewTienda(this, user);
-		}
-			
+		return new MainViewTienda(this, _controller.getCurrentUser());
 		
-		else if (panel.equals("ComprarJuego"))
-			return new ComprarJuego((JuegoDTO) o, user, this); 
+	}
+	
+	public JPanel getComprarJuego(JuegoDTO juego) {
 		
-		else
-			return null;
+		return new ComprarJuego(juego, _controller.getCurrentUser(), this);
 		
 	}
 

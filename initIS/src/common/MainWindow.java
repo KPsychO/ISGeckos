@@ -8,8 +8,6 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -37,7 +35,12 @@ public class MainWindow extends JFrame {
 	private Boolean state_developer = false;
 	private Boolean state_admin = false;
 	
+	Controller _controller;
+	
 	public MainWindow() {
+		
+		// Me da error el pasarle por parametro el contorller
+		//_controller = cont;
 		super("Gecko");
 		this.setSize(800, 800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -152,7 +155,8 @@ public class MainWindow extends JFrame {
 	
 	class TiendaButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("Tienda", null, null);
+			// reinicia(_controller.getTienda(), _controller.getCurrentUser()); // DESCOMENTAR cuando _controller este inicializado
+			//firePropertyChange("Tienda", null, null);
 		}
 	}
 	
