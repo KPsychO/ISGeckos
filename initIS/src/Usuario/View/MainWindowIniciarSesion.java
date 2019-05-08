@@ -13,6 +13,9 @@ import javax.swing.border.EtchedBorder;
 
 import Usuario.Control.UsuarioDAO;
 import Usuario.Control.UsuarioDAOJSON;
+import Usuario.Control.EventoUsuario;
+import Usuario.Control.UsuarioDTO;
+import Usuario.Control.ControllerUsuario;
 
 
 public class MainWindowIniciarSesion extends JPanel{
@@ -27,9 +30,12 @@ public class MainWindowIniciarSesion extends JPanel{
 	private JTextArea comenText;
 	private JTextField descText;
 	//private IncidenciasDAOJSON imJSON;
-	private String user;
+	private String user;*/
 	
-	//private Jpanel*/
+	private ControllerUsuario contUs;
+	private UsuarioDTO _user;
+	
+	//private Jpanel
 	
 	private JTextArea username;
 	private JTextArea password;
@@ -156,15 +162,16 @@ public class MainWindowIniciarSesion extends JPanel{
 	class iniciarButton implements ActionListener {
 		 public void actionPerformed(ActionEvent e){  
 			 if (!username.getText().equals("") && !password.getText().equals(""))
-         		firePropertyChange("PerfilUsuario", null, _dao.login(username.getText(), password.getText()));
+				 contUs.evento(EventoUsuario.PerfilUsuario, _dao.login(username.getText(), password.getText()));
+         		//firePropertyChange("PerfilUsuario", null, _dao.login(username.getText(), password.getText()));
          }  
 
 	}
 	
 	class crearButton implements ActionListener {
 		public void actionPerformed(ActionEvent e){  
-        	firePropertyChange("AcuerdoSuscriptor", null, null);
-        }  
+			contUs.evento(EventoUsuario.AcuerdoSuscriptor, null);
+       }  
 	}
 
 }

@@ -16,12 +16,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
+import Usuario.Control.EventoUsuario;
 import Usuario.Control.UsuarioDTO;
+import Usuario.Control.ControllerUsuario;
 
 public class MainWindowModificarCuenta extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	private UsuarioDTO _dto;
+	private ControllerUsuario contUs;
+	private UsuarioDTO _user;
 	
 	private JLabel avatarLabel;
 	private JFileChooser avatarFile;
@@ -31,8 +34,8 @@ public class MainWindowModificarCuenta extends JPanel {
 	private JTextArea descripcion;
 	private JButton ok;
 	
-	public MainWindowModificarCuenta (UsuarioDTO dto) {
-		_dto = dto;
+	public MainWindowModificarCuenta (UsuarioDTO user) {
+		_user = user;
 		initGUI();
 		//this.setVisible(true);
 	}
@@ -64,7 +67,7 @@ public class MainWindowModificarCuenta extends JPanel {
         avatarFile = new JFileChooser("./src/resources"); 
         avatarFile.addActionListener(new cambiarAvatar());
         
-        String path = _dto.getAvatarPath();
+        String path = _user.getAvatarPath();
 		ImageIcon img;
 		
 		if (path == null) {
@@ -92,7 +95,7 @@ public class MainWindowModificarCuenta extends JPanel {
         paisLabel.setPreferredSize(new Dimension(200,20));
         paisLabel.setText("Pais de residencia:  ");
         
-        pais = new JTextArea(_dto.get_country());
+        pais = new JTextArea(_user.get_country());
         pais.setPreferredSize(new Dimension(sizex,25));
         pais.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         
@@ -108,7 +111,7 @@ public class MainWindowModificarCuenta extends JPanel {
         descripcionLabel.setPreferredSize(new Dimension(200,20));
         descripcionLabel.setText("Descripcion:  ");
         
-        descripcion = new JTextArea(_dto.get_desc());
+        descripcion = new JTextArea(_user.get_desc());
         descripcion.setPreferredSize(new Dimension(sizex,sizex));
         descripcion.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         
@@ -134,11 +137,11 @@ public class MainWindowModificarCuenta extends JPanel {
 	class guardarButton implements ActionListener {
 		public void actionPerformed(ActionEvent e){  
 			if (!pais.getText().isEmpty())
-				_dto.set_country(pais.getText());
+				_user.set_country(pais.getText());
 			if (!descripcion.getText().isEmpty())
-				_dto.set_desc(descripcion.getText());
-			
-    		firePropertyChange("ModificarCuenta", null, null);
+				_user.set_desc(descripcion.getText());
+			contUs.evento(EventoUsuario.ModificarCuenta, _user);
+    		//firePropertyChange("ModificarCuenta", null, null);
 		} 
 	}
 	
@@ -146,7 +149,7 @@ public class MainWindowModificarCuenta extends JPanel {
 		public void actionPerformed(ActionEvent e){  
 		 File archivo = avatarFile.getSelectedFile();
 	        if (archivo != null) {
-	        	_dto.setAvatarPath(archivo.getPath());
+	        	_user.setAvatarPath(archivo.getPath());
 	        }
 	        
 	        else

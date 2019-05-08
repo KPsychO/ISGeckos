@@ -14,11 +14,14 @@ import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
 import Usuario.Control.UsuarioDTO;
+import Usuario.Control.EventoUsuario;
+import Usuario.Control.ControllerUsuario;
 
 public class MainWindowEliminarCuenta extends JPanel{
 	private static final long serialVersionUID = 1L;
 
-	private UsuarioDTO _dto;
+	private UsuarioDTO _user;
+	private ControllerUsuario contUs;
 	
 	private JLabel passwordLabel;
 	private JTextArea password;
@@ -28,8 +31,8 @@ public class MainWindowEliminarCuenta extends JPanel{
 	//private JLabel confirmar;
 	private JButton eliminar;
 	
-	public MainWindowEliminarCuenta (UsuarioDTO dto) {
-		_dto = dto;
+	public MainWindowEliminarCuenta (UsuarioDTO user) {
+		_user = user;
 		initGUI();
 		//this.setVisible(true);
 	}
@@ -95,11 +98,14 @@ public class MainWindowEliminarCuenta extends JPanel{
 		 public void actionPerformed(ActionEvent e){
 			 if (ok.isSelected()) {
 				 if (!password.getText().isEmpty() && password.getText().equals(confirmPassword.getText())) {
-					 if (password.getText().equals(_dto.get_password())) {
+					 if (password.getText().equals(_user.get_password())) {
 						 
 						 
 						 //ELIMINAR USUARIO DE LA LISTA _dto.eliminarUsuario();
-						 firePropertyChange("EliminarCuenta", null, null);
+						 
+						 contUs.evento(EventoUsuario.EliminarCuenta, _user);
+						 
+						// firePropertyChange("EliminarCuenta", null, null);
 					 }
 					 else {
 							String tipoError = "La contrasena introducida no es correcta";
