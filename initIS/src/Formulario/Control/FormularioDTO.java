@@ -66,12 +66,13 @@ public class FormularioDTO {
 		//Revisado, usado para crearlo de forma mas limpia
 	}
 	
-	//Este metodo no se va a necesitar ya
-	public String toString() {
-		String aux = "";
-		aux = " {" +  " \"_title\": \"" + this._title + "\", \"_price\": "  
-				+ this._price + ", \"_pegi\": " + this._pegi +  ", \"_desc\": " + this._descShort + "} " ;
-		return aux;
+	public FormularioDTO(UsuarioDTO dev, String id) {
+		dao = new FormularioDAOJSON();
+		_id = id;
+		_genres = new ArrayList<String>();
+		_developer = dev.get_user_id();
+		//solo para acceder a los formularios REVISAR
+		//Revisado, usado para crearlo de forma mas limpia
 	}
 	
 	public void insertGame(int n) {
@@ -87,7 +88,8 @@ public class FormularioDTO {
 	} 
 	
 	public void addGenres(String g) {
-		_genres.add(g);
+		if (!_genres.contains(g))
+			_genres.add(g);
 	}
 	
 	public String get_title() {

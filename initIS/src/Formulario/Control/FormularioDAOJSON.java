@@ -10,6 +10,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import Juego.Control.JuegoDTO;
+
 public class FormularioDAOJSON implements FormularioDAO{
 
 	public JSONArray getFormularies() {
@@ -28,8 +30,20 @@ public class FormularioDAOJSON implements FormularioDAO{
 
 	@Override
 	public void insertFormulary(FormularioDTO newForm){
+	
+		JSONArray formularios = getFormularies();
 		
 		JSONObject obj = new JSONObject();
+		
+		for (Object o : formularios) {
+			
+			JSONObject form = new JSONObject(new JSONTokener(o.toString()));
+			
+			if (form.getString("_id").equals(newForm.get_id())) {
+				obj = form;
+			}
+			
+		}
 		
 		obj.put("_id", newForm.get_id());
 		obj.put("_title", newForm.get_title());
@@ -41,8 +55,6 @@ public class FormularioDAOJSON implements FormularioDAO{
 		obj.put("_genres", newForm.get_genres());
 		obj.put("_achievements", newForm.get_achievements());
 		obj.put("_developer", newForm.get_developer());
-		
-		JSONArray formularios = getFormularies();
 		
 		try (FileWriter file = new FileWriter("./src/resources/Formularies.txt")) {
 			formularios.put(obj);
@@ -69,18 +81,36 @@ public class FormularioDAOJSON implements FormularioDAO{
 	@Override
 	public void insertGame(int n) {
 		
-		JSONArray arrJ = new JSONArray();
-		JSONArray arrF = new JSONArray();
+		JSONArray newGames = new JSONArray();
+		JSONArray formularios = new JSONArray();
+		
+		formularios = getFormularies();
+		JSONObject formulario_actual = formularios.getJSONObject(n);
+		int remove = -1;
 		
 		try {
 			InputStream input = new FileInputStream("./src/resources/NewGames.txt");
-			arrJ = new JSONArray(new JSONTokener(input));
+			newGames = new JSONArray(new JSONTokener(input));
+			int i = 0;
+			for (Object o : newGames) {
+				
+				JSONObject game = new JSONObject(new JSONTokener(o.toString()));
+				
+				if (game.getString("_id").equals(formulario_actual.getString("_id"))) {
+					remove = i;
+					break;
+				}
+				i++;
+			}
 			
-			arrF = getFormularies();
-			arrJ.put(arrF.get(n));
+			if (remove != -1)
+				newGames.remove(remove);
+			
+			newGames.put(formulario_actual);
+
 			//
 			try (FileWriter file = new FileWriter("./src/resources/NewGames.txt")) {
-				file.write(arrJ.toString(4));
+				file.write(newGames.toString(4));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

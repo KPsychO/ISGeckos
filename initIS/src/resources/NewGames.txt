@@ -2581,16 +2581,17 @@
     {
         "_date": "2019-05-08",
         "_achievements": [{
-            "_name": "asdf",
-            "_getMode": "asdf",
-            "_id": "f743b801-3967-4073-8377-df99d597bbc1"
+            "_name": "Nuevo",
+            "_getMode": "NNN",
+            "_id": "939ea061-01e8-4815-aa38-c131b47a64a8"
         }],
         "_price": 12,
         "_descLong": "asdf",
-        "_title": "asdf",
+        "_title": "Es nuevo",
         "_pegi": 12,
         "_genres": [
             "action",
+            "role-playing",
             "strategy"
         ],
         "_developer": "1",
