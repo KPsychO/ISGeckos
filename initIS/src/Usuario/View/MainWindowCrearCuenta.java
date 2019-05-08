@@ -1,30 +1,16 @@
 package Usuario.View;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
-import javax.swing.table.DefaultTableModel;
-
-//import Formulario.Control.FormularioDTO;
-import Usuario.Control.UsuarioDTO;
-//import IncidenciasMejoras.Control.IncidenciasDAOJSON;
-//import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
-//import Tienda.View.MainViewTienda;
 
 public class MainWindowCrearCuenta extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -157,28 +143,28 @@ public class MainWindowCrearCuenta extends JPanel {
 	}
 	
 	class continuarButton implements ActionListener {
-			 public void actionPerformed(ActionEvent e){  
-				 if (!username.getText().isEmpty() && !password.getText().isEmpty() && !email.getText().isEmpty()) {
-					 
-					 //COMPROBAR QUE EL NOMBRE DE USUARIO NO EXISTE ACTUALMENTE EN LA LISTA DE USUARIOS
-					 
-					if (password.getText().equals(confirmPassword.getText()) && email.getText().equals(confirmEmail.getText())) {
-					 
-						if(empresaDesarrolladora.isSelected()) {
-							//Crear usuario tipo empresa desarrolladora
-							//Usando como username:username
-							//Como password: password
-							//Como email: email
-						}
-						else {
-							//Crear usuario
-							//Usando como username:username
-							//Como password: password
-							//Como email: email
-						}
-						firePropertyChange("IniciarSesion", null, null);	 
+		public void actionPerformed(ActionEvent e){  
+			 if (!username.getText().isEmpty() && !password.getText().isEmpty() && !email.getText().isEmpty()) {
+				 
+				 //COMPROBAR QUE EL NOMBRE DE USUARIO NO EXISTE ACTUALMENTE EN LA LISTA DE USUARIOS
+				 
+				if (password.getText().equals(confirmPassword.getText()) && email.getText().equals(confirmEmail.getText())) {
+				 
+					if(empresaDesarrolladora.isSelected()) {
+						//Crear usuario tipo empresa desarrolladora
+						//Usando como username:username
+						//Como password: password
+						//Como email: email
 					}
-				 }
+					else {
+						//Crear usuario
+						//Usando como username:username
+						//Como password: password
+						//Como email: email
+					}
+					firePropertyChange("CrearCuenta", null, null);	 
+				}
 			 }
+		 }
 	}
 }

@@ -20,6 +20,7 @@ import org.json.JSONTokener;
 public class UsuarioDAOJSON implements UsuarioDAO {
 	List<UsuarioDTO> listUser;
 
+	@SuppressWarnings("exports")
 	public JSONArray getListUsuarios() {
 		
 		JSONArray list = new JSONArray();
@@ -63,6 +64,7 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		}	
 	}
 
+	@SuppressWarnings("exports")
 	@Override
 	public List<tipoCuenta> getTipos(JSONArray tiposArray) {
 		ArrayList<tipoCuenta> lista = new ArrayList<tipoCuenta>();
@@ -76,7 +78,7 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		return lista;
 	}
 	
-	public UsuarioDTO login(String username, String password) {
+	public UsuarioDTO login (String username, String password) {
 		
 		JSONArray users = getListUsuarios();
 		
@@ -85,13 +87,14 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 			JSONObject user = new JSONObject(new JSONTokener(o.toString()));
 			
 			if (user.getString("_username").equals(username)) {
+				//System.out.println("username iguales");
 				
-				if (user.getString("_password").equals(password))
+				if (user.getString("_password").equals(password)) {
+					//System.out.println("password iguales");
 					return new UsuarioDTO(user);
-				else {
-					String error = "Contrase�a incorrecta";
-					JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
 				}
+				else
+					return null;
 			}
 		}
 		
@@ -132,6 +135,24 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		
 		return new UsuarioDTO(user);
 		
+	}
+
+	@Override
+	public UsuarioDTO getUserID(String id) {
+		JSONArray users = getListUsuarios();
+		
+		for (Object o : users) {
+			
+			JSONObject user = new JSONObject(new JSONTokener(o.toString()));
+			
+			if (user.getString("_user_id").equals(id)) {
+				
+				return new UsuarioDTO(user);
+				
+			}
+		}
+		
+		return null;
 	}
 }
 

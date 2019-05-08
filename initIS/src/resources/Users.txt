@@ -1,8 +1,8 @@
 [
-  {
-    "_user_id": "0",
-    "_username": "u",
-    "_password": "u",
+	{
+    "_user_id": "0000000000",
+    "_username": "unReg",
+    "_password": "unReg",
     "_email": "null",
     "_country": "null",
     "_balance": 0,

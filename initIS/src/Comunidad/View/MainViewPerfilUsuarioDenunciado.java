@@ -8,9 +8,9 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
+import javax.swing.JTextArea;
+import javax.swing.border.EtchedBorder;
 
 import Usuario.Control.UsuarioDTO;
 
@@ -21,13 +21,13 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 		private JLabel avatarLabel;
 		private JLabel usernameLabel;
 		private JLabel paisLabel;
-		private JLabel tipoCuentaLabel;
-		//private JLabel _estado;
 		private JLabel descripcionLabel;
-		//private JLabel _descripcion;
+		private JTextArea descripcion;
 		private JButton denunciar;
+		private UsuarioDTO usDen;
 		
-		public MainViewPerfilUsuarioDenunciado (String user) {
+		public MainViewPerfilUsuarioDenunciado (UsuarioDTO usDen) {
+			this.usDen = usDen;
 			initGUI();
 			this.setVisible(true);
 		}
@@ -61,11 +61,11 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 	        
 	        usernameLabel = new JLabel();
 	        usernameLabel.setPreferredSize(new Dimension(200,20));
-	        usernameLabel.setText("Username: ");
+	        usernameLabel.setText("Username: " + usDen.get_username());
 	        
 	        paisLabel = new JLabel();
-	        paisLabel.setPreferredSize(new Dimension(200,20));
-	        paisLabel.setText("Pais de residencia: ");
+	        paisLabel.setPreferredSize(new Dimension(200,100));
+	        paisLabel.setText("Pais de residencia: " + usDen.get_country());
 	        
 	        usernamePanel.add(usernameLabel);
 	        usernamePanel.add(paisLabel);
@@ -73,20 +73,20 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 	        avatarPanel.add(avatarLabel);
 	        avatarPanel.add(usernamePanel);
 	        
-	        //TIPO DE CUENTA
-	        tipoCuentaLabel = new JLabel();
-	        tipoCuentaLabel.setPreferredSize(new Dimension(200,20));
-	        tipoCuentaLabel.setText("Tipo de cuenta: ");
-	        
 	        //DESCRIPCION
 	        descripcionLabel = new JLabel();
-	        descripcionLabel.setPreferredSize(new Dimension(200,200));
+	        descripcionLabel.setPreferredSize(new Dimension(200,20));
 	        descripcionLabel.setText("Descripcion: ");
+	        
+	        descripcion = new JTextArea();
+	        descripcion.setPreferredSize(new Dimension(150,150));
+			descripcion.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		    descripcion.setWrapStyleWord(true);
+		    descripcion.setLineWrap(true);
+	        descripcion.setEditable(false);
+	        descripcion.setText(usDen.get_desc());
 	        	        
 	        izquierdaPanel.add(avatarPanel);
-	        izquierdaPanel.add(tipoCuentaLabel);
-	        izquierdaPanel.add(descripcionLabel);
-	        
 	        JPanel derechaPanel = new JPanel();
 	        BoxLayout derechaLayout = new BoxLayout(derechaPanel, BoxLayout.Y_AXIS);
 	        derechaPanel.setLayout(derechaLayout);
@@ -95,6 +95,8 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 			denunciar.setActionCommand("denunciar");
 			denunciar.addActionListener(this);
 	        derechaPanel.add(denunciar);
+	        izquierdaPanel.add(descripcionLabel);
+	        izquierdaPanel.add(descripcion);
 	        
 	        generalPanel.add(izquierdaPanel);
 	        generalPanel.add(derechaPanel);
@@ -107,7 +109,7 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand().equals("denunciar")) {
-				firePropertyChange("DenunciarJugador", null, null);
+				firePropertyChange("DenunciarJugador", null, usDen);
 			}
 		}
 

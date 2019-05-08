@@ -1,32 +1,23 @@
 package Usuario.View;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.io.File;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
-import javax.swing.table.DefaultTableModel;
 
-//import Formulario.Control.FormularioDTO;
 import Usuario.Control.UsuarioDTO;
-//import IncidenciasMejoras.Control.IncidenciasDAOJSON;
-//import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
-//import Tienda.View.MainViewTienda;
+import Usuario.View.MainWindowModificarCuenta.cambiarAvatar;
 
 public class MainWindowModificarCuenta extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -34,7 +25,7 @@ public class MainWindowModificarCuenta extends JPanel {
 	private UsuarioDTO _dto;
 	
 	private JLabel avatarLabel;
-	private JFileChooser avatarButton;
+	private JFileChooser avatarFile;
 	private JLabel paisLabel;
 	private JTextArea pais;
 	private JLabel descripcionLabel;
@@ -71,13 +62,27 @@ public class MainWindowModificarCuenta extends JPanel {
         
         
         //PONER COMO AVATAR LA IMAGEN SELECCIONADA EN EL JFILECHOOSER
-        ImageIcon img = new ImageIcon("./src/resources/usuario.png");
-        avatarLabel = new JLabel(img, JLabel.CENTER);
-        avatarButton = new JFileChooser("./src/resources");
+        avatarFile = new JFileChooser("./src/resources"); 
+        avatarFile.addActionListener(new cambiarAvatar());
         
+        String path = _dto.getAvatarPath();
+		ImageIcon img;
+		
+		if (path == null) {
+			img = new ImageIcon("./src/resources/usuario.png");
+		}
+		
+		else {
+			img = new ImageIcon(path);
+		}
+        
+        avatarLabel = new JLabel(img, JLabel.CENTER);
+        avatarLabel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+        avatarLabel.setPreferredSize(new Dimension(120, 120));
         
         avatarPanel.add(avatarLabel);
-        avatarPanel.add(avatarButton);
+        avatarPanel.add(avatarFile);
+        
         
         //PAIS
         JPanel paisPanel = new JPanel();
@@ -88,7 +93,7 @@ public class MainWindowModificarCuenta extends JPanel {
         paisLabel.setPreferredSize(new Dimension(200,20));
         paisLabel.setText("Pais de residencia:  ");
         
-        pais = new JTextArea();
+        pais = new JTextArea(_dto.get_country());
         pais.setPreferredSize(new Dimension(sizex,25));
         pais.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         
@@ -104,7 +109,7 @@ public class MainWindowModificarCuenta extends JPanel {
         descripcionLabel.setPreferredSize(new Dimension(200,20));
         descripcionLabel.setText("Descripcion:  ");
         
-        descripcion = new JTextArea();
+        descripcion = new JTextArea(_dto.get_desc());
         descripcion.setPreferredSize(new Dimension(sizex,sizex));
         descripcion.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         
@@ -134,8 +139,22 @@ public class MainWindowModificarCuenta extends JPanel {
 			if (!descripcion.getText().isEmpty())
 				_dto.set_desc(descripcion.getText());
 			
-    		firePropertyChange("PerfilUsuario", null, null);
+    		firePropertyChange("ModificarCuenta", null, null);
 		} 
 	}
+	
+	class cambiarAvatar implements ActionListener {
+		public void actionPerformed(ActionEvent e){  
+		 File archivo = avatarFile.getSelectedFile();
+	        if (archivo != null) {
+	        	_dto.setAvatarPath(archivo.getPath());
+	        }
+	        
+	        else
+	        	JOptionPane.showMessageDialog(null, "Por favor, seleccione un archivo");
+		}
+		
+	}
+	
 
 }

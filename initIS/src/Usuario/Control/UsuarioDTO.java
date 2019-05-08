@@ -1,11 +1,7 @@
 package Usuario.Control;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.ImageIcon;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class UsuarioDTO {
@@ -13,7 +9,7 @@ public class UsuarioDTO {
 	private List<tipoCuenta> _types;
 	private List<UsuarioDTO> _users;
 	private int _balance;
-	//private ImageIcon _avatar;
+	private String _avatarPath;
 	
 	private String _user_id;
 	private String _username;
@@ -48,6 +44,7 @@ public class UsuarioDTO {
 		
 	}
 	
+	@SuppressWarnings("exports")
 	public UsuarioDTO(JSONObject user) {
 		
 		dao = new UsuarioDAOJSON();
@@ -63,15 +60,26 @@ public class UsuarioDTO {
 		
 	}
 	
-	public UsuarioDTO(String usuario) {
+	public UsuarioDTO(String id) {
 		dao = new UsuarioDAOJSON();
-		_users = dao.lista();
+		UsuarioDTO newUser = dao.getUserID(id);
+		
+		_types = newUser.get_types();
+		_balance = newUser.get_balance();
+		//_avatar = avatar;
+		_desc = newUser.get_desc();
+		_email = newUser.get_email();
+		_country = newUser.get_country();
+		_password = newUser.get_password();
+		_user_id = newUser.get_user_id();
+		_username = newUser.get_username();
 	}
 
 	public void eliminarUsuario(UsuarioDTO us) {
 		if(_users.contains(us)) {
 			_users.remove(us);
 		}
+		
 	}
 	
 	public boolean isDev() {
@@ -98,6 +106,14 @@ public class UsuarioDTO {
 		this._balance = _balance;
 	}
 
+	public String getAvatarPath () {
+		return _avatarPath;
+	}
+	
+	public void setAvatarPath (String avatarPath) {
+		this._avatarPath = avatarPath;
+	}
+	
 	public String get_user_id() {
 		return _user_id;
 	}
@@ -148,6 +164,10 @@ public class UsuarioDTO {
 
 	public List<UsuarioDTO> getUsers() {
 		return _users;
+	}
+	
+	public boolean isUnregistered() {
+		return this._types.contains(tipoCuenta.unregistered);		
 	}
 
 }

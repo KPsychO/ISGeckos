@@ -1,32 +1,19 @@
 package Usuario.View;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
-import javax.swing.table.DefaultTableModel;
 
 import Usuario.Control.UsuarioDAO;
 import Usuario.Control.UsuarioDAOJSON;
-//import Formulario.Control.FormularioDTO;
-import Usuario.Control.UsuarioDTO;
-//import IncidenciasMejoras.Control.IncidenciasDAOJSON;
-//import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
-//import Tienda.View.MainViewTienda;
+
 
 public class MainWindowIniciarSesion extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -51,11 +38,11 @@ public class MainWindowIniciarSesion extends JPanel{
     private JButton iniciarSesion;
     private JButton crearCuenta;
     
-    UsuarioDAO dao;
+    private UsuarioDAO _dao;
     private JPanel _panel;
 	
 	public MainWindowIniciarSesion() {
-		dao = new UsuarioDAOJSON();
+		_dao = new UsuarioDAOJSON();
 		initGUI();
 		this.setVisible(true);
 	}
@@ -168,9 +155,8 @@ public class MainWindowIniciarSesion extends JPanel{
 	
 	class iniciarButton implements ActionListener {
 		 public void actionPerformed(ActionEvent e){  
-         	if (!username.getText().equals("") && !password.getText().equals("")) {
-         		firePropertyChange("PerfilUsuario", null, dao.login(username.getText(), password.getText()));
-         	}
+			 if (!username.getText().equals("") && !password.getText().equals(""))
+         		firePropertyChange("PerfilUsuario", null, _dao.login(username.getText(), password.getText()));
          }  
 
 	}

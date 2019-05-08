@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
@@ -29,7 +28,6 @@ import Usuario.Control.UsuarioDTO;
 public class MainViewComunidad extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private UsuarioDTO _user;
 	private JPanel _panel;
 	private JPanel _buscar;
 	private JPanel _total;
@@ -39,13 +37,11 @@ public class MainViewComunidad extends JPanel {
 	private static int j = 0;
 	private boolean encontrado = false;
 
-	private List<UsuarioDTO> users;
 	private PerfilUsuarioDenunc pud;
 	private List<PerfilUsuarioDenunc> perfil;
 
 	
-	public MainViewComunidad(String usuario) {
-		_user = new UsuarioDTO(usuario);
+	public MainViewComunidad(UsuarioDTO usuario) {
 		perfil = new ArrayList<PerfilUsuarioDenunc>();
 		dao = new UsuarioDAOJSON();
 		initGUI();
@@ -55,20 +51,20 @@ public class MainViewComunidad extends JPanel {
 	private void initGUI() {
 		this.setLayout(new BorderLayout());
 		_panel = new JPanel();
-		//_panel.setLayout(new BoxLayout(_panel, BoxLayout.Y_AXIS));
+		_panel.setLayout(new BoxLayout(_panel, BoxLayout.Y_AXIS));
 
 		_total = new JPanel();
 		_total.setLayout(new BoxLayout(_total, BoxLayout.Y_AXIS));
 
 		_buscar = new JPanel();
-		//_buscar.setLayout(new BoxLayout(_buscar, BoxLayout.X_AXIS));
 
-        users = _user.getUsers();
+		 List<UsuarioDTO> users = getUsers();
 		JTextField buscarNombre = new JTextField(""); 
 		buscarNombre.setPreferredSize(new Dimension(200, 20));
 		JButton buscar = new JButton("Buscar");
         buscar.addActionListener(new ActionListener(){  
-            public void actionPerformed(ActionEvent e){  
+            @SuppressWarnings("unused")
+			public void actionPerformed(ActionEvent e){  
             	j = 0;
             	if (!buscarNombre.getText().equals("")) {
 	            	for (UsuarioDTO us : users) {	
@@ -91,10 +87,7 @@ public class MainViewComunidad extends JPanel {
             	}
             }
         });
-        
-        List<UsuarioDTO> users = getUsers();
-		
-		_panel.setLayout(new BoxLayout(_panel, BoxLayout.Y_AXIS));
+
 		_buscar.add(buscarNombre);
         _buscar.add(buscar);
 		for (UsuarioDTO us : users) {	
@@ -120,13 +113,6 @@ public class MainViewComunidad extends JPanel {
 
 		_total.add(jsp);
 		this.add(_total);
-		/*_total.add(_buscar);
-		_total.add(_panel);
-		JScrollPane jsp = new JScrollPane(_total);
-		jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
-		jsp.getVerticalScrollBar().setUnitIncrement(20);
-		this.add(jsp);*/
 	}
 	
 	private List<UsuarioDTO> getUsers(){

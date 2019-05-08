@@ -47,7 +47,7 @@ public class JuegoDAOJSON implements JuegoDAO{
 		
 		List<JuegoDTO> list = new ArrayList<JuegoDTO>();
 		try {
-			InputStream input = new FileInputStream("./src/resources/NewGames.txt");
+			InputStream input = new FileInputStream("./src/resources/Games.txt");
 			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
 			
 			for (Object o : jsonInput) {
@@ -68,23 +68,18 @@ public class JuegoDAOJSON implements JuegoDAO{
 	public List<JuegoDTO> getJuegosDeveloper(UsuarioDTO dev){
 		
 		List<JuegoDTO> lista = new ArrayList<JuegoDTO>();
-		
-		/*
-		for (JuegoDTO juego : lista) {
-		
-			if (juego)
-			
-		}
-		*/
-		
+
 		try {
-			InputStream input = new FileInputStream("./src/resources/DeveloperGames.txt");
+			InputStream input = new FileInputStream("./src/resources/NewGames.txt");
 			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
 			
 			for (Object o : jsonInput) {
 				
 				JSONObject juego = new JSONObject(new JSONTokener(o.toString()));
-				lista.add(new JuegoDTO(juego));
+				
+				if (juego.getString("_developer").equals(dev.get_user_id())) {
+					lista.add(new JuegoDTO(juego));
+				}
 				
 			}
 			

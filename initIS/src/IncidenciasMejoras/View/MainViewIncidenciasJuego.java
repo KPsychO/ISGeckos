@@ -64,7 +64,6 @@ public class MainViewIncidenciasJuego extends JPanel implements ActionListener{
 		this.add(buttons);
 	}
 	
-	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("aceptar")) {
 			//imJSON.getListIncidencias();

@@ -1,44 +1,36 @@
 package Formulario.View;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Formulario.Control.FormularioDTO;
 import Juego.Control.LogroDTO;
-import viewer.MainWindow;
+import Usuario.Control.UsuarioDTO;
 
-public class ViewFormulario extends JPanel{
+public class MainViewFormulario extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -49,7 +41,9 @@ public class ViewFormulario extends JPanel{
 	private JTextArea ageField;
 	private JTextArea descLongField;
 	private JTextArea descShortField;
+	@SuppressWarnings("unused")
 	private JTextArea version;
+	@SuppressWarnings("unused")
 	private JTextArea versionNotes;
 	private JTextField name_logro;
 	private JTextField obt_logro;
@@ -68,11 +62,14 @@ public class ViewFormulario extends JPanel{
 	
 	//Faltan los generos y los logros
 	
-	FormularioDTO _formularioDTO;
-	JPanel _panel;
+	private FormularioDTO _formularioDTO;
+	private JPanel _panel;
 	
-	public ViewFormulario() {
-		 _formularioDTO = new FormularioDTO();
+	private UsuarioDTO dev;
+	
+	public MainViewFormulario(UsuarioDTO dev) {
+		 this.dev = dev;
+		 _formularioDTO = new FormularioDTO(dev);
 		 initGUI();
 		 
 		 this.setVisible(true);
@@ -92,6 +89,7 @@ public class ViewFormulario extends JPanel{
 		_panel.setLayout(new BoxLayout(_panel, BoxLayout.Y_AXIS));
 	}
 	
+	@SuppressWarnings("unused")
 	private void createFormulary() {
 		JPanel campos = new JPanel();
         BoxLayout experimentLayout = new BoxLayout(campos, BoxLayout.Y_AXIS);
@@ -219,7 +217,7 @@ public class ViewFormulario extends JPanel{
         JPanel logro_name = new JPanel();
         JLabel logro_title = new JLabel("LOGROS:  ");
         logro_title.setPreferredSize(new Dimension(125, 20));
-        JButton add_logro = new JButton("A�ADIR");
+        JButton add_logro = new JButton("ADD");
         add_logro.setPreferredSize(new Dimension(sizex/2, 20));
         add_logro.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
@@ -231,7 +229,7 @@ public class ViewFormulario extends JPanel{
         }  
         });
         
-        JButton remove_rows = new JButton("ELIMINAR");
+        JButton remove_rows = new JButton("DELETE");
         remove_rows.setPreferredSize(new Dimension(sizex / 2, 20));
         remove_rows.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
@@ -265,10 +263,13 @@ public class ViewFormulario extends JPanel{
         
         tabla_logros = new JTable(new DefaultTableModel(columnas, 0));
         tabla_logros.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-        tabla_logros.setPreferredSize(new Dimension(125+sizex, 100));
-
-        tabla.add(tabla_logros);
+        //tabla_logros.setPreferredSize(new Dimension(125+sizex, 100));
         
+        JScrollPane logrosscroll = new JScrollPane(tabla_logros, 
+        		JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
+        tabla.add(logrosscroll);
+            
         //A�adir todo
         campos.add(titulopanel);
         campos.add(preciocpanel);
@@ -315,7 +316,8 @@ public class ViewFormulario extends JPanel{
 		JButton confirm = new JButton("Aceptar");
 
 		confirm.addActionListener(new ActionListener() {
-	            @Override
+	            @SuppressWarnings("unused")
+				@Override
 	            public void actionPerformed(ActionEvent e) {
 	            	
 	            	int aux;
@@ -350,15 +352,15 @@ public class ViewFormulario extends JPanel{
 		               || ageField.getText().equals("")
 		               || descLongField.getText().equals("")) {
 	                	tipoError = "Hay un campo incorrecto o vac�o";
-	                	JOptionPane.showMessageDialog(ViewFormulario.this, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
+	                	JOptionPane.showMessageDialog(MainViewFormulario.this, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
 		            }
 	                else if(tipoError != "") { //hay error
-	                	JOptionPane.showMessageDialog(ViewFormulario.this, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
+	                	JOptionPane.showMessageDialog(MainViewFormulario.this, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
 	                }
 	                else { //no hay error
 	                	tipoError = "Lo has enviado de puta madre socio";
 	                	String ok = "Enviado correctamente";
-	                	JOptionPane.showMessageDialog(ViewFormulario.this, tipoError, ok, JOptionPane.INFORMATION_MESSAGE);
+	                	JOptionPane.showMessageDialog(MainViewFormulario.this, tipoError, ok, JOptionPane.INFORMATION_MESSAGE);
 	                	
 	                	FormularioDTO formulario = getFormulario();
 	                	_formularioDTO.insert(formulario);
@@ -372,53 +374,55 @@ public class ViewFormulario extends JPanel{
 		this.add(inferior, BorderLayout.PAGE_END);
 	}
 		
-		private void showError(String error,boolean enable) {
-			errorlabel.setText(error);
-			errorlabel.setEnabled(enable);
-		}
+	@SuppressWarnings("unused")
+	private void showError(String error,boolean enable) {
+		errorlabel.setText(error);
+		errorlabel.setEnabled(enable);
+	}
+	
+	private FormularioDTO getFormulario() {
+		FormularioDTO dto = new FormularioDTO(dev);
 		
-		private FormularioDTO getFormulario() {
-			FormularioDTO dto = new FormularioDTO();
-			
-			dto.set_title(titleField.getText());
-			dto.set_desc(descShortField.getText());
-			dto.set_pegi(Integer.parseInt(ageField.getText()));
-			dto.set_price(Integer.parseInt(priceField.getText()));
-			dto.set_descLong(descLongField.getText());
-			dto.set_date(fecha());
-			selectGenres(dto);
-			dto.set_achievements(get_logros());
-			
-			return dto;
-		}
+		dto.set_title(titleField.getText());
+		dto.set_desc(descShortField.getText());
+		dto.set_pegi(Integer.parseInt(ageField.getText()));
+		dto.set_price(Integer.parseInt(priceField.getText()));
+		dto.set_descLong(descLongField.getText());
+		dto.set_date(fecha());
+		selectGenres(dto);
+		dto.set_achievements(get_logros());
 		
-		private void selectGenres(FormularioDTO dto) {
-			
-			if(action.isSelected()) { dto.addGenres("action"); }
-			if(adventure.isSelected()) { dto.addGenres("adventure"); }
-			if(role_playing.isSelected()) { dto.addGenres("role-playing"); }
-			if(simulation.isSelected()) { dto.addGenres("simulation"); }
-			if(strategy.isSelected()) { dto.addGenres("strategy"); }
-			if(sports.isSelected()) { dto.addGenres("sports"); }
-			if(puzzle.isSelected()) { dto.addGenres("puzzle"); }
-			if(idle.isSelected()) { dto.addGenres("idle"); }
-			
-		}
+		return dto;
+	}
+	
+	private void selectGenres(FormularioDTO dto) {
+		
+		if(action.isSelected()) { dto.addGenres("action"); }
+		if(adventure.isSelected()) { dto.addGenres("adventure"); }
+		if(role_playing.isSelected()) { dto.addGenres("role-playing"); }
+		if(simulation.isSelected()) { dto.addGenres("simulation"); }
+		if(strategy.isSelected()) { dto.addGenres("strategy"); }
+		if(sports.isSelected()) { dto.addGenres("sports"); }
+		if(puzzle.isSelected()) { dto.addGenres("puzzle"); }
+		if(idle.isSelected()) { dto.addGenres("idle"); }
+		
+	}
 
-		private String fecha() {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			LocalDate localDate = LocalDate.now();
-			return dtf.format(localDate); //2016/11/16
-		}
+	private String fecha() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate localDate = LocalDate.now();
+		return dtf.format(localDate); //2016/11/16
+	}
+	
+	private List<LogroDTO> get_logros(){
 		
-		private List<LogroDTO> get_logros(){
-			
-			List<LogroDTO> lista_logros = new ArrayList<LogroDTO>();
-			
-			DefaultTableModel model = (DefaultTableModel) tabla_logros.getModel();
-			for (int i = 0; i < tabla_logros.getRowCount(); i++)
-				lista_logros.add(new LogroDTO(model.getValueAt(i, 0).toString(), model.getValueAt(i, 1).toString()));
-			
-			return lista_logros;
-		}
+		List<LogroDTO> lista_logros = new ArrayList<LogroDTO>();
+		
+		DefaultTableModel model = (DefaultTableModel) tabla_logros.getModel();
+		for (int i = 0; i < tabla_logros.getRowCount(); i++)
+			lista_logros.add(new LogroDTO(model.getValueAt(i, 0).toString(), 
+					model.getValueAt(i, 1).toString(), UUID.randomUUID().toString()));
+		
+		return lista_logros;
+	}
 }

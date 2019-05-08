@@ -1,12 +1,8 @@
 package Usuario.View;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -14,17 +10,10 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
-import javax.swing.table.DefaultTableModel;
 
-//import Formulario.Control.FormularioDTO;
 import Usuario.Control.UsuarioDTO;
-//import IncidenciasMejoras.Control.IncidenciasDAOJSON;
-//import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
-//import Tienda.View.MainViewTienda;
 
 public class MainWindowEliminarCuenta extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -103,15 +92,29 @@ public class MainWindowEliminarCuenta extends JPanel{
 	}
 	
 	class continuarButton implements ActionListener {
-		 public void actionPerformed(ActionEvent e){ 
+		 public void actionPerformed(ActionEvent e){
 			 if (ok.isSelected()) {
 				 if (!password.getText().isEmpty() && password.getText().equals(confirmPassword.getText())) {
-					 if (password.getText() == _dto.get_password()) {
+					 if (password.getText().equals(_dto.get_password())) {
+						 
+						 
 						 //ELIMINAR USUARIO DE LA LISTA _dto.eliminarUsuario();
-						 firePropertyChange("IniciarSesion", null, null);
+						 firePropertyChange("EliminarCuenta", null, null);
 					 }
+					 else {
+							String tipoError = "La contrasena introducida no es correcta";
+							JOptionPane.showMessageDialog(MainWindowEliminarCuenta.this, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
+						}
 				 }
+				 else {
+						String tipoError = "Las contrasenas introducidas no coinciden";
+						JOptionPane.showMessageDialog(MainWindowEliminarCuenta.this, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
+					}
 			 }
+			 else {
+				String tipoError = "Debes marcar la casilla para continuar";
+				JOptionPane.showMessageDialog(MainWindowEliminarCuenta.this, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		 }
 	}
 }

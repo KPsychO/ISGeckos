@@ -1,76 +1,140 @@
 package Tienda.View;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
 
 import Juego.Control.JuegoDTO;
-import Tienda.Control.TiendaDTO;
+import Tienda.Control.TiendaController;
+import Usuario.Control.UsuarioDTO;
 
-public class MainViewTienda extends JPanel{
+public class MainViewTienda extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("unused")
 	private boolean _click;
-	
-	TiendaDTO _tiendaDTO;
-	JPanel _panel;
-	
-	public MainViewTienda(String user_id) {
-		
-		_tiendaDTO = new TiendaDTO(user_id);
+
+	private static TiendaController _tiendaController;
+	private JPanel _panel;
+	private JPanel aux;
+	private List<JuegoDTO> _games;
+
+	public MainViewTienda(TiendaController crtl, UsuarioDTO user) {
+		_tiendaController = crtl;
 		_click = false;
-		
+		_games = _tiendaController.getJuegosEnTienda();
+
 		initGUI();
-		
+
 		this.setVisible(true);
-		
+
 	}
-	
+
 	private void initGUI() {
-		
+
 		configPanel();
+		addSearch();
 		addGames();
-		
+
 	}
-	
+
 	private void configPanel() {
-		
+
 		this.setLayout(new BorderLayout());
 		_panel = new JPanel();
 		_panel.setLayout(new BoxLayout(_panel, BoxLayout.Y_AXIS));
 		
+		aux = new JPanel();
+		aux.setLayout(new BoxLayout(aux, BoxLayout.Y_AXIS));
+
 	}
-	
+
+	private void addSearch() {
+
+		JPanel search = new JPanel();
+		search.setLayout(new BoxLayout(search, BoxLayout.X_AXIS));
+
+		JTextField buscado = new JTextField("");
+		buscado.setMinimumSize(new Dimension(400, 25));
+		buscado.setMaximumSize(new Dimension(400, 25));
+		buscado.setPreferredSize(new Dimension(400, 25));
+		JButton buscar = new JButton("Buscar");
+
+		buscar.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+
+				List<JuegoDTO> list = new ArrayList<JuegoDTO>();
+				
+				for (JuegoDTO j : _tiendaController.getJuegosEnTienda()) {
+					//No se si dejarlo como starswith or contains...
+					if (j.get_title().toLowerCase().contains(buscado.getText().toLowerCase())) {
+
+						list.add(j);
+
+					}
+
+				}
+
+				_games = list;
+				createGameList();
+				_panel.revalidate();
+
+			}
+
+		});
+
+		search.add(buscado);
+		search.add(buscar);
+
+		_panel.add(search);
+
+	}
+
 	private void addGames() {
 		
-		List<JuegoDTO> games = _tiendaDTO.getJuegosEnTienda();
-		
-		for (JuegoDTO j : games) {	
-			
-			JuegoTienda observed = new JuegoTienda(j);
-	        observed.addPropertyChangeListener(new PropertyChangeListener() {
+		createGameList();
 
-	            @Override
-	            public void propertyChange(PropertyChangeEvent e) {
-	            	firePropertyChange(e.getPropertyName(), e.getOldValue(), e.getNewValue());
-	            }
-	        });
-	        
-			_panel.add(observed);
-			_panel.add(new JSeparator());
-			
-		}
-		JScrollPane jsp = new JScrollPane(_panel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		JScrollPane jsp = new JScrollPane(_panel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		jsp.getVerticalScrollBar().setUnitIncrement(20);
 		this.add(jsp);
-		//this.add(_panel);
+
+	}
+
+	private void createGameList() {
+		
+		aux.removeAll();
+		
+		for (JuegoDTO j : _games) {
+
+			JuegoTienda observed = new JuegoTienda(j);
+			observed.addPropertyChangeListener(new PropertyChangeListener() {
+
+				@Override
+				public void propertyChange(PropertyChangeEvent e) {
+					firePropertyChange(e.getPropertyName(), e.getOldValue(), e.getNewValue());
+				}
+			});
+
+			aux.add(observed);
+			aux.add(new JSeparator());
+
+		}
+		
+		_panel.add(aux);
 		
 	}
 

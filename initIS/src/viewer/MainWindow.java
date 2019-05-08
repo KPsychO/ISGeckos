@@ -18,33 +18,10 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import Biblioteca.View.MainViewBiblioteca;
-import Comunidad.View.MainViewComunidad;
-import Comunidad.View.MainViewPerfilUsuarioDenunciado;
-import Biblioteca.Control.*;
-import Formulario.View.MainViewPublicacion;
-import Formulario.View.ViewFormulario;
-import IncidenciasMejoras.View.MainViewDenunciasJugador;
-import IncidenciasMejoras.View.MainViewIncidenciasJugador;
-import Juego.Control.JuegoDTO;
-import Juego.View.MainViewDeveloper;
-import Juego.View.MainViewJuego;
-import Tienda.View.ComprarJuego;
-import Tienda.View.MainViewTienda;
-import Usuario.Control.UsuarioDAOJSON;
 import Usuario.Control.UsuarioDTO;
 import Usuario.Control.tipoCuenta;
-import Usuario.View.MainWindowIniciarSesion;
-
-//*
-import Usuario.View.MainWindowAcuerdoSuscriptor;
-import Usuario.View.MainWindowCrearCuenta;
-import Usuario.View.MainWindowEliminarCuenta;
-import Usuario.View.MainWindowModificarCuenta;
-import Usuario.View.MainWindowPerfilUsuario; //*/
 
 public class MainWindow extends JFrame{
 
@@ -59,8 +36,6 @@ public class MainWindow extends JFrame{
 	private Boolean state_developer = false;
 	private Boolean state_admin = false;
 	
-	private UsuarioDTO _current_user;
-	
 	public MainWindow() {
 		super("Gecko");
 		this.setSize(800, 800);
@@ -70,10 +45,6 @@ public class MainWindow extends JFrame{
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 		
-		initComponent();
-		ponCosas();
-		
-		_current_user = new UsuarioDAOJSON().getUnregUser();
 	}
 	
 	
@@ -89,121 +60,32 @@ public class MainWindow extends JFrame{
 		principalPanel.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent e) {
-            	try {
-            		if (e.getPropertyName().equals("JuegoTienda")) {
-            			principalPanel = new MainViewJuego((JuegoDTO)e.getNewValue());
-            			reinicia();
-            		}
-            		else if (e.getPropertyName().equals("DenunciarJugador")) {
-            			principalPanel = new MainViewDenunciasJugador("");
-            			reinicia();
-            		}
-            		else if (e.getPropertyName().equals("Soporte")) {
-            			principalPanel = new MainViewTienda("");
-            			reinicia();
-            		}
-            		else if (e.getPropertyName().equals("ComprarJuego")){
-            			if (state_unregistered) {
-            				String tipoError = "Tienes que estar logeado para comprar juegos";
-            				JOptionPane.showMessageDialog(MainWindow.this, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
-            			}
-            			else {
-            				principalPanel = new ComprarJuego((JuegoDTO)e.getNewValue());
-            				reinicia();
-            			}
-            		}
-            		else if (e.getPropertyName().equals("CrearCuenta")){
-            			principalPanel = new MainWindowCrearCuenta();
-            			reinicia();
-            		}
-            		else if (e.getPropertyName().equals("IniciarSesion")){
-            			principalPanel = new MainWindowIniciarSesion();
-        				reinicia();
-            		}
-            		
-            		else if (e.getPropertyName().equals("PerfilUsuario")){
-            			_current_user = (UsuarioDTO)e.getNewValue();
-            			if (_current_user != null) {
-            				principalPanel = new MainWindowPerfilUsuario(_current_user);
-            				reinicia();
-            			}
-            			
-            		}
-            		
-            		else if (e.getPropertyName().equals("AcuerdoSuscriptor")){
-            			principalPanel = new MainWindowAcuerdoSuscriptor();
-        				reinicia();
-            		}
-            		
-            		else if (e.getPropertyName().equals("EliminarCuenta")){
-            			principalPanel = new MainWindowEliminarCuenta(_current_user);
-        				reinicia();
-            		}
-            		
-            		else if (e.getPropertyName().equals("ModificarCuenta")){
-            			principalPanel = new MainWindowModificarCuenta(_current_user);
-        				reinicia();
-            		}
-            		
-            		else if (e.getPropertyName().equals("Biblioteca")){
-            			principalPanel = new MainViewBiblioteca((BibliotecaDTO)e.getNewValue());
-            			reinicia();
-            		}
-            		else if (e.getPropertyName().equals("PerfilUsuarioDenunciado")){
-            			principalPanel = new MainViewPerfilUsuarioDenunciado(null);
-            			reinicia();
-            		}	
-            		else if (e.getPropertyName().equals("VerEnTienda")){
-            			principalPanel = new MainViewJuego((JuegoDTO)e.getNewValue());
-            			reinicia();
-            		}
-            		else if (e.getPropertyName().equals("Formulario")){
-            			principalPanel = new ViewFormulario();
-            			reinicia();
-            		}
-            		else if (e.getPropertyName().equals("Publicacion")){
-            			principalPanel = new MainViewPublicacion();
-            			reinicia();
-            		}
-            		else if (e.getPropertyName().equals("CerrarSesion")){
-            			_current_user = new UsuarioDAOJSON().getUnregUser();
-            			changeBoxes(_current_user);
-            			principalPanel = new MainWindowIniciarSesion();
-            			reinicia();
-            		}
-            		
-            	}
-            	catch(Exception e1) {
-            		//Nada
-            	}
+            	firePropertyChange(e.getPropertyName(), null, e.getNewValue());
             }
-
-			private void changeBoxes(UsuarioDTO user) {
-				List<tipoCuenta> types = user.get_types();
-				
-				state_unregistered = types.contains(tipoCuenta.unregistered) ?  true : false;
-				state_user = types.contains(tipoCuenta.user) ?  true : false;
-				state_developer = types.contains(tipoCuenta.developer) ?  true : false;
-				state_admin = types.contains(tipoCuenta.admin) ?  true : false;
-				
-			}
-        });
+		});
+		
+	}
+		
+	public void changeBoxes(UsuarioDTO user) {
+		List<tipoCuenta> types = user.get_types();
+		
+		state_unregistered = types.contains(tipoCuenta.unregistered) ?  true : false;
+		state_user = types.contains(tipoCuenta.user) ?  true : false;
+		state_developer = types.contains(tipoCuenta.developer) ?  true : false;
+		state_admin = types.contains(tipoCuenta.admin) ?  true : false;
 		
 	}
 	
-	public void reinicia() {
+	public void reinicia(JPanel newPanel, UsuarioDTO user) {
 		menuPanel = initMenuPanel();
 		headerPanel = initHeaderPanel();
+		if (newPanel != null)
+			principalPanel = newPanel;
+		changeBoxes(user);
 		
 		ponCosas();
 		
 		this.validate();
-	}
-
-	private void initComponent() {
-		menuPanel = initMenuPanel();
-		headerPanel = initHeaderPanel();
-		principalPanel = new MainViewTienda("");
 	}
 
 	private JPanel initMenuPanel() {
@@ -233,19 +115,6 @@ public class MainWindow extends JFrame{
 		buttonSoporte.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(buttonSoporte);
 		
-		
-		JButton buttonFormulario = new JButton("Formulario");
-		buttonFormulario.setAlignmentX(Component.CENTER_ALIGNMENT);
-		buttonFormulario.addActionListener(new FormularioButton());
-		buttonFormulario.setEnabled(state_developer);
-		panel.add(buttonFormulario);
-		
-		JButton buttonGestion = new JButton("Publicacion");
-		buttonGestion.setAlignmentX(Component.CENTER_ALIGNMENT);
-		buttonGestion.addActionListener(new GestionButton());
-		buttonGestion.setEnabled(state_developer);
-		panel.add(buttonGestion);
-	
 		return panel;
 	}
 
@@ -285,66 +154,49 @@ public class MainWindow extends JFrame{
 	
 	class TiendaButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			
-			principalPanel = new MainViewTienda("");
-			reinicia();
+			firePropertyChange("Tienda", null, null);
 		}
 	}
 	
 	class FormularioButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			principalPanel = new ViewFormulario();
-			reinicia();
+			firePropertyChange("Formulario", null, null);
 		}
 	}
 	
 	class GestionButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			principalPanel = new MainViewPublicacion();
-			reinicia();
+			firePropertyChange("Publicacion", null, null);
 		}
 	}
 	
 	class ComunidadButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			principalPanel = new MainViewComunidad(_current_user.get_username());
-			reinicia();
+			firePropertyChange("Comunidad", null, null);
 		}
 	}
 	
 	class SoporteButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			principalPanel = new MainViewIncidenciasJugador("");
-			reinicia();
+			firePropertyChange("Soporte", null, null);
 		}
 	}
 	
 	class UserButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			if (_current_user.get_user_id().equals("0")) {
-				principalPanel = new MainWindowIniciarSesion();
-				//principalPanel = new MainWindowAcuerdoSuscriptor();
-				//principalPanel = new MainWindowCrearCuenta();
-				//principalPanel = new MainWindowEliminarCuenta();
-				//principalPanel = new MainWindowModificarCuenta();
-				//principalPanel = new MainWindowPerfilUsuario(null);
-		}
-			else
-				principalPanel = new MainWindowPerfilUsuario(_current_user);
-			
-			reinicia();
+			firePropertyChange("IniciarSesion", null, null);
+
 		}
 	}
 	
 	class BibliotecaButton implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
-			principalPanel = new MainViewBiblioteca("");
-			reinicia();
+			firePropertyChange("Biblioteca", null, null);
 		}
 	}
 	

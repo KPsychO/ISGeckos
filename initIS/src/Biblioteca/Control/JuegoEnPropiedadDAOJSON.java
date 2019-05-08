@@ -1,33 +1,50 @@
 package Biblioteca.Control;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 public class JuegoEnPropiedadDAOJSON implements JuegoEnPropiedadDAO{
-	public JSONObject JuegoEnPropiedadToJSON(JuegoEnPropiedadDTO game) {
+	/*
+	public JuegoEnPropiedadDTO getJuego(JSONObject juego) {
+		String id = juego.getString("_gameId");
 		
-		JSONObject gameDetails = new JSONObject();
-
-		gameDetails.put("_id", game.get_id());
-		gameDetails.put("_title", game.get_title());
-		gameDetails.put("_price", game.get_price());
-		gameDetails.put("_pegi", game.get_pegi());
-		gameDetails.put("_descLong", game.get_descLong());
-		gameDetails.put("_descShort", game.get_descShort());
-		gameDetails.put("_date", game.get_date());
-		gameDetails.put("_version", game.get_version());
-		gameDetails.put("_versionNotes", game.get_notes());
-		JSONArray genres = new JSONArray();
-		genres.put(game.get_genres());
-		JSONArray achievements = new JSONArray();
-		achievements.put(game.get_achievements());
-		gameDetails.put("_genres", genres);
-		gameDetails.put("_achievements", achievements);
-		gameDetails.put("_hoursPlayed", game.get_hoursPlayed());
-		gameDetails.put("_lastEx", game.get_lastEx());
-		gameDetails.put("_actVers", game.get_actVersion());
-		gameDetails.put("_installed", game.is_installed());
-		
-		return gameDetails;
 	}
+	*/
+	public JSONObject JuegoEnPropiedadToJSON(JuegoEnPropiedadDTO game) {
+		return null;
+	}
+
+	public JuegoEnPropiedadDTO getLogros(JSONObject game) {
+		
+		return null;
+	}
+	
+	public List<JuegoEnPropiedadDTO> getJuegos() {
+		List<JuegoEnPropiedadDTO> games = new ArrayList<JuegoEnPropiedadDTO>();
+		
+		try {
+			InputStream input = new FileInputStream("./src/resources/PruebaBibl.txt");
+			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
+			
+			for (Object o : jsonInput) {
+				
+				JSONObject juego = new JSONObject(new JSONTokener(o.toString()));
+				games.add(new JuegoEnPropiedadDTO(juego));
+				
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return games;
+	}
+
 }

@@ -6,19 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
-import javax.swing.JTextArea;
-import javax.swing.border.EtchedBorder;
-
-import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import Juego.Control.JuegoDAO;
 import Juego.Control.JuegoDAOJSON;
@@ -31,6 +24,7 @@ public class MainViewDeveloper extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private UsuarioDTO _dto;
+	@SuppressWarnings("unused")
 	private UsuarioDAO _dao_user;
 	private JuegoDAO _dao_juego;
 	

@@ -9,11 +9,12 @@ import org.json.JSONObject;
 
 import Formulario.Control.FormularioDAO;
 import Juego.Control.LogroDTO;
+import Usuario.Control.UsuarioDTO;
 
 public class FormularioDTO {
 
-	//En esta primera versión, solo pido: titulo, descripcion, precio y edad
-	//Cuando esté listo añadiré las demás que sean necesarias
+	//En esta primera versiï¿½n, solo pido: titulo, descripcion, precio y edad
+	//Cuando estï¿½ listo aï¿½adirï¿½ las demï¿½s que sean necesarias
 	
 	private String _id;
 	private String _title;
@@ -21,6 +22,7 @@ public class FormularioDTO {
 	private String _descShort;
 	private String _notes;
 	private String _date;
+	@SuppressWarnings("unused")
 	private String _developer; //Para esto es necesario que funcione el usuario, asi que...
 	private int _version;
 	private int _pegi;
@@ -30,7 +32,7 @@ public class FormularioDTO {
 	
 	FormularioDAO dao = new FormularioDAOJSON();
 	
-	public FormularioDTO(String title, String desc, int pegi, int price) {
+	public FormularioDTO(String title, String desc, int pegi, int price, UsuarioDTO dev) {
 		
 		dao = new FormularioDAOJSON();
 		
@@ -39,6 +41,7 @@ public class FormularioDTO {
 		_descShort = desc;
 		_pegi = pegi;
 		_price = price;
+		_developer = dev.get_user_id();
 		
 	}
 	
@@ -50,23 +53,26 @@ public class FormularioDTO {
 		_descShort = formulario.getString("_descShort");
 		_pegi = formulario.getInt("_pegi");
 		_price = formulario.getInt("_price");
+		_developer = formulario.getString("_developer");
 		
 	}
 	
-	public FormularioDTO() {
+	public FormularioDTO(UsuarioDTO dev) {
 		dao = new FormularioDAOJSON();
 		_id = UUID.randomUUID().toString();
 		_genres = new ArrayList<String>();
+		_developer = dev.get_user_id();
 		//solo para acceder a los formularios REVISAR
 		//Revisado, usado para crearlo de forma mas limpia
 	}
 	
-	//Este metodo no se va a necesitar ya
-	public String toString() {
-		String aux = "";
-		aux = " {" +  " \"_title\": \"" + this._title + "\", \"_price\": "  
-				+ this._price + ", \"_pegi\": " + this._pegi +  ", \"_desc\": " + this._descShort + "} " ;
-		return aux;
+	public FormularioDTO(UsuarioDTO dev, String id) {
+		dao = new FormularioDAOJSON();
+		_id = id;
+		_genres = new ArrayList<String>();
+		_developer = dev.get_user_id();
+		//solo para acceder a los formularios REVISAR
+		//Revisado, usado para crearlo de forma mas limpia
 	}
 	
 	public void insertGame(int n) {
@@ -82,7 +88,8 @@ public class FormularioDTO {
 	} 
 	
 	public void addGenres(String g) {
-		_genres.add(g);
+		if (!_genres.contains(g))
+			_genres.add(g);
 	}
 	
 	public String get_title() {
@@ -184,6 +191,14 @@ public class FormularioDTO {
 	public JSONArray getFormularies() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public String get_developer() {
+		return _developer;
+	}
+
+	public void set_developer(String _developer) {
+		this._developer = _developer;
 	}
 	
 }
