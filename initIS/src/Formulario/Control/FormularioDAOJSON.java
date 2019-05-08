@@ -87,7 +87,7 @@ public class FormularioDAOJSON implements FormularioDAO{
 		int remove = -1;
 		
 		try {
-			InputStream input = new FileInputStream("./src/resources/NewGames.txt");
+			InputStream input = new FileInputStream("./src/resources/Games.txt");
 			newGames = new JSONArray(new JSONTokener(input));
 			int i = 0;
 			for (Object o : newGames) {
@@ -107,7 +107,7 @@ public class FormularioDAOJSON implements FormularioDAO{
 			newGames.put(formulario_actual);
 
 			//
-			try (FileWriter file = new FileWriter("./src/resources/NewGames.txt")) {
+			try (FileWriter file = new FileWriter("./src/resources/Games.txt")) {
 				file.write(newGames.toString(4));
 			} catch (IOException e) {
 				e.printStackTrace();

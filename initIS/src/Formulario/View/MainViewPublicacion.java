@@ -26,7 +26,7 @@ public class MainViewPublicacion extends JPanel {
 	private int n = 0;
 	private FormularioDTO _formularioDTO;
 	private JPanel _panel;
-
+	private JSONArray form;
     //NO ESTOY SEGURO
     private JPanel titulopanel;
     private JLabel titulo;
@@ -64,26 +64,29 @@ public class MainViewPublicacion extends JPanel {
 	
 	private void showFormulary(int n) {
 		
-		JSONArray form = new JSONArray();
+		form = new JSONArray();
 		
 		form = new FormularioDAOJSON().getFormularies();
-		
-		FormularioDTO formulary = new FormularioDTO(form.getJSONObject(n));
-
-		this.titulo.setText("TITULO :  " + formulary.get_title());
-		
-		this.precio.setText("PRECIO :  " + formulary.get_price());
-		
-		this.pegi.setText("PEGI :  " + formulary.get_pegi());
-		
-		this.shortdes.setText("DESCRIPCION :  " + formulary.get_descShort());
-		
-		this.longdes.setText("DETALLES :  " + formulary.get_descLong());
-		
-		this.num.setText("NUMERO :  " + n);
-		
-		this.devname.setText("DEVELOPER :  " + new UsuarioDTO(formulary.get_developer()).get_username());
-		
+		if (form.length() == 0) {
+			JOptionPane.showMessageDialog(getParent(), "No hay mas formulariuos", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		else {
+			FormularioDTO formulary = new FormularioDTO(form.getJSONObject(n));
+	
+			this.titulo.setText("TITULO :  " + formulary.get_title());
+			
+			this.precio.setText("PRECIO :  " + formulary.get_price());
+			
+			this.pegi.setText("PEGI :  " + formulary.get_pegi());
+			
+			this.shortdes.setText("DESCRIPCION :  " + formulary.get_descShort());
+			
+			this.longdes.setText("DETALLES :  " + formulary.get_descLong());
+			
+			this.num.setText("NUMERO :  " + n);
+			
+			this.devname.setText("DEVELOPER :  " + new UsuarioDTO(formulary.get_developer()).get_username());
+		}
 	}
 	
 	private void initPanel() {
@@ -155,7 +158,6 @@ public class MainViewPublicacion extends JPanel {
         this.add(campos);
         
         showFormulary(n);
-		
 	}
 	
 	private void createBottom() {
@@ -266,10 +268,6 @@ public class MainViewPublicacion extends JPanel {
 		inferior.add(accept);
 		
 		this.add(inferior, BorderLayout.SOUTH);
-		
-	}
-	
-	
-	
-	
+				
+	}	
 }
