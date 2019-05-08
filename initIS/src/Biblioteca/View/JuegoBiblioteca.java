@@ -24,13 +24,12 @@ public class JuegoBiblioteca extends JPanel{
 	
 	JButton _icon;
 	JPanel _contents;
-	JuegoEnPropiedadDTO _juegoEnPropiedadDTO;
+	//JuegoEnPropiedadDTO _juegoEnPropiedadDTO;
 	JuegoEnPropiedadController _controller;
 	
 	public JuegoBiblioteca (JuegoEnPropiedadDTO juego) {
 		JuegoEnPropiedadDTO game = new JuegoEnPropiedadDTO(juego);
 		_controller = new JuegoEnPropiedadController(game.get_id());
-		_juegoEnPropiedadDTO = juego;
 		initGUI();
 		this.setVisible(true);
 	}
@@ -108,14 +107,13 @@ public class JuegoBiblioteca extends JPanel{
 		buttonInc.setMinimumSize(new Dimension(50,100));
 		buttonInc.setPreferredSize(new Dimension(50,100));
 		
-		buttonInc.addActionListener(new IncidenciasButton());
-		
 		JButton buttonDen = new JButton("DEN");
 		buttonDen.setMaximumSize(new Dimension(50, 100));
 		buttonDen.setMinimumSize(new Dimension(50,100));
 		buttonDen.setPreferredSize(new Dimension(50,100));
 		
-		buttonDen.addActionListener(new DenunciarButton());
+		buttonInc.addActionListener(new IncButton());
+		buttonDen.addActionListener(new DenButton());
 		
 		_contents.add(title);
 		_contents.add(buttonPlay);
@@ -128,18 +126,6 @@ public class JuegoBiblioteca extends JPanel{
 	class JuegoButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			firePropertyChange("JuegoBiblioteca", null, _controller);
-		}
-	}
-	
-	class DenunciarButton implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("DenunciarJuego", null, _juegoEnPropiedadDTO);
-		}
-	}
-	
-	class IncidenciasButton implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("IncidenciaJuego", null, _juegoEnPropiedadDTO);
 		}
 	}
 	
@@ -161,6 +147,18 @@ public class JuegoBiblioteca extends JPanel{
 	}
 	
 	class ValorarButton implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+		
+		}
+	}
+	
+	class IncButton implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+		
+		}
+	}
+	
+	class DenButton implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 		
 		}
