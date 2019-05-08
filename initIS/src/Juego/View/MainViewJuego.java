@@ -168,7 +168,6 @@ public class MainViewJuego extends JPanel{
 			
 			if (_cj.isRegistered()) {
 				_cj.evento(EventoJuego.ComprarJuego, _juegoDTO, null);
-				//firePropertyChange("ComprarJuego", null, _juegoDTO);
 			}
 			else {
 				JOptionPane.showMessageDialog(MainViewJuego.this, 

@@ -15,6 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import Juego.Control.JuegoDTO;
+import Tienda.Control.EventoTienda;
+import Tienda.Control.TiendaController;
 
 public class JuegoTienda extends JPanel {
 
@@ -25,12 +27,13 @@ public class JuegoTienda extends JPanel {
 	JButton _icon;
 	JPanel _contents;
 	JPanel _desc;
+	TiendaController _tiendaCont;
 	
 	
-	
-	public JuegoTienda(JuegoDTO juego) {
+	public JuegoTienda(JuegoDTO juego, TiendaController tiendCont) {
 		
 		_juegoDTO = juego;
+		_tiendaCont = tiendCont;
 		
 		initGUI();
 		this.setVisible(true);
@@ -70,7 +73,9 @@ public class JuegoTienda extends JPanel {
 	
 	class CargarButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("JuegoTienda", null, _juegoDTO);
+			
+			_tiendaCont.evento(EventoTienda.accesoJuego, _juegoDTO, _tiendaCont.getCurrentUser());
+			
 		}
 	}
 	
@@ -109,7 +114,6 @@ public class JuegoTienda extends JPanel {
 		JTextArea tArea = new JTextArea();
 		tArea.setText(_juegoDTO.get_descShort());
 		tArea.setEditable(false);
-		//Arregla la mierda de que la scrollbar inicie a la derecha
 		tArea.setSelectionStart(0);
 		tArea.setSelectionEnd(0);
 		
