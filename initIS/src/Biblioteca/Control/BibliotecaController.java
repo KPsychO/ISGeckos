@@ -17,13 +17,13 @@ public class BibliotecaController extends Controller{
 	private BibliotecaDAO _dao;
 	private BibliotecaDTO _dto;
 	
-	// Constructora sin parámetros -- Biblioteca genérica
+	// Constructora sin parï¿½metros -- Biblioteca genï¿½rica
 	public BibliotecaController() {
 		_dao = new BibliotecaDAOJSON();
 		_dto = new BibliotecaDTO(getGames());
 	}
 	
-	// Constructora con parámetro user -- Biblioteca personal
+	// Constructora con parï¿½metro user -- Biblioteca personal
 	
 	public BibliotecaController(UsuarioDTO user) {
 		_dao = new BibliotecaDAOJSON();
@@ -40,6 +40,7 @@ public class BibliotecaController extends Controller{
 	}
 	
 	public List<JuegoEnPropiedadDTO> getGames(UsuarioDTO user){
+		
 		List<JuegoEnPropiedadDTO> games = new ArrayList<JuegoEnPropiedadDTO>();
 		
 		games = _dao.getOwnedGames(user.get_user_id());
