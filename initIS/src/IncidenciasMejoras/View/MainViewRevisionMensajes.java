@@ -22,7 +22,6 @@ public class MainViewRevisionMensajes extends JPanel {
 
 	private UsuarioDTO _user;
 	private JPanel buttons;
-	private JPanel incMej;
 	private JButton eliminar;
 	private JButton siguiente;
 	private JButton anterior;
@@ -38,6 +37,7 @@ public class MainViewRevisionMensajes extends JPanel {
 	
 	public MainViewRevisionMensajes(UsuarioDTO user) {
 		_user = user;
+		incMejDTO = new IncidenciasMejorasDTO(user);
 		initGUI();
 	}
 
@@ -49,7 +49,6 @@ public class MainViewRevisionMensajes extends JPanel {
 
 	private void paneles() {
 		buttons = new JPanel();
-		incMej = new JPanel();
 	}
 
 	private void botones() {
@@ -148,17 +147,17 @@ public class MainViewRevisionMensajes extends JPanel {
 	class eliminarIncDen implements ActionListener {
 		 public void actionPerformed(ActionEvent e){ 
 			incMejDTO.eliminarIncidenciaMejora(n);
-			JSONArray form = new JSONArray();
-			form = new IncidenciasDAOJSON().getListIncidencias();
+			JSONArray im = new JSONArray();
+			im = new IncidenciasDAOJSON().getListIncidencias();
 			
-			if(form.length() == 0) {
+			if(im.length() == 0) {
 				JOptionPane.showMessageDialog(getParent(), "No hay mas formularios", "Error", JOptionPane.ERROR_MESSAGE);
 				firePropertyChange("PerfilUsuarioCurrent", null, _user);
 			}
-			else if(n < form.length() - 1){
+			else if(n < im.length() - 1){
 				visualizarIncidenciasDenuncias(n);
 			}
-			else if (n >= form.length() - 1){
+			else if (n >= im.length() - 1){
 				n = 0;
 				visualizarIncidenciasDenuncias(n);
 			}

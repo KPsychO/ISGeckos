@@ -2,9 +2,10 @@ package IncidenciasMejoras.Control;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import org.json.JSONObject;
+
+import Usuario.Control.UsuarioDTO;
 
 
 public class IncidenciasMejorasDTO {
@@ -25,6 +26,10 @@ public class IncidenciasMejorasDTO {
 		_id_user = idUser;
 		_id_user_Denun = idUserDenun;
 		_id_game = idGame;
+	}
+	
+	public IncidenciasMejorasDTO(UsuarioDTO im) {
+		dao = new IncidenciasDAOJSON();
 	}
 	
 	public IncidenciasMejorasDTO(JSONObject im) {
