@@ -42,7 +42,7 @@ public class Controller {
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				_mw = new MainWindow();
+				_mw = new MainWindow(Controller.this);
 				_mw.reinicia(getTienda(), _current_user);
 			}
 		});
@@ -72,7 +72,11 @@ public class Controller {
 	}
 	
 	public void setPrincipalPanel(JPanel panel) {
-		_mw.reinicia(panel, _current_user);
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				_mw.reinicia(panel, _current_user);
+			}
+		});
 	}
 	
 	public void setCurrentUser(UsuarioDTO user) {
