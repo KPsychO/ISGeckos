@@ -73,4 +73,17 @@ public class IncidenciasDAOJSON implements IncidenciasDAO {
 		
 	}
 
+	@Override
+	public void borrarIncidencia(int n) {
+		JSONArray arr = new JSONArray();
+		arr = getListIncidencias();
+		arr.remove(n);
+		
+		try (FileWriter file = new FileWriter("./src/resources/IncidenciasMejoras.txt")) {
+			file.write(arr.toString(4));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

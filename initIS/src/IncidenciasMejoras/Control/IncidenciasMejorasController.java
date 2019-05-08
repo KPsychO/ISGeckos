@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import IncidenciasMejoras.View.MainViewDenunciasJugador;
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
+import IncidenciasMejoras.View.MainViewRevisionMensajes;
 import Usuario.Control.UsuarioDTO;
 import common.Controller;
 
@@ -15,6 +16,8 @@ public class IncidenciasMejorasController extends Controller {
 			return new MainViewIncidenciasJugador(user);
 		else if (panel.equals("DenunciarJugador"))
 			return new MainViewDenunciasJugador(user, (UsuarioDTO) o);
+		else if (panel.equals("revIncMej"))
+			return new MainViewRevisionMensajes(user);
 		else
 			return null;
 	}
