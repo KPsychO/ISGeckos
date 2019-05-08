@@ -1,5 +1,7 @@
 package Comunidad.View;
 
+import javax.swing.JPanel;
+
 import IncidenciasMejoras.Control.EventoIncidenciasMejoras;
 import IncidenciasMejoras.View.MainViewDenunciasJuego;
 import IncidenciasMejoras.View.MainViewDenunciasJugador;
@@ -24,14 +26,15 @@ private Controller _controller;
 		case PerfilUsuarioDenunciado:
 			_controller.setPrincipalPanel(new MainViewPerfilUsuarioDenunciado(_user, this));
 			break;
-		/*case Comunidad:
-			_controller.setPrincipalPanel(_controller.get);
-			break;*/
 		case DenunciasJugador:
 			_controller.setPrincipalPanel(_controller.getDenunciasJugador(_user));
 			break;
 		default:
 			break;
 		}
+	}
+
+	public JPanel getComunidadPanel(UsuarioDTO dto) {
+		return new MainViewComunidad(dto, this);
 	}
 }

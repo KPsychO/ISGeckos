@@ -101,7 +101,7 @@ public class TiendaController{
 	}
 	
 	@SuppressWarnings("exports")
-	public JPanel getTienda(UsuarioDTO user) {
+	public JPanel getTiendaPanel(UsuarioDTO user) {
 		
 		return new MainViewTienda(this, user);
 		

@@ -90,7 +90,7 @@ public class Controller {
 
 	@SuppressWarnings("exports")
 	public JPanel getTienda() {
-		return _tiendaControler.getTienda(_current_user);
+		return _tiendaControler.getTiendaPanel(_current_user);
 	}
 	
 	//Jin

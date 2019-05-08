@@ -113,7 +113,7 @@ public class MainViewComunidad extends JPanel {
 	private List<UsuarioDTO> getUsers(){
 		List<UsuarioDTO> lista = new ArrayList<UsuarioDTO>();
 		
-		for (Object o : dao.getListUsuarios()) {
+		for (Object o : dao.getListUsuariosJson()) {
 			
 			JSONObject user = new JSONObject(new JSONTokener(o.toString()));
 			
