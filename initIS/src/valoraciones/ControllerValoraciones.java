@@ -2,6 +2,8 @@ package valoraciones;
 
 import javax.swing.JPanel;
 
+import common.Controller;
+
 
 public class ControllerValoraciones {
 	private Controller controller;
