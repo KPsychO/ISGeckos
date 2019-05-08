@@ -30,10 +30,10 @@ public class ComprarJuego extends JPanel{
 	JPanel _panel;
 	TiendaController _tiendaCont;
 	
-	public ComprarJuego(JuegoDTO juego, UsuarioDTO user) {
+	public ComprarJuego(JuegoDTO juego, UsuarioDTO user, TiendaController tc) {
 		
 		_user = user;
-		_tiendaCont = new TiendaController(_user);
+		_tiendaCont = tc;
 		_juego = juego;
 		initGUI();
 		this.setVisible(true);

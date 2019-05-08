@@ -99,7 +99,7 @@ public class TiendaController extends Controller{
 			
 		
 		else if (panel.equals("ComprarJuego"))
-			return new ComprarJuego((JuegoDTO) o, user); 
+			return new ComprarJuego((JuegoDTO) o, user, this); 
 		
 		else
 			return null;

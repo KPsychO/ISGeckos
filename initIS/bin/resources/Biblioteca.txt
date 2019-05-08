@@ -1,316 +1,146 @@
 [
   {
-    "_id": "5cc0768a21870543d18fd7f4",
+    "_id": "5ccd515396f1e847f2e4eb0d",
     "_gamesList": [
       {
-        "_id": "5cc59dcdf872c22062733c40",
-    	"_title": "ea",
-    	"_price": 18098,
-    	"_pegi": 8,
-    	"_descLong": "irure amet commodo deserunt veniam dolor excepteur irure deserunt eiusmod laboris ex sint pariatur commodo sunt aliqua occaecat cillum esse ex minim est deserunt deserunt exercitation ipsum minim nisi veniam in mollit amet ea ut dolor qui ipsum do mollit enim ex cupidatat eiusmod veniam et officia laboris fugiat nulla pariatur do fugiat irure consectetur proident sint non adipisicing ex irure nisi commodo qui sit deserunt nisi culpa eiusmod consequat culpa laborum aliquip quis sit ipsum exercitation minim eiusmod nostrud consequat deserunt duis cillum aliqua aliquip Lorem sint ex minim exercitation amet reprehenderit irure enim deserunt sit ad consectetur non",
-    	"_descShort": "dolore anim reprehenderit velit duis nisi nulla pariatur culpa voluptate pariatur nulla magna officia do fugiat laboris sunt magna qui",
-    	"_date": "1985-08-19",
-    	"_version": 16,
-    	"_versionNotes": "eu dolor id veniam cillum pariatur minim qui qui ad aliqua nostrud laboris quis ullamco deserunt ad minim proident ex",
-    	"_genres": [
-      		"sports",
-      		"adventure",
-      		"simulation",
-      		"strategy",
-      		"simulation"
-    	],
-    	"_achievements": [
-      	{
-        	"_name": "eiusmod",
-        	"_getMode": "aute do id excepteur amet commodo laboris eiusmod qui do reprehenderit eu non ad tempor occaecat laborum est labore sit reprehenderit magna dolore adipisicing culpa"
-      	},
-      	{
-        	"_name": "exercitation",
-        	"_getMode": "duis aliqua eiusmod dolor consequat tempor non deserunt eu adipisicing aliquip magna mollit non duis consectetur aliqua ad amet in"
-      	},
-      	{
-        	"_name": "deserunt",
-        	"_getMode": "elit excepteur cillum anim nisi voluptate do veniam nostrud duis elit amet sunt incididunt dolore in nisi cillum"
-      	},
-      	{
-	        "_name": "duis",
-	        "_getMode": "ea do mollit officia aute nisi ipsum aute exercitation veniam qui aliquip non nulla excepteur exercitation consectetur id ut deserunt incididunt occaecat ipsum et qui voluptate aute sunt"
+        "_gameId": "5cd02ebe6e7adc5f712660b1",
+	    "_achievements": [
+	      {
+	        "_achId": "5cd02ebe7db44252d46283fd",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "magna",
-	        "_getMode": "irure consequat esse laborum quis reprehenderit velit aliquip occaecat labore qui sit adipisicing esse proident"
+	        "_achId": "5cd02ebe4aa3519d798abb63",
+	        "_owned": false
 	      },
 	      {
-	        "_name": "adipisicing",
-	        "_getMode": "dolor ex irure non et est ullamco nisi esse velit esse tempor sunt aliquip mollit"
+	        "_achId": "5cd02ebe78cc02eb81888885",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "tempor",
-	        "_getMode": "proident officia proident fugiat dolore id fugiat in do ea aliquip commodo nulla velit laboris incididunt nostrud voluptate velit aliquip ad labore adipisicing exercitation sint mollit anim est aliquip"
+	        "_achId": "5cd02ebed59db329b41cf184",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "irure",
-	        "_getMode": "eu qui fugiat magna sint anim aliqua nulla exercitation eu quis nostrud nisi laborum nisi ut labore est aliquip"
+	        "_achId": "5cd02ebe17fd4fb499e74a26",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "mollit",
-	        "_getMode": "incididunt deserunt ipsum amet consequat sint qui aute cupidatat aliquip exercitation laborum esse quis cillum sint"
+	        "_achId": "5cd02ebe04801396cd87cfe6",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "pariatur",
-	        "_getMode": "laboris cupidatat elit incididunt eiusmod commodo pariatur tempor nostrud culpa cupidatat amet pariatur Lorem tempor elit consectetur deserunt tempor ex aute magna"
+	        "_achId": "5cd02ebe1e3646119eedefd9",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "minim",
-	        "_getMode": "laborum tempor amet amet exercitation minim tempor cillum magna labore id fugiat et mollit ullamco deserunt officia ex ullamco in esse nulla nulla"
+	        "_achId": "5cd02ebebd4f157dde1c6c9d",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "officia",
-	        "_getMode": "aliqua sunt velit laborum laboris adipisicing pariatur ut cillum excepteur in ad ullamco proident consequat non sit culpa"
+	        "_achId": "5cd02ebea069c3ac5bb9714b",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "do",
-	        "_getMode": "magna est velit nostrud enim enim fugiat irure dolor est quis ea laboris quis magna commodo sit aliqua"
+	        "_achId": "5cd02ebe04880fc6f2e0877a",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "sint",
-	        "_getMode": "et adipisicing exercitation consectetur culpa est consequat tempor nisi cillum adipisicing eu quis occaecat culpa occaecat minim id id et amet"
+	        "_achId": "5cd02ebe31bf4df8d6589ebc",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "reprehenderit",
-	        "_getMode": "nostrud aliqua officia magna dolore voluptate tempor tempor qui eu irure commodo aliquip esse ea mollit"
+	        "_achId": "5cd02ebed0101b9afe956c8f",
+	        "_owned": true
 	      }
-    	],
-    	"_hoursPlayed": 9,
-    	"_lastEx": "2019-05-01",
-    	"_actVers": 16,
-    	"_installed": "true"
+	    ],
+	    "_hoursPlayes": 4,
+	    "_installed": true,
+	    "_actVers": 5,
+	    "_lastEx": "2019-05-01"
       },
       {
-        "_id": "5cc59dcdb3f511cfe4f02ba0",
-	    "_title": "amet",
-	    "_price": 912,
-	    "_pegi": 6,
-	    "_descLong": "voluptate adipisicing aliquip in sunt consequat sunt proident qui proident labore commodo in cillum labore ipsum officia non magna minim ullamco magna laborum et deserunt magna ipsum nisi labore ex minim ullamco reprehenderit duis cillum esse quis deserunt amet amet qui do officia fugiat sit sit aliquip proident non enim exercitation ipsum dolor in amet sunt occaecat occaecat quis velit magna ut velit sunt adipisicing ea ut sunt duis nisi cillum irure aliqua labore amet aliqua anim esse non mollit laborum nisi voluptate non officia laborum elit elit consequat ex sit aute fugiat culpa sint cupidatat eiusmod labore ipsum nulla",
-	    "_descShort": "velit ipsum do nisi Lorem deserunt eiusmod dolore officia officia nostrud officia pariatur reprehenderit aliqua exercitation cupidatat dolor esse nulla",
-	    "_date": "1994-01-15",
-	    "_version": 3,
-	    "_versionNotes": "et sit sit velit officia proident aute quis commodo qui consequat excepteur deserunt et eu laboris nulla cillum commodo officia",
-	    "_genres": [
-	      "puzzle"
-	    ],
+        "_gameId": "5cd02ebe78b889802765ff37",
 	    "_achievements": [
 	      {
-	        "_name": "aliquip",
-	        "_getMode": "velit fugiat ex veniam ullamco officia fugiat ea proident id sit officia anim ut tempor est ex voluptate ipsum culpa voluptate nisi culpa ut elit"
+	        "_achId": "5cd02ebeaac5e1248ffe7068",
+	        "_owned": false
 	      },
 	      {
-	        "_name": "esse",
-	        "_getMode": "reprehenderit fugiat exercitation reprehenderit amet ut ea elit anim dolore qui in adipisicing duis ad cillum"
+	        "_achId": "5cd02ebedaba58d5f3e08ec0",
+	        "_owned": false
 	      },
 	      {
-	        "_name": "dolore",
-	        "_getMode": "est sint do adipisicing commodo occaecat eiusmod cillum reprehenderit duis magna consectetur culpa duis laboris cupidatat cupidatat officia voluptate labore est officia magna officia qui Lorem"
+	        "_achId": "5cd02ebeb48af816c1926ace",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "aliquip",
-	        "_getMode": "exercitation enim anim excepteur qui aliquip ut ad deserunt consequat tempor quis laboris sint velit"
+	        "_achId": "5cd02ebeaf18a2c05ab4a405",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "esse",
-	        "_getMode": "sunt cupidatat exercitation officia elit enim laborum aute incididunt magna aliqua et occaecat magna non ipsum officia proident consequat esse ex exercitation sit elit"
+	        "_achId": "5cd02ebeecc7930ca7dfa579",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "nulla",
-	        "_getMode": "eiusmod nulla cupidatat in excepteur voluptate consectetur veniam officia cupidatat ipsum qui sunt nisi commodo nostrud do reprehenderit in proident exercitation non Lorem sunt occaecat anim"
+	        "_achId": "5cd02ebe2b8c22b60429de29",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "fugiat",
-	        "_getMode": "deserunt elit tempor ad ullamco consequat est magna nulla culpa ex pariatur quis eiusmod ad est cupidatat sint exercitation irure eiusmod velit irure officia exercitation exercitation"
+	        "_achId": "5cd02ebe439b3627c3aad43a",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "irure",
-	        "_getMode": "nisi esse ut eu nulla sit ex sint labore ad velit in qui velit veniam id pariatur eiusmod dolor magna minim officia deserunt incididunt"
+	        "_achId": "5cd02ebe0f9df693e37ca079",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "minim",
-	        "_getMode": "pariatur ullamco excepteur deserunt excepteur eu nostrud sint cupidatat quis ullamco quis pariatur ea enim"
+	        "_achId": "5cd02ebef35d6c1989a30015",
+	        "_owned": true
+	      },
+	      {
+	        "_achId": "5cd02ebe63a35e2730938267",
+	        "_owned": true
 	      }
 	    ],
-	    "_hoursPlayed": 9,
-	    "_lastEx": "2019-05-01",
-	    "_actVers": 1,
-	    "_installed": "true"
-      }
-    ]
-  },
-  {
-    "_id": "5ccc12294d083ff3037e10b3",
-    "_gamesList": [
+	    "_hoursPlayes": 0,
+	    "_installed": false,
+	    "_actVers": 7,
+	    "_lastEx": "2019-05-01"
+      },
       {
-        "_id": "5cc59dcd77fdf9bec63a4188",
-	    "_title": "aliqua",
-	    "_price": 16707,
-	    "_pegi": 9,
-	    "_descLong": "deserunt mollit aute consequat minim in Lorem non aliqua sint anim Lorem et consectetur excepteur ut veniam do culpa labore sit esse non consequat adipisicing magna amet eu laborum eiusmod commodo cupidatat quis quis occaecat occaecat commodo commodo consequat ut exercitation dolore minim aute cillum occaecat Lorem sit nostrud sint aliqua elit irure laboris aliquip commodo ullamco est qui irure non tempor reprehenderit culpa ad esse ad proident et officia sit quis amet ad adipisicing sunt sunt occaecat duis minim tempor ad ullamco occaecat enim voluptate nulla dolore consequat sunt duis ut laboris laborum nisi voluptate anim sint et cillum",
-	    "_descShort": "velit culpa dolore in reprehenderit incididunt exercitation ut minim aliqua duis consequat non in amet commodo ipsum sit nisi fugiat",
-	    "_date": "1989-02-05",
-	    "_version": 6,
-	    "_versionNotes": "pariatur magna dolore tempor sunt cillum proident tempor laborum officia elit commodo fugiat ullamco est quis irure irure nulla eiusmod",
-	    "_genres": [
-	      "idle"
-	    ],
-	    "_achievements": [
+	    "_gameId": "5cd02ebe4a5e39b24f6971e7",
+	    "_achievementsOwned": [
 	      {
-	        "_name": "Lorem",
-	        "_getMode": "proident labore et sunt nisi adipisicing sint deserunt incididunt proident et ut tempor esse ex amet sunt pariatur consectetur aliqua consequat aliqua elit mollit incididunt fugiat laborum incididunt"
+	        "_achId": "5cd02ebef6526eaed702d580",
+	        "_owned": false
 	      },
 	      {
-	        "_name": "tempor",
-	        "_getMode": "quis ex incididunt eiusmod et occaecat eu quis id cupidatat laboris culpa et exercitation labore aute minim voluptate sit et"
+	        "_achId": "5cd02ebeba755925a4efef58",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "veniam",
-	        "_getMode": "laboris velit deserunt eu ea aute labore nisi dolore ea duis aute aliquip officia sunt Lorem in veniam enim enim aliqua velit pariatur duis aliquip sit"
+	        "_achId": "5cd02ebe1e4b2eac3e88e8ce",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "nisi",
-	        "_getMode": "pariatur eu do dolor deserunt id ullamco sint exercitation excepteur sit ea aute et ipsum consequat anim qui labore Lorem duis eu quis laboris non eu do laborum nostrud veniam"
+	        "_achId": "5cd02ebe30a302293499a189",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "nulla",
-	        "_getMode": "velit culpa esse culpa laboris non ullamco ad deserunt aliquip sint ipsum nulla et esse adipisicing aliquip aliqua commodo veniam minim sunt magna"
+	        "_achId": "5cd02ebe4ccf397d783e5136",
+	        "_owned": true
 	      },
 	      {
-	        "_name": "ullamco",
-	        "_getMode": "sunt cupidatat ad id nulla duis exercitation ad proident sit quis qui minim ullamco ut mollit occaecat quis eu irure velit id enim"
-	      },
-	      {
-	        "_name": "dolore",
-	        "_getMode": "velit qui enim laborum consectetur dolore voluptate anim in velit aute sunt excepteur incididunt et sunt elit sint fugiat commodo sint aliqua consectetur non aute exercitation occaecat"
-	      },
-	      {
-	        "_name": "enim",
-	        "_getMode": "nostrud irure eiusmod excepteur velit adipisicing ullamco est aute pariatur dolore ipsum aute elit non Lorem velit culpa ad fugiat"
-	      },
-	      {
-	        "_name": "amet",
-	        "_getMode": "minim incididunt esse voluptate in sunt nostrud consectetur irure ut eiusmod ut eu amet pariatur sunt pariatur commodo irure amet in nisi enim"
-	      },
-	      {
-	        "_name": "esse",
-	        "_getMode": "do aliquip ad adipisicing esse esse Lorem magna ex aute est quis laborum ipsum et incididunt Lorem"
-	      },
-	      {
-	        "_name": "pariatur",
-	        "_getMode": "minim enim adipisicing enim culpa magna enim anim sint do eu est amet enim et eiusmod elit nulla dolor id qui irure nostrud eiusmod veniam"
-	      },
-	      {
-	        "_name": "occaecat",
-	        "_getMode": "irure proident nisi ipsum enim nostrud sunt enim aute anim eiusmod id et aute ullamco consequat"
-	      },
-	      {
-	        "_name": "laborum",
-	        "_getMode": "voluptate quis occaecat velit veniam exercitation ut in excepteur amet voluptate deserunt sunt cupidatat ea et laboris cupidatat"
-	      },
-	      {
-	        "_name": "cupidatat",
-	        "_getMode": "quis ex aliquip esse dolore commodo laboris minim minim aliquip quis ullamco veniam nostrud ad aliquip nisi non"
-	      },
-	      {
-	        "_name": "anim",
-	        "_getMode": "cupidatat aliqua et officia velit dolore officia reprehenderit voluptate minim exercitation dolore ipsum elit eu ex nostrud sint est adipisicing do ad voluptate mollit est"
-	      },
-	      {
-	        "_name": "dolor",
-	        "_getMode": "voluptate non duis magna minim enim excepteur minim est officia exercitation sit mollit excepteur id esse dolor deserunt irure fugiat minim irure"
-	      },
-	      {
-	        "_name": "fugiat",
-	        "_getMode": "in adipisicing officia ut aliqua sint ipsum fugiat Lorem aliqua irure ea commodo quis nulla reprehenderit dolore magna laborum enim ad ullamco voluptate"
-	      },
-	      {
-	        "_name": "nostrud",
-	        "_getMode": "deserunt pariatur culpa ex amet veniam sint nostrud sunt proident deserunt culpa aute do et eu labore magna culpa magna pariatur eiusmod ea dolor aliqua cupidatat dolor ad deserunt qui"
-	      },
-	      {
-	        "_name": "enim",
-	        "_getMode": "laborum adipisicing minim elit fugiat ex voluptate officia aliquip esse nostrud officia deserunt ad commodo eiusmod veniam in proident nisi esse qui elit"
-	      },
-	      {
-	        "_name": "proident",
-	        "_getMode": "ex culpa qui veniam et adipisicing minim qui non velit eiusmod culpa et eiusmod minim dolor ut ullamco deserunt proident magna tempor qui eu elit proident incididunt qui do"
+	        "_achId": "5cd02ebe5b9bc77d1abf50c7",
+	        "_owned": true
 	      }
 	    ],
-	    "_hoursPlayed": 0,
-	    "_lastEx": "",
-	    "_actVers": 0,
-	    "_installed": "false"
+	    "_hoursPlayes": 6,
+	    "_installed": false,
+	    "_actVers": 3,
+	    "_lastEx": "2019-05-01"
       }
     ]
-  },
-  {
-    "_id": "5ccc122904d78aaa9882da41",
-    "_gamesList": []
-  },
-  {
-    "_id": "5ccc12298fb50e0db3f2ccf8",
-    "_gamesList": []
-  },
-  {
-    "_id": "5ccc1229ecc3b0633bccc517",
-    "_gamesList": []
-  },
-  {
-    "_id": "5ccc12291061f4b0820f6a7f",
-    "_gamesList": []
-  },
-  {
-    "_id": "5ccc122967d3b010ca0e3710",
-    "_gamesList": []
-  },
-  {
-    "_id": "5ccc122996fdfcdb42d27d96",
-    "_gamesList": []
-  },
-  {
-    "_id": "5ccc1229bf686059d4725467",
-    "_gamesList": []
-  },
-  {
-    "_id": "5ccc12291d3813248fa99ac9",
-    "_gamesList": []
-  },
-  {
-    "_id": "5ccc122981872e4774d08434",
-    "_gamesList": []
-  },
-  {
-    "_id": "5ccc1229979fc028c62510a8",
-    "_gamesList": []
-  },
-  {
-    "_id": "5ccc12299d97cace8bb83d10",
-    "_gamesList": []
-  },
-  {
-    "_id": "5ccc1229d7d348d942d49d04",
-    "_gamesList": []
-  },
-  {
-    "_id": "5ccc1229d52b1c8ed4213eee",
-    "_gamesList": []
-  },
-  {
-    "_id": "5ccc122985a065314588a864",
-    "_gamesList": []
-  },
-  {
-    "_id": "5ccc1229cec9b7f2f4b19e63",
-    "_gamesList": []
-  },
-  {
-    "_id": "5ccc1229793a428847b1c910",
-    "_gamesList": []
   }
 ]
