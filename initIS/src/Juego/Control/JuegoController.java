@@ -22,27 +22,16 @@ public class JuegoController extends Controller{
 		
 	}
 
-	public JPanel getPanel(String panel, UsuarioDTO user, JuegoDTO juego) {
-		if (panel.equals("JuegoTienda"))
-			return new MainViewJuego(juego);
-		
-		else if (panel.equals("VerEnTienda"))
-			return new MainViewJuego(juego);
-		
-		else if (panel.equals("Desarrolladora"))
-			return new MainViewDeveloper(user);
-		
-		else
-			return null;
-	}
-
 	@Override
 	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
 		if (panel.equals("JuegoTienda"))
-			return new MainViewJuego((JuegoDTO) o);
+			return new MainViewJuego((JuegoDTO)o);
 		
 		else if (panel.equals("VerEnTienda"))
-			return new MainViewJuego((JuegoDTO) o);
+			return new MainViewJuego((JuegoDTO)o);
+		
+		else if (panel.equals("Desarrolladora"))
+			return new MainViewDeveloper(user);
 		
 		else
 			return null;

@@ -136,6 +136,24 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		return new UsuarioDTO(user);
 		
 	}
+
+	@Override
+	public UsuarioDTO getUserID(String id) {
+		JSONArray users = getListUsuarios();
+		
+		for (Object o : users) {
+			
+			JSONObject user = new JSONObject(new JSONTokener(o.toString()));
+			
+			if (user.getString("_user_id").equals(id)) {
+				
+				return new UsuarioDTO(user);
+				
+			}
+		}
+		
+		return null;
+	}
 }
 
 

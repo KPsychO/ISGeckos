@@ -16,6 +16,7 @@ import org.json.JSONArray;
 
 import Formulario.Control.FormularioDAOJSON;
 import Formulario.Control.FormularioDTO;
+import Usuario.Control.UsuarioDTO;
 
 //En la pestaña publicación, se aceptarán o rechazarán los formularios enviados por un administrador
 public class MainViewPublicacion extends JPanel {
@@ -39,11 +40,12 @@ public class MainViewPublicacion extends JPanel {
     private JLabel longdes;
     private JPanel numpanel;
     private JLabel num;
+    private JPanel devpanel;
+    private JLabel devname;
 
-	
 
-	public MainViewPublicacion() {
-		_formularioDTO = new FormularioDTO();
+	public MainViewPublicacion(UsuarioDTO dev) {
+		_formularioDTO = new FormularioDTO(dev);
 		initGUI();
 		this.setVisible(true);
 	}
@@ -79,6 +81,8 @@ public class MainViewPublicacion extends JPanel {
 		this.longdes.setText("DETALLES :  " + formulary.get_descLong());
 		
 		this.num.setText("NUMERO :  " + n);
+		
+		this.devname.setText("DEVELOPER :  " + new UsuarioDTO(formulary.get_developer()).get_username());
 		
 	}
 	
@@ -125,12 +129,19 @@ public class MainViewPublicacion extends JPanel {
         num.setPreferredSize(new Dimension(500,20));
         num.setText("NUMERO :  " );
         
+        this.devpanel = new JPanel();
+        this.devname = new JLabel();
+        
+        devname.setPreferredSize(new Dimension(500,20));
+        devname.setText("NUMERO :  " );
+        
         titulopanel.add(titulo);
         preciopanel.add(precio);
         pegipanel.add(pegi);
         shortpanel.add(shortdes);
         longpanel.add(longdes);
         numpanel.add(num);
+        devpanel.add(devname);
         
         campos.add(titulopanel);
         campos.add(preciopanel);
@@ -138,6 +149,7 @@ public class MainViewPublicacion extends JPanel {
         campos.add(shortpanel);
         campos.add(longpanel);
         campos.add(numpanel);
+        campos.add(devpanel);
         
         campos.add(Box.createVerticalStrut(20));
         this.add(campos);

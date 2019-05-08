@@ -28,14 +28,11 @@ public class TiendaController extends Controller{
 		_TiendaDTO = new TiendaDTO(getJuegosEnTienda());
 	}
 
-	
-
 	public void changeUser(UsuarioDTO newUser) {
 		
 		_TiendaDTO = new TiendaDTO(createJuegosEnTienda(newUser));
 		
 	}
-
 
 	private List<JuegoDTO> createJuegosEnTienda(UsuarioDTO user) {
 		

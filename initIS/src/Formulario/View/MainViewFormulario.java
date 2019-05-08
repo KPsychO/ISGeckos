@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Formulario.Control.FormularioDTO;
 import Juego.Control.LogroDTO;
+import Usuario.Control.UsuarioDTO;
 
 public class MainViewFormulario extends JPanel{
 	
@@ -61,11 +62,14 @@ public class MainViewFormulario extends JPanel{
 	
 	//Faltan los generos y los logros
 	
-	FormularioDTO _formularioDTO;
-	JPanel _panel;
+	private FormularioDTO _formularioDTO;
+	private JPanel _panel;
 	
-	public MainViewFormulario() {
-		 _formularioDTO = new FormularioDTO();
+	private UsuarioDTO dev;
+	
+	public MainViewFormulario(UsuarioDTO dev) {
+		 this.dev = dev;
+		 _formularioDTO = new FormularioDTO(dev);
 		 initGUI();
 		 
 		 this.setVisible(true);
@@ -374,7 +378,7 @@ public class MainViewFormulario extends JPanel{
 	}
 	
 	private FormularioDTO getFormulario() {
-		FormularioDTO dto = new FormularioDTO();
+		FormularioDTO dto = new FormularioDTO(dev);
 		
 		dto.set_title(titleField.getText());
 		dto.set_desc(descShortField.getText());

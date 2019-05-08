@@ -21,5 +21,7 @@ public interface UsuarioDAO {
 	public List<UsuarioDTO> lista();
 	
 	public UsuarioDTO getUnregUser();
+
+	public abstract UsuarioDTO getUserID(String id);
 	
 }

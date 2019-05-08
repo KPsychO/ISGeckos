@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import Formulario.Control.FormularioDAO;
 import Juego.Control.LogroDTO;
+import Usuario.Control.UsuarioDTO;
 
 public class FormularioDTO {
 
@@ -31,7 +32,7 @@ public class FormularioDTO {
 	
 	FormularioDAO dao = new FormularioDAOJSON();
 	
-	public FormularioDTO(String title, String desc, int pegi, int price) {
+	public FormularioDTO(String title, String desc, int pegi, int price, UsuarioDTO dev) {
 		
 		dao = new FormularioDAOJSON();
 		
@@ -40,6 +41,7 @@ public class FormularioDTO {
 		_descShort = desc;
 		_pegi = pegi;
 		_price = price;
+		_developer = dev.get_user_id();
 		
 	}
 	
@@ -51,13 +53,15 @@ public class FormularioDTO {
 		_descShort = formulario.getString("_descShort");
 		_pegi = formulario.getInt("_pegi");
 		_price = formulario.getInt("_price");
+		_developer = formulario.getString("_developer");
 		
 	}
 	
-	public FormularioDTO() {
+	public FormularioDTO(UsuarioDTO dev) {
 		dao = new FormularioDAOJSON();
 		_id = UUID.randomUUID().toString();
 		_genres = new ArrayList<String>();
+		_developer = dev.get_user_id();
 		//solo para acceder a los formularios REVISAR
 		//Revisado, usado para crearlo de forma mas limpia
 	}
@@ -185,6 +189,14 @@ public class FormularioDTO {
 	public JSONArray getFormularies() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public String get_developer() {
+		return _developer;
+	}
+
+	public void set_developer(String _developer) {
+		this._developer = _developer;
 	}
 	
 }

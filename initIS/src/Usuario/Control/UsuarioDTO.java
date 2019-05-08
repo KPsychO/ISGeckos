@@ -60,9 +60,19 @@ public class UsuarioDTO {
 		
 	}
 	
-	public UsuarioDTO(String usuario) {
+	public UsuarioDTO(String id) {
 		dao = new UsuarioDAOJSON();
-		_users = dao.lista();
+		UsuarioDTO newUser = dao.getUserID(id);
+		
+		_types = newUser.get_types();
+		_balance = newUser.get_balance();
+		//_avatar = avatar;
+		_desc = newUser.get_desc();
+		_email = newUser.get_email();
+		_country = newUser.get_country();
+		_password = newUser.get_password();
+		_user_id = newUser.get_user_id();
+		_username = newUser.get_username();
 	}
 
 	public void eliminarUsuario(UsuarioDTO us) {
