@@ -15,16 +15,15 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
+import IncidenciasMejoras.Control.ControllerIncidenciasMejoras;
+import IncidenciasMejoras.Control.EventoIncidenciasMejoras;
 import IncidenciasMejoras.Control.IncidenciasDAOJSON;
 import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
-import Tienda.View.MainViewTienda;
 import Usuario.Control.UsuarioDTO;
 
 public class MainViewIncidenciasJugador extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
-
 	
-	MainViewTienda observed;
 	private JPanel descr;
 	private JPanel coment;
 	private JPanel buttons;
@@ -34,25 +33,28 @@ public class MainViewIncidenciasJugador extends JPanel implements ActionListener
 	private JTextField descText;
 	private IncidenciasDAOJSON imJSON;
 	private UsuarioDTO user;
+	private ControllerIncidenciasMejoras _controller;
 	
-	public MainViewIncidenciasJugador(UsuarioDTO usuario) {
-		descr = new JPanel();
-		coment = new JPanel();
-		buttons = new JPanel();
+	public MainViewIncidenciasJugador(UsuarioDTO usuario, ControllerIncidenciasMejoras controller) {
 		user = usuario;
+		_controller = controller;
 		imJSON = new IncidenciasDAOJSON();
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		initGUI();
-		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 	}
 	
 	private void initGUI() {
+		
+		//Paneles
+		paneles();
+		
+		//Descripcion
 		JLabel desc = new JLabel();
 		desc.setText("Descripcion:   ");
 		descText = new JTextField("Cual es el problema que tienes?");
 		CreateFocusListenerForFields(descText);
 		descText.setPreferredSize(new Dimension(600, 25));
 		
+		//Comentario
 		JLabel comen = new JLabel();
 		comen.setText("Comentario:   ");
 		comenText = new JTextArea("Comenta mas a fondo el motivo");
@@ -62,6 +64,7 @@ public class MainViewIncidenciasJugador extends JPanel implements ActionListener
 		CreateFocusListenerForFields(comenText);
 		comenText.setPreferredSize(new Dimension(600, 200));
 		
+		//Botones
 		aceptar = new JButton("Aceptar");
 		aceptar.setActionCommand("aceptar");
 		aceptar.addActionListener(this);
@@ -70,6 +73,8 @@ public class MainViewIncidenciasJugador extends JPanel implements ActionListener
 		cancelar.setActionCommand("cancelar");
 		cancelar.addActionListener(this);
 		
+		
+		//Añadir al JPanel
 		descr.add(desc);
 		descr.add(descText);
 		coment.add(comen);
@@ -81,6 +86,15 @@ public class MainViewIncidenciasJugador extends JPanel implements ActionListener
 		this.add(buttons);
 	}
 	
+	private void paneles() {
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+
+		descr = new JPanel();
+		coment = new JPanel();
+		buttons = new JPanel();		
+	}
+
 	public void CreateFocusListenerForFields(JTextField txt)
 	{
 	    txt.addFocusListener(new FocusListener() 
@@ -117,11 +131,11 @@ public class MainViewIncidenciasJugador extends JPanel implements ActionListener
 		if (e.getActionCommand().equals("aceptar")) {
 			imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("IncJug", user.get_user_id(), null, null, descText.getText(), comenText.getText()));
 			JOptionPane.showMessageDialog(getParent(), "Has enviado la Denuncia/Incidencia");
-			firePropertyChange("SoporteATienda", null, null);
+			_controller.evento(EventoIncidenciasMejoras.IncMejATienda, null, null);
 		}
 		else if (e.getActionCommand().equals("cancelar")) {
 			JOptionPane.showMessageDialog(getParent(), "Has cancelado la Denuncia/Incidencia");
-			firePropertyChange("SoporteATienda", null, null);
+			_controller.evento(EventoIncidenciasMejoras.IncMejATienda, null, null);
 		}
 	}
 

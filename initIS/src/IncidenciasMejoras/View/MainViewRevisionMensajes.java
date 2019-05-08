@@ -33,7 +33,6 @@ public class MainViewRevisionMensajes extends JPanel {
 	private JLabel _id_game;
 	private IncidenciasMejorasDTO incMejDTO;
 	private int n = 0;
-
 	
 	public MainViewRevisionMensajes(UsuarioDTO user) {
 		_user = user;
@@ -123,7 +122,7 @@ public class MainViewRevisionMensajes extends JPanel {
 		JSONArray inciMej = new JSONArray();
 		
 		inciMej = new IncidenciasDAOJSON().getListIncidencias();
-		
+		if (inciMej.length() != 0) {
 		IncidenciasMejorasDTO incidenciasMejoras = new IncidenciasMejorasDTO(inciMej.getJSONObject(n));
 		
 		this._type.setText("Tipo :  " + incidenciasMejoras.get_type());
@@ -142,6 +141,10 @@ public class MainViewRevisionMensajes extends JPanel {
 		}
 		this._desc.setText("Descripcion :  " + incidenciasMejoras.get_desc());
 		this._coment.setText("Comentario :  " + incidenciasMejoras.get_coment());
+		}
+		else {
+			JOptionPane.showMessageDialog(getParent(), "No hay mas Incidencias/Denuncias", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	class eliminarIncDen implements ActionListener {
@@ -151,8 +154,7 @@ public class MainViewRevisionMensajes extends JPanel {
 			im = new IncidenciasDAOJSON().getListIncidencias();
 			
 			if(im.length() == 0) {
-				JOptionPane.showMessageDialog(getParent(), "No hay mas formularios", "Error", JOptionPane.ERROR_MESSAGE);
-				firePropertyChange("PerfilUsuarioCurrent", null, _user);
+				JOptionPane.showMessageDialog(getParent(), "No hay mas Incidencias/Denuncias", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			else if(n < im.length() - 1){
 				visualizarIncidenciasDenuncias(n);

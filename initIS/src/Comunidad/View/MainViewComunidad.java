@@ -32,6 +32,7 @@ public class MainViewComunidad extends JPanel {
 	private JPanel _buscar;
 	private JPanel _total;
 	private UsuarioDAO dao;
+	private ControllerComunidad _controller;
 	
 	private static int i = 0;
 	private static int j = 0;
@@ -41,9 +42,10 @@ public class MainViewComunidad extends JPanel {
 	private List<PerfilUsuarioDenunc> perfil;
 
 	
-	public MainViewComunidad(UsuarioDTO usuario) {
+	public MainViewComunidad(UsuarioDTO usuario, ControllerComunidad controller) {
 		perfil = new ArrayList<PerfilUsuarioDenunc>();
 		dao = new UsuarioDAOJSON();
+		_controller = controller;
 		initGUI();
 		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 	}
@@ -91,15 +93,8 @@ public class MainViewComunidad extends JPanel {
 		_buscar.add(buscarNombre);
         _buscar.add(buscar);
 		for (UsuarioDTO us : users) {	
-			pud = new PerfilUsuarioDenunc(us);
+			pud = new PerfilUsuarioDenunc(us, _controller);
 			perfil.add(pud);
-	        pud.addPropertyChangeListener(new PropertyChangeListener() {
-
-	            @Override
-	            public void propertyChange(PropertyChangeEvent e) {
-	            	firePropertyChange(e.getPropertyName(), e.getOldValue(), e.getNewValue());
-	            }
-	        });
 			_panel.add(perfil.get(i));
 			perfil.get(i).setVisible(true);
 			_panel.add(new JSeparator());
