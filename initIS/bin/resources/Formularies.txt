@@ -66,7 +66,6 @@
         "_price": 18098,
         "_descLong": "irure amet commodo deserunt veniam dolor excepteur irure deserunt eiusmod laboris ex sint pariatur commodo sunt aliqua occaecat cillum esse ex minim est deserunt deserunt exercitation ipsum minim nisi veniam in mollit amet ea ut dolor qui ipsum do mollit enim ex cupidatat eiusmod veniam et officia laboris fugiat nulla pariatur do fugiat irure consectetur proident sint non adipisicing ex irure nisi commodo qui sit deserunt nisi culpa eiusmod consequat culpa laborum aliquip quis sit ipsum exercitation minim eiusmod nostrud consequat deserunt duis cillum aliqua aliquip Lorem sint ex minim exercitation amet reprehenderit irure enim deserunt sit ad consectetur non",
         "_title": "ea",
-        "_developer": "5ccd515396f1e847f2e4eb0d",
         "_pegi": 8,
         "_versionNotes": "eu dolor id veniam cillum pariatur minim qui qui ad aliqua nostrud laboris quis ullamco deserunt ad minim proident ex",
         "_genres": [
@@ -76,6 +75,7 @@
             "strategy",
             "simulation"
         ],
+        "_developer": "5ccd515396f1e847f2e4eb0d",
         "_id": "5cc59dcdf872c22062733c40",
         "_version": 16,
         "_descShort": "dolore anim reprehenderit velit duis nisi nulla pariatur culpa voluptate pariatur nulla magna officia do fugiat laboris sunt magna qui"
@@ -124,9 +124,9 @@
         "_descLong": "voluptate adipisicing aliquip in sunt consequat sunt proident qui proident labore commodo in cillum labore ipsum officia non magna minim ullamco magna laborum et deserunt magna ipsum nisi labore ex minim ullamco reprehenderit duis cillum esse quis deserunt amet amet qui do officia fugiat sit sit aliquip proident non enim exercitation ipsum dolor in amet sunt occaecat occaecat quis velit magna ut velit sunt adipisicing ea ut sunt duis nisi cillum irure aliqua labore amet aliqua anim esse non mollit laborum nisi voluptate non officia laborum elit elit consequat ex sit aute fugiat culpa sint cupidatat eiusmod labore ipsum nulla",
         "_title": "amet",
         "_pegi": 6,
-        "_developer": "5ccd515396f1e847f2e4eb0d",
         "_versionNotes": "et sit sit velit officia proident aute quis commodo qui consequat excepteur deserunt et eu laboris nulla cillum commodo officia",
         "_genres": ["puzzle"],
+        "_developer": "5ccd515396f1e847f2e4eb0d",
         "_id": "5cc59dcdb3f511cfe4f02ba0",
         "_version": 3,
         "_descShort": "velit ipsum do nisi Lorem deserunt eiusmod dolore officia officia nostrud officia pariatur reprehenderit aliqua exercitation cupidatat dolor esse nulla"
@@ -219,9 +219,9 @@
         "_descLong": "deserunt mollit aute consequat minim in Lorem non aliqua sint anim Lorem et consectetur excepteur ut veniam do culpa labore sit esse non consequat adipisicing magna amet eu laborum eiusmod commodo cupidatat quis quis occaecat occaecat commodo commodo consequat ut exercitation dolore minim aute cillum occaecat Lorem sit nostrud sint aliqua elit irure laboris aliquip commodo ullamco est qui irure non tempor reprehenderit culpa ad esse ad proident et officia sit quis amet ad adipisicing sunt sunt occaecat duis minim tempor ad ullamco occaecat enim voluptate nulla dolore consequat sunt duis ut laboris laborum nisi voluptate anim sint et cillum",
         "_title": "aliqua",
         "_pegi": 9,
-        "_developer": "5ccd515396f1e847f2e4eb0d",
         "_versionNotes": "pariatur magna dolore tempor sunt cillum proident tempor laborum officia elit commodo fugiat ullamco est quis irure irure nulla eiusmod",
         "_genres": ["idle"],
+        "_developer": "5ccd515396f1e847f2e4eb0d",
         "_id": "5cc59dcd77fdf9bec63a4188",
         "_version": 6,
         "_descShort": "velit culpa dolore in reprehenderit incididunt exercitation ut minim aliqua duis consequat non in amet commodo ipsum sit nisi fugiat"

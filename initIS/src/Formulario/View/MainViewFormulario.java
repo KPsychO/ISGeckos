@@ -263,10 +263,13 @@ public class MainViewFormulario extends JPanel{
         
         tabla_logros = new JTable(new DefaultTableModel(columnas, 0));
         tabla_logros.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-        tabla_logros.setPreferredSize(new Dimension(125+sizex, 100));
-
-        tabla.add(tabla_logros);
+        //tabla_logros.setPreferredSize(new Dimension(125+sizex, 100));
         
+        JScrollPane logrosscroll = new JScrollPane(tabla_logros, 
+        		JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
+        tabla.add(logrosscroll);
+            
         //A�adir todo
         campos.add(titulopanel);
         campos.add(preciocpanel);
