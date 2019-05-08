@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import Juego.Control.JuegoDTO;
+import Tienda.Control.EventoTienda;
 import Tienda.Control.TiendaController;
 import Usuario.Control.UsuarioDTO;
 
@@ -198,6 +199,8 @@ public class ComprarJuego extends JPanel{
 				
 				frame.add(label, BorderLayout.CENTER);
 				frame.setVisible(true);
+				
+				_tiendaCont.evento(EventoTienda.comprarJuego, _juego, _tiendaCont.getCurrentUser());
 				
 			} else {
 				
