@@ -12,7 +12,7 @@ import Juego.View.MainViewJuego;
 import Usuario.Control.UsuarioDTO;
 import common.Controller;
 
-public class JuegoController extends Controller{
+public class JuegoController {
 	
 	JuegoDAO _dao;
 	
@@ -21,25 +21,6 @@ public class JuegoController extends Controller{
 		_dao = new JuegoDAOJSON();
 		new JuegoDTO(this);
 		
-	}
-
-	@SuppressWarnings("exports")
-	@Override
-	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
-		if (panel.equals("JuegoTienda"))
-			return new MainViewJuego((JuegoDTO)o);
-		
-		else if (panel.equals("VerEnTienda"))
-			return new MainViewJuego((JuegoDTO)o);
-		
-		else if (panel.equals("Desarrolladora"))
-			return new MainViewDeveloper(user);
-		
-		else if (panel.equals("ActualizarJuego"))
-			return new MainViewActualizarJuego(user, (JuegoDTO)o);
-		
-		else
-			return null;
 	}
 
 	public JuegoDTO getJuego(String id) {
