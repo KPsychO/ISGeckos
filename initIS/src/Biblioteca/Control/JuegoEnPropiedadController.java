@@ -24,6 +24,10 @@ public class JuegoEnPropiedadController extends Controller {
 		return null;
 	}
 
+	public String get_title() {
+		return this._dto.get_title();
+	}
+	
 	public void executeGame() {
 		_dto.set_hoursPlayed(_dto.get_hoursPlayed() + 1);
 		_dto.set_lastEx("now");
@@ -63,5 +67,25 @@ public class JuegoEnPropiedadController extends Controller {
 			
 		}
 		return null;
+	}
+
+	public boolean is_installed() {
+		return this._dto.is_installed();
+	}
+
+	public int get_actVersion() {
+		return this._dto.get_actVersion();
+	}
+
+	public int get_version() {
+		return this._dto.get_version();
+	}
+
+	public void set_actVersion(int version) {
+		this._dto.set_actVersion(version);		
+	}
+
+	public void set_installed(boolean b) {
+		this._dto.set_installed(b);
 	}
 }

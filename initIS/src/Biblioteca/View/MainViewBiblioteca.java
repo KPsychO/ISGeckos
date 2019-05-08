@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import Biblioteca.Control.BibliotecaController;
-import Biblioteca.Control.BibliotecaDTO;
 import Biblioteca.Control.JuegoEnPropiedadDTO;
 import Usuario.Control.UsuarioDTO;
 
@@ -23,6 +22,7 @@ public class MainViewBiblioteca extends JPanel{
 	private List<JuegoEnPropiedadDTO> _games;
 	private JPanel _panel;
 	
+	@SuppressWarnings("static-access")
 	public MainViewBiblioteca(BibliotecaController ctrllr, UsuarioDTO user) {
 		this._bibliotecaController = ctrllr;
 		

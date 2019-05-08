@@ -13,12 +13,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import Juego.Control.LogroDAOJSON;
-
 public class BibliotecaDAOJSON implements BibliotecaDAO{
 
 	
-	// Lista de juegos de la biblioteca genérica
+	// Lista de juegos de la biblioteca genï¿½rica
 	@Override
 	public List<JuegoEnPropiedadDTO> getOwnedGames() {
 		List<JuegoEnPropiedadDTO> list = new ArrayList<JuegoEnPropiedadDTO>();
