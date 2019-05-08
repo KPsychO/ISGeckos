@@ -47,7 +47,7 @@ public class JuegoDAOJSON implements JuegoDAO{
 		
 		List<JuegoDTO> list = new ArrayList<JuegoDTO>();
 		try {
-			InputStream input = new FileInputStream("./src/resources/Games.txt");
+			InputStream input = new FileInputStream("./src/resources/NewGames.txt");
 			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
 			
 			for (Object o : jsonInput) {

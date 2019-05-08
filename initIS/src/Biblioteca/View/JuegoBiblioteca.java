@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import Biblioteca.Control.JuegoEnPropiedadController;
 import Biblioteca.Control.JuegoEnPropiedadDTO;
 
 public class JuegoBiblioteca extends JPanel{
@@ -23,10 +24,12 @@ public class JuegoBiblioteca extends JPanel{
 	
 	JButton _icon;
 	JPanel _contents;
-	JuegoEnPropiedadDTO _juegoEnPropiedadDTO;
+	//JuegoEnPropiedadDTO _juegoEnPropiedadDTO;
+	JuegoEnPropiedadController _controller;
 	
 	public JuegoBiblioteca (JuegoEnPropiedadDTO juego) {
-		this._juegoEnPropiedadDTO = juego;
+		JuegoEnPropiedadDTO game = new JuegoEnPropiedadDTO(juego);
+		_controller = new JuegoEnPropiedadController(game.get_id());
 		initGUI();
 		this.setVisible(true);
 	}
@@ -68,7 +71,7 @@ public class JuegoBiblioteca extends JPanel{
 		title.setMaximumSize(new Dimension(100, 100));
 		title.setMinimumSize(new Dimension(100,100));
 		title.setPreferredSize(new Dimension(100,100));
-		title.setText(" Title: " + _juegoEnPropiedadDTO.get_title());
+		title.setText(" Title: " + _controller.get_title());
 		
 		
 		JButton buttonPlay = new JButton("JUGAR");
@@ -76,9 +79,9 @@ public class JuegoBiblioteca extends JPanel{
 		buttonPlay.setMinimumSize(new Dimension(100,100));
 		buttonPlay.setPreferredSize(new Dimension(100,100));
 		
-		if (_juegoEnPropiedadDTO.is_installed() == false)
+		if (_controller.is_installed() == false)
 			buttonPlay.setBackground(Color.DARK_GRAY);
-		else if(_juegoEnPropiedadDTO.get_actVersion() != _juegoEnPropiedadDTO.get_version())
+		else if(_controller.get_actVersion() != _controller.get_version())
 			buttonPlay.setBackground(Color.GRAY);
 		else
 			buttonPlay.setBackground(Color.WHITE);
@@ -122,17 +125,17 @@ public class JuegoBiblioteca extends JPanel{
 	
 	class JuegoButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("JuegoBiblioteca", null, _juegoEnPropiedadDTO);
+			firePropertyChange("JuegoBiblioteca", null, _controller);
 		}
 	}
 	
 	class JugarButton implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
-			if (_juegoEnPropiedadDTO.is_installed() == false) {
+			if (_controller.is_installed() == false) {
 				//System.out.println("Error. Instala primero");
 				errorInstall();
 			}
-			else if(_juegoEnPropiedadDTO.get_actVersion() != _juegoEnPropiedadDTO.get_version()) {
+			else if(_controller.get_actVersion() != _controller.get_version()) {
 				//System.out.println("Error. Actualiza primero");
 				errorUpdate();
 			}
@@ -177,9 +180,9 @@ public class JuegoBiblioteca extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				_juegoEnPropiedadDTO.set_actVersion(_juegoEnPropiedadDTO.get_version());
+				_controller.set_actVersion(_controller.get_version());
 				//_juegoEnPropiedadDTO.JuegoEnPropiedadToJSON();
-				firePropertyChange("Biblioteca",null ,_juegoEnPropiedadDTO);
+				firePropertyChange("Biblioteca",null ,_controller);
 				frame.dispose();
 			}
 			
@@ -205,8 +208,8 @@ public class JuegoBiblioteca extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				_juegoEnPropiedadDTO.set_installed(true);
-				_juegoEnPropiedadDTO.set_actVersion(_juegoEnPropiedadDTO.get_version());
+				_controller.set_installed(true);
+				_controller.set_actVersion(_controller.get_version());
 				firePropertyChange("Biblioteca",null ,null);
 				frame.dispose();
 			}	
@@ -218,12 +221,12 @@ public class JuegoBiblioteca extends JPanel{
 	}
 	
 	public void executeGame() {
-		JFrame frame = new JFrame(_juegoEnPropiedadDTO.get_title());
+		JFrame frame = new JFrame(_controller.get_title());
 		frame.setLayout(new BorderLayout());
 		frame.setMinimumSize(new Dimension(1000,800));
 		frame.setPreferredSize(new Dimension(1000,800));
 		
-		JLabel label = new JLabel("El juego \"" + _juegoEnPropiedadDTO.get_title() + "\" se est� ejecutando", SwingConstants.CENTER);
+		JLabel label = new JLabel("El juego \"" + _controller.get_title() + "\" se est� ejecutando", SwingConstants.CENTER);
 		
 		frame.add(label, BorderLayout.CENTER);
 		frame.setVisible(true);

@@ -3,6 +3,10 @@ package IncidenciasMejoras.Control;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+
+import Usuario.Control.UsuarioDTO;
+
 
 public class IncidenciasMejorasDTO {
 	private String _desc;	
@@ -11,6 +15,7 @@ public class IncidenciasMejorasDTO {
 	private String _id_user;
 	private String _id_user_Denun;
 	private String _id_game;
+	IncidenciasDAO dao = new IncidenciasDAOJSON();
 
 	private List<IncidenciasMejorasDTO> inciMejor = new ArrayList<IncidenciasMejorasDTO>();
 	
@@ -23,10 +28,31 @@ public class IncidenciasMejorasDTO {
 		_id_game = idGame;
 	}
 	
-	public void eliminarIncidenciaMejora(IncidenciasMejorasDTO im) {
-		if(inciMejor.contains(im)) {
-			inciMejor.remove(im);
+	public IncidenciasMejorasDTO(UsuarioDTO im) {
+		dao = new IncidenciasDAOJSON();
+	}
+	
+	public IncidenciasMejorasDTO(JSONObject im) {
+		dao = new IncidenciasDAOJSON();
+		_type = im.getString("_type");
+		_id_user = im.getString("_id_user");
+		switch (_type) {
+		case "IncJue": 
+			_id_game = im.getString("_id");
+			break;
+		case "DenJug":
+			_id_user_Denun = im.getString("_id_user_Denun");
+			break;
+		case "DenJue":
+			_id_game = im.getString("_id");
+			break;
 		}
+		_desc = im.getString("_desc");
+		_coment = im.getString("_coment");
+	}
+
+	public void eliminarIncidenciaMejora(int n) {
+		dao.borrarIncidencia(n);
 	}
 	
 	public String get_type() {

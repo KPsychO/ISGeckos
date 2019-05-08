@@ -13,10 +13,11 @@ import org.json.JSONTokener;
 
 public class IncidenciasDAOJSON implements IncidenciasDAO {
 
+	private JSONArray list;
 	@Override
 	public JSONArray getListIncidencias() {
 		
-		JSONArray list = new JSONArray();
+		list = new JSONArray();
 		
 		try {
 			InputStream input = new FileInputStream("./src/resources/IncidenciasMejoras.txt");
@@ -33,14 +34,14 @@ public class IncidenciasDAOJSON implements IncidenciasDAO {
 		
 		switch (inciMej.get_type()) {
 		case "DenJug":
-			obj.put("_type", inciMej.get_id_game());
+			obj.put("_type", inciMej.get_type());
 			obj.put("_id_user", inciMej.get_id_user());
 			obj.put("_id_user_denun", inciMej.get_id_user_Denun());
 			obj.put("_desc", inciMej.get_desc());
 			obj.put("_coment", inciMej.get_coment());
 			break;
 		case "DenJue": 
-			obj.put("_type", inciMej.get_id_game());
+			obj.put("_type", inciMej.get_type());
 			obj.put("_id_user", inciMej.get_id_user());
 			obj.put("_id", inciMej.get_id_game());
 			obj.put("_desc", inciMej.get_desc());
@@ -70,7 +71,19 @@ public class IncidenciasDAOJSON implements IncidenciasDAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void borrarIncidencia(int n) {
+		JSONArray arr = new JSONArray();
+		arr = getListIncidencias();
+		arr.remove(n);
 		
+		try (FileWriter file = new FileWriter("./src/resources/IncidenciasMejoras.txt")) {
+			file.write(arr.toString(4));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

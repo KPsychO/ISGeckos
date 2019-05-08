@@ -7,5 +7,7 @@ public interface IncidenciasDAO {
 	public abstract JSONArray getListIncidencias();
 	
 	public void insertarIncidencia(IncidenciasMejorasDTO inciMej);
+	public abstract void borrarIncidencia(int n);
+
 	
 }
