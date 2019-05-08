@@ -18,21 +18,27 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import Juego.Control.JuegoDTO;
+import Tienda.Control.EventoTienda;
 import Tienda.Control.TiendaController;
-import Usuario.Control.UsuarioDTO;
 
 public class ComprarJuego extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	
-	JuegoDTO _juego;
-	UsuarioDTO _user;
-	JPanel _panel;
-	TiendaController _tiendaCont;
+	private JuegoDTO _juego;
+	private JPanel _panel;
+	private TiendaController _tiendaCont;
 	
-	public ComprarJuego(JuegoDTO juego, UsuarioDTO user, TiendaController tc) {
+	private JTextField tfnombre;
+	private JTextField tfapell;
+	private JTextField tfedad;
+	private JTextField tfcuenta;
+	private JTextField tfcvv;
+	private JTextField tfcad;
+	
+	
+	public ComprarJuego(JuegoDTO juego, TiendaController tc) {
 		
-		_user = user;
 		_tiendaCont = tc;
 		_juego = juego;
 		initGUI();
@@ -89,7 +95,7 @@ public class ComprarJuego extends JPanel{
 		JTextArea tArea = new JTextArea();
 		tArea.setText(_juego.get_descShort());
 		tArea.setEditable(false);
-		//Arregla la mierda de que la scrollbar inicie a la derecha
+
 		tArea.setSelectionStart(0);
 		tArea.setSelectionEnd(0);
 		tArea.setWrapStyleWord(true);
@@ -115,27 +121,27 @@ public class ComprarJuego extends JPanel{
 		JLabel cvv = new JLabel("CVV:");
 		JLabel cad = new JLabel("Fecha caducidad:");
 		
-		JTextField tfnombre = new JTextField();
+		tfnombre = new JTextField();
 		tfnombre.setMaximumSize(new Dimension(400, 25));
 		tfnombre.setMinimumSize(new Dimension(400, 25));
 		tfnombre.setPreferredSize(new Dimension(400, 25));
-		JTextField tfapell = new JTextField();
+		tfapell = new JTextField();
 		tfapell.setMaximumSize(new Dimension(400, 25));
 		tfapell.setMinimumSize(new Dimension(400, 25));
 		tfapell.setPreferredSize(new Dimension(400, 25));
-		JTextField tfedad = new JTextField();
+		tfedad = new JTextField();
 		tfedad.setMaximumSize(new Dimension(400, 25));
 		tfedad.setMinimumSize(new Dimension(400, 25));
 		tfedad.setPreferredSize(new Dimension(400, 25));
-		JTextField tfcuenta = new JTextField();
+		tfcuenta = new JTextField();
 		tfcuenta.setMaximumSize(new Dimension(400, 25));
 		tfcuenta.setMinimumSize(new Dimension(400, 25));
 		tfcuenta.setPreferredSize(new Dimension(400, 25));
-		JTextField tfcvv = new JTextField();
+		tfcvv = new JTextField();
 		tfcvv.setMaximumSize(new Dimension(400, 25));
 		tfcvv.setMinimumSize(new Dimension(400, 25));
 		tfcvv.setPreferredSize(new Dimension(400, 25));
-		JTextField tfcad = new JTextField();
+		tfcad = new JTextField();
 		tfcad.setMaximumSize(new Dimension(400, 25));
 		tfcad.setMinimumSize(new Dimension(400, 25));
 		tfcad.setPreferredSize(new Dimension(400, 25));
@@ -168,7 +174,16 @@ public class ComprarJuego extends JPanel{
 	class ComprarButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
-			boolean ret = _tiendaCont.comprarJuego(_juego);
+			boolean ret = true;
+			ret = _tiendaCont.comprarJuego(_juego);
+			ret = !tfnombre.getText().equals("");
+			ret = !tfapell.getText().equals("");
+			ret = Integer.valueOf(tfedad.getText()) >= 12;
+			ret = Integer.valueOf(tfedad.getText()) <= 100;
+			ret = Integer.valueOf(tfcuenta.getText()) / 1E15 < 10;
+			ret = Integer.valueOf(tfcuenta.getText()) / 1E15 > 1;
+			ret = Integer.valueOf(tfcvv.getText()) / 100 < 10;
+			ret = Integer.valueOf(tfcvv.getText()) / 100 > 1;
 			
 			if (ret) {
 				
@@ -182,6 +197,8 @@ public class ComprarJuego extends JPanel{
 				frame.add(label, BorderLayout.CENTER);
 				frame.setVisible(true);
 				
+				_tiendaCont.evento(EventoTienda.comprarJuego, _juego, _tiendaCont.getCurrentUser());
+				
 			} else {
 				
 				JFrame frame = new JFrame("ERROR");
@@ -189,7 +206,7 @@ public class ComprarJuego extends JPanel{
 				frame.setMinimumSize(new Dimension(800,200));
 				frame.setPreferredSize(new Dimension(800,200));
 				
-				JLabel label = new JLabel("No se ha comprado: " + _juego.get_title() + " por: " + _juego.get_price()/100 + "$, BALANCE INSUFICIENTE", SwingConstants.CENTER);
+				JLabel label = new JLabel("No se ha comprado: " + _juego.get_title(), SwingConstants.CENTER);
 				
 				frame.add(label, BorderLayout.CENTER);
 				frame.setVisible(true);

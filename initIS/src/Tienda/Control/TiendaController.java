@@ -5,8 +5,9 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import Biblioteca.Control.BibliotecaController;
+import Juego.Control.ControllerJuego;
 import Juego.Control.JuegoDTO;
+import Juego.View.MainViewJuego;
 import Tienda.View.ComprarJuego;
 import Tienda.View.MainViewTienda;
 import Usuario.Control.UsuarioDTO;
@@ -15,8 +16,8 @@ import common.Controller;
 public class TiendaController{
 	
 	private TiendaDAO _dao;
-	TiendaDTO _TiendaDTO;
-	Controller _controller;
+	private TiendaDTO _TiendaDTO;
+	private Controller _controller;
 	
 	public TiendaController(Controller cont, UsuarioDTO user) {
 		
@@ -80,21 +81,48 @@ public class TiendaController{
 		
 	}
 	
+	public void evento(EventoTienda e, JuegoDTO _juego, UsuarioDTO _user) {
+		switch (e) {
+		case accesoJuego:
+			_controller.setPrincipalPanel(new MainViewJuego(_juego, getControllerJuego()));
+			break;
+		case comprarJuego:
+			_controller.setPrincipalPanel(new MainViewTienda(this, _user));
+			break;
+		default:
+			break;
+		}
+	}
+	
 	public void deleteTienda() {
 		
 		_TiendaDTO.deleteTienda();
 		
 	}
 	
-	public JPanel getTiendaPanel(UsuarioDTO user) {
+	@SuppressWarnings("exports")
+	public JPanel getTienda(UsuarioDTO user) {
 		
 		return new MainViewTienda(this, user);
 		
 	}
 	
+	@SuppressWarnings("exports")
 	public JPanel getComprarJuego(JuegoDTO juego) {
 		
-		return new ComprarJuego(juego, _controller.getCurrentUser(), this);
+		return new ComprarJuego(juego, this);
+		
+	}
+	
+	public UsuarioDTO getCurrentUser() {
+		
+		return _controller.getCurrentUser();
+		
+	}
+	
+	public ControllerJuego getControllerJuego() {
+		
+		return _controller.getControllerJuego();	
 		
 	}
 

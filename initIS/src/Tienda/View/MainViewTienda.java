@@ -120,7 +120,7 @@ public class MainViewTienda extends JPanel {
 		
 		for (JuegoDTO j : _games) {
 
-			JuegoTienda observed = new JuegoTienda(j);
+			JuegoTienda observed = new JuegoTienda(j, _tiendaController);
 			observed.addPropertyChangeListener(new PropertyChangeListener() {
 
 				@Override
