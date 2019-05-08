@@ -12,7 +12,7 @@ import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
 import common.Controller;
 
-public class BibliotecaController extends Controller{
+public class BibliotecaController{
 
 	private BibliotecaDAO _dao;
 	private BibliotecaDTO _dto;
@@ -54,17 +54,6 @@ public class BibliotecaController extends Controller{
 	}
 	
 	
-
-	@Override
-	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
-		if(panel.equals("Biblioteca")) {
-			getGames(user);
-			return new MainViewBiblioteca(this, user);
-		}
-		else
-			return null;
-	}
-
 	public List<BibliotecaDTO> getLibraries() {
 		
 		return this._dao.getLibraries();
