@@ -2,6 +2,8 @@ package common;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import IncidenciasMejoras.Control.ControllerIncidenciasMejoras;
+import IncidenciasMejoras.View.MainViewDenunciasJugador;
 import Juego.Control.ControllerJuego;
 import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
@@ -11,6 +13,7 @@ public class Controller {
 	//Poner vuestros controller aqui
 	private ControllerValoraciones _controllerValoraciones;
 	private ControllerJuego _controllerJuego;
+	private ControllerIncidenciasMejoras _controllerIncidenciasMejoras;
 	
 	private MainWindow _mw;
 	
@@ -48,6 +51,16 @@ public class Controller {
 		return null;
 	}
 	
+	// Diego
+	public JPanel getTienda() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	//Jin
+	public JPanel getDenunciasJugador(UsuarioDTO userDen) {
+		return new MainViewDenunciasJugador(_current_user, userDen, _controllerIncidenciasMejoras);
+	}
 	
 	/* Salbio
 	public UsuarioDTO getUsuarioId(String ID) {
