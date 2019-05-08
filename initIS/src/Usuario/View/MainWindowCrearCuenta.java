@@ -12,16 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
-import Usuario.Control.EventoUsuario;
-import Usuario.Control.UsuarioDTO;
-import Usuario.Control.ControllerUsuario;
-
 public class MainWindowCrearCuenta extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	private ControllerUsuario contUs;
-	private UsuarioDTO _user;
-	
 	private JLabel usernameLabel;
 	private JTextArea username;
 	private JLabel passwordLabel;
@@ -169,8 +162,7 @@ public class MainWindowCrearCuenta extends JPanel {
 						//Como password: password
 						//Como email: email
 					}
-					contUs.evento(EventoUsuario.CrearCuenta, null);
-					//firePropertyChange("CrearCuenta", null, null);	 
+					firePropertyChange("CrearCuenta", null, null);	 
 				}
 			 }
 		 }

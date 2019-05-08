@@ -11,14 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import Usuario.Control.EventoUsuario;
-import Usuario.Control.UsuarioDTO;
-import Usuario.Control.ControllerUsuario;
-
 public class MainWindowAcuerdoSuscriptor extends JPanel{
 	private static final long serialVersionUID = 1L;
-	private ControllerUsuario contUs;
-	private UsuarioDTO _user;
+
 	private JLabel acuerdoSuscriptor;
 	private JCheckBox ok;
 	//private JLabel aceptar;
@@ -77,8 +72,7 @@ public class MainWindowAcuerdoSuscriptor extends JPanel{
 	class continuarButton implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (ok.isSelected()) {
-				contUs.evento(EventoUsuario.AcuerdoSuscriptor, null);
-        		//firePropertyChange("AcuerdoSuscriptor", null, null);
+        		firePropertyChange("AcuerdoSuscriptor", null, null);
         	}
 			else {
 				String tipoError = "Debes aceptar el acuerdo para continuar";

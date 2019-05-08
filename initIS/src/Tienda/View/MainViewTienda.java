@@ -79,8 +79,8 @@ public class MainViewTienda extends JPanel {
 				List<JuegoDTO> list = new ArrayList<JuegoDTO>();
 				
 				for (JuegoDTO j : _tiendaController.getJuegosEnTienda()) {
-					//No se si dejarlo como starswith or contains...
-					if (j.get_title().toLowerCase().contains(buscado.getText().toLowerCase())) {
+
+					if (j.get_title().toLowerCase().startsWith(buscado.getText().toLowerCase())) {
 
 						list.add(j);
 
