@@ -86,7 +86,7 @@ public class TiendaController{
 		
 	}
 	
-	public JPanel getTienda(UsuarioDTO user) {
+	public JPanel getTiendaPanel(UsuarioDTO user) {
 		
 		return new MainViewTienda(this, user);
 		

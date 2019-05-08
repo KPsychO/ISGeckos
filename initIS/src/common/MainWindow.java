@@ -37,13 +37,15 @@ public class MainWindow extends JFrame {
 	
 	Controller _controller;
 	
-	public MainWindow() {
+	public MainWindow(Controller cont) {
 		
 		// Me da error el pasarle por parametro el contorller
-		//_controller = cont;
+		
 		super("Gecko");
 		this.setSize(800, 800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		_controller = cont;
 		
 		//Hace que el jframe se coloque en mitad de la pantalla
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -155,50 +157,31 @@ public class MainWindow extends JFrame {
 	
 	class TiendaButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			// reinicia(_controller.getTienda(), _controller.getCurrentUser()); // DESCOMENTAR cuando _controller este inicializado
-			//firePropertyChange("Tienda", null, null);
-		}
-	}
-	
-	class FormularioButton implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			
-			firePropertyChange("Formulario", null, null);
-		}
-	}
-	
-	class GestionButton implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			
-			firePropertyChange("Publicacion", null, null);
+			_controller.evento(EventoCommon.Tienda, null, null);
 		}
 	}
 	
 	class ComunidadButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			
-			firePropertyChange("Comunidad", null, null);
+			_controller.evento(EventoCommon.Comunidad, null, null);
 		}
 	}
 	
 	class SoporteButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			
-			firePropertyChange("Soporte", null, null);
+			_controller.evento(EventoCommon.Soporte, null, null);
 		}
 	}
 	
 	class UserButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			
-			firePropertyChange("IniciarSesion", null, null);
-
+			_controller.evento(EventoCommon.Usuario, null, null);
 		}
 	}
 	
 	class BibliotecaButton implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("Biblioteca", null, null);
+			_controller.evento(EventoCommon.Biblioteca, null, null);
 		}
 	}
 	

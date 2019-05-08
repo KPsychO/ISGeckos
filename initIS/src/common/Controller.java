@@ -7,7 +7,11 @@ import Formulario.Control.ControllerFormulario;
 import IncidenciasMejoras.Control.ControllerIncidenciasMejoras;
 import IncidenciasMejoras.View.MainViewDenunciasJugador;
 import Juego.Control.ControllerJuego;
+import Juego.Control.EventoJuego;
 import Juego.Control.JuegoDTO;
+import Juego.View.MainViewActualizarJuego;
+import Juego.View.MainViewDeveloper;
+import Juego.View.MainViewJuego;
 import Usuario.Control.ControllerUsuario;
 import Tienda.Control.TiendaController;
 import Usuario.Control.UsuarioDTO;
@@ -43,14 +47,42 @@ public class Controller {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				//Pistacho, hasta que no hagas tu controller esto no va a funcar
-				_mw = new MainWindow();
+				_mw = new MainWindow(Controller.this);
 				_mw.reinicia(getTienda(), _current_user);
 			}
 		});
 		
 	}
+	
+	public void evento(EventoCommon e, JuegoDTO _juego, UsuarioDTO _user) {
+		switch (e) {
+		case Tienda:
+			setPrincipalPanel(_tiendaControler.getTiendaPanel(_current_user));
+			break;
+		case Biblioteca:
+			//setPrincipalPanel(new MainViewDeveloper(_user, this));
+			break;
+		case Comunidad:
+			setPrincipalPanel(_controllerComunidad.getComunidadPanel(_current_user));
+			break;
+		case Soporte:
+			//setPrincipalPanel(_controllerIncidenciasMejoras.getIncidenciasMejorasPanel());
+			break;
+		case Usuario:
+			//setPrincipalPanel(_controllerUsuario.getIconoPanel());
+			break;
+		default:
+			break;
+		}
+	}
+	
 	public void setPrincipalPanel(JPanel panel) {
-		_mw.reinicia(panel, _current_user);
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				_mw.reinicia(panel, _current_user);
+			}
+		});
+		
 	}
 	
 	public void setCurrentUser(UsuarioDTO user) {
@@ -71,7 +103,7 @@ public class Controller {
 	@SuppressWarnings("exports")
 	public JPanel getTienda() {
 
-		return _tiendaControler.getTienda(_current_user);
+		return _tiendaControler.getTiendaPanel(_current_user);
 
 	}
 	

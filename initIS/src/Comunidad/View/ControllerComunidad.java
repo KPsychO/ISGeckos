@@ -1,5 +1,7 @@
 package Comunidad.View;
 
+import javax.swing.JPanel;
+
 import IncidenciasMejoras.Control.EventoIncidenciasMejoras;
 import IncidenciasMejoras.View.MainViewDenunciasJuego;
 import IncidenciasMejoras.View.MainViewDenunciasJugador;
@@ -33,5 +35,9 @@ private Controller _controller;
 		default:
 			break;
 		}
+	}
+
+	public JPanel getComunidadPanel(UsuarioDTO dto) {
+		return new MainViewComunidad(dto, this);
 	}
 }
