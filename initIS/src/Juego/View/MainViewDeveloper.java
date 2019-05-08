@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 
+import Juego.Control.ControllerJuego;
 import Juego.Control.JuegoDAO;
 import Juego.Control.JuegoDAOJSON;
 import Juego.Control.JuegoDTO;
@@ -23,17 +24,17 @@ import Usuario.Control.UsuarioDTO;
 public class MainViewDeveloper extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private UsuarioDTO _dto;
-	@SuppressWarnings("unused")
-	private UsuarioDAO _dao_user;
+	private UsuarioDTO _user;
+	private ControllerJuego _cj;
+
 	private JuegoDAO _dao_juego;
 	
 	private JPanel _panel;
 	
-	public MainViewDeveloper(UsuarioDTO user) {
+	public MainViewDeveloper(UsuarioDTO user, ControllerJuego cj) {
 		
-		_dto = user;
-		_dao_user = new UsuarioDAOJSON();
+		_cj = cj;
+		_user = user;
 		_dao_juego = new JuegoDAOJSON();
 
 		initGUI();
@@ -57,16 +58,9 @@ public class MainViewDeveloper extends JPanel {
             }
         });
 		
-		for (JuegoDTO juego : _dao_juego.getJuegosDeveloper(_dto)) {
+		for (JuegoDTO juego : _dao_juego.getJuegosDeveloper(_user)) {
 			
-			JuegoDeveloper dev = new JuegoDeveloper(juego);
-			dev.addPropertyChangeListener(new PropertyChangeListener() {
-
-	            @Override
-	            public void propertyChange(PropertyChangeEvent e) {
-	            	firePropertyChange(e.getPropertyName(), e.getOldValue(), e.getNewValue());
-	            }
-	        });
+			JuegoDeveloper dev = new JuegoDeveloper(juego, _cj, _user);
 	        
 			_panel.add(dev);
 			JSeparator js = new JSeparator();

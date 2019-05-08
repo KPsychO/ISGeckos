@@ -20,13 +20,12 @@ public class LogroDTO {
 	
 	public LogroDTO(String id, JuegoDTO juego) {
 		_dao = new LogroDAOJSON();
+		LogroDTO l = _dao.getLogroID(juego.get_achievements(), id);
 		
-		for (LogroDTO l : juego.get_achievements()) {
-			if (l.get_id().equals(id)) {
-				_id = l.get_id();
-				_name = l.get_name();
-				_getMode = l.get_getMode();
-			}
+		if (l != null) {
+			this._id = l._id;
+			this._name = l._name;
+			this._getMode = l._getMode;
 		}
 		
 	}

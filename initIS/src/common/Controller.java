@@ -3,6 +3,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import Juego.Control.ControllerJuego;
+import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
 import valoraciones.ControllerValoraciones;
 
@@ -36,7 +37,19 @@ public class Controller {
 		_current_user = user;
 	}
 	
-	/*Hacerlo
+	//Me encanta hacer esto
+	public boolean isRegistered() {
+		return !_current_user.isUnregistered();
+	}
+	
+	// Diego
+	public JPanel getComprarJuego(JuegoDTO _juego) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	/* Salbio
 	public UsuarioDTO getUsuarioId(String ID) {
 		_current_user = _controllerUsuario.getUsuarioID(ID);
 	}

@@ -45,6 +45,9 @@ public class MainWindow extends JFrame {
 		//Hace que el jframe se coloque en mitad de la pantalla
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+
+		principalPanel = new JPanel();
+		this.setVisible(true);
 		
 	}
 	

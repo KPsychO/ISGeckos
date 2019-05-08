@@ -5,8 +5,6 @@ import java.util.*;
 import org.json.JSONObject;
 
 public class JuegoDTO {
-	
-	private static JuegoController _jc;
 
 	private String _id;
 	private String _title;
@@ -20,19 +18,24 @@ public class JuegoDTO {
 	private List<String> _genres;
 	private List<LogroDTO> _achievements;
 	
+	private JuegoDAO _dao;
+	
 	// la imagen "thumb"
 	
 
 	public JuegoDTO(String id, String title, int price, int pegi, int version, 
 			String descL, String descS, List<String> genres, List<LogroDTO> achievements) {
 		
+		_dao = new JuegoDAOJSON();
 		crearJuego(id, title, price, pegi, version, descL, descS, genres, achievements);
 
 	}
 	
 	public JuegoDTO(String id) {
-		
-		JuegoDTO g = _jc.getJuego(id);
+		_dao = new JuegoDAOJSON();
+		JuegoDTO g = _dao.getJuegoID(id);
+		if (g == null)
+			return;
 		
 		this._achievements = g._achievements;
 		this._date = g._date;
@@ -76,13 +79,9 @@ public class JuegoDTO {
 		//_version = juego.getInt("_version");
 
 		_date = juego.getString("_date");
-		_genres = _jc.getGenres(juego.getJSONArray("_genres"));
-		_achievements = _jc.getLogros(juego.getJSONArray("_achievements"));
+		_genres = _dao.getGenres(juego.getJSONArray("_genres"));
+		_achievements = _dao.getLogros(juego.getJSONArray("_achievements"));
 		
-	}
-
-	public JuegoDTO(JuegoController juegoController) {
-		_jc = juegoController;
 	}
 
 	public String get_id() {

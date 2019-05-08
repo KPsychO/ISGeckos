@@ -2597,24 +2597,5 @@
         "_developer": "1",
         "_id": "33ee132e-6706-49d1-af97-16eb29cb50ed",
         "_descShort": "asd"
-    },
-    {
-        "_date": "2019-05-08",
-        "_achievements": [{
-            "_name": "111",
-            "_getMode": "111111",
-            "_id": "d62c720d-0dc4-42c7-be7f-34365550d275"
-        }],
-        "_price": 111,
-        "_descLong": "111111111111",
-        "_title": "111",
-        "_pegi": 111,
-        "_genres": [
-            "action",
-            "role-playing"
-        ],
-        "_developer": "1",
-        "_id": "077c4c19-ee40-4a86-924b-b00af2218204",
-        "_descShort": "111111"
     }
 ]

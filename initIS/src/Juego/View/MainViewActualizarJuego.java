@@ -27,6 +27,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Formulario.Control.FormularioDTO;
+import Juego.Control.ControllerJuego;
 import Juego.Control.JuegoDTO;
 import Juego.Control.LogroDTO;
 import Usuario.Control.UsuarioDTO;
@@ -66,12 +67,14 @@ public class MainViewActualizarJuego extends JPanel{
 	private FormularioDTO _formularioDTO;
 	private JPanel _panel;
 	
-	private UsuarioDTO dev;
-	private JuegoDTO juego;
+	private UsuarioDTO _dev;
+	private JuegoDTO _juego;
+	private ControllerJuego _cj;
 	
-	public MainViewActualizarJuego(UsuarioDTO dev, JuegoDTO juego) {
-		 this.dev = dev;
-		 this.juego = juego;
+	public MainViewActualizarJuego(UsuarioDTO dev, JuegoDTO juego, ControllerJuego controllerJuego) {
+		 _dev = dev;
+		 _juego = juego;
+		 _cj = controllerJuego;
 		 _formularioDTO = new FormularioDTO(dev);
 		 initGUI();
 		 
@@ -108,7 +111,7 @@ public class MainViewActualizarJuego extends JPanel{
         titulo.setText("TITULO :  ");
         
         titleField = new JTextArea();
-        titleField.setText(juego.get_title());
+        titleField.setText(_juego.get_title());
         titleField.setPreferredSize(new Dimension(sizex,25));
         titleField.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         
@@ -123,7 +126,7 @@ public class MainViewActualizarJuego extends JPanel{
         precio.setText("PRECIO:  ");
         
         priceField = new JTextArea();
-        priceField.setText(Integer.toString(juego.get_price()));
+        priceField.setText(Integer.toString(_juego.get_price()));
         priceField.setPreferredSize(new Dimension(sizex,25));
         priceField.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         
@@ -138,7 +141,7 @@ public class MainViewActualizarJuego extends JPanel{
         edad.setText("EDAD :  ");
         
         ageField = new JTextArea();
-        ageField.setText(Integer.toString(juego.get_pegi()));
+        ageField.setText(Integer.toString(_juego.get_pegi()));
         ageField.setPreferredSize(new Dimension(sizex,25));
         ageField.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         
@@ -153,7 +156,7 @@ public class MainViewActualizarJuego extends JPanel{
         descs.setText("DESC SHORT:  ");
         
         descShortField = new JTextArea();
-        descShortField.setText(juego.get_descShort());
+        descShortField.setText(_juego.get_descShort());
         descShortField.setWrapStyleWord(true);
         descShortField.setLineWrap(true);
         descShortField.setPreferredSize(new Dimension(sizex,50));
@@ -170,7 +173,7 @@ public class MainViewActualizarJuego extends JPanel{
         descl.setText("DESC LONG:  ");
         
         descLongField = new JTextArea();
-        descLongField.setText(juego.get_descLong());
+        descLongField.setText(_juego.get_descLong());
         descLongField.setWrapStyleWord(true);
         descLongField.setLineWrap(true);
         JScrollPane scroll = new JScrollPane(descLongField, 
@@ -194,14 +197,14 @@ public class MainViewActualizarJuego extends JPanel{
         GridLayout cajasL = new GridLayout(4, 2);
         cajas.setLayout(cajasL);
         cajas.setPreferredSize(new Dimension(sizex, 75));
-        action = new JCheckBox("Action", juego.get_genres().contains("action"));
-        adventure = new JCheckBox("Adventure", juego.get_genres().contains("adventure"));
-        role_playing = new JCheckBox("Role playing", juego.get_genres().contains("role-playing"));
-        simulation = new JCheckBox("Simulation", juego.get_genres().contains("simulation"));
-        strategy = new JCheckBox("Strategy", juego.get_genres().contains("strategy"));
-        sports = new JCheckBox("Sports", juego.get_genres().contains("sports"));
-        puzzle = new JCheckBox("Puzzle", juego.get_genres().contains("puzzle"));
-        idle = new JCheckBox("Idle", juego.get_genres().contains("idle"));
+        action = new JCheckBox("Action", _juego.get_genres().contains("action"));
+        adventure = new JCheckBox("Adventure", _juego.get_genres().contains("adventure"));
+        role_playing = new JCheckBox("Role playing", _juego.get_genres().contains("role-playing"));
+        simulation = new JCheckBox("Simulation", _juego.get_genres().contains("simulation"));
+        strategy = new JCheckBox("Strategy", _juego.get_genres().contains("strategy"));
+        sports = new JCheckBox("Sports", _juego.get_genres().contains("sports"));
+        puzzle = new JCheckBox("Puzzle", _juego.get_genres().contains("puzzle"));
+        idle = new JCheckBox("Idle", _juego.get_genres().contains("idle"));
         
         
         cajas.add(action);
@@ -300,7 +303,7 @@ public class MainViewActualizarJuego extends JPanel{
 	}
 	
 	private void add_logros_juego() {
-		for (LogroDTO l : juego.get_achievements()) {
+		for (LogroDTO l : _juego.get_achievements()) {
 			
 			DefaultTableModel model = (DefaultTableModel) tabla_logros.getModel();
     		model.addRow(new Object[]{l.get_name(), l.get_getMode()});
@@ -403,7 +406,7 @@ public class MainViewActualizarJuego extends JPanel{
 	}
 	
 	private FormularioDTO getFormulario() {
-		FormularioDTO dto = new FormularioDTO(dev, juego.get_id());
+		FormularioDTO dto = new FormularioDTO(_dev, _juego.get_id());
 		
 		dto.set_title(titleField.getText());
 		dto.set_desc(descShortField.getText());
