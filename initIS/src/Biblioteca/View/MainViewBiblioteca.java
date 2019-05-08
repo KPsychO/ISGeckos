@@ -9,26 +9,27 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import Biblioteca.Control.BibliotecaController;
 import Biblioteca.Control.BibliotecaDTO;
 import Biblioteca.Control.JuegoEnPropiedadDTO;
+import Usuario.Control.UsuarioDTO;
 
 public class MainViewBiblioteca extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-	BibliotecaDTO _bibliotecaDTO;
-	JPanel _panel;
 	
-	public MainViewBiblioteca(String user_Id) {
-		this._bibliotecaDTO = new BibliotecaDTO(user_Id);
+	private static BibliotecaController _bibliotecaController;
+	//BibliotecaDTO _bibliotecaDTO;
+	private List<JuegoEnPropiedadDTO> _games;
+	private JPanel _panel;
+	
+	public MainViewBiblioteca(BibliotecaController ctrllr, UsuarioDTO user) {
+		this._bibliotecaController = ctrllr;
+		
+		this._games = this._bibliotecaController.getGames(user);
 		
 		initGUI();
-		this.setVisible(true);
-	}
-	
-	public MainViewBiblioteca(BibliotecaDTO dto) {
-		this._bibliotecaDTO = new BibliotecaDTO(dto);
 		
-		initGUI();
 		this.setVisible(true);
 	}
 
@@ -43,23 +44,20 @@ public class MainViewBiblioteca extends JPanel{
 		
 		this.setLayout(new BorderLayout());
 		_panel = new JPanel();
-		_panel.setLayout(new GridLayout(0, _bibliotecaDTO.get_juegosEnBiblioteca().size(), 10, 10));
+		_panel.setLayout(new GridLayout(0, 3, 10, 10));
 		
 	}
 	
 	private void addGames() {
 		
-		List<JuegoEnPropiedadDTO> games = _bibliotecaDTO.get_juegosEnBiblioteca();
-		
-		for (JuegoEnPropiedadDTO j : games) {	
+		for (JuegoEnPropiedadDTO j : this._games) {	
 			
 			JuegoBiblioteca observed = new JuegoBiblioteca(j);
 	        observed.addPropertyChangeListener(new PropertyChangeListener() {
 
 	            @Override
 	            public void propertyChange(PropertyChangeEvent e) {
-	            	_bibliotecaDTO.BibltoJSON(_bibliotecaDTO.get_juegosEnBiblioteca(), "");
-	            	firePropertyChange(e.getPropertyName(), e.getOldValue(), _bibliotecaDTO);
+	            	firePropertyChange(e.getPropertyName(), e.getOldValue(), e.getNewValue());
 	            }
 	        });
 	        

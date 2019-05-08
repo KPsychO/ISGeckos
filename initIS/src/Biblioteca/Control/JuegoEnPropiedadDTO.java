@@ -2,7 +2,6 @@ package Biblioteca.Control;
 
 import org.json.JSONObject;
 
-import Juego.Control.JuegoController;
 import Juego.Control.JuegoDTO;
 
 public class JuegoEnPropiedadDTO extends JuegoDTO{
@@ -13,22 +12,22 @@ public class JuegoEnPropiedadDTO extends JuegoDTO{
 	private JuegoEnPropiedadDAO _dao;
 	
 	public JuegoEnPropiedadDTO(JSONObject juegoEnPropiedad) {
-		super(juegoEnPropiedad);
+		super(juegoEnPropiedad.getString("_gameId"));
 		this._hoursPlayed =  juegoEnPropiedad.getInt("_hoursPlayed");
 		this._lastEx = juegoEnPropiedad.getString("_lastEx");
 		this._actVersion = juegoEnPropiedad.getInt("_actVers");
 		this._installed = juegoEnPropiedad.getBoolean("_installed");
 	}
-	/*
+	
 	public JuegoEnPropiedadDTO(JuegoDTO game) {
-		super(game);
+		super(game.get_id());
 		this._hoursPlayed = 0;
 		this._actVersion = game.get_version();
-		this._lastEx = null;
+		this._lastEx = "never";
 		this._installed = false;
 		
 	}
-	 */
+	
 	public JSONObject JuegoEnPropiedadToJSON() {
 		_dao = new JuegoEnPropiedadDAOJSON();
 		

@@ -3,6 +3,7 @@ package Biblioteca.View;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -61,13 +62,15 @@ public class JuegoBiblioteca extends JPanel{
 	
 	private void createContents() {
 		
-		_contents = new JPanel(new BorderLayout(200,100));
+		_contents = new JPanel(new GridLayout(2,2));
 		
 		JLabel title = new JLabel();
 		title.setMaximumSize(new Dimension(100, 100));
 		title.setMinimumSize(new Dimension(100,100));
 		title.setPreferredSize(new Dimension(100,100));
 		title.setText(" Title: " + _juegoEnPropiedadDTO.get_title());
+		
+		
 		JButton buttonPlay = new JButton("JUGAR");
 		buttonPlay.setMaximumSize(new Dimension(100, 100));
 		buttonPlay.setMinimumSize(new Dimension(100,100));
@@ -81,9 +84,40 @@ public class JuegoBiblioteca extends JPanel{
 			buttonPlay.setBackground(Color.WHITE);
 		
 		buttonPlay.addActionListener(new JugarButton());
-		_contents.add(title, BorderLayout.WEST);
-		_contents.add(buttonPlay, BorderLayout.EAST);
 		
+		
+		JButton buttonValorar = new JButton("VALORAR");
+		buttonValorar.setMaximumSize(new Dimension(100, 100));
+		buttonValorar.setMinimumSize(new Dimension(100,100));
+		buttonValorar.setPreferredSize(new Dimension(100,100));
+		
+		buttonValorar.addActionListener(new ValorarButton());
+		
+		
+		JPanel panelIncDen = new JPanel(new GridLayout(2,1));
+		panelIncDen.setMaximumSize(new Dimension(100,100));
+		panelIncDen.setMinimumSize(new Dimension(100,100));
+		panelIncDen.setPreferredSize(new Dimension(100,100));
+		
+		JButton buttonInc = new JButton("INC");
+		buttonInc.setMaximumSize(new Dimension(50, 100));
+		buttonInc.setMinimumSize(new Dimension(50,100));
+		buttonInc.setPreferredSize(new Dimension(50,100));
+		
+		JButton buttonDen = new JButton("DEN");
+		buttonDen.setMaximumSize(new Dimension(50, 100));
+		buttonDen.setMinimumSize(new Dimension(50,100));
+		buttonDen.setPreferredSize(new Dimension(50,100));
+		
+		buttonInc.addActionListener(new IncButton());
+		buttonDen.addActionListener(new DenButton());
+		
+		_contents.add(title);
+		_contents.add(buttonPlay);
+		panelIncDen.add(buttonInc);
+		panelIncDen.add(buttonDen);
+		_contents.add(panelIncDen);
+		_contents.add(buttonValorar);
 	}
 	
 	class JuegoButton implements ActionListener {
@@ -109,6 +143,24 @@ public class JuegoBiblioteca extends JPanel{
 		}
 	}
 	
+	class ValorarButton implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+		
+		}
+	}
+	
+	class IncButton implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+		
+		}
+	}
+	
+	class DenButton implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+		
+		}
+	}
+	
 	public void errorUpdate() {
 		JFrame frame = new JFrame("Error");
 		frame.setLayout(new BorderLayout());
@@ -127,7 +179,7 @@ public class JuegoBiblioteca extends JPanel{
 				// TODO Auto-generated method stub
 				_juegoEnPropiedadDTO.set_actVersion(_juegoEnPropiedadDTO.get_version());
 				//_juegoEnPropiedadDTO.JuegoEnPropiedadToJSON();
-				firePropertyChange("Biblioteca",null ,null);
+				firePropertyChange("Biblioteca",null ,_juegoEnPropiedadDTO);
 				frame.dispose();
 			}
 			

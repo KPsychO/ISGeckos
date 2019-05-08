@@ -3,35 +3,46 @@ package Biblioteca.Control;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+
 import Usuario.Control.UsuarioDTO;
 
 public class BibliotecaDTO {
 
+	private static BibliotecaController _bc;
+	
 	private String _userId;
 	private List<JuegoEnPropiedadDTO> _juegosEnBiblioteca = new ArrayList<JuegoEnPropiedadDTO>();
+	private List<BibliotecaDTO> _bibliotecas;
 	
-	private BibliotecaDAO _dao;
+	//private BibliotecaDAO _dao;
 	
-	public BibliotecaDTO(String userId) {
-		this._userId = userId;
-		this._dao = new BibliotecaDAOJSON();
-		createJuegosEnBiblioteca();
+	// Biblioteca de prueba
+	public BibliotecaDTO(List<JuegoEnPropiedadDTO> games) {
+		this._userId = "Generic";
+		this._juegosEnBiblioteca = games;
+	}
+	
+	// Biblioteca de un usuario en concreto
+	public BibliotecaDTO(List<JuegoEnPropiedadDTO> games, UsuarioDTO user) {
+		this._userId = user.get_user_id();
+		this._juegosEnBiblioteca = games;
 	}
 	
 	public BibliotecaDTO(BibliotecaDTO dto) {
 		this._userId = dto.get_userId();
-		this._dao = dto.get_dao();
 		this._juegosEnBiblioteca = dto.get_juegosEnBiblioteca();
 	}
 	
 	public BibliotecaDTO(UsuarioDTO dto) {
 		_userId = dto.get_user_id();
-		_dao = new BibliotecaDAOJSON();
 		createJuegosEnBiblioteca();
 	}
 
-	public BibliotecaDAO get_dao() {
-		return _dao;
+	public BibliotecaDTO(JSONObject biblioteca) {
+
+		_userId = biblioteca.getString("_userId");
+		_juegosEnBiblioteca = _bc.getOwnedGames(biblioteca.getJSONArray("_gamesList"));
 	}
 
 	public String get_userId() {
@@ -41,7 +52,7 @@ public class BibliotecaDTO {
 	private void createJuegosEnBiblioteca() {
 		List<JuegoEnPropiedadDTO> _listOwnedGames = new ArrayList <JuegoEnPropiedadDTO>();
 		
-		_listOwnedGames = this._dao.getOwnedGames(this._userId);
+		_listOwnedGames = this._bc.getOwnedGames(this._userId);
 		
 		for(JuegoEnPropiedadDTO i : _listOwnedGames)
 			this._juegosEnBiblioteca.add(i);		
@@ -56,8 +67,7 @@ public class BibliotecaDTO {
 		return _juegosEnBiblioteca;
 	}
 	
-	public void BibltoJSON(List<JuegoEnPropiedadDTO> gameList, String userId) {
-		_dao = new BibliotecaDAOJSON();
-		_dao.writeBiblJSON(gameList, userId);
+	public void anadirJuego(JuegoEnPropiedadDTO juego) {
+		this._juegosEnBiblioteca.add(juego);
 	}
 }

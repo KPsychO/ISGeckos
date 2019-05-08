@@ -13,12 +13,14 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import Juego.Control.JuegoController;
+import Juego.Control.LogroDAOJSON;
 
 public class BibliotecaDAOJSON implements BibliotecaDAO{
 
+	
+	// Lista de juegos de la biblioteca genérica
 	@Override
-	public List<JuegoEnPropiedadDTO> getOwnedGames(String user_id) {
+	public List<JuegoEnPropiedadDTO> getOwnedGames() {
 		List<JuegoEnPropiedadDTO> list = new ArrayList<JuegoEnPropiedadDTO>();
 		
 		try {
@@ -36,6 +38,28 @@ public class BibliotecaDAOJSON implements BibliotecaDAO{
 		return list;
 	}
 
+	
+	public List<BibliotecaDTO> getLibraries(){
+		List<BibliotecaDTO> libraries = new ArrayList<BibliotecaDTO>();
+		
+		try {
+			InputStream input = new FileInputStream("./src/resources/Biblioteca.txt");
+			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
+			
+			for (Object o : jsonInput) {
+				
+				JSONObject library = new JSONObject(new JSONTokener(o.toString()));
+				libraries.add(new BibliotecaDTO(library));
+				
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return libraries;
+	}
+	
 	@SuppressWarnings("resource")
 	@Override
 	public void writeBiblJSON(List<JuegoEnPropiedadDTO> gameList, String userId) {
@@ -55,6 +79,40 @@ public class BibliotecaDAOJSON implements BibliotecaDAO{
 			e.printStackTrace();
 		}
 		
+	}
+
+
+	@Override
+	public List<JuegoEnPropiedadDTO> getOwnedGames(JSONArray arrayGames) {
+		List<JuegoEnPropiedadDTO> games = new ArrayList<JuegoEnPropiedadDTO>();
+		
+		for(Object o : arrayGames) {
+			JSONObject game = new JSONObject(new JSONTokener(o.toString()));
+			games.add(new JuegoEnPropiedadDAOJSON().getLogros(game));
+		}
+		
+		return games;
+	}
+
+
+	@Override
+	public List<JuegoEnPropiedadDTO> getOwnedGames(String user_id) {
+		//Todavia sin usuario
+		List<JuegoEnPropiedadDTO> list = new ArrayList<JuegoEnPropiedadDTO>();
+		
+		try {
+			InputStream input = new FileInputStream("./src/resources/PruebaBibl.txt");
+			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
+			
+			for (Object o : jsonInput) {
+				JSONObject oJ = new JSONObject(new JSONTokener(o.toString()));
+				list.add(new JuegoEnPropiedadDTO(oJ));				
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 
