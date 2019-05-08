@@ -9,6 +9,7 @@ public class LogroController extends Controller{
 
 	
 	
+	@SuppressWarnings("exports")
 	@Override
 	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
 		// TODO Auto-generated method stub

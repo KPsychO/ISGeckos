@@ -23,6 +23,7 @@ public class JuegoController extends Controller{
 		
 	}
 
+	@SuppressWarnings("exports")
 	@Override
 	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
 		if (panel.equals("JuegoTienda"))
@@ -54,10 +55,12 @@ public class JuegoController extends Controller{
 		return null;
 	}
 
+	@SuppressWarnings("exports")
 	public List<String> getGenres(JSONArray jsonArray) {
 		return _dao.getGenres(jsonArray);
 	}
 
+	@SuppressWarnings("exports")
 	public List<LogroDTO> getLogros(JSONArray jsonArray) {
 		return _dao.getLogros(jsonArray);
 	}

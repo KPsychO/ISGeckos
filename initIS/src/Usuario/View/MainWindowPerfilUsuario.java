@@ -23,6 +23,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 	private UsuarioDTO _dto;
 	
 	//Botones
+	@SuppressWarnings("unused")
 	private JButton insignias;
 	private JButton biblioteca;
 	private JButton cerrarSesion;

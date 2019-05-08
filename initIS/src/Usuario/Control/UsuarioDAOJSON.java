@@ -8,8 +8,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;

@@ -3,7 +3,6 @@ package Tienda.Control;
 import java.util.List;
 
 import Juego.Control.JuegoDTO;
-import Usuario.Control.UsuarioDTO;
 
 public class TiendaDTO {
 	

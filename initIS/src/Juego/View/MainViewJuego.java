@@ -11,13 +11,16 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 
 import Juego.Control.JuegoDTO;
+import common.MainController;
 
 public class MainViewJuego extends JPanel{
 
@@ -161,7 +164,22 @@ public class MainViewJuego extends JPanel{
 	
 	class ComprarButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("ComprarJuego", null, _juegoDTO);
+			
+			if(MainController.getCurrentUser().isUnregistered()) {
+				
+				JFrame frame = new JFrame("ERROR");
+				frame.setLayout(new BorderLayout());
+				frame.setMinimumSize(new Dimension(800,200));
+				frame.setPreferredSize(new Dimension(800,200));
+				
+				JLabel label = new JLabel("Un usuario debe estar registrado para poder comprar un juego, porfavor, inicie sesión.", SwingConstants.CENTER);
+				
+				frame.add(label, BorderLayout.CENTER);
+				frame.setVisible(true);
+				
+			}
+			else
+				firePropertyChange("ComprarJuego", null, _juegoDTO);
 		}
 	}
 }

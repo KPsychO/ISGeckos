@@ -17,7 +17,6 @@ import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
 import Usuario.Control.UsuarioDTO;
-import Usuario.View.MainWindowModificarCuenta.cambiarAvatar;
 
 public class MainWindowModificarCuenta extends JPanel {
 	private static final long serialVersionUID = 1L;

@@ -13,6 +13,7 @@ public class BibliotecaDTO {
 	
 	private String _userId;
 	private List<JuegoEnPropiedadDTO> _juegosEnBiblioteca = new ArrayList<JuegoEnPropiedadDTO>();
+	@SuppressWarnings("unused")
 	private List<BibliotecaDTO> _bibliotecas;
 	
 	//private BibliotecaDAO _dao;
@@ -49,6 +50,7 @@ public class BibliotecaDTO {
 		return _userId;
 	}
 
+	@SuppressWarnings("static-access")
 	private void createJuegosEnBiblioteca() {
 		List<JuegoEnPropiedadDTO> _listOwnedGames = new ArrayList <JuegoEnPropiedadDTO>();
 		

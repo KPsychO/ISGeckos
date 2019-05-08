@@ -6,9 +6,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
-import Juego.Control.JuegoController;
 import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
 
@@ -18,7 +19,7 @@ public class TiendaDAOJSON implements TiendaDAO {
 	public List<JuegoDTO> getPublishedGames() {
 		List<JuegoDTO> list = new ArrayList<JuegoDTO>();
 		try {
-			InputStream input = new FileInputStream("./src/resources/NewGames.txt");
+			InputStream input = new FileInputStream("./src/resources/Games.txt");
 			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
 			for (Object o : jsonInput) {
 				JSONObject oJ = new JSONObject(new JSONTokener(o.toString()));

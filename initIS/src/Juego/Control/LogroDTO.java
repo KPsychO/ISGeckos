@@ -6,6 +6,7 @@ public class LogroDTO {
 	private String _name;
 	private String _getMode;
 	
+	@SuppressWarnings("unused")
 	private LogroDAO _dao;
 	
 	public LogroDTO(String name, String getMode, String id) {
@@ -27,6 +28,12 @@ public class LogroDTO {
 				_getMode = l.get_getMode();
 			}
 		}
+		
+	}
+	
+	public LogroDTO(String id) {
+	
+	// TO DO
 		
 	}
 

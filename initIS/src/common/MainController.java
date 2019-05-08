@@ -73,4 +73,10 @@ public class MainController {
 		_current_user = o;
 	}
 	
+	public static UsuarioDTO getCurrentUser() {
+		
+		return _current_user;
+		
+	}
+	
 }

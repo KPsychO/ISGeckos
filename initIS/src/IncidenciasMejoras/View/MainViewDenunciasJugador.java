@@ -31,6 +31,7 @@ public class MainViewDenunciasJugador extends JPanel implements ActionListener{
 	private JTextArea descText;
 	private IncidenciasDAOJSON imJSON;
 	private UsuarioDTO us;
+	@SuppressWarnings("unused")
 	private UsuarioDTO usDen;
 	
 	public MainViewDenunciasJugador(UsuarioDTO usuario, UsuarioDTO usDen) {

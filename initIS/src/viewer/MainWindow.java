@@ -76,6 +76,7 @@ public class MainWindow extends JFrame{
 		
 	}
 	
+	@SuppressWarnings("exports")
 	public void reinicia(JPanel newPanel, UsuarioDTO user) {
 		menuPanel = initMenuPanel();
 		headerPanel = initHeaderPanel();

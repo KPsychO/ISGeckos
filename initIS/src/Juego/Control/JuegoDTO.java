@@ -63,6 +63,7 @@ public class JuegoDTO {
 		
 	}
 
+	@SuppressWarnings("exports")
 	public JuegoDTO(JSONObject juego) {
 		
 		_id = juego.getString("_id");

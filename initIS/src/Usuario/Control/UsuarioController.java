@@ -3,7 +3,6 @@ package Usuario.Control;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 import Usuario.View.MainWindowAcuerdoSuscriptor;
 import Usuario.View.MainWindowCrearCuenta;
 import Usuario.View.MainWindowEliminarCuenta;
@@ -17,6 +16,7 @@ public class UsuarioController extends Controller{
 	
 	private static MainController _mc;
 	
+	@SuppressWarnings("unused")
 	private UsuarioDTO _dto;
 	
 	public UsuarioController(UsuarioDTO dto, MainController mc) {
@@ -26,6 +26,7 @@ public class UsuarioController extends Controller{
 		
 	}
 
+	@SuppressWarnings("exports")
 	@Override
 	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
 		if (panel.equals("IniciarSesion")) {
