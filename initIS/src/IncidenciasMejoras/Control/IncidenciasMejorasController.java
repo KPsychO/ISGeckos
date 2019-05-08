@@ -16,8 +16,10 @@ public class IncidenciasMejorasController extends Controller {
 			return new MainViewIncidenciasJugador(user);
 		else if (panel.equals("DenunciarJugador"))
 			return new MainViewDenunciasJugador(user, (UsuarioDTO) o);
+		/*
 		else if (panel.equals("revIncMej"))
 			return new MainViewRevisionMensajes(user);
+			*/
 		else
 			return null;
 	}

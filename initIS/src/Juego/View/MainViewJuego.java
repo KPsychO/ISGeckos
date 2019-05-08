@@ -165,7 +165,7 @@ public class MainViewJuego extends JPanel{
 	class ComprarButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			if(MainController.getCurrentUser().isUnregistered()) {
+			if (MainController.getCurrentUser().isUnregistered()) {
 				
 				JFrame frame = new JFrame("ERROR");
 				frame.setLayout(new BorderLayout());

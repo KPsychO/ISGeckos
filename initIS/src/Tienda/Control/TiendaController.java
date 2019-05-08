@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import Biblioteca.Control.BibliotecaController;
 import Juego.Control.JuegoDTO;
 import Tienda.View.ComprarJuego;
 import Tienda.View.MainViewTienda;
@@ -15,9 +16,13 @@ public class TiendaController extends Controller{
 	
 	private TiendaDAO _dao;
 	TiendaDTO _TiendaDTO;
+	UsuarioDTO _user;
+	BibliotecaController _bilioCont;
 	
 	public TiendaController(UsuarioDTO user) {
 		
+		_user = user;
+		// _bilioCont = new BibliotecaController(_user);  Hasta que no este biblioteca, no se añaden juegos
 		_dao = new TiendaDAOJSON();
 		_TiendaDTO = new TiendaDTO(createJuegosEnTienda(user));
 		
@@ -62,11 +67,18 @@ public class TiendaController extends Controller{
 		return juegosEnTienda;
 	}
 	
-	public void comprarJuego(JuegoDTO juego) {
+	public boolean comprarJuego(JuegoDTO juego) {
 		
-		_TiendaDTO.comprarJuego(juego);
+		if(_user.get_balance() >= juego.get_price()) {
 		
-		/// bibliotecaController.anadirJuego(juego)
+			_TiendaDTO.comprarJuego(juego);
+			_bilioCont.anadirJuego(juego);
+			
+			return true;
+		
+		}
+		
+		return false;
 		
 	}
 	
@@ -87,7 +99,7 @@ public class TiendaController extends Controller{
 			
 		
 		else if (panel.equals("ComprarJuego"))
-			return new ComprarJuego((JuegoDTO) o); 
+			return new ComprarJuego((JuegoDTO) o, user, this); 
 		
 		else
 			return null;

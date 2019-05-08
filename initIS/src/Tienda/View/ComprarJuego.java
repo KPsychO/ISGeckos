@@ -2,28 +2,38 @@ package Tienda.View;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import Juego.Control.JuegoDTO;
+import Tienda.Control.TiendaController;
+import Usuario.Control.UsuarioDTO;
 
 public class ComprarJuego extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	
 	JuegoDTO _juego;
+	UsuarioDTO _user;
 	JPanel _panel;
+	TiendaController _tiendaCont;
 	
-	public ComprarJuego(JuegoDTO juego) {
+	public ComprarJuego(JuegoDTO juego, UsuarioDTO user, TiendaController tc) {
 		
+		_user = user;
+		_tiendaCont = tc;
 		_juego = juego;
 		initGUI();
 		this.setVisible(true);
@@ -150,8 +160,43 @@ public class ComprarJuego extends JPanel{
 	private void bcomprar() {
 		
 		JButton comprar = new JButton("Comprar");
+		comprar.addActionListener(new ComprarButton());
 		_panel.add(comprar);
 		
+	}
+	
+	class ComprarButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+
+			boolean ret = _tiendaCont.comprarJuego(_juego);
+			
+			if (ret) {
+				
+				JFrame frame = new JFrame("Juego comprado");
+				frame.setLayout(new BorderLayout());
+				frame.setMinimumSize(new Dimension(800,200));
+				frame.setPreferredSize(new Dimension(800,200));
+				
+				JLabel label = new JLabel("Se ha comprado: " + _juego.get_title() + " por: " + _juego.get_price()/100 + "$", SwingConstants.CENTER);
+				
+				frame.add(label, BorderLayout.CENTER);
+				frame.setVisible(true);
+				
+			} else {
+				
+				JFrame frame = new JFrame("ERROR");
+				frame.setLayout(new BorderLayout());
+				frame.setMinimumSize(new Dimension(800,200));
+				frame.setPreferredSize(new Dimension(800,200));
+				
+				JLabel label = new JLabel("No se ha comprado: " + _juego.get_title() + " por: " + _juego.get_price()/100 + "$, BALANCE INSUFICIENTE", SwingConstants.CENTER);
+				
+				frame.add(label, BorderLayout.CENTER);
+				frame.setVisible(true);
+				
+			}
+			
+		}
 	}
 
 }
