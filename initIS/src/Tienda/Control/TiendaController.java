@@ -16,8 +16,8 @@ import common.Controller;
 public class TiendaController{
 	
 	private TiendaDAO _dao;
-	TiendaDTO _TiendaDTO;
-	Controller _controller;
+	private TiendaDTO _TiendaDTO;
+	private Controller _controller;
 	
 	public TiendaController(Controller cont, UsuarioDTO user) {
 		
@@ -110,7 +110,7 @@ public class TiendaController{
 	@SuppressWarnings("exports")
 	public JPanel getComprarJuego(JuegoDTO juego) {
 		
-		return new ComprarJuego(juego, _controller.getCurrentUser(), this);
+		return new ComprarJuego(juego, this);
 		
 	}
 	

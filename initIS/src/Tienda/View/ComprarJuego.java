@@ -20,28 +20,25 @@ import javax.swing.SwingConstants;
 import Juego.Control.JuegoDTO;
 import Tienda.Control.EventoTienda;
 import Tienda.Control.TiendaController;
-import Usuario.Control.UsuarioDTO;
 
 public class ComprarJuego extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	
-	JuegoDTO _juego;
-	UsuarioDTO _user;
-	JPanel _panel;
-	TiendaController _tiendaCont;
+	private JuegoDTO _juego;
+	private JPanel _panel;
+	private TiendaController _tiendaCont;
 	
-	JTextField tfnombre;
-	JTextField tfapell;
-	JTextField tfedad;
-	JTextField tfcuenta;
-	JTextField tfcvv;
-	JTextField tfcad;
+	private JTextField tfnombre;
+	private JTextField tfapell;
+	private JTextField tfedad;
+	private JTextField tfcuenta;
+	private JTextField tfcvv;
+	private JTextField tfcad;
 	
 	
-	public ComprarJuego(JuegoDTO juego, UsuarioDTO user, TiendaController tc) {
+	public ComprarJuego(JuegoDTO juego, TiendaController tc) {
 		
-		_user = user;
 		_tiendaCont = tc;
 		_juego = juego;
 		initGUI();
@@ -98,7 +95,7 @@ public class ComprarJuego extends JPanel{
 		JTextArea tArea = new JTextArea();
 		tArea.setText(_juego.get_descShort());
 		tArea.setEditable(false);
-		//Arregla la mierda de que la scrollbar inicie a la derecha
+
 		tArea.setSelectionStart(0);
 		tArea.setSelectionEnd(0);
 		tArea.setWrapStyleWord(true);

@@ -22,12 +22,12 @@ public class JuegoTienda extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	JuegoDTO _juegoDTO;
+	private JuegoDTO _juegoDTO;
 	
-	JButton _icon;
-	JPanel _contents;
-	JPanel _desc;
-	TiendaController _tiendaCont;
+	private JButton _icon;
+	private JPanel _contents;
+	private JPanel _desc;
+	private TiendaController _tiendaCont;
 	
 	
 	public JuegoTienda(JuegoDTO juego, TiendaController tiendCont) {
@@ -73,9 +73,7 @@ public class JuegoTienda extends JPanel {
 	
 	class CargarButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			
 			_tiendaCont.evento(EventoTienda.accesoJuego, _juegoDTO, _tiendaCont.getCurrentUser());
-			
 		}
 	}
 	

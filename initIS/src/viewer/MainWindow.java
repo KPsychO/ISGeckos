@@ -20,8 +20,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Juego.View.MainViewJuego;
+import Tienda.Control.EventoTienda;
+import Tienda.View.MainViewTienda;
 import Usuario.Control.UsuarioDTO;
 import Usuario.Control.tipoCuenta;
+import common.Controller;
 
 public class MainWindow extends JFrame{
 
@@ -36,8 +40,12 @@ public class MainWindow extends JFrame{
 	private Boolean state_developer = false;
 	private Boolean state_admin = false;
 	
-	public MainWindow() {
+	private Controller _controller;
+	
+	public MainWindow(Controller cont) {
+		
 		super("Gecko");
+		_controller = cont;
 		this.setSize(800, 800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -149,13 +157,13 @@ public class MainWindow extends JFrame{
 		
 		panel.add(west, BorderLayout.WEST);
 		panel.add(east, BorderLayout.EAST);
-		//panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		
 		return panel;
 	}
 	
 	class TiendaButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("Tienda", null, null);
+			_controller.setPrincipalPanel(new MainViewTienda(_controller.getControllerTienda(), _controller.getCurrentUser()));
 		}
 	}
 	
