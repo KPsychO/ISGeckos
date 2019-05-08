@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import Biblioteca.Control.BibliotecaController;
 import Comunidad.View.ComunidadController;
 import Formulario.Control.FormularioController;
 import IncidenciasMejoras.Control.IncidenciasMejorasController;
@@ -28,7 +29,8 @@ public class MainController {
 		new ComunidadController(),
 		new IncidenciasMejorasController(),
 		new FormularioController(),
-		new UsuarioController(new UsuarioDTO(null, 0, null, null, null, null, "0000000000", null), this)
+		new UsuarioController(new UsuarioDTO(null, 0, null, null, null, null, "0000000000", null), this),
+		new BibliotecaController()
 		
 	};
 
