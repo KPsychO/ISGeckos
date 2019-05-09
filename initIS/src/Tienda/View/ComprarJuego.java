@@ -114,11 +114,11 @@ public class ComprarJuego extends JPanel{
 		JPanel form = new JPanel();
 		form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
 		
-		JLabel nombre = new JLabel("Nombre:");
-		JLabel apell = new JLabel("Apellidos:");
-		JLabel edad = new JLabel("Edad:");
-		JLabel cuenta = new JLabel("Cuenta:");
-		JLabel cvv = new JLabel("CVV:");
+		JLabel nombre = new JLabel("Nombre (Sólo carácteres, (NOT NULL):");
+		JLabel apell = new JLabel("Apellidos (Sólo carácteres, (NOT NULL):");
+		JLabel edad = new JLabel("Edad (mayor de 12 y menor de 100):");
+		JLabel cuenta = new JLabel("Cuenta (16 dígitos):");
+		JLabel cvv = new JLabel("CVV (3 dígitos):");
 		JLabel cad = new JLabel("Fecha caducidad:");
 		
 		tfnombre = new JTextField();
@@ -175,15 +175,22 @@ public class ComprarJuego extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 
 			boolean ret = true;
-			ret = _tiendaCont.comprarJuego(_juego);
 			ret = !tfnombre.getText().equals("");
 			ret = !tfapell.getText().equals("");
-			ret = Integer.valueOf(tfedad.getText()) >= 12;
-			ret = Integer.valueOf(tfedad.getText()) <= 100;
-			ret = Integer.valueOf(tfcuenta.getText()) / 1E15 < 10;
-			ret = Integer.valueOf(tfcuenta.getText()) / 1E15 > 1;
-			ret = Integer.valueOf(tfcvv.getText()) / 100 < 10;
-			ret = Integer.valueOf(tfcvv.getText()) / 100 > 1;
+			ret = !(Integer.valueOf(tfedad.getText()) >= 12);
+			ret = !(Integer.valueOf(tfedad.getText()) <= 100);
+			ret = !(Long.parseUnsignedLong(tfcuenta.getText()) / 1E15 < 10);
+			ret = !(Long.parseUnsignedLong(tfcuenta.getText()) / 1E15 > 1);
+			ret = !(Integer.valueOf(tfcvv.getText()) / 100 < 10);
+			ret = !(Integer.valueOf(tfcvv.getText()) / 100 > 1);
+			
+			if(ret)	ret = _tiendaCont.comprarJuego(_juego);
+
+			/*
+			if(Integer.valueOf(tfedad.getText()) >= 12 || Integer.valueOf(tfedad.getText()) <= 100) System.out.println("edad");
+			if(Long.parseUnsignedLong(tfcuenta.getText()) / 1E15 < 10 || Long.parseUnsignedLong(tfcuenta.getText()) / 1E15 > 1) System.out.println("cuenta");
+			if(Integer.valueOf(tfcvv.getText()) / 100 < 10 || Integer.valueOf(tfcvv.getText()) / 100 > 1) System.out.println("cvv");
+			*/
 			
 			if (ret) {
 				
