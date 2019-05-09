@@ -83,9 +83,11 @@ public class UsuarioControllerFacade {
 			
 		case Biblioteca:
 			_controller.setPrincipalPanel(_controller.getBiblioteca());
+			break;
 		
 		case RevIncMej: 
 			_controller.setPrincipalPanel(_controller.getRevMej());
+			break;
 			
 		default: break;
 		

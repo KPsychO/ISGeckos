@@ -2,6 +2,46 @@
     {
         "_gamesList": [
             {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8a535d02272178a1c8",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "33ee132e-6706-49d1-af97-16eb29cb50ed",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8a013c7fbd7c4498dd",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8add3807018cc8529f",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8ad6cdbe51e9a9fa5c",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            }
+        ],
+        "_userId": "1"
+    },
+    {
+        "_gamesList": [
+            {
                 "_lastEx": "never",
                 "_gameId": "5cd1ef8a60b100a9e8034586",
                 "_actVers": 0,
@@ -13,13 +53,6 @@
                 "_gameId": "5cd1ef8a535d02272178a1c8",
                 "_actVers": 0,
                 "_installed": true,
-                "_hoursPlayed": 0
-            },
-            {
-                "_lastEx": "Never",
-                "_gameId": "5cd1ef8add3807018cc8529f",
-                "_actVers": 0,
-                "_installed": false,
                 "_hoursPlayed": 0
             },
             {
@@ -77,12 +110,7 @@
                 "_actVers": 0,
                 "_installed": false,
                 "_hoursPlayed": 0
-            }
-        ],
-        "_userId": "5ccd515396f1e847f2e4eb0d"
-    },
-    {
-        "_gamesList": [
+            },
             {
                 "_lastEx": "Never",
                 "_gameId": "5cd1ef8a535d02272178a1c8",
@@ -92,16 +120,9 @@
             },
             {
                 "_lastEx": "Never",
-                "_gameId": "33ee132e-6706-49d1-af97-16eb29cb50ed",
+                "_gameId": "5cd1ef8add3807018cc8529f",
                 "_actVers": 0,
-                "_installed": false,
-                "_hoursPlayed": 0
-            },
-            {
-                "_lastEx": "Never",
-                "_gameId": "5cd1ef8a013c7fbd7c4498dd",
-                "_actVers": 0,
-                "_installed": false,
+                "_installed": true,
                 "_hoursPlayed": 0
             },
             {
@@ -110,15 +131,8 @@
                 "_actVers": 0,
                 "_installed": false,
                 "_hoursPlayed": 0
-            },
-            {
-                "_lastEx": "Never",
-                "_gameId": "5cd1ef8ad6cdbe51e9a9fa5c",
-                "_actVers": 0,
-                "_installed": false,
-                "_hoursPlayed": 0
             }
         ],
-        "_userId": "1"
+        "_userId": "5ccd515396f1e847f2e4eb0d"
     }
 ]

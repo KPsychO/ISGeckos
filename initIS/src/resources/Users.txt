@@ -20,20 +20,6 @@
         "_types": ["developer"]
     },
     {
-        "_country": "Sudan",
-        "_email": "letitiaeverett@filodyne.com",
-        "_password": "1",
-        "_balance": 30450054,
-        "_desc": "Commodo amet voluptate culpa ad ullamco qui do. Et enim adipisicing deserunt reprehenderit id fugiat eu aute commodo. Eu dolor consequat aliquip duis fugiat qui sit nostrud voluptate duis culpa est.\r\n",
-        "_user_id": "5ccd515396f1e847f2e4eb0d",
-        "_username": "1",
-        "_types": [
-            "user",
-            "admin",
-            "developer"
-        ]
-    },
-    {
         "_country": "Antarctica",
         "_email": "nicolebeasley@filodyne.com",
         "_password": "magna",
@@ -202,6 +188,20 @@
         "_types": [
             "developer",
             "user",
+            "developer"
+        ]
+    },
+    {
+        "_country": "SudanDelSur",
+        "_email": "letitiaeverett@filodyne.com",
+        "_password": "1",
+        "_balance": 30450054,
+        "_desc": "ONONONONON",
+        "_user_id": "5ccd515396f1e847f2e4eb0d",
+        "_username": "1",
+        "_types": [
+            "user",
+            "admin",
             "developer"
         ]
     }
