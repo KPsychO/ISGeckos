@@ -1,4 +1,5 @@
 module initIS {
+	
 	exports viewer;
 	exports common;
 	exports Juego.View;
