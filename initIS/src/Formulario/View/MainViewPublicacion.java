@@ -15,11 +15,11 @@ import javax.swing.JPanel;
 import org.json.JSONArray;
 
 import Formulario.Control.FormularioControllerFacade;
+import Formulario.Control.EventoFormulario;
 import Formulario.Control.FormularioDAOJSON;
 import Formulario.Control.FormularioDTO;
 import Usuario.Control.UsuarioDTO;
 
-//En la pestaña publicación, se aceptarán o rechazarán los formularios enviados por un administrador
 public class MainViewPublicacion extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
@@ -43,7 +43,10 @@ public class MainViewPublicacion extends JPanel {
     private JLabel num;
     private JPanel devpanel;
     private JLabel devname;
-
+    private JPanel typepanel;
+    private JLabel type;
+    
+    private IteratorFormulario iter;
     
     private FormularioControllerFacade _cf;
 
@@ -55,6 +58,7 @@ public class MainViewPublicacion extends JPanel {
 	}
 		
 	private void initGUI() {
+		this.iter = new IteratorFormulario(0);
 		configPanel();
 		initPanel();
 		createBottom();
@@ -87,6 +91,8 @@ public class MainViewPublicacion extends JPanel {
 		this.num.setText("NUMERO :  " + n);
 		
 		this.devname.setText("DEVELOPER :  " + new UsuarioDTO(formulary.get_developer()).get_username());
+		
+		this.type.setText("TIPO :  " + formulary.get_type());
 		
 	}
 	
@@ -139,6 +145,12 @@ public class MainViewPublicacion extends JPanel {
         devname.setPreferredSize(new Dimension(500,20));
         devname.setText("NUMERO :  " );
         
+        this.typepanel = new JPanel();
+        this.type = new JLabel();
+        
+        type.setPreferredSize(new Dimension(500,20));
+        type.setText("TIPO :  " );
+        
         titulopanel.add(titulo);
         preciopanel.add(precio);
         pegipanel.add(pegi);
@@ -146,6 +158,7 @@ public class MainViewPublicacion extends JPanel {
         longpanel.add(longdes);
         numpanel.add(num);
         devpanel.add(devname);
+        typepanel.add(type);
         
         campos.add(titulopanel);
         campos.add(preciopanel);
@@ -154,6 +167,7 @@ public class MainViewPublicacion extends JPanel {
         campos.add(longpanel);
         campos.add(numpanel);
         campos.add(devpanel);
+        campos.add(typepanel);
         
         campos.add(Box.createVerticalStrut(20));
         this.add(campos);
@@ -178,15 +192,17 @@ public class MainViewPublicacion extends JPanel {
 				form = new FormularioDAOJSON().getFormularies();
 				if(form.length() == 0) {
 					JOptionPane.showMessageDialog(null, "No hay mas formulariuos", "Error", JOptionPane.ERROR_MESSAGE);
+					_cf.evento(EventoFormulario.Perfil, null);
 				}
-				else if(n < form.length() - 1){
-					n++;
-					showFormulary(n);
+				else if(iter.actual < form.length() - 1){
+					
+					showFormulary(iter.siguiente());
 				}
-				else if (n == form.length() - 1){
+				else if (iter.actual == form.length() - 1){
 					n = 0;
-					showFormulary(n);
+					showFormulary(iter.primero());
 				}
+			
 				
 			}
 	           
@@ -201,15 +217,17 @@ public class MainViewPublicacion extends JPanel {
 				form = new FormularioDAOJSON().getFormularies();
 				if(form.length() == 0) {
 					JOptionPane.showMessageDialog(null, "No hay mmas formulariuos", "Error", JOptionPane.ERROR_MESSAGE);
+					_cf.evento(EventoFormulario.Perfil, null);
 				}
-				else if(n > 0){
-					n--;
-					showFormulary(n);
+				else if(iter.actual > 0){
+					
+					showFormulary(iter.anterior());//ITERATOR
 				}
-				else if (n == 0){
-					n = form.length() - 1;
-					showFormulary(n);
+				else if (iter.actual == 0){
+					iter.setPos( form.length() - 1);
+					showFormulary(iter.actual);
 				}	
+				
 			}
 
 	        });
@@ -218,21 +236,20 @@ public class MainViewPublicacion extends JPanel {
 				
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				_formularioDTO.deleteFormulary(n);
+				_formularioDTO.deleteFormulary(iter.actual);
 				
 				JSONArray form = new JSONArray();
 				form = new FormularioDAOJSON().getFormularies();
 				
 				if(form.length() == 0) {
 					JOptionPane.showMessageDialog(null, "No hay mas formularios", "Error", JOptionPane.ERROR_MESSAGE);
-					firePropertyChange("PerfilUsuarioCurrent", null, null);
+					_cf.evento(EventoFormulario.Perfil, null);
 				}
-				else if(n < form.length() - 1){
-					showFormulary(n);
+				else if(iter.actual < form.length() - 1){
+					showFormulary(iter.siguiente());
 				}
-				else if (n >= form.length() - 1){
-					n = 0;
-					showFormulary(n);
+				else if (iter.actual >= form.length() - 1){
+					showFormulary(iter.primero());
 				}
 			}
 
@@ -242,22 +259,38 @@ public class MainViewPublicacion extends JPanel {
 				
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				_formularioDTO.insertGame(n);
-				_formularioDTO.deleteFormulary(n);
+				
 				
 				JSONArray form = new JSONArray();
 				form = new FormularioDAOJSON().getFormularies();
+				FormularioDTO formulary = new FormularioDTO(form.getJSONObject(iter.actual));
 				
-				if(form.length() == 0) {
-					JOptionPane.showMessageDialog(null, "No hay mas formularios", "Error", JOptionPane.ERROR_MESSAGE);
-					firePropertyChange("PerfilUsuarioCurrent", null, null);
-				}
-				else if(n < form.length() - 1){
-					showFormulary(n);
-				}
-				else if (n >= form.length() - 1){
-					n = 0;
-					showFormulary(n);
+				if (formulary.get_type().equals("Eliminar")) {
+					_cf.eliminarJuego(formulary.get_id());
+					
+					_formularioDTO.deleteFormulary(iter.actual);
+					form = new FormularioDAOJSON().getFormularies();
+					if(form.length() == 0) {
+						JOptionPane.showMessageDialog(null, "No hay mas formularios", "Error", JOptionPane.ERROR_MESSAGE);
+						//firePropertyChange("PerfilUsuarioCurrent", null, null);
+						_cf.evento(EventoFormulario.Perfil, null);
+					}
+				} else {
+					_formularioDTO.insertGame(iter.actual);
+					_formularioDTO.deleteFormulary(iter.actual);
+					if(form.length() == 0) {
+						JOptionPane.showMessageDialog(null, "No hay mas formularios", "Error", JOptionPane.ERROR_MESSAGE);
+						//firePropertyChange("PerfilUsuarioCurrent", null, null);
+						_cf.evento(EventoFormulario.Perfil, null);
+					}
+					else if(iter.actual < form.length() - 1){
+						JOptionPane.showMessageDialog(null, "Juego enviado correctamente ", null, JOptionPane.ERROR_MESSAGE);
+						showFormulary(iter.siguiente());
+					}
+					else if (iter.actual >= form.length() - 1){
+						JOptionPane.showMessageDialog(null, "Juego enviado correctamente ", "null", JOptionPane.ERROR_MESSAGE);
+						showFormulary(iter.primero());
+					}
 				}
 			}
 

@@ -388,7 +388,7 @@ public class MainViewActualizarJuego extends JPanel{
 	                	JOptionPane.showMessageDialog(MainViewActualizarJuego.this, tipoError, ok, JOptionPane.INFORMATION_MESSAGE);
 	                	
 	                	FormularioDTO formulario = getFormulario();
-	                	_formularioDTO.insert(formulario);
+	                	_formularioDTO.insert(formulario, "Actualizar");
 
 	                }  
 	            }

@@ -1,6 +1,7 @@
 package Biblioteca.View;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -65,9 +66,10 @@ public class MainViewBiblioteca extends JPanel{
 			_panel.add(observed);
 			
 		}
+		JPanel _grid = new JPanel(new FlowLayout());
 		JScrollPane jsp = new JScrollPane(_panel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		jsp.getVerticalScrollBar().setUnitIncrement(20);
-		this.add(jsp);
-		
+		_grid.add(jsp);
+		this.add(_grid);
 	}
 }

@@ -2,13 +2,14 @@ package IncidenciasMejoras.Control;
 
 import javax.swing.JPanel;
 
-import IncidenciasMejoras.View.MainViewDenunciasJugador;
-import IncidenciasMejoras.View.MainViewIncidenciasJuego;
+import org.json.JSONArray;
+
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 import IncidenciasMejoras.View.MainViewRevisionMensajes;
 import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
 import common.Controller;
+import common.EventoCommon;
 
 public class IncidenciasMejorasControllerFacade {
 
@@ -22,14 +23,11 @@ public class IncidenciasMejorasControllerFacade {
 	
 	public void evento(EventoIncidenciasMejoras e, JuegoDTO _juego, UsuarioDTO _user) {
 		switch (e) {
-		case DenunciasJuego:
-			_controller.setPrincipalPanel(new MainViewDenunciasJugador(_user, null, this));
-			break;
-		case IncidenciasJuego:
-			_controller.setPrincipalPanel(new MainViewIncidenciasJuego(_user, _juego, this));
-			break;
 		case IncMejATienda:
 			_controller.setPrincipalPanel(_controller.getTienda());
+			break;
+		case PerfilUsuario:
+			_controller.evento(EventoCommon.Usuario, _juego, _user);
 			break;
 		default:
 			break;
@@ -41,7 +39,13 @@ public class IncidenciasMejorasControllerFacade {
 	}
 
 	public JPanel getRevMejPanel() {
-		return new MainViewRevisionMensajes(_controller.getCurrentUser());
+		return new MainViewRevisionMensajes(_controller.getCurrentUser(), this);
+	}
+	
+	public int getIncidenciasMejoras() {
+		JSONArray im = new JSONArray();
+		im = new IncidenciasDAOJSON().getListIncidencias();
+		return im.length();
 	}
 
 }

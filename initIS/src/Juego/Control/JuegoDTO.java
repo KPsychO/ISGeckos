@@ -13,6 +13,7 @@ public class JuegoDTO {
 	private String _descShort;
 	private String _notes;
 	private String _date;
+	private String _developer;
 	private int _version;
 	private int _pegi;
 	private int _price;
@@ -46,6 +47,7 @@ public class JuegoDTO {
 		this._price = g._price;
 		this._title = g._title;
 		this._version = g._version;
+		this._developer = g._developer;
 
 	}
 	
@@ -71,6 +73,7 @@ public class JuegoDTO {
 		_title = juego.getString("_title");
 		_descLong = juego.getString("_descLong");
 		_descShort = juego.getString("_descShort");
+		_developer = juego.getString("_developer");
 		
 		_pegi = juego.getInt("_pegi");
 		_price = juego.getInt("_price");
@@ -170,4 +173,11 @@ public class JuegoDTO {
 		this._achievements = _achievements;
 	}
 	
+	public String get_developer() {
+		return _developer;
+	}
+
+	public void set_developer(String _developer) {
+		this._developer = _developer;
+	}
 }

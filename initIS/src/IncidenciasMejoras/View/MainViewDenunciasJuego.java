@@ -38,6 +38,7 @@ public class MainViewDenunciasJuego extends JPanel implements ActionListener{
 	
 	public MainViewDenunciasJuego(UsuarioDTO usuario, JuegoDTO juego, IncidenciasMejorasControllerFacade controller) {
 		game = juego;
+		_controller = controller;
 		user = usuario;
 		imJSON = new IncidenciasDAOJSON();
 		initGUI();

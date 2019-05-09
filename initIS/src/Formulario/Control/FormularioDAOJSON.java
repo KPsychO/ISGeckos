@@ -27,7 +27,7 @@ public class FormularioDAOJSON implements FormularioDAO{
 	}
 
 	@Override
-	public void insertFormulary(FormularioDTO newForm){
+	public void insertFormulary(FormularioDTO newForm, String type){
 	
 		JSONArray formularios = getFormularies();
 		
@@ -53,6 +53,7 @@ public class FormularioDAOJSON implements FormularioDAO{
 		obj.put("_genres", newForm.get_genres());
 		obj.put("_achievements", newForm.get_achievements());
 		obj.put("_developer", newForm.get_developer());
+		obj.put("_type", type);
 		
 		try (FileWriter file = new FileWriter("./src/resources/Formularies.txt")) {
 			formularios.put(obj);

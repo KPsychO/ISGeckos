@@ -13,7 +13,9 @@ import javax.swing.JPanel;
 
 import org.json.JSONArray;
 
+import IncidenciasMejoras.Control.EventoIncidenciasMejoras;
 import IncidenciasMejoras.Control.IncidenciasDAOJSON;
+import IncidenciasMejoras.Control.IncidenciasMejorasControllerFacade;
 import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
 import IncidenciasMejoras.Control.IteratorInciMej;
 import Usuario.Control.UsuarioDTO;
@@ -34,9 +36,11 @@ public class MainViewRevisionMensajes extends JPanel {
 	private JLabel _id_game;
 	private IncidenciasMejorasDTO incMejDTO;
 	private IteratorInciMej itr;
+	private IncidenciasMejorasControllerFacade _controller;
 	
-	public MainViewRevisionMensajes(UsuarioDTO user) {
+	public MainViewRevisionMensajes(UsuarioDTO user, IncidenciasMejorasControllerFacade controller) {
 		_user = user;
+		_controller = controller;
 		incMejDTO = new IncidenciasMejorasDTO(user);
 		itr = new IteratorInciMej();
 		initGUI();
@@ -124,7 +128,6 @@ public class MainViewRevisionMensajes extends JPanel {
 		JSONArray inciMej = new JSONArray();
 		
 		inciMej = new IncidenciasDAOJSON().getListIncidencias();
-		if (inciMej.length() != 0) {
 		IncidenciasMejorasDTO incidenciasMejoras = new IncidenciasMejorasDTO(inciMej.getJSONObject(n));
 		
 		this._type.setText("Tipo :  " + incidenciasMejoras.get_type());
@@ -133,10 +136,6 @@ public class MainViewRevisionMensajes extends JPanel {
 		this._id_game.setText("Juego :  " + incidenciasMejoras.get_id_game());
 		this._desc.setText("Descripcion :  " + incidenciasMejoras.get_desc());
 		this._coment.setText("Comentario :  " + incidenciasMejoras.get_coment());
-		}
-		else {
-			JOptionPane.showMessageDialog(getParent(), "No hay mas Incidencias/Denuncias", "Error", JOptionPane.ERROR_MESSAGE);
-		}
 	}
 	
 	class eliminarIncDen implements ActionListener {
@@ -147,6 +146,7 @@ public class MainViewRevisionMensajes extends JPanel {
 			
 			if(im.length() == 0) {
 				JOptionPane.showMessageDialog(getParent(), "No hay mas Incidencias/Denuncias", "Error", JOptionPane.ERROR_MESSAGE);
+				_controller.evento(EventoIncidenciasMejoras.PerfilUsuario, null, _user);
 			}
 			else if(itr.getN() < im.length() - 1){
 				visualizarIncidenciasDenuncias(itr.getN());
@@ -163,6 +163,7 @@ public class MainViewRevisionMensajes extends JPanel {
 				im = new IncidenciasDAOJSON().getListIncidencias();
 				if(im.length() == 0) {
 					JOptionPane.showMessageDialog(getParent(), "No hay mas Incidencias/Denuncias", "Error", JOptionPane.ERROR_MESSAGE);
+					_controller.evento(EventoIncidenciasMejoras.PerfilUsuario, null, _user);
 				}
 				else if(itr.getN() < im.length() - 1){
 					itr.sumarUno();
@@ -180,6 +181,7 @@ public class MainViewRevisionMensajes extends JPanel {
 				im = new IncidenciasDAOJSON().getListIncidencias();
 				if(im.length() == 0) {
 					JOptionPane.showMessageDialog(getParent(), "No hay mas Incidencias/Denuncias", "Error", JOptionPane.ERROR_MESSAGE);
+					_controller.evento(EventoIncidenciasMejoras.PerfilUsuario, null, _user);
 				}
 				else if(itr.getN() > 0){
 					itr.restarUno();
