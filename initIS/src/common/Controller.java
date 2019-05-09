@@ -1,4 +1,6 @@
 package common;
+
+import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -124,20 +126,21 @@ public class Controller {
 		_current_user = _controllerUsuario.getUsuarioID(ID);
 	}
 	*/
-	
-	// Sergio
-	
-	public void anadirJuegoComprado(JuegoDTO j) {
-		
+
+	public void anadirJuegoComprado(JuegoDTO j) {		
 		_bibliotecaController.comprarJuego(j);
 	}
 	
 	// Ignacio
 
 	public void valorar(JuegoEnPropiedadDTO juego) {
-	
+		this.setPrincipalPanel(this._controllerValoraciones.getFormValoraciones(this._current_user, juego));
 	}
 	
+	public JPanel getListValoraciones(JuegoDTO game) throws IOException {
+		return this._controllerValoraciones.getPanelListValoracionesJuego(game, this._current_user);
+	}	
+
 	public UsuarioDTO getCurrentUser() {
 		
 		return _current_user;
@@ -185,6 +188,7 @@ public class Controller {
 	public JPanel getIncidenciasJuego(JuegoEnPropiedadDTO juego) {
 		return new MainViewIncidenciasJuego(_current_user, juego, _controllerIncidenciasMejoras);
 	}
+
 	public void insertarFormulario(FormularioDTO dto, String type) {
 		_controllerFormulario.insertarFormulario(dto, type);
 	}
@@ -199,6 +203,5 @@ public class Controller {
 		//_controllerFormulario.eliminarJuego(id);
 		
 	}
-
 	
 }
