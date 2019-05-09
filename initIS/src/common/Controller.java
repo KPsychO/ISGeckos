@@ -205,4 +205,20 @@ public class Controller {
 		
 	}
 	
+	public void quitaBalance(int b) {
+		_controllerUsuario.quitaBalance(b, _current_user);
+	}
+	
+	public void addBalance(int b) {
+		_current_user.set_balance(_current_user.get_balance() + b);
+	}
+	
+	public int get_ownedGames() {
+		return _bibliotecaController.getOwnedGames(_current_user).size();
+	}
+	
+	public ComunidadControllerFacade getComunControl() {
+		return _controllerComunidad;
+	}
+	
 }

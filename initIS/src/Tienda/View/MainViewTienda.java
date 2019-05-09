@@ -41,7 +41,7 @@ public class MainViewTienda extends JPanel {
 		this.setVisible(true);
 
 	}
-
+	
 	private void initGUI() {
 
 		configPanel();
@@ -135,6 +135,7 @@ public class MainViewTienda extends JPanel {
 		}
 		
 		_panel.add(aux);
+		_panel.revalidate();
 		
 	}
 

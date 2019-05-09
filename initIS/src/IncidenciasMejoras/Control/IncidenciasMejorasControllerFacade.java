@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import org.json.JSONArray;
 
+import Comunidad.View.MainViewPerfilUsuarioDenunciado;
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 import IncidenciasMejoras.View.MainViewRevisionMensajes;
 import Juego.Control.JuegoDTO;
@@ -28,6 +29,9 @@ public class IncidenciasMejorasControllerFacade {
 			break;
 		case PerfilUsuario:
 			_controller.evento(EventoCommon.Usuario, _juego, _user);
+			break;
+		case UsuarioDenunciadoComunidad:
+			_controller.setPrincipalPanel(new MainViewPerfilUsuarioDenunciado(_user, _controller.getComunControl()));
 			break;
 		default:
 			break;
