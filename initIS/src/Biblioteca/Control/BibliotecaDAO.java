@@ -21,5 +21,7 @@ public interface BibliotecaDAO {
 	public abstract void actualizarBiblioteca(JuegoEnPropiedadDTO newGame, UsuarioDTO user);
 	
 	public abstract void insertarJuego(JuegoDTO j, UsuarioDTO currentUser);
+	
+	public abstract void eliminarJuegos(String id);
 
 }

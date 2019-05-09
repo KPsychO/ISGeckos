@@ -198,9 +198,10 @@ public class Controller {
 	}
 
 	public void eliminarJuego(String id) {
-		_controllerJuego.eliminarJuego(id);
-		//_controllerBiblioteca.eliminarJuego(id);
 		_controllerFormulario.eliminarFormularios(id);
+		_controllerJuego.eliminarJuego(id);
+		_bibliotecaController.eliminarJuego(id);
+		
 		
 	}
 	

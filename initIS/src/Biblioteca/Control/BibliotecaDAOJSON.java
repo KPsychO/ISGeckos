@@ -241,6 +241,50 @@ public class BibliotecaDAOJSON implements BibliotecaDAO{
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public void eliminarJuegos(String id) {
+		
+		JSONArray biblioteca = new JSONArray();
+		try {
+			InputStream input = new FileInputStream("./src/resources/Biblioteca.txt");
+			biblioteca = new JSONArray(new JSONTokener(input));
+			
+		} catch (FileNotFoundException e) {}
+		
+		JSONArray nueva_biblioteca = new JSONArray();
+		
+		JSONObject bib_user = new JSONObject();
+		
+		for(Object o : biblioteca) {
+			
+			bib_user = new JSONObject(new JSONTokener(o.toString()));
+			
+			JSONArray juegos = bib_user.getJSONArray("_gamesList");
+			int i = 0;
+			while (i < juegos.length()) {
+				
+				JSONObject juego = new JSONObject(new JSONTokener(juegos.get(i).toString()));
+				
+				if (juego.getString("_gameId").equals(id))
+					juegos.remove(i);
+				else
+					i++;
+				
+			}
+			
+			bib_user.put("_gamesList", juegos);
+			
+			nueva_biblioteca.put(bib_user);
+			
+		}
+		
+		try (FileWriter file = new FileWriter("./src/resources/Biblioteca.txt")) {
+			file.write(nueva_biblioteca.toString(4));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 

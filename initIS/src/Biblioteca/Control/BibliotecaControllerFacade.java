@@ -132,7 +132,6 @@ public class BibliotecaControllerFacade{
 	}
 
 	public void eliminarJuego(String id) {
-		// TODO Auto-generated method stub
-		
+		SingletonBibliotecaDAO.getInstance().eliminarJuegos(id);
 	}
 }

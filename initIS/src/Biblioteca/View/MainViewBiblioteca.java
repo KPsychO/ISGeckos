@@ -45,7 +45,7 @@ public class MainViewBiblioteca extends JPanel{
 		
 		this.setLayout(new BorderLayout());
 		_panel = new JPanel();
-		_panel.setLayout(new GridLayout(0, 3, 10, 10));
+		_panel.setLayout(new GridLayout(2, 2, 10, 10));
 		
 	}
 	
@@ -55,13 +55,6 @@ public class MainViewBiblioteca extends JPanel{
 		for (JuegoEnPropiedadDTO j : this._games) {	
 			
 			JuegoBiblioteca observed = new JuegoBiblioteca(j, _bibliotecaController);
-	        observed.addPropertyChangeListener(new PropertyChangeListener() {
-
-	            @Override
-	            public void propertyChange(PropertyChangeEvent e) {
-	            	firePropertyChange(e.getPropertyName(), e.getOldValue(), e.getNewValue());
-	            }
-	        });
 	        
 			_panel.add(observed);
 			
@@ -69,7 +62,8 @@ public class MainViewBiblioteca extends JPanel{
 		JPanel _grid = new JPanel(new FlowLayout());
 		JScrollPane jsp = new JScrollPane(_panel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		jsp.getVerticalScrollBar().setUnitIncrement(20);
-		_grid.add(jsp);
-		this.add(_grid);
+		//_grid.add(jsp);
+		jsp.add(_grid);
+		this.add(jsp);
 	}
 }

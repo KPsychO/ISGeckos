@@ -125,8 +125,9 @@ public class FormularioDAOJSON implements FormularioDAO{
 	public void deleteFormularies(String id) {
 		JSONArray arr = getFormularies();
 		List<Integer> lista_eliminar = new ArrayList<Integer>();
-
-		for (int i = 0; i < arr.length(); ++i) {
+		
+		int i = 0;
+		while (i < arr.length()) {
 			
 			JSONObject game = new JSONObject(new JSONTokener(arr.get(i).toString()));
 			if (game.getString("_id").equals(id)) {
