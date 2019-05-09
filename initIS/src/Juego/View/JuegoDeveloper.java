@@ -13,8 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
-import Juego.Control.JuegoControllerFacade;
 import Juego.Control.EventoJuego;
+import Juego.Control.JuegoControllerFacade;
 import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
 

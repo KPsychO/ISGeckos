@@ -18,8 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
-import Juego.Control.JuegoControllerFacade;
 import Juego.Control.EventoJuego;
+import Juego.Control.JuegoControllerFacade;
 import Juego.Control.JuegoDTO;
 
 public class MainViewJuego extends JPanel{

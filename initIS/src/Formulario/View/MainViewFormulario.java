@@ -362,7 +362,7 @@ public class MainViewFormulario extends JPanel{
 	                	JOptionPane.showMessageDialog(MainViewFormulario.this, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
 	                }
 	                else { //no hay error
-	                	tipoError = "Lo has enviado correctamente";
+	                	tipoError = "Tu formulario ha sido enviado de forma satisfactoria";
 	                	String ok = "Enviado correctamente";
 	                	JOptionPane.showMessageDialog(MainViewFormulario.this, tipoError, ok, JOptionPane.INFORMATION_MESSAGE);
 	                	

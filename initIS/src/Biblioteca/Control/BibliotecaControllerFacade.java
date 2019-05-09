@@ -36,7 +36,12 @@ public class BibliotecaControllerFacade{
 	}
 	
 	public List<JuegoEnPropiedadDTO> getOwnedGames(UsuarioDTO user){
-		return SingletonBibliotecaDAO.getInstance().getOwnedGames(user.get_user_id());
+		
+		List<JuegoEnPropiedadDTO> games = new ArrayList<JuegoEnPropiedadDTO>();
+		
+		games = SingletonBibliotecaDAO.getInstance().getOwnedGames(user.get_user_id());
+		
+		return games;
 	}
 
 	public void anadirJuego(JuegoDTO juego) {

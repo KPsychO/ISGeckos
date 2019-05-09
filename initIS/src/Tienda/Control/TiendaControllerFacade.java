@@ -46,13 +46,15 @@ public class TiendaControllerFacade{
 		
 		pubGames = SingletonTiendaDAO.getInstance().getPublishedGames();
 		
-		ownGames = _controller.getOwnedGames(user);
+		ownGames = _controller.getOwnedGames();
 		
-		for(JuegoDTO j : pubGames) {
-			
-			if(!ownGames.contains(j))
-				juegosEnTienda.add(j);
-			
+		if(ownGames != null) {
+			for(JuegoDTO j : pubGames) {
+				
+				if(!ownGames.contains(j))
+					juegosEnTienda.add(j);
+				
+			}
 		}
 		
 		return juegosEnTienda;

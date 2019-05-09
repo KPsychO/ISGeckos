@@ -11,8 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import Usuario.Control.UsuarioControllerFacade;
 import Usuario.Control.EventoUsuario;
+import Usuario.Control.UsuarioControllerFacade;
 
 public class MainWindowAcuerdoSuscriptor extends JPanel{
 	private static final long serialVersionUID = 1L;

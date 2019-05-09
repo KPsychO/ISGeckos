@@ -1,30 +1,35 @@
 package common;
+import java.util.List;
+
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import Biblioteca.Control.BibliotecaController;
-import Comunidad.View.ControllerComunidad;
-import Formulario.Control.ControllerFormulario;
-import IncidenciasMejoras.Control.ControllerIncidenciasMejoras;
+import Biblioteca.Control.BibliotecaControllerFacade;
+import Biblioteca.Control.JuegoEnPropiedadDTO;
+import Comunidad.View.ComunidadControllerFacade;
+import Formulario.Control.FormularioControllerFacade;
+import Formulario.View.MainViewFormulario;
+import IncidenciasMejoras.Control.IncidenciasMejorasControllerFacade;
 import IncidenciasMejoras.View.MainViewDenunciasJugador;
-import Juego.Control.ControllerJuego;
+import Juego.Control.JuegoControllerFacade;
 import Juego.Control.JuegoDTO;
-import Usuario.Control.ControllerUsuario;
-import Tienda.Control.TiendaController;
+import Tienda.Control.TiendaControllerFacade;
+import Usuario.Control.UsuarioControllerFacade;
 import Usuario.Control.UsuarioDTO;
-import valoraciones.ControllerValoraciones;
+import valoraciones.ValoracionesControllerFacade;
 
 public class Controller {
 	//Poner vuestros controller aqui
 	
-	private ControllerJuego _controllerJuego;
-	private ControllerIncidenciasMejoras _controllerIncidenciasMejoras;
-	private ControllerComunidad _controllerComunidad;
-	private ControllerFormulario _controllerFormulario;
-	private ControllerValoraciones _controllerValoraciones;
-	private ControllerUsuario _controllerUsuario;
-	private TiendaController _tiendaControler;
-	private BibliotecaController _bibliotecaController;
+	private JuegoControllerFacade _controllerJuego;
+	private IncidenciasMejorasControllerFacade _controllerIncidenciasMejoras;
+	private ComunidadControllerFacade _controllerComunidad;
+	private FormularioControllerFacade _controllerFormulario;
+	private ValoracionesControllerFacade _controllerValoraciones;
+	private UsuarioControllerFacade _controllerUsuario;
+	private BibliotecaControllerFacade _bibliotecaController;
+	private TiendaControllerFacade _tiendaControler;
 	
 	private MainWindow _mw;
 	
@@ -32,16 +37,16 @@ public class Controller {
 	
 	public Controller() {
 		
-		_current_user = new UsuarioDTO("0000000000");
+		_current_user = new UsuarioDTO("5ccd515396f1e847f2e4eb0d");
 		
-		_controllerJuego = new ControllerJuego(this);
-		_controllerIncidenciasMejoras = new ControllerIncidenciasMejoras(this);
-		_controllerComunidad = new ControllerComunidad(this);
-		_controllerFormulario = new ControllerFormulario(this);
-		_controllerValoraciones = new ControllerValoraciones(this);
-		_controllerUsuario = new ControllerUsuario(this, _current_user);
-		_tiendaControler = new TiendaController(this);
-		_bibliotecaController = new BibliotecaController(this);
+		_controllerJuego = new JuegoControllerFacade(this);
+		_controllerIncidenciasMejoras = new IncidenciasMejorasControllerFacade(this);
+		_controllerComunidad = new ComunidadControllerFacade(this);
+		_controllerFormulario = new FormularioControllerFacade(this);
+		_controllerValoraciones = new ValoracionesControllerFacade(this);
+		_controllerUsuario = new UsuarioControllerFacade(this, _current_user);
+		_bibliotecaController = new BibliotecaControllerFacade(this);
+		_tiendaControler = new TiendaControllerFacade(this);
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -58,7 +63,10 @@ public class Controller {
 			setPrincipalPanel(_tiendaControler.getTiendaPanel());
 			break;
 		case Biblioteca:
-			setPrincipalPanel(_bibliotecaController.getBibliotecaPanel());
+			if (_current_user.isUnregistered())
+            	JOptionPane.showMessageDialog(null, "Necesitas estas logeado para ver la biblioteca", "Error", JOptionPane.ERROR_MESSAGE);
+			else
+				setPrincipalPanel(_bibliotecaController.getBibliotecaPanel());
 			break;
 		case Comunidad:
 			setPrincipalPanel(_controllerComunidad.getComunidadPanel(_current_user));
@@ -119,8 +127,7 @@ public class Controller {
 	
 	public void anadirJuegoComprado(JuegoDTO j) {
 		
-		// sirve para anadir el juego que se compre a la bilio.
-		
+		_bibliotecaController.comprarJuego(j);
 	}
 	
 	public UsuarioDTO getCurrentUser() {
@@ -129,11 +136,11 @@ public class Controller {
 		
 	}
 	
-	public ControllerJuego getControllerJuego() {
+	public JuegoControllerFacade getControllerJuego() {
 		return _controllerJuego;
 	}
 	
-	public TiendaController getControllerTienda() {
+	public TiendaControllerFacade getControllerTienda() {
 		return _tiendaControler;
 	}
 
@@ -151,6 +158,10 @@ public class Controller {
 
 	public JPanel getRevMej() {
 		return _controllerIncidenciasMejoras.getRevMejPanel();
+	}
+	
+	public List<JuegoEnPropiedadDTO> getOwnedGames(){
+		return _bibliotecaController.getOwnedGames(_current_user);
 	}
 
 }

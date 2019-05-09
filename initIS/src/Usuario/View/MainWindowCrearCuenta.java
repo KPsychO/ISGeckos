@@ -13,8 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
-import Usuario.Control.UsuarioControllerFacade;
 import Usuario.Control.EventoUsuario;
+import Usuario.Control.UsuarioControllerFacade;
 
 public class MainWindowCrearCuenta extends JPanel {
 	private static final long serialVersionUID = 1L;
