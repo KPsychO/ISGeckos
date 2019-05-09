@@ -76,7 +76,8 @@ public class BibliotecaControllerFacade{
 	public void evento(EventoBiblioteca e, JuegoEnPropiedadDTO juego) {
 		switch(e) {
 		case valoraciones:
-			System.out.println("Valorando estoy: " + juego.get_title());
+			//System.out.println("Valorando estoy: " + juego.get_title());
+			_controller.valorar(juego);
 			break;
 		case incidencia:
 			_controller.setPrincipalPanel(_controller.getIncidenciasJuego(juego));
