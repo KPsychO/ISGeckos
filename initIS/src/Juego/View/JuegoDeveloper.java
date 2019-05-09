@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
-import Juego.Control.ControllerJuego;
+import Juego.Control.JuegoControllerFacade;
 import Juego.Control.EventoJuego;
 import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
@@ -22,7 +22,7 @@ public class JuegoDeveloper extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	private JuegoDTO _dto;
-    private ControllerJuego _cj;
+    private JuegoControllerFacade _cj;
     private UsuarioDTO _user;
 
     private JLabel _icon;
@@ -30,7 +30,7 @@ public class JuegoDeveloper extends JPanel{
     private JPanel _caract;
     private JPanel _desc;
 	
-	public JuegoDeveloper(JuegoDTO dto, ControllerJuego cj, UsuarioDTO user) {
+	public JuegoDeveloper(JuegoDTO dto, JuegoControllerFacade cj, UsuarioDTO user) {
 		_user = user;
 		_cj = cj;
 		_dto = dto;

@@ -9,7 +9,7 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import Biblioteca.Control.BibliotecaController;
+import Biblioteca.Control.BibliotecaControllerFacade;
 import Biblioteca.Control.JuegoEnPropiedadDTO;
 import Usuario.Control.UsuarioDTO;
 
@@ -17,13 +17,13 @@ public class MainViewBiblioteca extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	
-	private static BibliotecaController _bibliotecaController;
+	private static BibliotecaControllerFacade _bibliotecaController;
 	//BibliotecaDTO _bibliotecaDTO;
 	private List<JuegoEnPropiedadDTO> _games;
 	private JPanel _panel;
 	
 	@SuppressWarnings("static-access")
-	public MainViewBiblioteca(BibliotecaController ctrllr, UsuarioDTO user, List<JuegoEnPropiedadDTO> games) {
+	public MainViewBiblioteca(BibliotecaControllerFacade ctrllr, UsuarioDTO user, List<JuegoEnPropiedadDTO> games) {
 		this._bibliotecaController = ctrllr;
 		
 		this._games = games;

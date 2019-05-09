@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 
-import Juego.Control.ControllerJuego;
+import Juego.Control.JuegoControllerFacade;
 import Juego.Control.JuegoDAO;
 import Juego.Control.JuegoDAOJSON;
 import Juego.Control.JuegoDTO;
@@ -25,13 +25,13 @@ public class MainViewDeveloper extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private UsuarioDTO _user;
-	private ControllerJuego _cj;
+	private JuegoControllerFacade _cj;
 
 	private JuegoDAO _dao_juego;
 	
 	private JPanel _panel;
 	
-	public MainViewDeveloper(UsuarioDTO user, ControllerJuego cj) {
+	public MainViewDeveloper(UsuarioDTO user, JuegoControllerFacade cj) {
 		
 		_cj = cj;
 		_user = user;

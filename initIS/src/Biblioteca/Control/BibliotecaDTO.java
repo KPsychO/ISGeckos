@@ -10,7 +10,7 @@ import Usuario.Control.UsuarioDTO;
 
 public class BibliotecaDTO {
 
-	private static BibliotecaController _bc;
+	private static BibliotecaControllerFacade _bc;
 	
 	private String _userId;
 	private List<JuegoEnPropiedadDTO> _juegosEnBiblioteca = new ArrayList<JuegoEnPropiedadDTO>();

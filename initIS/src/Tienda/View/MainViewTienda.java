@@ -17,7 +17,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import Juego.Control.JuegoDTO;
-import Tienda.Control.TiendaController;
+import Tienda.Control.TiendaControllerFacade;
 import Usuario.Control.UsuarioDTO;
 
 public class MainViewTienda extends JPanel {
@@ -26,12 +26,12 @@ public class MainViewTienda extends JPanel {
 	@SuppressWarnings("unused")
 	private boolean _click;
 
-	private static TiendaController _tiendaController;
+	private static TiendaControllerFacade _tiendaController;
 	private JPanel _panel;
 	private JPanel aux;
 	private List<JuegoDTO> _games;
 
-	public MainViewTienda(TiendaController crtl, UsuarioDTO user) {
+	public MainViewTienda(TiendaControllerFacade crtl, UsuarioDTO user) {
 		_tiendaController = crtl;
 		_click = false;
 		_games = _tiendaController.getJuegosEnTienda();

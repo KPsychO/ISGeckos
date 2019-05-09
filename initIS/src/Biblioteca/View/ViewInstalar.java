@@ -11,15 +11,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import Biblioteca.Control.BibliotecaController;
+import Biblioteca.Control.BibliotecaControllerFacade;
 import Biblioteca.Control.JuegoEnPropiedadDTO;
 
 public class ViewInstalar extends JPanel{
 
-	BibliotecaController _bc;
+	BibliotecaControllerFacade _bc;
 	JuegoEnPropiedadDTO _juego;
 	
-	public ViewInstalar(JuegoEnPropiedadDTO juego, BibliotecaController controller) {
+	public ViewInstalar(JuegoEnPropiedadDTO juego, BibliotecaControllerFacade controller) {
 		_bc = controller;
 		_juego = juego;
 		

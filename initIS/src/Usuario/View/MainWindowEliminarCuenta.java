@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
-import Usuario.Control.ControllerUsuario;
+import Usuario.Control.UsuarioControllerFacade;
 import Usuario.Control.EventoUsuario;
 import Usuario.Control.UsuarioDTO;
 
@@ -30,9 +30,9 @@ public class MainWindowEliminarCuenta extends JPanel{
 	//private JLabel confirmar;
 	private JButton eliminar;
 	
-	private ControllerUsuario _cu;
+	private UsuarioControllerFacade _cu;
 	
-	public MainWindowEliminarCuenta (UsuarioDTO dto, ControllerUsuario cu) {
+	public MainWindowEliminarCuenta (UsuarioDTO dto, UsuarioControllerFacade cu) {
 		_cu = cu;
 		_dto = dto;
 		initGUI();

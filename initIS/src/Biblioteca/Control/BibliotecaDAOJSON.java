@@ -212,11 +212,15 @@ public class BibliotecaDAOJSON implements BibliotecaDAO{
 			i++;
 			
 		}
-		
-		bib_user = biblioteca.getJSONObject(i);
-		JSONArray game_list = bib_user.getJSONArray("_gamesList");
-		
 		JSONObject obj = new JSONObject();
+		JSONArray game_list = new JSONArray();
+		if (i < biblioteca.length()) {
+			bib_user = biblioteca.getJSONObject(i);
+			game_list = bib_user.getJSONArray("_gamesList");
+		}else {
+			bib_user.put("_userId", user.get_user_id());
+		}
+		
 		
 		obj.put("_gameId", newGame.get_id());
 		obj.put("_lastEx", "Never");

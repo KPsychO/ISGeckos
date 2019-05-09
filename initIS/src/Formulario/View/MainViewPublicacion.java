@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 import org.json.JSONArray;
 
-import Formulario.Control.ControllerFormulario;
+import Formulario.Control.FormularioControllerFacade;
 import Formulario.Control.FormularioDAOJSON;
 import Formulario.Control.FormularioDTO;
 import Usuario.Control.UsuarioDTO;
@@ -43,11 +43,13 @@ public class MainViewPublicacion extends JPanel {
     private JLabel num;
     private JPanel devpanel;
     private JLabel devname;
+    
+    private IteratorFormulario iter;
 
     
-    private ControllerFormulario _cf;
+    private FormularioControllerFacade _cf;
 
-	public MainViewPublicacion(UsuarioDTO dev, ControllerFormulario cf) {
+	public MainViewPublicacion(UsuarioDTO dev, FormularioControllerFacade cf) {
 		_cf = cf;
 		_formularioDTO = new FormularioDTO(dev);
 		initGUI();
@@ -55,6 +57,7 @@ public class MainViewPublicacion extends JPanel {
 	}
 		
 	private void initGUI() {
+		this.iter = new IteratorFormulario(0);
 		configPanel();
 		initPanel();
 		createBottom();
@@ -179,14 +182,15 @@ public class MainViewPublicacion extends JPanel {
 				if(form.length() == 0) {
 					JOptionPane.showMessageDialog(null, "No hay mas formulariuos", "Error", JOptionPane.ERROR_MESSAGE);
 				}
-				else if(n < form.length() - 1){
-					n++;
-					showFormulary(n);
+				else if(iter.actual < form.length() - 1){
+					
+					showFormulary(iter.siguiente());
 				}
-				else if (n == form.length() - 1){
+				else if (iter.actual == form.length() - 1){
 					n = 0;
-					showFormulary(n);
+					showFormulary(iter.primero());
 				}
+			
 				
 			}
 	           
@@ -202,14 +206,15 @@ public class MainViewPublicacion extends JPanel {
 				if(form.length() == 0) {
 					JOptionPane.showMessageDialog(null, "No hay mmas formulariuos", "Error", JOptionPane.ERROR_MESSAGE);
 				}
-				else if(n > 0){
-					n--;
-					showFormulary(n);
+				else if(iter.actual > 0){
+					
+					showFormulary(iter.anterior());//ITERATOR
 				}
-				else if (n == 0){
-					n = form.length() - 1;
-					showFormulary(n);
+				else if (iter.actual == 0){
+					iter.setPos( form.length() - 1);
+					showFormulary(iter.actual);
 				}	
+				
 			}
 
 	        });
@@ -227,12 +232,12 @@ public class MainViewPublicacion extends JPanel {
 					JOptionPane.showMessageDialog(null, "No hay mas formularios", "Error", JOptionPane.ERROR_MESSAGE);
 					firePropertyChange("PerfilUsuarioCurrent", null, null);
 				}
-				else if(n < form.length() - 1){
-					showFormulary(n);
+				else if(iter.actual < form.length() - 1){
+					showFormulary(iter.actual);
 				}
-				else if (n >= form.length() - 1){
+				else if (iter.actual >= form.length() - 1){
 					n = 0;
-					showFormulary(n);
+					showFormulary(iter.actual);
 				}
 			}
 
@@ -252,12 +257,12 @@ public class MainViewPublicacion extends JPanel {
 					JOptionPane.showMessageDialog(null, "No hay mas formularios", "Error", JOptionPane.ERROR_MESSAGE);
 					firePropertyChange("PerfilUsuarioCurrent", null, null);
 				}
-				else if(n < form.length() - 1){
-					showFormulary(n);
+				else if(iter.actual < form.length() - 1){
+					showFormulary(iter.actual);
 				}
-				else if (n >= form.length() - 1){
+				else if (iter.actual >= form.length() - 1){
 					n = 0;
-					showFormulary(n);
+					showFormulary(iter.actual);
 				}
 			}
 

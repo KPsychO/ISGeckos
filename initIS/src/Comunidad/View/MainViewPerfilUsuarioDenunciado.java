@@ -26,9 +26,9 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 		private JTextArea descripcion;
 		private JButton denunciar;
 		private UsuarioDTO usDen;
-		private ControllerComunidad _controller;
+		private ComunidadControllerFacade _controller;
 		
-		public MainViewPerfilUsuarioDenunciado (UsuarioDTO usDen, ControllerComunidad controller) {
+		public MainViewPerfilUsuarioDenunciado (UsuarioDTO usDen, ComunidadControllerFacade controller) {
 			this.usDen = usDen;
 			_controller = controller;
 			initGUI();

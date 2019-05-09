@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Biblioteca.Control.BibliotecaController;
+import Biblioteca.Control.BibliotecaControllerFacade;
 import Biblioteca.Control.EventoBiblioteca;
 import Biblioteca.Control.JuegoEnPropiedadDTO;
 
@@ -25,9 +25,9 @@ public class JuegoBiblioteca extends JPanel{
 	JPanel _contents;
 	JuegoEnPropiedadDTO _dto;
 	//JuegoEnPropiedadController _jc;
-	BibliotecaController _bc;
+	BibliotecaControllerFacade _bc;
 	
-	public JuegoBiblioteca (JuegoEnPropiedadDTO juego, BibliotecaController controller) {
+	public JuegoBiblioteca (JuegoEnPropiedadDTO juego, BibliotecaControllerFacade controller) {
 		_bc = controller;
 		_dto = juego;
 		//_jc = new JuegoEnPropiedadController(juego.get_id());
