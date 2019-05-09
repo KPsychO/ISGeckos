@@ -15,6 +15,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
 import Biblioteca.Control.BibliotecaDTO;
+import Usuario.Control.ControllerUsuario;
+import Usuario.Control.EventoUsuario;
 import Usuario.Control.UsuarioDTO;
 
 public class MainWindowPerfilUsuario extends JPanel{
@@ -34,7 +36,10 @@ public class MainWindowPerfilUsuario extends JPanel{
 	private JButton developer;
 	private JButton revisionMensajes;
 	
-	public MainWindowPerfilUsuario(UsuarioDTO dto) {
+	private ControllerUsuario _cu;
+	
+	public MainWindowPerfilUsuario(UsuarioDTO dto, ControllerUsuario cu) {
+		_cu = cu;
 		_dto = dto;
 		initGUI();
 	}
@@ -65,9 +70,6 @@ public class MainWindowPerfilUsuario extends JPanel{
 		JPanel name_level_estado = new JPanel();
 		name_level_estado.setLayout(new BoxLayout(name_level_estado, BoxLayout.Y_AXIS));
 		JLabel name = new JLabel("Name: " + _dto.get_username());
-		
-		//JLabel level = new JLabel("Level: 0");
-		//JLabel estado = new JLabel("Estado: bien");
 				
 		JLabel pais = new JLabel ("Pais: " + _dto.get_country());
 		JLabel juegos = new JLabel ("Juegos en biblioteca: 5");
@@ -85,8 +87,10 @@ public class MainWindowPerfilUsuario extends JPanel{
 		desc.setPreferredSize(new Dimension(300, 100));
 		desc.setEditable(false);
 		desc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		//Modificar perfil
+		desc.setWrapStyleWord(true);
+		desc.setLineWrap(true);
 		
+		//Modificar perfil
 		izq.add(avatar_name_level);
 		izq.add(desc);
 		
@@ -95,8 +99,6 @@ public class MainWindowPerfilUsuario extends JPanel{
 		der.setLayout(new GridLayout(8, 1));
 		
 		//Botones
-		//insignias = new JButton("INSIGNIAS");
-		//insignias.addActionListener(new insigniasButton());
 		
 		biblioteca = new JButton("BIBLIOTECA");
 		biblioteca.addActionListener(new bibliotecaButton());
@@ -119,7 +121,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 		developer = new JButton("DESARROLLADORA");
 		developer.addActionListener(new desarrolladoraButton());
 		
-		revisionMensajes = new JButton("REVISION INCIDENCIAS/DENUNCIAS");
+		revisionMensajes = new JButton("INCIDENCIAS/DENUNCIAS");
 		revisionMensajes.addActionListener(new inciMejButton());
 		
 		setButtons();
@@ -150,42 +152,42 @@ public class MainWindowPerfilUsuario extends JPanel{
 
 	class bibliotecaButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("Biblioteca", null, new BibliotecaDTO(_dto));
+			_cu.evento(EventoUsuario.Biblioteca, _dto);
 		}
 	}
 	class cerrarSesionButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("CerrarSesion", null, _dto);
+			_cu.evento(EventoUsuario.CerrarSesion, _dto);
 		}
 	}
 	class elimCuentaButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("botonEliminarCuenta", null, _dto);
+			_cu.evento(EventoUsuario.EliminarCuenta, _dto);
 		}
 	}
 	class modPerfilButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("botonModificarCuenta", null, _dto);
+			_cu.evento(EventoUsuario.ModificarCuenta, _dto);
 		}
 	}
 	class formularioButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("Formulario", null, _dto);
+			_cu.evento(EventoUsuario.Formulario, _dto);
 		}
 	}
 	class publicacionButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("Publicacion", null, _dto);
+			_cu.evento(EventoUsuario.Publicacion, _dto);
 		}
 	}
 	class desarrolladoraButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("Desarrolladora", null, _dto);
+			_cu.evento(EventoUsuario.Desarrolladora, _dto);
 		}
 	}
 	class inciMejButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("revIncMej", null, _dto);
+			_cu.evento(EventoUsuario.RevIncMej, _dto);
 		}
 	}
 

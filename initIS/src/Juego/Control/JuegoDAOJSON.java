@@ -91,4 +91,19 @@ public class JuegoDAOJSON implements JuegoDAO{
 		
 	}
 
+	@Override
+	public JuegoDTO getJuegoID(String id) {
+		List<JuegoDTO> lista = getJuegos();
+		
+		for (JuegoDTO j : lista) {
+			if (j.get_id().equals(id))
+				return j;
+		}
+		
+		return null;
+		
+	}
+	
+	
+
 }

@@ -13,19 +13,26 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
+import Juego.Control.ControllerJuego;
+import Juego.Control.EventoJuego;
 import Juego.Control.JuegoDTO;
+import Usuario.Control.UsuarioDTO;
 
 public class JuegoDeveloper extends JPanel{
 	private static final long serialVersionUID = 1L;
 
-	JuegoDTO _dto;
+	private JuegoDTO _dto;
+    private ControllerJuego _cj;
+    private UsuarioDTO _user;
+
+    private JLabel _icon;
+    private JPanel _contents;
+    private JPanel _caract;
+    private JPanel _desc;
 	
-	JLabel _icon;
-	JPanel _contents;
-	JPanel _caract;
-	JPanel _desc;
-	
-	public JuegoDeveloper(JuegoDTO dto) {
+	public JuegoDeveloper(JuegoDTO dto, ControllerJuego cj, UsuarioDTO user) {
+		_user = user;
+		_cj = cj;
 		_dto = dto;
 		initGUI();
 	}
@@ -84,19 +91,22 @@ public class JuegoDeveloper extends JPanel{
 	
 	class VerEnTienda implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("VerEnTienda", null, _dto);
+			_cj.evento(EventoJuego.JuegoTienda, _dto, _user);
+			//firePropertyChange("VerEnTienda", null, _dto);
 		}
 	}
 	
 	class Actualizar implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("ActualizarJuego", null, _dto);
+			_cj.evento(EventoJuego.ActualizarJuego, _dto, _user);
+			//firePropertyChange("ActualizarJuego", null, _dto);
 		}
 	}
 	
 	class Eliminar implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("EliminarJuego", null, _dto);
+			_cj.evento(EventoJuego.EliminarJuego, _dto, _user);
+			//firePropertyChange("EliminarJuego", null, _dto);
 		}
 	}
 

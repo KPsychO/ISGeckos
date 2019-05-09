@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
+import Usuario.Control.ControllerUsuario;
+import Usuario.Control.EventoUsuario;
 import Usuario.Control.UsuarioDTO;
 
 public class MainWindowEliminarCuenta extends JPanel{
@@ -28,7 +30,10 @@ public class MainWindowEliminarCuenta extends JPanel{
 	//private JLabel confirmar;
 	private JButton eliminar;
 	
-	public MainWindowEliminarCuenta (UsuarioDTO dto) {
+	private ControllerUsuario _cu;
+	
+	public MainWindowEliminarCuenta (UsuarioDTO dto, ControllerUsuario cu) {
+		_cu = cu;
 		_dto = dto;
 		initGUI();
 		//this.setVisible(true);
@@ -78,14 +83,20 @@ public class MainWindowEliminarCuenta extends JPanel{
         confirmPasswordPanel.add(confirmPasswordLabel);
         confirmPasswordPanel.add(confirmPassword);
         
+        JPanel oky = new JPanel();
+        BoxLayout okyLayout = new BoxLayout(oky, BoxLayout.X_AXIS);
+        oky.setLayout(okyLayout);
+        
         ok = new JCheckBox("Proceder a la eliminacion de mi cuenta");
         eliminar = new JButton ("ELIMINAR CUENTA");
         eliminar.addActionListener(new continuarButton());
         
+        oky.add(ok);
+        oky.add(eliminar);
+        
         generalPanel.add(passwordPanel);
         generalPanel.add(confirmPasswordPanel);
-        generalPanel.add(ok);
-        generalPanel.add(eliminar);
+        generalPanel.add(oky);
         
         this.add(generalPanel);
         
@@ -97,9 +108,8 @@ public class MainWindowEliminarCuenta extends JPanel{
 				 if (!password.getText().isEmpty() && password.getText().equals(confirmPassword.getText())) {
 					 if (password.getText().equals(_dto.get_password())) {
 						 
-						 
-						 //ELIMINAR USUARIO DE LA LISTA _dto.eliminarUsuario();
-						 firePropertyChange("EliminarCuenta", null, null);
+						 _cu.eliminarUsuario(_dto);
+						 _cu.evento(EventoUsuario.IniciarSesion, _dto);
 					 }
 					 else {
 							String tipoError = "La contrasena introducida no es correcta";

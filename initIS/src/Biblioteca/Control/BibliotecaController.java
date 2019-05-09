@@ -17,8 +17,12 @@ public class BibliotecaController{
 	private BibliotecaDAO _dao;
 	private BibliotecaDTO _dto;
 	
+	private Controller _controller;
+	
 	// Constructora sin par�metros -- Biblioteca gen�rica
-	public BibliotecaController() {
+	public BibliotecaController(Controller cont) {
+		
+		_controller = cont;
 		_dao = new BibliotecaDAOJSON();
 		_dto = new BibliotecaDTO(getGames());
 	}
@@ -53,7 +57,12 @@ public class BibliotecaController{
 		_dto.anadirJuego(newGame);
 	}
 	
-	
+	public JPanel getBibliotecaPanel() {
+		
+		return new MainViewBiblioteca(this, _controller.getCurrentUser());
+		
+	}
+
 	public List<BibliotecaDTO> getLibraries() {
 		
 		return this._dao.getLibraries();

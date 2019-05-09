@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
+import IncidenciasMejoras.Control.EventoIncidenciasMejoras;
 import Usuario.Control.UsuarioDTO;
 
 public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionListener{
@@ -25,9 +26,11 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 		private JTextArea descripcion;
 		private JButton denunciar;
 		private UsuarioDTO usDen;
+		private ControllerComunidad _controller;
 		
-		public MainViewPerfilUsuarioDenunciado (UsuarioDTO usDen) {
+		public MainViewPerfilUsuarioDenunciado (UsuarioDTO usDen, ControllerComunidad controller) {
 			this.usDen = usDen;
+			_controller = controller;
 			initGUI();
 			this.setVisible(true);
 		}
@@ -109,7 +112,7 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand().equals("denunciar")) {
-				firePropertyChange("DenunciarJugador", null, usDen);
+				_controller.evento(EventoComunidad.DenunciasJugador, null, usDen);
 			}
 		}
 

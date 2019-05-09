@@ -11,31 +11,32 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 
+import Juego.Control.ControllerJuego;
+import Juego.Control.EventoJuego;
 import Juego.Control.JuegoDTO;
-import common.MainController;
 
 public class MainViewJuego extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	
-	JuegoDTO _juegoDTO;
-	JLabel _icon;
-	JPanel _leftS;
-	JPanel _center;
-	JPanel _rightS;
-	JPanel _valoraciones;
-	JLabel _labelValoraciones;
+	private JuegoDTO _juegoDTO;
+	private JPanel _leftS;
+	private JPanel _rightS;
+	private JPanel _valoraciones;
+	private JLabel _labelValoraciones;
 	
-	public MainViewJuego(JuegoDTO dto) {
+	private ControllerJuego _cj;
+	
+	public MainViewJuego(JuegoDTO dto, ControllerJuego cj) {
 		
+		_cj = cj;
 		_juegoDTO = dto;
 
 		initGUI();
@@ -132,7 +133,7 @@ public class MainViewJuego extends JPanel{
         vertical.setPreferredSize(new Dimension(200, 100));
         mainPanel.add(vertical);
 
-        JLabel fecha = new JLabel(_juegoDTO.get_date());
+        JLabel fecha = new JLabel("Fecha: " + _juegoDTO.get_date());
         fecha.setHorizontalAlignment(JLabel.CENTER);
         fecha.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         
@@ -146,8 +147,8 @@ public class MainViewJuego extends JPanel{
         
         JPanel etiquetas = new JPanel();
         for (String et : _juegoDTO.get_genres()) {
-        	JLabel jl = new JLabel(et);
-        	jl.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+        	JButton jl = new JButton(et);
+        	//jl.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         	etiquetas.add(jl);
         }
         generos.add(etiquetas);
@@ -165,21 +166,15 @@ public class MainViewJuego extends JPanel{
 	class ComprarButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
-			if (MainController.getCurrentUser().isUnregistered()) {
-				
-				JFrame frame = new JFrame("ERROR");
-				frame.setLayout(new BorderLayout());
-				frame.setMinimumSize(new Dimension(800,200));
-				frame.setPreferredSize(new Dimension(800,200));
-				
-				JLabel label = new JLabel("Un usuario debe estar registrado para poder comprar un juego, porfavor, inicie sesión.", SwingConstants.CENTER);
-				
-				frame.add(label, BorderLayout.CENTER);
-				frame.setVisible(true);
-				
+			if (_cj.isRegistered()) {
+				_cj.evento(EventoJuego.ComprarJuego, _juegoDTO, null);
 			}
-			else
-				firePropertyChange("ComprarJuego", null, _juegoDTO);
+			else {
+				JOptionPane.showMessageDialog(MainViewJuego.this, 
+            			"Un usuario debe estar registrado para poder comprar un juego, porfavor, inicie sesión.", 
+            			"Error", JOptionPane.ERROR_MESSAGE);
+			}
+				
 		}
 	}
 }

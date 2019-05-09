@@ -18,7 +18,7 @@ public class UsuarioDTO {
 	private String _email;
 	private String _country;
 	
-	private UsuarioDAO dao;
+	private UsuarioDAO _dao;
 	
 	public UsuarioDTO(
 			List<tipoCuenta> types,
@@ -31,7 +31,7 @@ public class UsuarioDTO {
 			String user_id,
 			String username) {
 		
-		dao = new UsuarioDAOJSON();
+		_dao = new UsuarioDAOJSON();
 		_types = types;
 		_balance = balance;
 		//_avatar = avatar;
@@ -47,7 +47,7 @@ public class UsuarioDTO {
 	@SuppressWarnings("exports")
 	public UsuarioDTO(JSONObject user) {
 		
-		dao = new UsuarioDAOJSON();
+		_dao = new UsuarioDAOJSON();
 		_balance = user.getInt("_balance");
 		//_avatar = avatar;
 		_desc = user.getString("_desc");
@@ -56,13 +56,13 @@ public class UsuarioDTO {
 		_password = user.getString("_password");
 		_user_id = user.getString("_user_id");
 		_username = user.getString("_username");
-		_types = dao.getTipos(user.getJSONArray("_types"));
+		_types = _dao.getTipos(user.getJSONArray("_types"));
 		
 	}
 	
 	public UsuarioDTO(String id) {
-		dao = new UsuarioDAOJSON();
-		UsuarioDTO newUser = dao.getUserID(id);
+		_dao = new UsuarioDAOJSON();
+		UsuarioDTO newUser = _dao.getUserID(id);
 		
 		_types = newUser.get_types();
 		_balance = newUser.get_balance();
@@ -80,6 +80,15 @@ public class UsuarioDTO {
 			_users.remove(us);
 		}
 		
+	}
+	
+	public UsuarioDTO getUsuarioID(String ID) {
+		_users = _dao.lista();
+		for (UsuarioDTO dto : _users) {
+			if (dto.get_user_id().equals(ID))
+				return dto;
+		}
+		return null;
 	}
 	
 	public boolean isDev() {
@@ -169,5 +178,7 @@ public class UsuarioDTO {
 	public boolean isUnregistered() {
 		return this._types.contains(tipoCuenta.unregistered);		
 	}
+
+	
 
 }

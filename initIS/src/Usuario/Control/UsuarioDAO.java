@@ -7,7 +7,7 @@ import org.json.JSONArray;
 public interface UsuarioDAO {
 
 	@SuppressWarnings("exports")
-	public abstract JSONArray getListUsuarios();
+	public abstract JSONArray getListUsuariosJson();
 	
 	public void insertarUsuario(UsuarioDTO us);
 	
@@ -24,4 +24,5 @@ public interface UsuarioDAO {
 
 	public abstract UsuarioDTO getUserID(String id);
 	
+	public abstract void deleteUser(UsuarioDTO dto);
 }

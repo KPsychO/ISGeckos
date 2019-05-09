@@ -20,15 +20,17 @@ import Usuario.Control.UsuarioDTO;
 public class PerfilUsuarioDenunc extends JPanel{
 	private static final long serialVersionUID = 1L;
 
-	UsuarioDTO _user;
+	private UsuarioDTO _user;
 	
-	JButton _icon;
-	JPanel _contents;
-	JPanel _caract;
-	JPanel _desc;
+	private JButton _icon;
+	private JPanel _contents;
+	private JPanel _caract;
+	private JPanel _desc;
+	private ControllerComunidad _controller;
 	
-	public PerfilUsuarioDenunc(UsuarioDTO us) {
+	public PerfilUsuarioDenunc(UsuarioDTO us, ControllerComunidad controller) {
 		_user = us;
+		_controller = controller;
 		initGUI();
 	}
 
@@ -82,7 +84,7 @@ public class PerfilUsuarioDenunc extends JPanel{
 	
 	class CargarButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("PerfilUsuarioDenunciado", null, _user);
+			_controller.evento(EventoComunidad.PerfilUsuarioDenunciado, null, _user);
 		}
 	}
 

@@ -5,26 +5,25 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import Biblioteca.Control.BibliotecaController;
+import Juego.Control.ControllerJuego;
 import Juego.Control.JuegoDTO;
+import Juego.View.MainViewJuego;
 import Tienda.View.ComprarJuego;
 import Tienda.View.MainViewTienda;
 import Usuario.Control.UsuarioDTO;
 import common.Controller;
 
-public class TiendaController extends Controller{
+public class TiendaController{
 	
 	private TiendaDAO _dao;
-	TiendaDTO _TiendaDTO;
-	UsuarioDTO _user;
-	BibliotecaController _bilioCont;
+	private TiendaDTO _TiendaDTO;
+	private Controller _controller;
 	
-	public TiendaController(UsuarioDTO user) {
+	public TiendaController(Controller cont) {
 		
-		_user = user;
-		// _bilioCont = new BibliotecaController(_user);  Hasta que no este biblioteca, no se añaden juegos
+		_controller = cont;
 		_dao = new TiendaDAOJSON();
-		_TiendaDTO = new TiendaDTO(createJuegosEnTienda(user));
+		_TiendaDTO = new TiendaDTO(createJuegosEnTienda(_controller.getCurrentUser()));
 		
 	}
 	
@@ -69,10 +68,10 @@ public class TiendaController extends Controller{
 	
 	public boolean comprarJuego(JuegoDTO juego) {
 		
-		if(_user.get_balance() >= juego.get_price()) {
+		if(_controller.getCurrentUser().get_balance() >= juego.get_price()) {
 		
 			_TiendaDTO.comprarJuego(juego);
-			_bilioCont.anadirJuego(juego);
+			_controller.anadirJuegoComprado(juego);
 			
 			return true;
 		
@@ -82,27 +81,48 @@ public class TiendaController extends Controller{
 		
 	}
 	
+	public void evento(EventoTienda e, JuegoDTO _juego, UsuarioDTO _user) {
+		switch (e) {
+		case accesoJuego:
+			_controller.setPrincipalPanel(new MainViewJuego(_juego, getControllerJuego()));
+			break;
+		case comprarJuego:
+			_controller.setPrincipalPanel(new MainViewTienda(this, _user));
+			break;
+		default:
+			break;
+		}
+	}
+	
 	public void deleteTienda() {
 		
 		_TiendaDTO.deleteTienda();
 		
 	}
-
+	
 	@SuppressWarnings("exports")
-	@Override
-	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
+	public JPanel getTiendaPanel() {
 		
-		if (panel.equals("Tienda")) {
-			getJuegosEnTienda();
-			return new MainViewTienda(this, user);
-		}
-			
+		return new MainViewTienda(this, _controller.getCurrentUser());
 		
-		else if (panel.equals("ComprarJuego"))
-			return new ComprarJuego((JuegoDTO) o, user, this); 
+	}
+	
+	@SuppressWarnings("exports")
+	public JPanel getComprarJuego(JuegoDTO juego) {
 		
-		else
-			return null;
+		return new ComprarJuego(juego, this);
+		
+	}
+	
+	public UsuarioDTO getCurrentUser() {
+		
+		return _controller.getCurrentUser();
+		
+	}
+	
+	public ControllerJuego getControllerJuego() {
+		
+		return _controller.getControllerJuego();	
 		
 	}
 
