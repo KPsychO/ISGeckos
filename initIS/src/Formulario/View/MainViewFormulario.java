@@ -368,7 +368,7 @@ public class MainViewFormulario extends JPanel{
 	                	
 	                	FormularioDTO formulario = getFormulario();
 	                	_formularioDTO.insert(formulario, "Formulario");
-	                	_cf.evento(EventoFormulario.Tienda, null);
+	                	_cf.evento(EventoFormulario.Perfil, null);
 	                }  
 	            }
 

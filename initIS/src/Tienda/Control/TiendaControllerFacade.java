@@ -62,7 +62,7 @@ public class TiendaControllerFacade{
 	}
 	
 	public List<JuegoDTO> getJuegosEnTienda() {
-		return _TiendaDTO.getJuegosEnTienda();
+		return SingletonTiendaDAO.getInstance().getPublishedGames();
 	}
 	
 	public boolean comprarJuego(JuegoDTO juego) {
@@ -70,7 +70,6 @@ public class TiendaControllerFacade{
 		if(_controller.getCurrentUser().get_balance() >= juego.get_price()) {
 		
 			_controller.quitaBalance(juego.get_price());
-			_TiendaDTO.comprarJuego(juego);
 			_controller.anadirJuegoComprado(juego);
 			
 			return true;
@@ -87,7 +86,7 @@ public class TiendaControllerFacade{
 			_controller.setPrincipalPanel(new MainViewJuego(_juego, getControllerJuego()));
 			break;
 		case comprarJuego:
-			_controller.setPrincipalPanel(new MainViewTienda(this, _user));
+			_controller.setPrincipalPanel(new MainViewTienda(this));
 			break;
 		case juegoComprado:
 			_controller.anadirJuegoComprado(_juego);
@@ -105,7 +104,7 @@ public class TiendaControllerFacade{
 	@SuppressWarnings("exports")
 	public JPanel getTiendaPanel() {
 		
-		return new MainViewTienda(this, _controller.getCurrentUser());
+		return new MainViewTienda(this);
 		
 	}
 	

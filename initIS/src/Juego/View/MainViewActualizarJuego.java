@@ -27,6 +27,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Formulario.Control.FormularioDTO;
+import Juego.Control.EventoJuego;
 import Juego.Control.JuegoControllerFacade;
 import Juego.Control.JuegoDTO;
 import Juego.Control.LogroDTO;
@@ -389,7 +390,7 @@ public class MainViewActualizarJuego extends JPanel{
 	                	
 	                	FormularioDTO formulario = getFormulario();
 	                	_formularioDTO.insert(formulario, "Actualizar");
-
+	                	_cj.evento(EventoJuego.Desarrolladora, _juego);
 	                }  
 	            }
 

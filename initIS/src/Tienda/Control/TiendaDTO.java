@@ -17,19 +17,6 @@ public class TiendaDTO {
 		
 	}
 	
-	protected void comprarJuego(JuegoDTO j) {	// se usa al comprar un juego, se elimina de la tienda y se anade a la biblioteca
-		
-		for(JuegoDTO jj : _juegosEnTienda) {
-			
-			if(jj.get_id().equals(j.get_id())) {
-				_juegosEnTienda.remove(jj);
-				break;
-			}
-			
-		}
-		
-	}
-	
 	protected List<JuegoDTO> getJuegosEnTienda() {
 		
 		return _juegosEnTienda;
