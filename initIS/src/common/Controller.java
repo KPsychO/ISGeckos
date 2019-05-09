@@ -139,8 +139,7 @@ public class Controller {
 	}
 
 	public JPanel getDesarrolladoraPanel() {
-		// TODO Auto-generated method stub
-		return null;
+		return _controllerJuego.getDesarrolladoraPanel(_current_user);
 	}
 
 
