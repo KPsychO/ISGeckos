@@ -16,7 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
-import Usuario.Control.ControllerUsuario;
+import Usuario.Control.UsuarioControllerFacade;
 import Usuario.Control.EventoUsuario;
 import Usuario.Control.UsuarioDTO;
 
@@ -33,9 +33,9 @@ public class MainWindowModificarCuenta extends JPanel {
 	private JTextArea descripcion;
 	private JButton ok;
 	
-	private ControllerUsuario _cu;
+	private UsuarioControllerFacade _cu;
 	
-	public MainWindowModificarCuenta (UsuarioDTO dto, ControllerUsuario cu) {
+	public MainWindowModificarCuenta (UsuarioDTO dto, UsuarioControllerFacade cu) {
 		_cu = cu;
 		_dto = dto;
 		initGUI();

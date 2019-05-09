@@ -26,8 +26,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Formulario.Control.ControllerFormulario;
 import Formulario.Control.EventoFormulario;
+import Formulario.Control.FormularioControllerFacade;
 import Formulario.Control.FormularioDTO;
 import Juego.Control.LogroDTO;
 import Usuario.Control.UsuarioDTO;
@@ -68,9 +68,9 @@ public class MainViewFormulario extends JPanel{
 	private JPanel _panel;
 	
 	private UsuarioDTO dev;
-	private ControllerFormulario _cf;
+	private FormularioControllerFacade _cf;
 	
-	public MainViewFormulario(UsuarioDTO dev, ControllerFormulario cf) {
+	public MainViewFormulario(UsuarioDTO dev, FormularioControllerFacade cf) {
 		 _cf = cf;
 		 this.dev = dev;
 		 _formularioDTO = new FormularioDTO(dev);
@@ -362,7 +362,7 @@ public class MainViewFormulario extends JPanel{
 	                	JOptionPane.showMessageDialog(MainViewFormulario.this, tipoError, "Error", JOptionPane.ERROR_MESSAGE);
 	                }
 	                else { //no hay error
-	                	tipoError = "Tu formulario ha sido enviado de forma satisfactoria";
+	                	tipoError = "Lo has enviado correctamente";
 	                	String ok = "Enviado correctamente";
 	                	JOptionPane.showMessageDialog(MainViewFormulario.this, tipoError, ok, JOptionPane.INFORMATION_MESSAGE);
 	                	

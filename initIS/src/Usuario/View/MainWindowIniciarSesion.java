@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
-import Usuario.Control.ControllerUsuario;
+import Usuario.Control.UsuarioControllerFacade;
 import Usuario.Control.EventoUsuario;
 import Usuario.Control.UsuarioDAO;
 import Usuario.Control.UsuarioDAOJSON;
@@ -26,10 +26,10 @@ public class MainWindowIniciarSesion extends JPanel{
     private JButton crearCuenta;
     
     private UsuarioDAO _dao;
-    private ControllerUsuario _cu;
+    private UsuarioControllerFacade _cu;
     private JPanel _panel;
 	
-	public MainWindowIniciarSesion(ControllerUsuario cu) {
+	public MainWindowIniciarSesion(UsuarioControllerFacade cu) {
 		_dao = new UsuarioDAOJSON();
 		_cu = cu;
 		initGUI();

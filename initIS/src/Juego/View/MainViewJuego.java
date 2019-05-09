@@ -18,7 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
-import Juego.Control.ControllerJuego;
+import Juego.Control.JuegoControllerFacade;
 import Juego.Control.EventoJuego;
 import Juego.Control.JuegoDTO;
 
@@ -32,9 +32,9 @@ public class MainViewJuego extends JPanel{
 	private JPanel _valoraciones;
 	private JLabel _labelValoraciones;
 	
-	private ControllerJuego _cj;
+	private JuegoControllerFacade _cj;
 	
-	public MainViewJuego(JuegoDTO dto, ControllerJuego cj) {
+	public MainViewJuego(JuegoDTO dto, JuegoControllerFacade cj) {
 		
 		_cj = cj;
 		_juegoDTO = dto;

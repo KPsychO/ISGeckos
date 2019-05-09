@@ -19,7 +19,7 @@ import javax.swing.SwingConstants;
 
 import Juego.Control.JuegoDTO;
 import Tienda.Control.EventoTienda;
-import Tienda.Control.TiendaController;
+import Tienda.Control.TiendaControllerFacade;
 
 public class ComprarJuego extends JPanel{
 
@@ -27,7 +27,7 @@ public class ComprarJuego extends JPanel{
 	
 	private JuegoDTO _juego;
 	private JPanel _panel;
-	private TiendaController _tiendaCont;
+	private TiendaControllerFacade _tiendaCont;
 	
 	private JTextField tfnombre;
 	private JTextField tfapell;
@@ -37,7 +37,7 @@ public class ComprarJuego extends JPanel{
 	private JTextField tfcad;
 	
 	
-	public ComprarJuego(JuegoDTO juego, TiendaController tc) {
+	public ComprarJuego(JuegoDTO juego, TiendaControllerFacade tc) {
 		
 		_tiendaCont = tc;
 		_juego = juego;

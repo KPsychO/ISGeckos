@@ -27,7 +27,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Formulario.Control.FormularioDTO;
-import Juego.Control.ControllerJuego;
+import Juego.Control.JuegoControllerFacade;
 import Juego.Control.JuegoDTO;
 import Juego.Control.LogroDTO;
 import Usuario.Control.UsuarioDTO;
@@ -69,9 +69,9 @@ public class MainViewActualizarJuego extends JPanel{
 	
 	private UsuarioDTO _dev;
 	private JuegoDTO _juego;
-	private ControllerJuego _cj;
+	private JuegoControllerFacade _cj;
 	
-	public MainViewActualizarJuego(UsuarioDTO dev, JuegoDTO juego, ControllerJuego controllerJuego) {
+	public MainViewActualizarJuego(UsuarioDTO dev, JuegoDTO juego, JuegoControllerFacade controllerJuego) {
 		 _dev = dev;
 		 _juego = juego;
 		 _cj = controllerJuego;

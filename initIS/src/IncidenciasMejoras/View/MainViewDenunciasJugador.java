@@ -15,7 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
-import IncidenciasMejoras.Control.ControllerIncidenciasMejoras;
+import IncidenciasMejoras.Control.IncidenciasMejorasControllerFacade;
 import IncidenciasMejoras.Control.EventoIncidenciasMejoras;
 import IncidenciasMejoras.Control.IncidenciasDAOJSON;
 import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
@@ -33,9 +33,9 @@ public class MainViewDenunciasJugador extends JPanel implements ActionListener{
 	private IncidenciasDAOJSON imJSON;
 	private UsuarioDTO us;
 	private UsuarioDTO usDen;
-	private ControllerIncidenciasMejoras _controller;
+	private IncidenciasMejorasControllerFacade _controller;
 	
-	public MainViewDenunciasJugador(UsuarioDTO usuario, UsuarioDTO usDen, ControllerIncidenciasMejoras controller) {
+	public MainViewDenunciasJugador(UsuarioDTO usuario, UsuarioDTO usDen, IncidenciasMejorasControllerFacade controller) {
 		imJSON = new IncidenciasDAOJSON();
 		us = usuario;
 		this.usDen = usDen;

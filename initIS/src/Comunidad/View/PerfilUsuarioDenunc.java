@@ -26,9 +26,9 @@ public class PerfilUsuarioDenunc extends JPanel{
 	private JPanel _contents;
 	private JPanel _caract;
 	private JPanel _desc;
-	private ControllerComunidad _controller;
+	private ComunidadControllerFacade _controller;
 	
-	public PerfilUsuarioDenunc(UsuarioDTO us, ControllerComunidad controller) {
+	public PerfilUsuarioDenunc(UsuarioDTO us, ComunidadControllerFacade controller) {
 		_user = us;
 		_controller = controller;
 		initGUI();

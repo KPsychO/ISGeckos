@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import Usuario.Control.ControllerUsuario;
+import Usuario.Control.UsuarioControllerFacade;
 import Usuario.Control.EventoUsuario;
 
 public class MainWindowAcuerdoSuscriptor extends JPanel{
@@ -22,9 +22,9 @@ public class MainWindowAcuerdoSuscriptor extends JPanel{
 	//private JLabel aceptar;
 	private JButton boton;
 	
-	private ControllerUsuario _cu;
+	private UsuarioControllerFacade _cu;
 	
-	public MainWindowAcuerdoSuscriptor (ControllerUsuario cu) {
+	public MainWindowAcuerdoSuscriptor (UsuarioControllerFacade cu) {
 		
 		_cu = cu;
 		

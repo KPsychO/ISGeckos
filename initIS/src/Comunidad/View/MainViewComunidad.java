@@ -32,7 +32,7 @@ public class MainViewComunidad extends JPanel {
 	private JPanel _buscar;
 	private JPanel _total;
 	private UsuarioDAO dao;
-	private ControllerComunidad _controller;
+	private ComunidadControllerFacade _controller;
 	
 	private int i = 0;
 	private int j = 0;
@@ -43,7 +43,7 @@ public class MainViewComunidad extends JPanel {
 	private UsuarioDTO _user;
 
 	
-	public MainViewComunidad(UsuarioDTO usuario, ControllerComunidad controller) {
+	public MainViewComunidad(UsuarioDTO usuario, ComunidadControllerFacade controller) {
 		perfil = new ArrayList<PerfilUsuarioDenunc>();
 		dao = new UsuarioDAOJSON();
 		_controller = controller;

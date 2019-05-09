@@ -11,16 +11,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import Biblioteca.Control.BibliotecaController;
+import Biblioteca.Control.BibliotecaControllerFacade;
 import Biblioteca.Control.EventoBiblioteca;
 import Biblioteca.Control.JuegoEnPropiedadDTO;
 
 public class ViewActualizar extends JPanel{
 	
-	BibliotecaController _bc;
+	BibliotecaControllerFacade _bc;
 	JuegoEnPropiedadDTO _juego;
 	
-	public ViewActualizar(JuegoEnPropiedadDTO juego, BibliotecaController controller) {
+	public ViewActualizar(JuegoEnPropiedadDTO juego, BibliotecaControllerFacade controller) {
 		_bc = controller;
 		_juego = juego;
 		

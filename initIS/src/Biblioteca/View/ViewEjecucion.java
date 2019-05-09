@@ -8,17 +8,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import Biblioteca.Control.BibliotecaController;
+import Biblioteca.Control.BibliotecaControllerFacade;
 import Biblioteca.Control.JuegoEnPropiedadDTO;
 
 public class ViewEjecucion extends JPanel{	
 	
 	private static final long serialVersionUID = 1L;
 	
-	BibliotecaController _controller;
+	BibliotecaControllerFacade _controller;
 	JuegoEnPropiedadDTO _juego;
 	
-	public ViewEjecucion(JuegoEnPropiedadDTO juego, BibliotecaController controller) {
+	public ViewEjecucion(JuegoEnPropiedadDTO juego, BibliotecaControllerFacade controller) {
 		_controller = controller;
 		_juego = juego;
 		

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
-import Usuario.Control.ControllerUsuario;
+import Usuario.Control.UsuarioControllerFacade;
 import Usuario.Control.EventoUsuario;
 
 public class MainWindowCrearCuenta extends JPanel {
@@ -36,9 +36,9 @@ public class MainWindowCrearCuenta extends JPanel {
 	private JCheckBox admin;
 	private JButton ok;
 	
-	private ControllerUsuario _cu;
+	private UsuarioControllerFacade _cu;
 	
-	public MainWindowCrearCuenta (ControllerUsuario cu) {
+	public MainWindowCrearCuenta (UsuarioControllerFacade cu) {
 		_cu = cu;
 		initGUI();
 		this.setVisible(true);

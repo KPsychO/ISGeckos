@@ -1,146 +1,124 @@
 [
-  {
-    "_id": "5ccd515396f1e847f2e4eb0d",
-    "_gamesList": [
-      {
-        "_gameId": "5cd02ebe6e7adc5f712660b1",
-	    "_achievements": [
-	      {
-	        "_achId": "5cd02ebe7db44252d46283fd",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebe4aa3519d798abb63",
-	        "_owned": false
-	      },
-	      {
-	        "_achId": "5cd02ebe78cc02eb81888885",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebed59db329b41cf184",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebe17fd4fb499e74a26",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebe04801396cd87cfe6",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebe1e3646119eedefd9",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebebd4f157dde1c6c9d",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebea069c3ac5bb9714b",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebe04880fc6f2e0877a",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebe31bf4df8d6589ebc",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebed0101b9afe956c8f",
-	        "_owned": true
-	      }
-	    ],
-	    "_hoursPlayes": 4,
-	    "_installed": true,
-	    "_actVers": 5,
-	    "_lastEx": "2019-05-01"
-      },
-      {
-        "_gameId": "5cd02ebe78b889802765ff37",
-	    "_achievements": [
-	      {
-	        "_achId": "5cd02ebeaac5e1248ffe7068",
-	        "_owned": false
-	      },
-	      {
-	        "_achId": "5cd02ebedaba58d5f3e08ec0",
-	        "_owned": false
-	      },
-	      {
-	        "_achId": "5cd02ebeb48af816c1926ace",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebeaf18a2c05ab4a405",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebeecc7930ca7dfa579",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebe2b8c22b60429de29",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebe439b3627c3aad43a",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebe0f9df693e37ca079",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebef35d6c1989a30015",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebe63a35e2730938267",
-	        "_owned": true
-	      }
-	    ],
-	    "_hoursPlayes": 0,
-	    "_installed": false,
-	    "_actVers": 7,
-	    "_lastEx": "2019-05-01"
-      },
-      {
-	    "_gameId": "5cd02ebe4a5e39b24f6971e7",
-	    "_achievementsOwned": [
-	      {
-	        "_achId": "5cd02ebef6526eaed702d580",
-	        "_owned": false
-	      },
-	      {
-	        "_achId": "5cd02ebeba755925a4efef58",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebe1e4b2eac3e88e8ce",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebe30a302293499a189",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebe4ccf397d783e5136",
-	        "_owned": true
-	      },
-	      {
-	        "_achId": "5cd02ebe5b9bc77d1abf50c7",
-	        "_owned": true
-	      }
-	    ],
-	    "_hoursPlayes": 6,
-	    "_installed": false,
-	    "_actVers": 3,
-	    "_lastEx": "2019-05-01"
-      }
-    ]
-  }
+    {
+        "_gamesList": [
+            {
+                "_lastEx": "never",
+                "_gameId": "5cd1ef8a60b100a9e8034586",
+                "_actVers": 0,
+                "_installed": true,
+                "_hoursPlayed": 12
+            },
+            {
+                "_lastEx": "never",
+                "_gameId": "5cd1ef8a535d02272178a1c8",
+                "_actVers": 0,
+                "_installed": true,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8add3807018cc8529f",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8ae12f38efd444e95b",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8add3807018cc8529f",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8ac3683c9c95b7d25d",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8a21e893dd3084836f",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "ab47d595-d1df-4aac-89da-0c289efbde95",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8aa4f6301b313a36ec",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8a535d02272178a1c8",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8a60b100a9e8034586",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            }
+        ],
+        "_userId": "5ccd515396f1e847f2e4eb0d"
+    },
+    {
+        "_gamesList": [
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8a535d02272178a1c8",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "33ee132e-6706-49d1-af97-16eb29cb50ed",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8a013c7fbd7c4498dd",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8add3807018cc8529f",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8ad6cdbe51e9a9fa5c",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            }
+        ],
+        "_userId": "1"
+    }
 ]

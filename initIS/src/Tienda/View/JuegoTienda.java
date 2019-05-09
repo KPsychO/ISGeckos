@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
 
 import Juego.Control.JuegoDTO;
 import Tienda.Control.EventoTienda;
-import Tienda.Control.TiendaController;
+import Tienda.Control.TiendaControllerFacade;
 
 public class JuegoTienda extends JPanel {
 
@@ -27,10 +27,10 @@ public class JuegoTienda extends JPanel {
 	private JButton _icon;
 	private JPanel _contents;
 	private JPanel _desc;
-	private TiendaController _tiendaCont;
+	private TiendaControllerFacade _tiendaCont;
 	
 	
-	public JuegoTienda(JuegoDTO juego, TiendaController tiendCont) {
+	public JuegoTienda(JuegoDTO juego, TiendaControllerFacade tiendCont) {
 		
 		_juegoDTO = juego;
 		_tiendaCont = tiendCont;

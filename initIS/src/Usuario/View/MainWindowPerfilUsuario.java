@@ -15,7 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
 import Biblioteca.Control.BibliotecaDTO;
-import Usuario.Control.ControllerUsuario;
+import Usuario.Control.UsuarioControllerFacade;
 import Usuario.Control.EventoUsuario;
 import Usuario.Control.UsuarioDTO;
 
@@ -36,9 +36,9 @@ public class MainWindowPerfilUsuario extends JPanel{
 	private JButton developer;
 	private JButton revisionMensajes;
 	
-	private ControllerUsuario _cu;
+	private UsuarioControllerFacade _cu;
 	
-	public MainWindowPerfilUsuario(UsuarioDTO dto, ControllerUsuario cu) {
+	public MainWindowPerfilUsuario(UsuarioDTO dto, UsuarioControllerFacade cu) {
 		_cu = cu;
 		_dto = dto;
 		initGUI();
