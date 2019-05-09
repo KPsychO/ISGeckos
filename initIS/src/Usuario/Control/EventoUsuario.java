@@ -2,7 +2,6 @@ package Usuario.Control;
 
 
 public enum EventoUsuario {
-		IniciarSesion,
 		PerfilUsuario,
 		CrearCuenta,
 		ModificarCuenta,
@@ -12,7 +11,6 @@ public enum EventoUsuario {
 		AcuerdoSuscriptor,
 		Biblioteca,
 		Formulario,
-		Publicacion,
 		Desarrolladora,
 		RevIncMej
 		

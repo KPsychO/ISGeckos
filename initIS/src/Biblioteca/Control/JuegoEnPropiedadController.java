@@ -8,7 +8,7 @@ import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
 import common.Controller;
 
-public class JuegoEnPropiedadController extends Controller {
+public class JuegoEnPropiedadController {
 
 	private JuegoEnPropiedadDAO _dao;
 	private JuegoEnPropiedadDTO _dto;
@@ -16,12 +16,6 @@ public class JuegoEnPropiedadController extends Controller {
 	public JuegoEnPropiedadController(String id) {
 		_dao = new JuegoEnPropiedadDAOJSON();
 		_dto = new JuegoEnPropiedadDTO(getJuego(id));
-	}
-	
-	@Override
-	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public String get_title() {

@@ -2,6 +2,7 @@ package common;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import Biblioteca.Control.BibliotecaController;
 import Comunidad.View.ControllerComunidad;
 import Formulario.Control.ControllerFormulario;
 import IncidenciasMejoras.Control.ControllerIncidenciasMejoras;
@@ -23,6 +24,7 @@ public class Controller {
 	private ControllerValoraciones _controllerValoraciones;
 	private ControllerUsuario _controllerUsuario;
 	private TiendaController _tiendaControler;
+	private BibliotecaController _bibliotecaController;
 	
 	private MainWindow _mw;
 	
@@ -38,7 +40,8 @@ public class Controller {
 		_controllerFormulario = new ControllerFormulario(this);
 		_controllerValoraciones = new ControllerValoraciones(this);
 		_controllerUsuario = new ControllerUsuario(this, _current_user);
-		_tiendaControler = new TiendaController(this, _current_user);
+		_tiendaControler = new TiendaController(this);
+		_bibliotecaController = new BibliotecaController(this);
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -52,10 +55,10 @@ public class Controller {
 	public void evento(EventoCommon e, JuegoDTO _juego, UsuarioDTO _user) {
 		switch (e) {
 		case Tienda:
-			setPrincipalPanel(_tiendaControler.getTiendaPanel(_current_user));
+			setPrincipalPanel(_tiendaControler.getTiendaPanel());
 			break;
 		case Biblioteca:
-			//setPrincipalPanel(new MainViewDeveloper(_user, this));
+			setPrincipalPanel(_bibliotecaController.getBibliotecaPanel());
 			break;
 		case Comunidad:
 			setPrincipalPanel(_controllerComunidad.getComunidadPanel(_current_user));
@@ -94,7 +97,11 @@ public class Controller {
 
 	@SuppressWarnings("exports")
 	public JPanel getTienda() {
-		return _tiendaControler.getTiendaPanel(_current_user);
+		return _tiendaControler.getTiendaPanel();
+	}
+	
+	public JPanel getBiblioteca() {
+		return _bibliotecaController.getBibliotecaPanel();
 	}
 	
 	//Jin
@@ -129,18 +136,5 @@ public class Controller {
 	public TiendaController getControllerTienda() {
 		return _tiendaControler;
 	}
-
-	public JPanel getFormularioPanel() {
-		return _controllerFormulario.getFormularioPanel(_current_user);
-	}
-
-	public JPanel getPublicacionPanel() {
-		return _controllerFormulario.getPublicacion(_current_user);
-	}
-
-	public JPanel getDesarrolladoraPanel() {
-		return _controllerJuego.getDesarrolladoraPanel(_current_user);
-	}
-
 
 }

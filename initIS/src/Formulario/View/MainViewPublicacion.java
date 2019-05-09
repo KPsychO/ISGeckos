@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 
 import org.json.JSONArray;
 
-import Formulario.Control.ControllerFormulario;
 import Formulario.Control.FormularioDAOJSON;
 import Formulario.Control.FormularioDTO;
 import Usuario.Control.UsuarioDTO;
@@ -43,12 +42,9 @@ public class MainViewPublicacion extends JPanel {
     private JLabel num;
     private JPanel devpanel;
     private JLabel devname;
-    
-    private ControllerFormulario _cf;
 
 
-	public MainViewPublicacion(UsuarioDTO dev, ControllerFormulario cf) {
-		_cf = cf;
+	public MainViewPublicacion(UsuarioDTO dev) {
 		_formularioDTO = new FormularioDTO(dev);
 		initGUI();
 		this.setVisible(true);

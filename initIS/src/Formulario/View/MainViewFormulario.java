@@ -26,8 +26,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Formulario.Control.ControllerFormulario;
-import Formulario.Control.EventoFormulario;
 import Formulario.Control.FormularioDTO;
 import Juego.Control.LogroDTO;
 import Usuario.Control.UsuarioDTO;
@@ -68,10 +66,8 @@ public class MainViewFormulario extends JPanel{
 	private JPanel _panel;
 	
 	private UsuarioDTO dev;
-	private ControllerFormulario _cf;
 	
-	public MainViewFormulario(UsuarioDTO dev, ControllerFormulario cf) {
-		 _cf = cf;
+	public MainViewFormulario(UsuarioDTO dev) {
 		 this.dev = dev;
 		 _formularioDTO = new FormularioDTO(dev);
 		 initGUI();
@@ -368,7 +364,6 @@ public class MainViewFormulario extends JPanel{
 	                	
 	                	FormularioDTO formulario = getFormulario();
 	                	_formularioDTO.insert(formulario);
-	                	_cf.evento(EventoFormulario.Tienda, null);
 
 	                }  
 	            }

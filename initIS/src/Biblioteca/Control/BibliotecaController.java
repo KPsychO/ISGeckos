@@ -12,13 +12,17 @@ import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
 import common.Controller;
 
-public class BibliotecaController extends Controller{
+public class BibliotecaController{
 
 	private BibliotecaDAO _dao;
 	private BibliotecaDTO _dto;
 	
+	private Controller _controller;
+	
 	// Constructora sin par�metros -- Biblioteca gen�rica
-	public BibliotecaController() {
+	public BibliotecaController(Controller cont) {
+		
+		_controller = cont;
 		_dao = new BibliotecaDAOJSON();
 		_dto = new BibliotecaDTO(getGames());
 	}
@@ -53,16 +57,10 @@ public class BibliotecaController extends Controller{
 		_dto.anadirJuego(newGame);
 	}
 	
-	
-
-	@Override
-	public JPanel getPanel(String panel, Object o, UsuarioDTO user) {
-		if(panel.equals("Biblioteca")) {
-			getGames(user);
-			return new MainViewBiblioteca(this, user);
-		}
-		else
-			return null;
+	public JPanel getBibliotecaPanel() {
+		
+		return new MainViewBiblioteca(this, _controller.getCurrentUser());
+		
 	}
 
 	public List<BibliotecaDTO> getLibraries() {

@@ -3,7 +3,6 @@ package Usuario.View;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.UUID;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -14,8 +13,6 @@ import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
 import Usuario.Control.ControllerUsuario;
-import Usuario.Control.EventoUsuario;
-import Usuario.Control.UsuarioDTO;
 
 public class MainWindowCrearCuenta extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -30,11 +27,8 @@ public class MainWindowCrearCuenta extends JPanel {
 	private JTextArea email;
 	private JLabel confirmEmailLabel;
 	private JTextArea confirmEmail;
-	private JLabel countryLabel;
-	private JTextArea country;
-	private JTextArea descShortField;
-	private JCheckBox dev;
-	private JCheckBox admin;
+	//private JLabel empresa;
+	private JCheckBox empresaDesarrolladora;
 	private JButton ok;
 	
 	private ControllerUsuario _cu;
@@ -137,49 +131,8 @@ public class MainWindowCrearCuenta extends JPanel {
         confirmEmailPanel.add(confirmEmailLabel);
         confirmEmailPanel.add(confirmEmail);
         
-        //COUNTRY
-        JPanel countryPanel = new JPanel();
-        BoxLayout countryLayout = new BoxLayout(countryPanel, BoxLayout.X_AXIS);
-        countryPanel.setLayout(countryLayout);
-        
-        countryLabel = new JLabel();
-        countryLabel.setPreferredSize(new Dimension(200,20));
-        countryLabel.setText("Pais:  ");
-        
-        country = new JTextArea();
-        country.setPreferredSize(new Dimension(sizex,25));
-        country.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-        
-        countryPanel.add(countryLabel);
-        countryPanel.add(country);
-        
-        //DESC	SHORT
-        JPanel descPanel = new JPanel();
-        BoxLayout descLayout = new BoxLayout(descPanel, BoxLayout.X_AXIS);
-        descPanel.setLayout(descLayout);
-        
-        JLabel descs = new JLabel();
-        descs.setPreferredSize(new Dimension(200,20));
-        descs.setText("Descripcion:  ");
-        
-        descShortField = new JTextArea();
-        descShortField.setWrapStyleWord(true);
-        descShortField.setLineWrap(true);
-        descShortField.setPreferredSize(new Dimension(sizex,75));
-        descShortField.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-        
-        descPanel.add(descs);
-        descPanel.add(descShortField);
-        
-        dev = new JCheckBox("Developer");
-        admin = new JCheckBox("Admin");
+        empresaDesarrolladora = new JCheckBox("Empresa desarrolladora");
         ok = new JButton ("CONTINUAR");
-        
-        JPanel botones = new JPanel();
-        botones.add(dev);
-        botones.add(admin);
-        botones.add(ok);
-        
        
         ok.addActionListener(new continuarButton());
         
@@ -188,9 +141,8 @@ public class MainWindowCrearCuenta extends JPanel {
         generalPanel.add(confirmPasswordPanel);
         generalPanel.add(emailPanel);
         generalPanel.add(confirmEmailPanel);
-        generalPanel.add(countryPanel);
-        generalPanel.add(descPanel);
-        generalPanel.add(botones);
+        generalPanel.add(empresaDesarrolladora);
+        generalPanel.add(ok);
        
         this.add(generalPanel);
 	}
@@ -201,10 +153,19 @@ public class MainWindowCrearCuenta extends JPanel {
 
 				if (password.getText().equals(confirmPassword.getText()) && email.getText().equals(confirmEmail.getText())) {
 				 
-					_cu.storeUser(UUID.randomUUID().toString().substring(0, 23), username.getText(), password.getText(), email.getText(),
-							country.getText(), 0, "", true, dev.isSelected(), admin.isSelected());
-					
-					_cu.evento(EventoUsuario.IniciarSesion, null);
+					if(empresaDesarrolladora.isSelected()) {
+						//Crear usuario tipo empresa desarrolladora
+						//Usando como username:username
+						//Como password: password
+						//Como email: email
+					}
+					else {
+						//Crear usuario
+						//Usando como username:username
+						//Como password: password
+						//Como email: email
+					}
+					firePropertyChange("CrearCuenta", null, null);	 
 				}
 			 }
 		 }

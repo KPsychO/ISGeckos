@@ -19,11 +19,11 @@ public class TiendaController{
 	private TiendaDTO _TiendaDTO;
 	private Controller _controller;
 	
-	public TiendaController(Controller cont, UsuarioDTO user) {
+	public TiendaController(Controller cont) {
 		
 		_controller = cont;
 		_dao = new TiendaDAOJSON();
-		_TiendaDTO = new TiendaDTO(createJuegosEnTienda(user));
+		_TiendaDTO = new TiendaDTO(createJuegosEnTienda(_controller.getCurrentUser()));
 		
 	}
 	
@@ -101,9 +101,9 @@ public class TiendaController{
 	}
 	
 	@SuppressWarnings("exports")
-	public JPanel getTiendaPanel(UsuarioDTO user) {
+	public JPanel getTiendaPanel() {
 		
-		return new MainViewTienda(this, user);
+		return new MainViewTienda(this, _controller.getCurrentUser());
 		
 	}
 	

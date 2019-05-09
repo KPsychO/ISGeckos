@@ -1,7 +1,5 @@
 package Juego.Control;
 
-import javax.swing.JPanel;
-
 import Juego.View.MainViewActualizarJuego;
 import Juego.View.MainViewDeveloper;
 import Juego.View.MainViewJuego;
@@ -41,10 +39,6 @@ public class ControllerJuego {
 	
 	public boolean isRegistered() {
 		return _controller.isRegistered();
-	}
-
-	public JPanel getDesarrolladoraPanel(UsuarioDTO dto) {
-		return new MainViewDeveloper(dto, this);
 	}
 
 }
