@@ -317,7 +317,7 @@ public class MainViewFormulario extends JPanel{
 	
 	private void createBottom() {
 		JPanel inferior = new JPanel();
-		JButton confirm = new JButton("Aceptar");
+		JButton confirm = new JButton("Enviar");
 
 		confirm.addActionListener(new ActionListener() {
 	            @SuppressWarnings("unused")
@@ -368,7 +368,7 @@ public class MainViewFormulario extends JPanel{
 	                	
 	                	FormularioDTO formulario = getFormulario();
 	                	_formularioDTO.insert(formulario);
-	                	_cf.evento(EventoFormulario.Tienda, null);
+	                	_cf.evento(EventoFormulario.Perfil, null);
 	                }  
 	            }
 

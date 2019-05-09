@@ -225,7 +225,7 @@ public class MainViewPublicacion extends JPanel {
 				
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				_formularioDTO.deleteFormulary(n);
+				_formularioDTO.deleteFormulary(iter.actual);
 				
 				JSONArray form = new JSONArray();
 				form = new FormularioDAOJSON().getFormularies();
@@ -235,11 +235,10 @@ public class MainViewPublicacion extends JPanel {
 					_cf.evento(EventoFormulario.Perfil, null);
 				}
 				else if(iter.actual < form.length() - 1){
-					showFormulary(iter.actual);
+					showFormulary(iter.siguiente());
 				}
 				else if (iter.actual >= form.length() - 1){
-					n = 0;
-					showFormulary(iter.actual);
+					showFormulary(iter.primero());
 				}
 			}
 
@@ -249,8 +248,8 @@ public class MainViewPublicacion extends JPanel {
 				
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				_formularioDTO.insertGame(n);
-				_formularioDTO.deleteFormulary(n);
+				_formularioDTO.insertGame(iter.actual);
+				_formularioDTO.deleteFormulary(iter.actual);
 				
 				JSONArray form = new JSONArray();
 				form = new FormularioDAOJSON().getFormularies();
@@ -261,11 +260,12 @@ public class MainViewPublicacion extends JPanel {
 					_cf.evento(EventoFormulario.Perfil, null);
 				}
 				else if(iter.actual < form.length() - 1){
-					showFormulary(iter.actual);
+					JOptionPane.showMessageDialog(null, "Juego enviado correctamente ", null, JOptionPane.ERROR_MESSAGE);
+					showFormulary(iter.siguiente());
 				}
 				else if (iter.actual >= form.length() - 1){
-					n = 0;
-					showFormulary(iter.actual);
+					JOptionPane.showMessageDialog(null, "Juego enviado correctamente ", "null", JOptionPane.ERROR_MESSAGE);
+					showFormulary(iter.primero());
 				}
 			}
 
