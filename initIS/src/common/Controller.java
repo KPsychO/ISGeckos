@@ -9,9 +9,10 @@ import Biblioteca.Control.BibliotecaControllerFacade;
 import Biblioteca.Control.JuegoEnPropiedadDTO;
 import Comunidad.View.ComunidadControllerFacade;
 import Formulario.Control.FormularioControllerFacade;
-import Formulario.View.MainViewFormulario;
 import IncidenciasMejoras.Control.IncidenciasMejorasControllerFacade;
+import IncidenciasMejoras.View.MainViewDenunciasJuego;
 import IncidenciasMejoras.View.MainViewDenunciasJugador;
+import IncidenciasMejoras.View.MainViewIncidenciasJuego;
 import Juego.Control.JuegoControllerFacade;
 import Juego.Control.JuegoDTO;
 import Tienda.Control.TiendaControllerFacade;
@@ -157,11 +158,25 @@ public class Controller {
 	}
 
 	public JPanel getRevMej() {
-		return _controllerIncidenciasMejoras.getRevMejPanel();
+		if (_controllerIncidenciasMejoras.getIncidenciasMejoras() != 0) {
+			return _controllerIncidenciasMejoras.getRevMejPanel();
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "No hay mas Incidencias/Denuncias", "Error", JOptionPane.ERROR_MESSAGE);
+			return null;
+		}	
 	}
 	
 	public List<JuegoEnPropiedadDTO> getOwnedGames(){
 		return _bibliotecaController.getOwnedGames(_current_user);
 	}
 
+	public JPanel getDenunciasJuego(JuegoEnPropiedadDTO juego) {
+		return new MainViewDenunciasJuego(_current_user, juego, _controllerIncidenciasMejoras);
+	}
+
+	public JPanel getIncidenciasJuego(JuegoEnPropiedadDTO juego) {
+		return new MainViewIncidenciasJuego(_current_user, juego, _controllerIncidenciasMejoras);
+	}
+	
 }

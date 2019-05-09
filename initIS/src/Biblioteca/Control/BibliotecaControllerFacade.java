@@ -79,10 +79,10 @@ public class BibliotecaControllerFacade{
 			System.out.println("Valorando estoy: " + juego.get_title());
 			break;
 		case incidencia:
-			System.out.println("Incidentando estoy: " + juego.get_title());
+			_controller.setPrincipalPanel(_controller.getIncidenciasJuego(juego));
 			break;
 		case denuncia:
-			System.out.println("Denunciando estoy: " + juego.get_title());
+			_controller.setPrincipalPanel(_controller.getDenunciasJuego(juego));
 			break;
 		case actualizarJuego:
 			actualizarJuego(juego);
