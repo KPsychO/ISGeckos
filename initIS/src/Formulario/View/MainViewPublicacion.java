@@ -260,37 +260,31 @@ public class MainViewPublicacion extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				
 				JSONArray form = new JSONArray();
 				form = new FormularioDAOJSON().getFormularies();
 				FormularioDTO formulary = new FormularioDTO(form.getJSONObject(iter.actual));
 				
 				if (formulary.get_type().equals("Eliminar")) {
-					_cf.eliminarJuego(formulary.get_id());
-					
 					_formularioDTO.deleteFormulary(iter.actual);
+					_cf.eliminarJuego(formulary.get_id());
 					form = new FormularioDAOJSON().getFormularies();
-					if(form.length() == 0) {
-						JOptionPane.showMessageDialog(null, "No hay mas formularios", "Error", JOptionPane.ERROR_MESSAGE);
-						//firePropertyChange("PerfilUsuarioCurrent", null, null);
-						_cf.evento(EventoFormulario.Perfil, null);
-					}
 				} else {
 					_formularioDTO.insertGame(iter.actual);
 					_formularioDTO.deleteFormulary(iter.actual);
-					if(form.length() == 0) {
-						JOptionPane.showMessageDialog(null, "No hay mas formularios", "Error", JOptionPane.ERROR_MESSAGE);
-						//firePropertyChange("PerfilUsuarioCurrent", null, null);
-						_cf.evento(EventoFormulario.Perfil, null);
-					}
-					else if(iter.actual < form.length() - 1){
-						JOptionPane.showMessageDialog(null, "Juego enviado correctamente ", null, JOptionPane.ERROR_MESSAGE);
-						showFormulary(iter.siguiente());
-					}
-					else if (iter.actual >= form.length() - 1){
-						JOptionPane.showMessageDialog(null, "Juego enviado correctamente ", "null", JOptionPane.ERROR_MESSAGE);
-						showFormulary(iter.primero());
-					}
+					
+				}
+				if(form.length() == 0) {
+					JOptionPane.showMessageDialog(null, "No hay mas formularios", "Error", JOptionPane.ERROR_MESSAGE);
+					//firePropertyChange("PerfilUsuarioCurrent", null, null);
+					_cf.evento(EventoFormulario.Perfil, null);
+				}
+				else if(iter.actual < form.length() - 1){
+					JOptionPane.showMessageDialog(null, "Juego enviado correctamente ", null, JOptionPane.ERROR_MESSAGE);
+					showFormulary(iter.siguiente());
+				}
+				else if (iter.actual >= form.length() - 1){
+					JOptionPane.showMessageDialog(null, "Juego enviado correctamente ", "null", JOptionPane.ERROR_MESSAGE);
+					showFormulary(iter.primero());
 				}
 			}
 

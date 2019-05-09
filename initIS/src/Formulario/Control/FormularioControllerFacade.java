@@ -69,11 +69,11 @@ private Controller _controller;
 		FormularioDTO data = new FormularioDTO(_controller.getCurrentUser(), dto.get_id());
 		data.set_id(dto.get_id());
 		data.set_title(dto.get_title());
-		data.set_descShort("");
+		data.set_descLong("");
 		data.set_price(dto.get_price());
 		data.set_pegi(dto.get_pegi());
 		data.set_date("");
-		data.set_descLong(just);
+		data.set_descShort(just);
 		data.set_genres(new ArrayList<String>());
 		data.set_achievements(new ArrayList<LogroDTO>());
 		data.set_developer(dto.get_developer());
@@ -84,5 +84,9 @@ private Controller _controller;
 
 	public void eliminarJuego(String id) {
 		_controller.eliminarJuego(id);
+	}
+
+	public void eliminarFormularios(String id) {
+		SingletonFormularioDAO.getInstance().deleteFormularies(id);
 	}
 }

@@ -119,7 +119,7 @@ public class MainViewEliminarJuego extends JPanel {
         			"Enviado", JOptionPane.INFORMATION_MESSAGE);
 
         	_jc.formularioEliminar(_dto, "Eliminar", _text.getText());
-			_jc.evento(EventoJuego.EliminarJuego, _dto);
+			_jc.evento(EventoJuego.Desarrolladora, _dto);
 				
 		}
 	}
