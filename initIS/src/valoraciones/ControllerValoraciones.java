@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 
 import common.Controller;
 
-
+//comentario
 public class ControllerValoraciones {
 	private Controller controller;
 	

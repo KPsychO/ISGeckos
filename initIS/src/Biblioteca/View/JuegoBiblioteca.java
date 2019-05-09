@@ -10,12 +10,11 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
-import Biblioteca.Control.JuegoEnPropiedadController;
+import Biblioteca.Control.BibliotecaController;
+import Biblioteca.Control.EventoBiblioteca;
 import Biblioteca.Control.JuegoEnPropiedadDTO;
 
 public class JuegoBiblioteca extends JPanel{
@@ -24,12 +23,14 @@ public class JuegoBiblioteca extends JPanel{
 	
 	JButton _icon;
 	JPanel _contents;
-	//JuegoEnPropiedadDTO _juegoEnPropiedadDTO;
-	JuegoEnPropiedadController _controller;
+	JuegoEnPropiedadDTO _dto;
+	//JuegoEnPropiedadController _jc;
+	BibliotecaController _bc;
 	
-	public JuegoBiblioteca (JuegoEnPropiedadDTO juego) {
-		JuegoEnPropiedadDTO game = new JuegoEnPropiedadDTO(juego);
-		_controller = new JuegoEnPropiedadController(game.get_id());
+	public JuegoBiblioteca (JuegoEnPropiedadDTO juego, BibliotecaController controller) {
+		_bc = controller;
+		_dto = juego;
+		//_jc = new JuegoEnPropiedadController(juego.get_id());
 		initGUI();
 		this.setVisible(true);
 	}
@@ -58,7 +59,7 @@ public class JuegoBiblioteca extends JPanel{
 	
 	private void createIcon() {
 		
-		_icon = new JButton(new ImageIcon("./src/resources/game_icon.jpg"));
+		_icon = new JButton(new ImageIcon("./src/resources/game_icon_SMOL.jpg"));
 		_icon.addActionListener(new JuegoButton());
 		
 	}
@@ -71,7 +72,7 @@ public class JuegoBiblioteca extends JPanel{
 		title.setMaximumSize(new Dimension(100, 100));
 		title.setMinimumSize(new Dimension(100,100));
 		title.setPreferredSize(new Dimension(100,100));
-		title.setText(" Title: " + _controller.get_title());
+		title.setText(" Title: " + _dto.get_title());
 		
 		
 		JButton buttonPlay = new JButton("JUGAR");
@@ -79,9 +80,9 @@ public class JuegoBiblioteca extends JPanel{
 		buttonPlay.setMinimumSize(new Dimension(100,100));
 		buttonPlay.setPreferredSize(new Dimension(100,100));
 		
-		if (_controller.is_installed() == false)
+		if (_dto.is_installed() == false)
 			buttonPlay.setBackground(Color.DARK_GRAY);
-		else if(_controller.get_actVersion() != _controller.get_version())
+		else if(_dto.get_actVersion() != _dto.get_version())
 			buttonPlay.setBackground(Color.GRAY);
 		else
 			buttonPlay.setBackground(Color.WHITE);
@@ -125,110 +126,32 @@ public class JuegoBiblioteca extends JPanel{
 	
 	class JuegoButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			firePropertyChange("JuegoBiblioteca", null, _controller);
+			_bc.evento(EventoBiblioteca.JuegoTienda, _dto);
 		}
 	}
 	
 	class JugarButton implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
-			if (_controller.is_installed() == false) {
-				//System.out.println("Error. Instala primero");
-				errorInstall();
-			}
-			else if(_controller.get_actVersion() != _controller.get_version()) {
-				//System.out.println("Error. Actualiza primero");
-				errorUpdate();
-			}
-			else {
-				//System.out.println("Estas jugando");
-				executeGame();
-			}
+			_bc.evento(EventoBiblioteca.jugarJuego, _dto);
 		}
 	}
 	
 	class ValorarButton implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
-		
+			_bc.evento(EventoBiblioteca.valoraciones, _dto);
 		}
 	}
 	
 	class IncButton implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
-		
+			_bc.evento(EventoBiblioteca.incidencia, _dto);
 		}
 	}
 	
 	class DenButton implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
-		
+			_bc.evento(EventoBiblioteca.denuncia, _dto);
 		}
 	}
-	
-	public void errorUpdate() {
-		JFrame frame = new JFrame("Error");
-		frame.setLayout(new BorderLayout());
-		frame.setMinimumSize(new Dimension(300,100));
-		frame.setPreferredSize(new Dimension(300,100));
-		
-		JLabel label = new JLabel("Error. Actualice primero", SwingConstants.CENTER);
-		
-		JButton button = new JButton("ACTUALIZAR");
-		button.setPreferredSize(new Dimension(100, 30));
-		button.setMaximumSize(new Dimension(100, 30));
-		button.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				_controller.set_actVersion(_controller.get_version());
-				//_juegoEnPropiedadDTO.JuegoEnPropiedadToJSON();
-				firePropertyChange("Biblioteca",null ,_controller);
-				frame.dispose();
-			}
-			
-		});
-		
-		frame.add(label, BorderLayout.CENTER);
-		frame.add(button, BorderLayout.SOUTH);
-		frame.setVisible(true);
-	}
-	
-	public void errorInstall() {
-		JFrame frame = new JFrame("Error");
-		frame.setLayout(new BorderLayout());
-		frame.setMinimumSize(new Dimension(300,100));
-		frame.setPreferredSize(new Dimension(300,100));
-		
-		JLabel label = new JLabel("Error. Instale primero", SwingConstants.CENTER);
-		
-		JButton button = new JButton("INSTALAR");
-		button.setPreferredSize(new Dimension(100, 30));
-		button.setMaximumSize(new Dimension(100, 30));
-		button.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				_controller.set_installed(true);
-				_controller.set_actVersion(_controller.get_version());
-				firePropertyChange("Biblioteca",null ,null);
-				frame.dispose();
-			}	
-		});
-
-		frame.add(label, BorderLayout.CENTER);
-		frame.add(button, BorderLayout.SOUTH);
-		frame.setVisible(true);
-	}
-	
-	public void executeGame() {
-		JFrame frame = new JFrame(_controller.get_title());
-		frame.setLayout(new BorderLayout());
-		frame.setMinimumSize(new Dimension(1000,800));
-		frame.setPreferredSize(new Dimension(1000,800));
-		
-		JLabel label = new JLabel("El juego \"" + _controller.get_title() + "\" se est� ejecutando", SwingConstants.CENTER);
-		
-		frame.add(label, BorderLayout.CENTER);
-		frame.setVisible(true);
-	}
 }

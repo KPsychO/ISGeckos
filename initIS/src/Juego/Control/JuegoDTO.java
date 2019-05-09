@@ -19,22 +19,19 @@ public class JuegoDTO {
 	private List<String> _genres;
 	private List<LogroDTO> _achievements;
 	
-	private JuegoDAO _dao;
-	
 	// la imagen "thumb"
 	
 
 	public JuegoDTO(String id, String title, int price, int pegi, int version, 
 			String descL, String descS, List<String> genres, List<LogroDTO> achievements) {
 		
-		_dao = new JuegoDAOJSON();
 		crearJuego(id, title, price, pegi, version, descL, descS, genres, achievements);
 
 	}
 	
 	public JuegoDTO(String id) {
-		_dao = new JuegoDAOJSON();
-		JuegoDTO g = _dao.getJuegoID(id);
+
+		JuegoDTO g = SingletonJuegoDAO.getInstance().getJuegoID(id);
 		if (g == null)
 			return;
 		
@@ -54,7 +51,7 @@ public class JuegoDTO {
 	
 	private void crearJuego(String id, String title, int price, int pegi, int version, 
 			String descL, String descS, List<String> genres, List<LogroDTO> achievements) {
-		_dao = new JuegoDAOJSON();
+		
 		_id = id;
 		_title = title;
 		_descLong = descL;
@@ -70,8 +67,6 @@ public class JuegoDTO {
 	@SuppressWarnings("exports")
 	public JuegoDTO(JSONObject juego) {
 		
-		_dao = new JuegoDAOJSON();
-		
 		_id = juego.getString("_id");
 		_title = juego.getString("_title");
 		_descLong = juego.getString("_descLong");
@@ -82,8 +77,8 @@ public class JuegoDTO {
 		//_version = juego.getInt("_version");
 
 		_date = juego.getString("_date");
-		_genres = _dao.getGenres(juego.getJSONArray("_genres"));
-		_achievements = _dao.getLogros(juego.getJSONArray("_achievements"));
+		_genres = SingletonJuegoDAO.getInstance().getGenres(juego.getJSONArray("_genres"));
+		_achievements = SingletonJuegoDAO.getInstance().getLogros(juego.getJSONArray("_achievements"));
 		
 	}
 

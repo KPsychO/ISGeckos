@@ -8,6 +8,6 @@ public interface JuegoEnPropiedadDAO {
 
 	public JSONObject JuegoEnPropiedadToJSON(JuegoEnPropiedadDTO game);
 
-	public List<JuegoEnPropiedadDTO> getJuegos();
+	public List<JuegoEnPropiedadDTO> getJuegosID(String id);
 	
 }

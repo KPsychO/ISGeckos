@@ -18,33 +18,53 @@ public class JuegoEnPropiedadDAOJSON implements JuegoEnPropiedadDAO{
 	}
 	*/
 	public JSONObject JuegoEnPropiedadToJSON(JuegoEnPropiedadDTO game) {
-		return null;
+		JSONObject gameJSON = new JSONObject();
+		gameJSON.put("_gameId", game.get_id());
+		gameJSON.put("_hoursPlayed", game.get_hoursPlayed());
+		gameJSON.put("_lastEx", game.get_lastEx());
+		gameJSON.put("_installed", game.is_installed());
+		gameJSON.put("_actVers", game.get_actVersion());
+		
+		return gameJSON;
 	}
 
 	public JuegoEnPropiedadDTO getLogros(JSONObject game) {
 		
 		return null;
 	}
-	
-	public List<JuegoEnPropiedadDTO> getJuegos() {
-		List<JuegoEnPropiedadDTO> games = new ArrayList<JuegoEnPropiedadDTO>();
-		
+
+	@Override
+	public List<JuegoEnPropiedadDTO> getJuegosID(String id) {
+		JSONArray jsonInput = new JSONArray();
+		List<JuegoEnPropiedadDTO> list = new ArrayList<JuegoEnPropiedadDTO>();
 		try {
-			InputStream input = new FileInputStream("./src/resources/PruebaBibl.txt");
-			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
+			InputStream input = new FileInputStream("./src/resources/Biblioteca.txt");
+			jsonInput = new JSONArray(new JSONTokener(input));
+			
 			
 			for (Object o : jsonInput) {
-				
-				JSONObject juego = new JSONObject(new JSONTokener(o.toString()));
-				games.add(new JuegoEnPropiedadDTO(juego));
-				
+				JSONObject bib = new JSONObject(new JSONTokener(o.toString()));
+				if (bib.getString("_userId").equals(id)) {
+					JSONArray juegos = bib.getJSONArray("_gamesList");
+					
+					for (Object juego : juegos) {
+						JSONObject prop = new JSONObject(new JSONTokener(juego.toString()));
+						
+						list.add(new JuegoEnPropiedadDTO(prop));
+						
+					}
+					
+					return list;
+					
+				}
 			}
+
 			
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			
 		}
 		
-		return games;
+		return null;
 	}
 
 }

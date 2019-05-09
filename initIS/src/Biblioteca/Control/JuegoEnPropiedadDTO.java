@@ -28,6 +28,16 @@ public class JuegoEnPropiedadDTO extends JuegoDTO{
 		
 	}
 	
+	public JuegoEnPropiedadDTO(JuegoEnPropiedadDTO game) {
+		super(game.get_id());
+		_dao = new JuegoEnPropiedadDAOJSON();
+		
+		this._hoursPlayed = game.get_hoursPlayed();
+		this._actVersion = game.get_actVersion();
+		this._lastEx = game.get_lastEx();
+		this._installed = game.is_installed();
+		
+	}
 	public JSONObject JuegoEnPropiedadToJSON() {
 		_dao = new JuegoEnPropiedadDAOJSON();
 		

@@ -34,18 +34,20 @@ public class MainViewComunidad extends JPanel {
 	private UsuarioDAO dao;
 	private ControllerComunidad _controller;
 	
-	private static int i = 0;
-	private static int j = 0;
+	private int i = 0;
+	private int j = 0;
 	private boolean encontrado = false;
 
 	private PerfilUsuarioDenunc pud;
 	private List<PerfilUsuarioDenunc> perfil;
+	private UsuarioDTO _user;
 
 	
 	public MainViewComunidad(UsuarioDTO usuario, ControllerComunidad controller) {
 		perfil = new ArrayList<PerfilUsuarioDenunc>();
 		dao = new UsuarioDAOJSON();
 		_controller = controller;
+		_user = usuario;
 		initGUI();
 		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 	}
@@ -72,8 +74,10 @@ public class MainViewComunidad extends JPanel {
 	            	for (UsuarioDTO us : users) {	
             			perfil.get(j).setVisible(false);
 	            		if (us.get_username().toLowerCase().contains(buscarNombre.getText().toLowerCase())) {
-	            			perfil.get(j).setVisible(true);
-	            			encontrado = true;
+	            			if (!(us.get_user_id().equals(_user.get_user_id())) && !(us.get_user_id().equals("0000000000"))) {
+	            				perfil.get(j).setVisible(true);
+	            				encontrado = true;
+	            			}
 	            		}
             			j++;
 	            	}
@@ -83,7 +87,9 @@ public class MainViewComunidad extends JPanel {
 	            }
             	else {
             		for (UsuarioDTO us : users) {	
-            			perfil.get(j).setVisible(true);
+            			if (!(us.get_user_id().equals(_user.get_user_id())) && !(us.get_user_id().equals("0000000000"))) {
+            				perfil.get(j).setVisible(true);
+            			}
             			j++;
             		}
             	}
@@ -93,11 +99,20 @@ public class MainViewComunidad extends JPanel {
 		_buscar.add(buscarNombre);
         _buscar.add(buscar);
 		for (UsuarioDTO us : users) {	
+			if (!(us.get_user_id().equals(_user.get_user_id())) && !(us.get_user_id().equals("0000000000"))) {
 			pud = new PerfilUsuarioDenunc(us, _controller);
 			perfil.add(pud);
 			_panel.add(perfil.get(i));
 			perfil.get(i).setVisible(true);
 			_panel.add(new JSeparator());
+			}
+			else {
+				pud = new PerfilUsuarioDenunc(us, _controller);
+				perfil.add(pud);
+				_panel.add(perfil.get(i));
+				perfil.get(i).setVisible(false);
+				_panel.add(new JSeparator());
+			}
 			i++;
 		}
 		i = 0;

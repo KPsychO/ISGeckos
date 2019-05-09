@@ -114,11 +114,11 @@ public class ComprarJuego extends JPanel{
 		JPanel form = new JPanel();
 		form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
 		
-		JLabel nombre = new JLabel("Nombre (Sólo carácteres, (NOT NULL):");
-		JLabel apell = new JLabel("Apellidos (Sólo carácteres, (NOT NULL):");
+		JLabel nombre = new JLabel("Nombre (Solo caracteres, (NOT NULL):");
+		JLabel apell = new JLabel("Apellidos (Solo caracteres, (NOT NULL):");
 		JLabel edad = new JLabel("Edad (mayor de 12 y menor de 100):");
-		JLabel cuenta = new JLabel("Cuenta (16 dígitos):");
-		JLabel cvv = new JLabel("CVV (3 dígitos):");
+		JLabel cuenta = new JLabel("Cuenta (16 digitos):");
+		JLabel cvv = new JLabel("CVV (3 digitos):");
 		JLabel cad = new JLabel("Fecha caducidad:");
 		
 		tfnombre = new JTextField();
@@ -175,6 +175,7 @@ public class ComprarJuego extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 
 			boolean ret = true;
+			/*
 			ret = !tfnombre.getText().equals("");
 			ret = !tfapell.getText().equals("");
 			ret = !(Integer.valueOf(tfedad.getText()) >= 12);
@@ -183,7 +184,7 @@ public class ComprarJuego extends JPanel{
 			ret = !(Long.parseUnsignedLong(tfcuenta.getText()) / 1E15 > 1);
 			ret = !(Integer.valueOf(tfcvv.getText()) / 100 < 10);
 			ret = !(Integer.valueOf(tfcvv.getText()) / 100 > 1);
-			
+			*/
 			if(ret)	ret = _tiendaCont.comprarJuego(_juego);
 
 			/*

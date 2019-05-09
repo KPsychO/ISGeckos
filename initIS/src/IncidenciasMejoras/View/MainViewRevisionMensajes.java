@@ -15,6 +15,7 @@ import org.json.JSONArray;
 
 import IncidenciasMejoras.Control.IncidenciasDAOJSON;
 import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
+import IncidenciasMejoras.Control.IteratorInciMej;
 import Usuario.Control.UsuarioDTO;
 
 public class MainViewRevisionMensajes extends JPanel {
@@ -32,11 +33,12 @@ public class MainViewRevisionMensajes extends JPanel {
 	private JLabel _id_user_Denun;
 	private JLabel _id_game;
 	private IncidenciasMejorasDTO incMejDTO;
-	private int n = 0;
+	private IteratorInciMej itr;
 	
 	public MainViewRevisionMensajes(UsuarioDTO user) {
 		_user = user;
 		incMejDTO = new IncidenciasMejorasDTO(user);
+		itr = new IteratorInciMej();
 		initGUI();
 	}
 
@@ -115,7 +117,7 @@ public class MainViewRevisionMensajes extends JPanel {
         campos.add(Box.createVerticalStrut(20));
         this.add(campos);
         
-        visualizarIncidenciasDenuncias(n);
+        visualizarIncidenciasDenuncias(itr.getN());
 	}
 	
 	private void visualizarIncidenciasDenuncias(int n) {
@@ -127,18 +129,8 @@ public class MainViewRevisionMensajes extends JPanel {
 		
 		this._type.setText("Tipo :  " + incidenciasMejoras.get_type());
 		this._id_user.setText("Usuario :  " + incidenciasMejoras.get_id_user());
-		
-		switch (incidenciasMejoras.get_type()) {
-		case "IncJue": 
-			this._id_game.setText("Juego :  " + incidenciasMejoras.get_id_game());
-			break;
-		case "DenJug": 
-			this._id_user_Denun.setText("Usuario Denunciado :  " + incidenciasMejoras.get_id_user_Denun());
-			break;
-		case "DenJue": 
-			this._id_game.setText("Juego :  " + incidenciasMejoras.get_id_game());
-			break;
-		}
+		this._id_user_Denun.setText("Usuario Denunciado :  " + incidenciasMejoras.get_id_user_Denun());
+		this._id_game.setText("Juego :  " + incidenciasMejoras.get_id_game());
 		this._desc.setText("Descripcion :  " + incidenciasMejoras.get_desc());
 		this._coment.setText("Comentario :  " + incidenciasMejoras.get_coment());
 		}
@@ -149,19 +141,18 @@ public class MainViewRevisionMensajes extends JPanel {
 	
 	class eliminarIncDen implements ActionListener {
 		 public void actionPerformed(ActionEvent e){ 
-			incMejDTO.eliminarIncidenciaMejora(n);
+			incMejDTO.eliminarIncidenciaMejora(itr.getN());
 			JSONArray im = new JSONArray();
 			im = new IncidenciasDAOJSON().getListIncidencias();
 			
 			if(im.length() == 0) {
 				JOptionPane.showMessageDialog(getParent(), "No hay mas Incidencias/Denuncias", "Error", JOptionPane.ERROR_MESSAGE);
 			}
-			else if(n < im.length() - 1){
-				visualizarIncidenciasDenuncias(n);
+			else if(itr.getN() < im.length() - 1){
+				visualizarIncidenciasDenuncias(itr.getN());
 			}
-			else if (n >= im.length() - 1){
-				n = 0;
-				visualizarIncidenciasDenuncias(n);
+			else if (itr.getN() >= im.length() - 1){
+				visualizarIncidenciasDenuncias(itr.primero());
 			}
 		}
 	}
@@ -173,13 +164,12 @@ public class MainViewRevisionMensajes extends JPanel {
 				if(im.length() == 0) {
 					JOptionPane.showMessageDialog(getParent(), "No hay mas Incidencias/Denuncias", "Error", JOptionPane.ERROR_MESSAGE);
 				}
-				else if(n < im.length() - 1){
-					n++;
-					visualizarIncidenciasDenuncias(n);
+				else if(itr.getN() < im.length() - 1){
+					itr.sumarUno();
+					visualizarIncidenciasDenuncias(itr.getN());
 				}
-				else if (n == im.length() - 1){
-					n = 0;
-					visualizarIncidenciasDenuncias(n);
+				else if (itr.getN() == im.length() - 1){
+					visualizarIncidenciasDenuncias(itr.primero());
 				}
 		 }
 	}
@@ -191,13 +181,13 @@ public class MainViewRevisionMensajes extends JPanel {
 				if(im.length() == 0) {
 					JOptionPane.showMessageDialog(getParent(), "No hay mas Incidencias/Denuncias", "Error", JOptionPane.ERROR_MESSAGE);
 				}
-				else if(n > 0){
-					n--;
-					visualizarIncidenciasDenuncias(n);
+				else if(itr.getN() > 0){
+					itr.restarUno();
+					visualizarIncidenciasDenuncias(itr.getN());
 				}
-				else if (n == 0){
-					n = im.length() - 1;
-					visualizarIncidenciasDenuncias(n);
+				else if (itr.getN() == 0){
+					itr.setN(im.length() - 1);
+					visualizarIncidenciasDenuncias(itr.getN());
 				}	
 		}
 	}

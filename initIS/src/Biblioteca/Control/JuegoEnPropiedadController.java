@@ -22,6 +22,10 @@ public class JuegoEnPropiedadController {
 		return this._dto.get_title();
 	}
 	
+	public String get_id() {
+		return this._dto.get_id();
+	}
+	
 	public void executeGame() {
 		_dto.set_hoursPlayed(_dto.get_hoursPlayed() + 1);
 		_dto.set_lastEx("now");
@@ -50,10 +54,10 @@ public class JuegoEnPropiedadController {
 		game.set_actVersion(game.get_version());
 	}
 	
-	public JuegoDTO getJuego(String id) {
-		List<JuegoEnPropiedadDTO> games = _dao.getJuegos();
+	public JuegoEnPropiedadDTO getJuego(String id) {
+		List<JuegoEnPropiedadDTO> games = _dao.getJuegosID(id);
 		
-		for (JuegoDTO g : games) {
+		for (JuegoEnPropiedadDTO g : games) {
 			
 			if (g.get_id().equals(id)) {
 				return g;

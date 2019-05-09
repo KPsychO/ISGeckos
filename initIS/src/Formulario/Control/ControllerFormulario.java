@@ -9,7 +9,6 @@ import Usuario.Control.UsuarioDTO;
 import common.Controller;
 
 public class ControllerFormulario {
-
 	
 private Controller _controller;
 	

@@ -129,8 +129,13 @@ public class MainViewIncidenciasJugador extends JPanel implements ActionListener
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("aceptar")) {
-			imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("IncJug", user.get_user_id(), null, null, descText.getText(), comenText.getText()));
-			JOptionPane.showMessageDialog(getParent(), "Has enviado la Denuncia/Incidencia");
+			if (!user.get_user_id().equals("0000000000")) {
+				imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("IncJug", user.get_user_id(), null, null, descText.getText(), comenText.getText()));
+				JOptionPane.showMessageDialog(getParent(), "Has enviado la Denuncia/Incidencia");
+			}
+			else {
+				JOptionPane.showMessageDialog(getParent(), "No puedes hacer una Denuncia/Incidencia porque no estas registrado");
+			}
 			_controller.evento(EventoIncidenciasMejoras.IncMejATienda, null, null);
 		}
 		else if (e.getActionCommand().equals("cancelar")) {

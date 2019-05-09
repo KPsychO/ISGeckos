@@ -3,18 +3,19 @@ package Biblioteca.Control;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import org.json.JSONArray;
 
 import Biblioteca.View.MainViewBiblioteca;
+import Biblioteca.View.ViewEjecucion;
 import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
 import common.Controller;
 
 public class BibliotecaController{
 
-	private BibliotecaDAO _dao;
 	private BibliotecaDTO _dto;
 	
 	private Controller _controller;
@@ -23,31 +24,22 @@ public class BibliotecaController{
 	public BibliotecaController(Controller cont) {
 		
 		_controller = cont;
-		_dao = new BibliotecaDAOJSON();
-		_dto = new BibliotecaDTO(getGames());
+		
 	}
 	
 	// Constructora con par�metro user -- Biblioteca personal
 	
-	public BibliotecaController(UsuarioDTO user) {
-		_dao = new BibliotecaDAOJSON();
+	public BibliotecaController(UsuarioDTO user, Controller cont) {
+		_controller = cont;
 		_dto = new BibliotecaDTO(getGames(user), user);
 		
-	}
-	
-	public List<JuegoEnPropiedadDTO> getGames(){
-		List<JuegoEnPropiedadDTO> games = new ArrayList<JuegoEnPropiedadDTO>();
-		
-		games = _dao.getOwnedGames();
-		
-		return games;
 	}
 	
 	public List<JuegoEnPropiedadDTO> getGames(UsuarioDTO user){
 		
 		List<JuegoEnPropiedadDTO> games = new ArrayList<JuegoEnPropiedadDTO>();
 		
-		games = _dao.getOwnedGames(user.get_user_id());
+		games = SingletonBibliotecaDAO.getInstance().getOwnedGames(user.get_user_id());
 		
 		return games;
 	}
@@ -55,27 +47,86 @@ public class BibliotecaController{
 	public void anadirJuego(JuegoDTO juego) {
 		JuegoEnPropiedadDTO newGame = new JuegoEnPropiedadDTO(juego);
 		_dto.anadirJuego(newGame);
+		SingletonBibliotecaDAO.getInstance().actualizarBiblioteca(newGame, _controller.getCurrentUser());
 	}
 	
 	public JPanel getBibliotecaPanel() {
 		
-		return new MainViewBiblioteca(this, _controller.getCurrentUser());
+		_dto = new BibliotecaDTO(getGames(_controller.getCurrentUser()), _controller.getCurrentUser());
+		
+		return new MainViewBiblioteca(this, _controller.getCurrentUser(), _dto.get_juegosEnBiblioteca());
 		
 	}
 
 	public List<BibliotecaDTO> getLibraries() {
 		
-		return this._dao.getLibraries();
+		return SingletonBibliotecaDAO.getInstance().getLibraries();
 	}
 
 	public List<JuegoEnPropiedadDTO> getOwnedGames(JSONArray jsonArray) {
 		
-		return this._dao.getOwnedGames(jsonArray);
+		return SingletonBibliotecaDAO.getInstance().getOwnedGames(jsonArray);
 	}
 
 	public List<JuegoEnPropiedadDTO> getOwnedGames(String _userId) {
 		
-		return this._dao.getOwnedGames(_userId);
+		return SingletonBibliotecaDAO.getInstance().getOwnedGames(_userId);
 	}
 	
+	public void evento(EventoBiblioteca e, JuegoEnPropiedadDTO juego) {
+		switch(e) {
+		case valoraciones:
+			System.out.println("Valorando estoy: " + juego.get_title());
+			break;
+		case incidencia:
+			System.out.println("Incidentando estoy: " + juego.get_title());
+			break;
+		case denuncia:
+			System.out.println("Denunciando estoy: " + juego.get_title());
+			break;
+		case actualizarJuego:
+			actualizarJuego(juego);
+			break;
+		case instalarJuego:
+			instalarJuego(juego);
+			
+			break;
+		case jugarJuego:
+			if (!juego.is_installed()) {
+            	JOptionPane.showMessageDialog(null, "Necesitas instalar el juego", "Instalar", JOptionPane.ERROR_MESSAGE);
+            	instalarJuego(juego);
+            	_controller.setPrincipalPanel(new MainViewBiblioteca(this, _controller.getCurrentUser(), _dto.get_juegosEnBiblioteca()));
+			}
+			else if (juego.get_actVersion() != juego.get_version()) {
+            	JOptionPane.showMessageDialog(null, "Necesitas actualizar el juego", "Actualizar", JOptionPane.ERROR_MESSAGE);
+            	actualizarJuego(juego);
+            	_controller.setPrincipalPanel(new MainViewBiblioteca(this, _controller.getCurrentUser(), _dto.get_juegosEnBiblioteca()));
+			}
+			else
+				new ViewEjecucion(juego, this);
+			break;
+		
+		}
+	}
+
+	public void instalarJuego(JuegoEnPropiedadDTO juego) {
+		//_dto.instalarJuego(juego);
+		juego.set_installed(true);
+		SingletonBibliotecaDAO.getInstance().actualizarBiblioteca(juego, _controller.getCurrentUser());
+	}
+	
+	public void actualizarJuego(JuegoEnPropiedadDTO juego) {
+		//_dto.actualizarJuego(juego);
+		juego.set_actVersion(juego.get_version());
+		SingletonBibliotecaDAO.getInstance().actualizarBiblioteca(_dto.getJuego(juego), _controller.getCurrentUser());
+	}
+	
+	public void ejecutarJuego(JuegoEnPropiedadDTO juego) {
+		_dto.ejecutarJuego(juego);
+		SingletonBibliotecaDAO.getInstance().actualizarBiblioteca(_dto.getJuego(juego), _controller.getCurrentUser());
+	}
+
+	public void comprarJuego(JuegoDTO j) {
+		SingletonBibliotecaDAO.getInstance().insertarJuego(j, _controller.getCurrentUser());
+	}
 }

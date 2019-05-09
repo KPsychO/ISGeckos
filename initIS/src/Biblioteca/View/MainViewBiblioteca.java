@@ -23,10 +23,10 @@ public class MainViewBiblioteca extends JPanel{
 	private JPanel _panel;
 	
 	@SuppressWarnings("static-access")
-	public MainViewBiblioteca(BibliotecaController ctrllr, UsuarioDTO user) {
+	public MainViewBiblioteca(BibliotecaController ctrllr, UsuarioDTO user, List<JuegoEnPropiedadDTO> games) {
 		this._bibliotecaController = ctrllr;
 		
-		this._games = this._bibliotecaController.getGames(user);
+		this._games = games;
 		
 		initGUI();
 		
@@ -49,10 +49,11 @@ public class MainViewBiblioteca extends JPanel{
 	}
 	
 	private void addGames() {
-		
+		if (_games == null)
+			return;
 		for (JuegoEnPropiedadDTO j : this._games) {	
 			
-			JuegoBiblioteca observed = new JuegoBiblioteca(j);
+			JuegoBiblioteca observed = new JuegoBiblioteca(j, _bibliotecaController);
 	        observed.addPropertyChangeListener(new PropertyChangeListener() {
 
 	            @Override

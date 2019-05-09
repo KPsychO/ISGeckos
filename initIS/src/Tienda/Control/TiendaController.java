@@ -15,20 +15,18 @@ import common.Controller;
 
 public class TiendaController{
 	
-	private TiendaDAO _dao;
 	private TiendaDTO _TiendaDTO;
 	private Controller _controller;
 	
 	public TiendaController(Controller cont) {
 		
 		_controller = cont;
-		_dao = new TiendaDAOJSON();
 		_TiendaDTO = new TiendaDTO(createJuegosEnTienda(_controller.getCurrentUser()));
 		
 	}
 	
 	public TiendaController() {
-		_dao = new TiendaDAOJSON();
+
 		_TiendaDTO = new TiendaDTO(getJuegosEnTienda());
 	}
 
@@ -45,9 +43,9 @@ public class TiendaController{
 		
 		List<JuegoDTO> juegosEnTienda = new ArrayList<JuegoDTO>();
 		
-		pubGames = _dao.getPublishedGames();
+		pubGames = SingletonTiendaDAO.getInstance().getPublishedGames();
 		
-		ownGames = _dao.getOwnedGames(user.get_user_id());
+		ownGames = SingletonTiendaDAO.getInstance().getOwnedGames(user.get_user_id());
 		
 		for(JuegoDTO j : pubGames) {
 			
@@ -61,7 +59,7 @@ public class TiendaController{
 	}
 	
 	public List<JuegoDTO> getJuegosEnTienda() {
-		List<JuegoDTO> juegosEnTienda = _dao.getPublishedGames();
+		List<JuegoDTO> juegosEnTienda = SingletonTiendaDAO.getInstance().getPublishedGames();
 		
 		return juegosEnTienda;
 	}
@@ -89,6 +87,8 @@ public class TiendaController{
 		case comprarJuego:
 			_controller.setPrincipalPanel(new MainViewTienda(this, _user));
 			break;
+		case juegoComprado:
+			_controller.anadirJuegoComprado(_juego);
 		default:
 			break;
 		}

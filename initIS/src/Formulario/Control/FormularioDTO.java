@@ -30,11 +30,7 @@ public class FormularioDTO {
 	private List<String> _genres;
 	private List<LogroDTO> _achievements;
 	
-	FormularioDAO dao = new FormularioDAOJSON();
-	
 	public FormularioDTO(String title, String desc, int pegi, int price, UsuarioDTO dev) {
-		
-		dao = new FormularioDAOJSON();
 		
 		_id = UUID.randomUUID().toString();
 		_title = title;
@@ -47,7 +43,6 @@ public class FormularioDTO {
 	
 	public FormularioDTO(JSONObject formulario) {
 		
-		dao = new FormularioDAOJSON();
 		_id = UUID.randomUUID().toString();
 		_title = formulario.getString("_title");
 		_descShort = formulario.getString("_descShort");
@@ -58,7 +53,7 @@ public class FormularioDTO {
 	}
 	
 	public FormularioDTO(UsuarioDTO dev) {
-		dao = new FormularioDAOJSON();
+
 		_id = UUID.randomUUID().toString();
 		_genres = new ArrayList<String>();
 		_developer = dev.get_user_id();
@@ -67,7 +62,7 @@ public class FormularioDTO {
 	}
 	
 	public FormularioDTO(UsuarioDTO dev, String id) {
-		dao = new FormularioDAOJSON();
+
 		_id = id;
 		_genres = new ArrayList<String>();
 		_developer = dev.get_user_id();
@@ -76,15 +71,15 @@ public class FormularioDTO {
 	}
 	
 	public void insertGame(int n) {
-		dao.insertGame(n);
+		SingletonFormularioDAO.getInstance().insertGame(n);
 	}
 	
 	public void deleteFormulary(int n) {
-		dao.deleteFormulary(n);
+		SingletonFormularioDAO.getInstance().deleteFormulary(n);
 	}
 	
 	public void insert (FormularioDTO x) {
-		dao.insertFormulary(x);
+		SingletonFormularioDAO.getInstance().insertFormulary(x);
 	} 
 	
 	public void addGenres(String g) {
@@ -180,8 +175,21 @@ public class FormularioDTO {
 		this._genres = _genres;
 	}
 
-	public List<LogroDTO> get_achievements() {
-		return _achievements;
+	public JSONArray get_achievements() {
+		JSONArray arr = new JSONArray();
+		
+		for (LogroDTO l : this._achievements) {
+			JSONObject logro = new JSONObject();
+			logro.put("_id", l.get_id());
+			logro.put("_name", l.get_name());
+			logro.put("_getMode", l.get_getMode());
+			
+			arr.put(logro);
+		}
+		
+		
+		return arr;
+		
 	}
 
 	public void set_achievements(List<LogroDTO> _achievements) {

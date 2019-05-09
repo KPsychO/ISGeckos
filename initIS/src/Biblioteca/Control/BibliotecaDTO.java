@@ -3,6 +3,7 @@ package Biblioteca.Control;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Usuario.Control.UsuarioDTO;
@@ -65,11 +66,56 @@ public class BibliotecaDTO {
 		_juegosEnBiblioteca.add(newGame);
 	}
 	 */
+	
+	public JSONArray juegosEnBibliotecaJSON() {
+		JSONArray arr = new JSONArray();
+		
+		for(JuegoEnPropiedadDTO i : this._juegosEnBiblioteca) {
+			arr.put(i.JuegoEnPropiedadToJSON());
+		}
+		return null;
+	}
+	
 	public List<JuegoEnPropiedadDTO> get_juegosEnBiblioteca() {
 		return _juegosEnBiblioteca;
 	}
 	
+	public JuegoEnPropiedadDTO getJuego(JuegoEnPropiedadDTO juego) {
+		for (JuegoEnPropiedadDTO i : this._juegosEnBiblioteca)
+			if (i.get_id().equals(juego.get_id()))
+				return i;
+		return null;
+	}
+	
 	public void anadirJuego(JuegoEnPropiedadDTO juego) {
 		this._juegosEnBiblioteca.add(juego);
+	}
+	
+	public void instalarJuego(JuegoEnPropiedadDTO juego) {
+		for(JuegoEnPropiedadDTO i : this._juegosEnBiblioteca)
+			if(i.get_id().equals(juego.get_id())) {
+				i.set_installed(true);
+				i.set_actVersion(i.get_version());
+				System.out.println("Instalado juego: " + i.get_title());
+			}
+	}
+
+	public void actualizarJuego(JuegoEnPropiedadDTO juego) {
+		for(JuegoEnPropiedadDTO i : this._juegosEnBiblioteca)
+			if(i.get_id().equals(juego.get_id())) {
+				i.set_actVersion(i.get_version());
+				System.out.println("Actualizado juego: " + i.get_title());
+				break;
+			}
+		
+	}
+
+	public void ejecutarJuego(JuegoEnPropiedadDTO juego) {
+		for(JuegoEnPropiedadDTO i : this._juegosEnBiblioteca)
+			if(i.get_id() == juego.get_id()) {
+				i.set_hoursPlayed(i.get_hoursPlayed() + 1);
+				i.set_lastEx("now");
+			}
+		
 	}
 }

@@ -19,7 +19,6 @@ import IncidenciasMejoras.Control.ControllerIncidenciasMejoras;
 import IncidenciasMejoras.Control.EventoIncidenciasMejoras;
 import IncidenciasMejoras.Control.IncidenciasDAOJSON;
 import IncidenciasMejoras.Control.IncidenciasMejorasDTO;
-import Juego.Control.EventoJuego;
 import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
 
@@ -124,8 +123,13 @@ public class MainViewDenunciasJuego extends JPanel implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("aceptar")) {
-			imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("DenJue", user.get_user_id(), null, game.get_id(), descText.getText(), comenText.getText()));
-			JOptionPane.showMessageDialog(getParent(), "Has enviado la Denuncia/Incidencia");
+			if (!user.get_user_id().equals("0000000000")) {
+				imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("DenJue", user.get_user_id(), null, game.get_id(), descText.getText(), comenText.getText()));
+				JOptionPane.showMessageDialog(getParent(), "Has enviado la Denuncia/Incidencia");
+			}
+			else {
+				JOptionPane.showMessageDialog(getParent(), "No puedes hacer una Denuncia/Incidencia porque no estas registrado");
+			}
 			_controller.evento(EventoIncidenciasMejoras.IncMejATienda, null, null);
 		}
 		else if (e.getActionCommand().equals("cancelar")) {
