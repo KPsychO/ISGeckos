@@ -167,11 +167,11 @@ public class MainViewJuego extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 			
 			if (_cj.isRegistered()) {
-				_cj.evento(EventoJuego.ComprarJuego, _juegoDTO, null);
+				_cj.evento(EventoJuego.ComprarJuego, _juegoDTO);
 			}
 			else {
 				JOptionPane.showMessageDialog(MainViewJuego.this, 
-            			"Un usuario debe estar registrado para poder comprar un juego, porfavor, inicie sesión.", 
+            			"Un usuario debe estar registrado para poder comprar un juego, porfavor, inicie sesion.", 
             			"Error", JOptionPane.ERROR_MESSAGE);
 			}
 				

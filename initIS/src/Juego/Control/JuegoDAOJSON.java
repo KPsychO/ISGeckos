@@ -2,6 +2,8 @@ package Juego.Control;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -102,6 +104,38 @@ public class JuegoDAOJSON implements JuegoDAO{
 		
 		return null;
 		
+	}
+
+	public void eliminarJuego(String id) {
+		
+		InputStream input = null;
+		try {
+			input = new FileInputStream("./src/resources/Games.txt");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		JSONArray jsonInput = new JSONArray(new JSONTokener(input));
+		int i = 0;
+		for (Object o : jsonInput) {
+				
+			JSONObject juego = new JSONObject(new JSONTokener(o.toString()));
+			
+			if (juego.getString("_id").equals(id)) {
+				break;
+			}
+			
+			i++;
+		}
+
+		jsonInput.remove(i);
+		
+		try (FileWriter file = new FileWriter("./src/resources/Games.txt")) {
+			file.write(jsonInput.toString(4));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

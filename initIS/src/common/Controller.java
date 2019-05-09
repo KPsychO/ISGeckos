@@ -9,6 +9,7 @@ import Biblioteca.Control.BibliotecaControllerFacade;
 import Biblioteca.Control.JuegoEnPropiedadDTO;
 import Comunidad.View.ComunidadControllerFacade;
 import Formulario.Control.FormularioControllerFacade;
+import Formulario.Control.FormularioDTO;
 import IncidenciasMejoras.Control.IncidenciasMejorasControllerFacade;
 import IncidenciasMejoras.View.MainViewDenunciasJuego;
 import IncidenciasMejoras.View.MainViewDenunciasJugador;
@@ -183,6 +184,20 @@ public class Controller {
 
 	public JPanel getIncidenciasJuego(JuegoEnPropiedadDTO juego) {
 		return new MainViewIncidenciasJuego(_current_user, juego, _controllerIncidenciasMejoras);
+	}
+	public void insertarFormulario(FormularioDTO dto, String type) {
+		_controllerFormulario.insertarFormulario(dto, type);
+	}
+
+	public FormularioDTO crearFormulario(JuegoDTO dto, String type, String just) {
+		return _controllerFormulario.crearFormulario(dto, type, just);
+	}
+
+	public void eliminarJuego(String id) {
+		_controllerJuego.eliminarJuego(id);
+		//_controllerBiblioteca.eliminarJuego(id);
+		//_controllerFormulario.eliminarJuego(id);
+		
 	}
 
 	

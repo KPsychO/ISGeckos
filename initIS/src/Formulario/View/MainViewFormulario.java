@@ -367,7 +367,7 @@ public class MainViewFormulario extends JPanel{
 	                	JOptionPane.showMessageDialog(MainViewFormulario.this, tipoError, ok, JOptionPane.INFORMATION_MESSAGE);
 	                	
 	                	FormularioDTO formulario = getFormulario();
-	                	_formularioDTO.insert(formulario);
+	                	_formularioDTO.insert(formulario, "Formulario");
 	                	_cf.evento(EventoFormulario.Perfil, null);
 	                }  
 	            }

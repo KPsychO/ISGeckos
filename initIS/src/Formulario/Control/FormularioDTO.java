@@ -22,15 +22,15 @@ public class FormularioDTO {
 	private String _descShort;
 	private String _notes;
 	private String _date;
-	@SuppressWarnings("unused")
-	private String _developer; //Para esto es necesario que funcione el usuario, asi que...
+	private String _developer; 
+	private String _type;
 	private int _version;
 	private int _pegi;
 	private int _price;
 	private List<String> _genres;
 	private List<LogroDTO> _achievements;
 	
-	public FormularioDTO(String title, String desc, int pegi, int price, UsuarioDTO dev) {
+	public FormularioDTO(String title, String desc, int pegi, int price, UsuarioDTO dev, String type) {
 		
 		_id = UUID.randomUUID().toString();
 		_title = title;
@@ -38,17 +38,19 @@ public class FormularioDTO {
 		_pegi = pegi;
 		_price = price;
 		_developer = dev.get_user_id();
+		_type = type;
 		
 	}
 	
 	public FormularioDTO(JSONObject formulario) {
 		
-		_id = UUID.randomUUID().toString();
+		_id = formulario.getString("_id");
 		_title = formulario.getString("_title");
 		_descShort = formulario.getString("_descShort");
 		_pegi = formulario.getInt("_pegi");
 		_price = formulario.getInt("_price");
 		_developer = formulario.getString("_developer");
+		_type = formulario.getString("_type");
 		
 	}
 	
@@ -78,8 +80,8 @@ public class FormularioDTO {
 		SingletonFormularioDAO.getInstance().deleteFormulary(n);
 	}
 	
-	public void insert (FormularioDTO x) {
-		SingletonFormularioDAO.getInstance().insertFormulary(x);
+	public void insert (FormularioDTO x, String type) {
+		SingletonFormularioDAO.getInstance().insertFormulary(x, type);
 	} 
 	
 	public void addGenres(String g) {
@@ -207,6 +209,14 @@ public class FormularioDTO {
 
 	public void set_developer(String _developer) {
 		this._developer = _developer;
+	}
+	
+	public String get_type() {
+		return _type;
+	}
+
+	public void set_type(String _type) {
+		this._type = _type;
 	}
 	
 }

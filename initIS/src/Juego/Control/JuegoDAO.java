@@ -20,5 +20,7 @@ public interface JuegoDAO {
 	public abstract List<JuegoDTO> getJuegosDeveloper(UsuarioDTO dev);
 	
 	public abstract JuegoDTO getJuegoID(String id);
+
+	public abstract void eliminarJuego(String id);
 	
 }

@@ -91,22 +91,19 @@ public class JuegoDeveloper extends JPanel{
 	
 	class VerEnTienda implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			_cj.evento(EventoJuego.JuegoTienda, _dto, _user);
-			//firePropertyChange("VerEnTienda", null, _dto);
+			_cj.evento(EventoJuego.JuegoTienda, _dto);
 		}
 	}
 	
 	class Actualizar implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			_cj.evento(EventoJuego.ActualizarJuego, _dto, _user);
-			//firePropertyChange("ActualizarJuego", null, _dto);
+			_cj.evento(EventoJuego.ActualizarJuego, _dto);
 		}
 	}
 	
 	class Eliminar implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			_cj.evento(EventoJuego.EliminarJuego, _dto, _user);
-			//firePropertyChange("EliminarJuego", null, _dto);
+			_cj.evento(EventoJuego.EliminarJuego, _dto);
 		}
 	}
 
