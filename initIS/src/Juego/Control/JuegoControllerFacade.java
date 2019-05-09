@@ -1,5 +1,7 @@
 package Juego.Control;
 
+import java.io.IOException;
+
 import javax.swing.JPanel;
 
 import Juego.View.MainViewActualizarJuego;
@@ -47,6 +49,10 @@ public class JuegoControllerFacade {
 	
 	public JPanel getDesarrolladoraPanel(UsuarioDTO dto) {
 		return new MainViewDeveloper(dto, this);
+	}
+	
+	public JPanel getListValoraciones(JuegoDTO game) throws IOException {
+		return this._controller.getListValoraciones(game);
 	}
 
 	public void formularioEliminar(JuegoDTO dto, String type, String just) {
