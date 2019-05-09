@@ -279,11 +279,11 @@ public class MainViewPublicacion extends JPanel {
 					_cf.evento(EventoFormulario.Perfil, null);
 				}
 				else if(iter.actual < form.length() - 1){
-					JOptionPane.showMessageDialog(null, "Juego enviado correctamente ", null, JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Juego enviado correctamente ", null, JOptionPane.INFORMATION_MESSAGE);
 					showFormulary(iter.siguiente());
 				}
 				else if (iter.actual >= form.length() - 1){
-					JOptionPane.showMessageDialog(null, "Juego enviado correctamente ", "null", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Juego enviado correctamente ", "null", JOptionPane.INFORMATION_MESSAGE);
 					showFormulary(iter.primero());
 				}
 			}
