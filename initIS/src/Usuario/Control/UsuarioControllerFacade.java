@@ -132,4 +132,15 @@ public class UsuarioControllerFacade {
 	public void eliminarUsuario(UsuarioDTO _dto) {
 		new UsuarioDAOJSON().deleteUser(_dto);
 	}
+	
+	public void quitaBalance(int b, UsuarioDTO u) {
+		u.set_balance(u.get_balance() - b);
+		// GUARDAR EN EL JSON EL NUEVO BALANCE
+	}
+	public void addBalance(int b) {
+		_controller.addBalance(b);
+	}
+	public int get_ownedGames() {
+		return _controller.get_ownedGames();
+	}
 }

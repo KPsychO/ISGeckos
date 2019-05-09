@@ -130,9 +130,4 @@ public class BibliotecaControllerFacade{
 	public void comprarJuego(JuegoDTO j) {
 		SingletonBibliotecaDAO.getInstance().insertarJuego(j, _controller.getCurrentUser());
 	}
-
-	public void eliminarJuego(String id) {
-		// TODO Auto-generated method stub
-		
-	}
 }

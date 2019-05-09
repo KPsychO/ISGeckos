@@ -10,12 +10,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 import Juego.Control.JuegoDTO;
 import Tienda.Control.EventoTienda;
@@ -121,6 +121,20 @@ public class ComprarJuego extends JPanel{
 		JLabel cvv = new JLabel("CVV (3 digitos):");
 		JLabel cad = new JLabel("Fecha caducidad:");
 		
+		JPanel pnombre = new JPanel(new BorderLayout());
+		JPanel papell = new JPanel(new BorderLayout());
+		JPanel pedad = new JPanel(new BorderLayout());
+		JPanel pcuenta = new JPanel(new BorderLayout());
+		JPanel pcvv = new JPanel(new BorderLayout());
+		JPanel pcad = new JPanel(new BorderLayout());
+		
+		pnombre.add(nombre, BorderLayout.WEST);
+		papell.add(apell, BorderLayout.WEST);
+		pedad.add(edad, BorderLayout.WEST);
+		pcuenta.add(cuenta, BorderLayout.WEST);
+		pcvv.add(cvv, BorderLayout.WEST);
+		pcad.add(cad, BorderLayout.WEST);
+		
 		tfnombre = new JTextField();
 		tfnombre.setMaximumSize(new Dimension(400, 25));
 		tfnombre.setMinimumSize(new Dimension(400, 25));
@@ -146,17 +160,17 @@ public class ComprarJuego extends JPanel{
 		tfcad.setMinimumSize(new Dimension(400, 25));
 		tfcad.setPreferredSize(new Dimension(400, 25));
 		
-		form.add(nombre);
+		form.add(pnombre);
 		form.add(tfnombre);
-		form.add(apell);
+		form.add(papell);
 		form.add(tfapell);
-		form.add(edad);
+		form.add(pedad);
 		form.add(tfedad);
-		form.add(cuenta);
+		form.add(pcuenta);
 		form.add(tfcuenta);
-		form.add(cvv);
+		form.add(pcvv);
 		form.add(tfcvv);
-		form.add(cad);
+		form.add(pcad);
 		form.add(tfcad);
 		
 		_panel.add(form);
@@ -175,6 +189,7 @@ public class ComprarJuego extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 
 			boolean ret = true;
+			
 			/*
 			ret = !tfnombre.getText().equals("");
 			ret = !tfapell.getText().equals("");
@@ -200,10 +215,7 @@ public class ComprarJuego extends JPanel{
 				frame.setMinimumSize(new Dimension(800,200));
 				frame.setPreferredSize(new Dimension(800,200));
 				
-				JLabel label = new JLabel("Se ha comprado: " + _juego.get_title() + " por: " + _juego.get_price()/100 + "$", SwingConstants.CENTER);
-				
-				frame.add(label, BorderLayout.CENTER);
-				frame.setVisible(true);
+				JOptionPane.showMessageDialog(frame,"Se ha comprado: " + _juego.get_title()); 
 				
 				_tiendaCont.evento(EventoTienda.comprarJuego, _juego, _tiendaCont.getCurrentUser());
 				
@@ -214,10 +226,7 @@ public class ComprarJuego extends JPanel{
 				frame.setMinimumSize(new Dimension(800,200));
 				frame.setPreferredSize(new Dimension(800,200));
 				
-				JLabel label = new JLabel("No se ha comprado: " + _juego.get_title(), SwingConstants.CENTER);
-				
-				frame.add(label, BorderLayout.CENTER);
-				frame.setVisible(true);
+				JOptionPane.showMessageDialog(frame,"No se ha comprado: " + _juego.get_title() + ", por favor, revise la valided de sus datos."); 
 				
 			}
 			

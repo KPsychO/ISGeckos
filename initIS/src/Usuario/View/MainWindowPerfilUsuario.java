@@ -35,8 +35,11 @@ public class MainWindowPerfilUsuario extends JPanel{
 	private JButton publicacion;
 	private JButton developer;
 	private JButton revisionMensajes;
+	private JButton addMoney;
 	
 	private UsuarioControllerFacade _cu;
+	
+	JLabel bal;
 	
 	public MainWindowPerfilUsuario(UsuarioDTO dto, UsuarioControllerFacade cu) {
 		_cu = cu;
@@ -72,11 +75,13 @@ public class MainWindowPerfilUsuario extends JPanel{
 		JLabel name = new JLabel("Name: " + _dto.get_username());
 				
 		JLabel pais = new JLabel ("Pais: " + _dto.get_country());
-		JLabel juegos = new JLabel ("Juegos en biblioteca: 5");
+		JLabel juegos = new JLabel ("Juegos en biblioteca: " + _cu.get_ownedGames());
+		bal = new JLabel("Balance: " + _dto.get_balance()/100);
 		
 		name_level_estado.add(name);
 		name_level_estado.add(pais);
 		name_level_estado.add(juegos);
+		name_level_estado.add(bal);
 		
 		avatar_name_level.add(avatarLabel);
 		avatar_name_level.add(name_level_estado);
@@ -96,7 +101,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 		
 		//Panel derecho
 		JPanel der = new JPanel();
-		der.setLayout(new GridLayout(8, 1));
+		der.setLayout(new GridLayout(9, 1));
 		
 		//Botones
 		
@@ -124,6 +129,9 @@ public class MainWindowPerfilUsuario extends JPanel{
 		revisionMensajes = new JButton("INCIDENCIAS/DENUNCIAS");
 		revisionMensajes.addActionListener(new inciMejButton());
 		
+		addMoney = new JButton("AÑADIR BALANCE (10$)");
+		addMoney.addActionListener(new addMoneyButton());
+		
 		setButtons();
 		
 		der.add(biblioteca);
@@ -137,6 +145,8 @@ public class MainWindowPerfilUsuario extends JPanel{
 		der.add(elimCuenta);
 		der.add(developer);
 		der.add(revisionMensajes);
+		
+		der.add(addMoney);
 		
 		this.add(izq);
 		this.add(new JSeparator());
@@ -188,6 +198,13 @@ public class MainWindowPerfilUsuario extends JPanel{
 	class inciMejButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			_cu.evento(EventoUsuario.RevIncMej, _dto);
+		}
+	}
+	class addMoneyButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			_cu.addBalance(1000);
+			bal.setText("Balance: " + _dto.get_balance()/100);
+			bal.revalidate();
 		}
 	}
 

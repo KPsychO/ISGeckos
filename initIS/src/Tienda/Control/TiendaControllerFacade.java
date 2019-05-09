@@ -62,15 +62,14 @@ public class TiendaControllerFacade{
 	}
 	
 	public List<JuegoDTO> getJuegosEnTienda() {
-		List<JuegoDTO> juegosEnTienda = SingletonTiendaDAO.getInstance().getPublishedGames();
-		
-		return juegosEnTienda;
+		return _TiendaDTO.getJuegosEnTienda();
 	}
 	
 	public boolean comprarJuego(JuegoDTO juego) {
 		
 		if(_controller.getCurrentUser().get_balance() >= juego.get_price()) {
 		
+			_controller.quitaBalance(juego.get_price());
 			_TiendaDTO.comprarJuego(juego);
 			_controller.anadirJuegoComprado(juego);
 			

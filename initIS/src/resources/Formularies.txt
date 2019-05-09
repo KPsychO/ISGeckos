@@ -1,1 +1,13 @@
-[]
+[{
+    "_date": "2019-05-10",
+    "_achievements": [],
+    "_price": 231,
+    "_descLong": "a",
+    "_type": "Formulario",
+    "_title": "a",
+    "_pegi": 12,
+    "_genres": ["action"],
+    "_developer": "5ccd515396f1e847f2e4eb0d",
+    "_id": "4df3c87e-e74e-424c-a745-776213389682",
+    "_descShort": "a"
+}]

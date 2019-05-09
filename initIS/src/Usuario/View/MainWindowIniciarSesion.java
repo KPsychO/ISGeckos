@@ -1,12 +1,15 @@
 package Usuario.View;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
@@ -15,6 +18,7 @@ import Usuario.Control.EventoUsuario;
 import Usuario.Control.UsuarioControllerFacade;
 import Usuario.Control.UsuarioDAO;
 import Usuario.Control.UsuarioDAOJSON;
+import Usuario.Control.UsuarioDTO;
 
 
 public class MainWindowIniciarSesion extends JPanel{
@@ -109,7 +113,29 @@ public class MainWindowIniciarSesion extends JPanel{
 	class iniciarButton implements ActionListener {
 		 public void actionPerformed(ActionEvent e){  
 			 if (!username.getText().equals("") && !password.getText().equals("")) {
-				 _cu.evento(EventoUsuario.PerfilUsuario, _dao.login(username.getText(), password.getText()));
+				
+				 UsuarioDTO user = _dao.login(username.getText(), password.getText());
+				 
+				 if (user != null)
+					 _cu.evento(EventoUsuario.PerfilUsuario, user);
+				 else {
+					 
+					JFrame frame = new JFrame("ERROR");
+					frame.setLayout(new BorderLayout());
+					frame.setMinimumSize(new Dimension(800,200));
+					frame.setPreferredSize(new Dimension(800,200));
+					JOptionPane.showMessageDialog(frame, "El usuario introducido no se encuentra registrado en el aplicacion, o la contraseña no es correcta"); 
+					 
+				 }
+				 
+			 } else {
+				 
+				JFrame frame = new JFrame("ERROR");
+				frame.setLayout(new BorderLayout());
+				frame.setMinimumSize(new Dimension(800,200));
+				frame.setPreferredSize(new Dimension(800,200));
+				JOptionPane.showMessageDialog(frame, "Porfavor, introduzca un nombre de usuario y contraseña"); 
+				 
 			 }
          }  
 
