@@ -130,4 +130,18 @@ public class Controller {
 		return _tiendaControler;
 	}
 
+	public JPanel getFormularioPanel() {
+		return _controllerFormulario.getFormularioPanel(_current_user);
+	}
+
+	public JPanel getPublicacionPanel() {
+		return _controllerFormulario.getPublicacion(_current_user);
+	}
+
+	public JPanel getDesarrolladoraPanel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }

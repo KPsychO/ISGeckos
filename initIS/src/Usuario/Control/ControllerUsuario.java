@@ -7,6 +7,9 @@ import Usuario.View.MainWindowCrearCuenta;
 import Usuario.View.MainWindowIniciarSesion;
 import Usuario.View.MainWindowPerfilUsuario;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -28,6 +31,10 @@ public class ControllerUsuario {
 	public void evento(EventoUsuario e, UsuarioDTO _user) {
 		switch (e) {
 		
+		case IniciarSesion:
+			_controller.setCurrentUser(getUsuarioUnreg());
+			_controller.setPrincipalPanel(new MainWindowIniciarSesion(this));
+			break;
 		case PerfilUsuario:
 			if (_user != null) {
 				_controller.setCurrentUser(_user);
@@ -37,11 +44,11 @@ public class ControllerUsuario {
 			break;
 			
 		case ModificarCuenta:
-			_controller.setPrincipalPanel(new MainWindowPerfilUsuario(_user, this));
+			_controller.setPrincipalPanel(new MainWindowModificarCuenta(_user, this));
 			break;
 		
 		case EliminarCuenta:
-			_controller.setPrincipalPanel(new MainWindowIniciarSesion(this));
+			_controller.setPrincipalPanel(new MainWindowEliminarCuenta(_user, this));
 			break;
 		
 		case CerrarSesion: 
@@ -58,9 +65,17 @@ public class ControllerUsuario {
 			break;
 			
 		case CrearCuenta:
-			_controller.setPrincipalPanel(new MainWindowIniciarSesion(this));
+			_controller.setPrincipalPanel(new MainWindowPerfilUsuario(_user, this));
 			break;
-			
+		case Formulario:
+			_controller.setPrincipalPanel(_controller.getFormularioPanel());
+			break;
+		case Publicacion:
+			_controller.setPrincipalPanel(_controller.getPublicacionPanel());
+			break;
+		case Desarrolladora:
+			_controller.setPrincipalPanel(_controller.getDesarrolladoraPanel());
+			break;
 		default: break;
 		
 		}
@@ -81,4 +96,29 @@ public class ControllerUsuario {
 		else
 			return new MainWindowPerfilUsuario(dto, this);
 	}
+
+
+	public void storeUser(String id, String name, String password, String email, String country, int balance, String desc,
+			boolean user, boolean dev, boolean admin) {
+		
+		List<tipoCuenta> tipos = new ArrayList<tipoCuenta>();
+		if (user) tipos.add(tipoCuenta.user);
+		if (dev) tipos.add(tipoCuenta.developer);
+		if (dev) tipos.add(tipoCuenta.admin);
+		
+		UsuarioDTO data = new UsuarioDTO(tipos, balance, desc, email, country, password, id, name);
+		
+		new UsuarioDAOJSON().insertarUsuario(data);
+		
+	}
+	
+	public void storeUser(UsuarioDTO dto) {
+		new UsuarioDAOJSON().insertarUsuario(dto);
+	}
+
+
+	public void eliminarUsuario(UsuarioDTO _dto) {
+		new UsuarioDAOJSON().deleteUser(_dto);
+	}
+
 }

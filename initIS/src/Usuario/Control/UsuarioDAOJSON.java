@@ -42,20 +42,19 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		
 		JSONObject obj = new JSONObject();
 		
-		obj.put ("_tipoCuenta", us.get_types()); 
-		obj.put ("_balance", us.get_balance());
-		//obj.put ("_avatar", us.get_avatar()); 
-		obj.put ("_descripcion", us.get_desc()); 
-		obj.put ("_email", us.get_email()); 
-		obj.put ("_pais", us.get_country()); 
-		obj.put ("_password", us.get_password()); 
 		obj.put ("_user_id", us.get_user_id()); 
 		obj.put ("_username", us.get_username()); 
-			
+		obj.put ("_types", us.get_types()); 
+		obj.put ("_password", us.get_password()); 
+		obj.put ("_email", us.get_email()); 
+		obj.put ("_country", us.get_country()); 
+		obj.put ("_balance", us.get_balance());
+		obj.put ("_desc", us.get_desc()); 
+
 		JSONArray usu = getListUsuariosJson();
 		usu.put(obj);
 		
-		try (FileWriter file = new FileWriter("./src/resources/Usuarios.txt")) {
+		try (FileWriter file = new FileWriter("./src/resources/Users.txt")) {
 			file.write(usu.toString(4));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -151,6 +150,29 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		}
 		
 		return null;
+	}
+	
+	public void deleteUser(UsuarioDTO dto) {
+		
+		JSONArray arr = new JSONArray();
+		arr = this.getListUsuariosJson();
+		
+		int i = 0;
+		for (Object o : arr) {
+			JSONObject user = new JSONObject(new JSONTokener(o.toString()));
+			if (user.getString("_user_id").equals(dto.get_user_id()))
+				break;
+			i++;
+		}
+		
+		if (i < arr.length())
+			arr.remove(i);
+		
+		try (FileWriter file = new FileWriter("./src/resources/Users.txt")) {
+			file.write(arr.toString(4));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
 

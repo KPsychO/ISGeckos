@@ -85,7 +85,8 @@ public class MainWindowPerfilUsuario extends JPanel{
 				
 		JTextArea desc = new JTextArea(_dto.get_desc());
 		desc.setPreferredSize(new Dimension(300, 100));
-		desc.setEditable(false);
+		desc.setWrapStyleWord(true);
+		desc.setLineWrap(true);
 		desc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		//Modificar perfil
 		
@@ -119,7 +120,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 		developer = new JButton("DESARROLLADORA");
 		developer.addActionListener(new desarrolladoraButton());
 		
-		revisionMensajes = new JButton("REVISION INCIDENCIAS/DENUNCIAS");
+		revisionMensajes = new JButton("INCIDENCIAS/DENUNCIAS");
 		revisionMensajes.addActionListener(new inciMejButton());
 		
 		setButtons();
@@ -165,7 +166,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 	}
 	class modPerfilButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			_cu.evento(EventoUsuario.CerrarSesion, _dto);
+			_cu.evento(EventoUsuario.ModificarCuenta, _dto);
 			firePropertyChange("ModificarCuenta", null, _dto);
 		}
 	}
@@ -176,7 +177,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 	}
 	class publicacionButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			_cu.evento(EventoUsuario.CerrarSesion, _dto);
+			_cu.evento(EventoUsuario.Publicacion, _dto);
 		}
 	}
 	class desarrolladoraButton implements ActionListener {

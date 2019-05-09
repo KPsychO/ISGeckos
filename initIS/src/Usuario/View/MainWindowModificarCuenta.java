@@ -16,6 +16,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
+import Usuario.Control.ControllerUsuario;
+import Usuario.Control.EventoUsuario;
 import Usuario.Control.UsuarioDTO;
 
 public class MainWindowModificarCuenta extends JPanel {
@@ -30,8 +32,10 @@ public class MainWindowModificarCuenta extends JPanel {
 	private JLabel descripcionLabel;
 	private JTextArea descripcion;
 	private JButton ok;
+	private ControllerUsuario _cu;
 	
-	public MainWindowModificarCuenta (UsuarioDTO dto) {
+	public MainWindowModificarCuenta (UsuarioDTO dto, ControllerUsuario cu) {
+		_cu = cu;
 		_dto = dto;
 		initGUI();
 		//this.setVisible(true);
@@ -53,12 +57,6 @@ public class MainWindowModificarCuenta extends JPanel {
         JPanel avatarPanel = new JPanel();
         BoxLayout avatarLayout = new BoxLayout(avatarPanel, BoxLayout.X_AXIS);
         avatarPanel.setLayout(avatarLayout);
-        
-        /*avatarLabel = new JLabel();
-        avatarLabel.setPreferredSize(new Dimension(200,200));
-        avatarLabel.setText("AVATAR");
-        */
-        
         
         //PONER COMO AVATAR LA IMAGEN SELECCIONADA EN EL JFILECHOOSER
         avatarFile = new JFileChooser("./src/resources"); 
@@ -111,6 +109,8 @@ public class MainWindowModificarCuenta extends JPanel {
         descripcion = new JTextArea(_dto.get_desc());
         descripcion.setPreferredSize(new Dimension(sizex,sizex));
         descripcion.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+        descripcion.setWrapStyleWord(true);
+        descripcion.setLineWrap(true);
         
         descripcionPanel.add(descripcionLabel);
         descripcionPanel.add(descripcion);
@@ -137,8 +137,9 @@ public class MainWindowModificarCuenta extends JPanel {
 				_dto.set_country(pais.getText());
 			if (!descripcion.getText().isEmpty())
 				_dto.set_desc(descripcion.getText());
-			
-    		firePropertyChange("ModificarCuenta", null, null);
+			_cu.eliminarUsuario(_dto);
+			_cu.storeUser(_dto);
+			_cu.evento(EventoUsuario.PerfilUsuario, _dto);
 		} 
 	}
 	
