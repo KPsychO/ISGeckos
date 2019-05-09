@@ -131,6 +131,12 @@ public class Controller {
 		_bibliotecaController.comprarJuego(j);
 	}
 	
+	// Ignacio
+
+	public void valorar(JuegoEnPropiedadDTO juego) {
+	
+	}
+	
 	public UsuarioDTO getCurrentUser() {
 		
 		return _current_user;
@@ -178,5 +184,6 @@ public class Controller {
 	public JPanel getIncidenciasJuego(JuegoEnPropiedadDTO juego) {
 		return new MainViewIncidenciasJuego(_current_user, juego, _controllerIncidenciasMejoras);
 	}
+
 	
 }
