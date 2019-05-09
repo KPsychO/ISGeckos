@@ -24,4 +24,5 @@ public interface UsuarioDAO {
 
 	public abstract UsuarioDTO getUserID(String id);
 	
+	public abstract void deleteUser(UsuarioDTO dto);
 }

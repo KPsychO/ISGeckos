@@ -6,6 +6,7 @@ import IncidenciasMejoras.View.MainViewDenunciasJuego;
 import IncidenciasMejoras.View.MainViewDenunciasJugador;
 import IncidenciasMejoras.View.MainViewIncidenciasJuego;
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
+import IncidenciasMejoras.View.MainViewRevisionMensajes;
 import Juego.Control.EventoJuego;
 import Juego.Control.JuegoDTO;
 import Juego.View.MainViewActualizarJuego;
@@ -46,6 +47,10 @@ public class ControllerIncidenciasMejoras {
 
 	public JPanel getIncidenciasMejorasPanel(UsuarioDTO dto) {
 		return new MainViewIncidenciasJugador(dto, this);
+	}
+
+	public JPanel getRevMejPanel() {
+		return new MainViewRevisionMensajes(_controller.getCurrentUser());
 	}
 
 }

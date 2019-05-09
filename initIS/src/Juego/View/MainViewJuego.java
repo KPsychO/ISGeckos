@@ -133,7 +133,7 @@ public class MainViewJuego extends JPanel{
         vertical.setPreferredSize(new Dimension(200, 100));
         mainPanel.add(vertical);
 
-        JLabel fecha = new JLabel(_juegoDTO.get_date());
+        JLabel fecha = new JLabel("Fecha: " + _juegoDTO.get_date());
         fecha.setHorizontalAlignment(JLabel.CENTER);
         fecha.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         
@@ -147,8 +147,8 @@ public class MainViewJuego extends JPanel{
         
         JPanel etiquetas = new JPanel();
         for (String et : _juegoDTO.get_genres()) {
-        	JLabel jl = new JLabel(et);
-        	jl.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+        	JButton jl = new JButton(et);
+        	//jl.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         	etiquetas.add(jl);
         }
         generos.add(etiquetas);

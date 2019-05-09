@@ -137,4 +137,20 @@ public class Controller {
 		return _tiendaControler;
 	}
 
+	public JPanel getFormularioPanel() {
+		return _controllerFormulario.getFormularioPanel(_current_user);
+	}
+
+	public JPanel getPublicacionPanel() {
+		return _controllerFormulario.getPublicacion(_current_user);
+	}
+
+	public JPanel getDesarrolladoraPanel() {
+		return _controllerJuego.getDesarrolladoraPanel(_current_user);
+	}
+
+	public JPanel getRevMej() {
+		return _controllerIncidenciasMejoras.getRevMejPanel();
+	}
+
 }
