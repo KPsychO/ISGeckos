@@ -4,5 +4,7 @@ public enum EventoIncidenciasMejoras {
 	DenunciasJuego,
 	IncidenciasJuego,
 	IncMejATienda,
-	IncidenciasMejorasAPerfilUsuario, PerfilUsuario
+	IncidenciasMejorasAPerfilUsuario,
+	PerfilUsuario,
+	UsuarioDenunciadoComunidad
 }

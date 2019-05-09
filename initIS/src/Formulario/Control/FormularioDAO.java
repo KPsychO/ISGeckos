@@ -10,7 +10,5 @@ public interface FormularioDAO {
 	public abstract void insertFormulary(FormularioDTO newForm, String type);
 	public abstract void deleteFormulary(int n);
 	public abstract void insertGame(int n);
-
-	public abstract void deleteFormularies(String id);
 	
 }

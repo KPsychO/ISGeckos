@@ -5,8 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -119,28 +117,5 @@ public class FormularioDAOJSON implements FormularioDAO{
 		} catch (FileNotFoundException e) {
 			;
 		}
-	}
-
-	@Override
-	public void deleteFormularies(String id) {
-		JSONArray arr = getFormularies();
-		List<Integer> lista_eliminar = new ArrayList<Integer>();
-
-		for (int i = 0; i < arr.length(); ++i) {
-			
-			JSONObject game = new JSONObject(new JSONTokener(arr.get(i).toString()));
-			if (game.getString("_id").equals(id)) {
-				arr.remove(i);
-			}
-			else
-				i++;
-		}
-		
-		try (FileWriter file = new FileWriter("./src/resources/Formularies.txt")) {
-			file.write(arr.toString(4));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 	}
 }
