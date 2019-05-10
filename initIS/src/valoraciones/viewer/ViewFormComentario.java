@@ -51,13 +51,6 @@ public class ViewFormComentario extends JPanel{
 		this.controller = controller;
 		initComponent();
 		addComponents();
-		persoComponetsModify();
-		//textAreaComentario.setText(comentario.getComentario().getText());
-	}
-
-	private void persoComponetsModify() {
-		this.textAreaComentario.setText(comentario.getComentario().getText());
-		
 	}
 
 	private void initComponent() {

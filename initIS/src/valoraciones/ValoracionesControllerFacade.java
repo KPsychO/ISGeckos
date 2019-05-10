@@ -9,7 +9,8 @@ import Usuario.Control.UsuarioDTO;
 import common.Controller;
 import valoraciones.controller.EventsValoraciones;
 import valoraciones.controller.FachadaMedia;
-import valoraciones.model.ServiceApplicationValoraciones;
+import valoraciones.model.DAOComentario;
+import valoraciones.model.DAOValoracion;
 import valoraciones.model.TransferComentario;
 import valoraciones.model.TransferValoracion;
 import valoraciones.viewer.PanelListValoraciones;
@@ -19,11 +20,9 @@ import valoraciones.viewer.ViewValoracion;
 
 public class ValoracionesControllerFacade {
 	private Controller controller;
-	private ServiceApplicationValoraciones sa;
 	
 	public ValoracionesControllerFacade(Controller controller) {
 		this.controller = controller;
-		sa = new ServiceApplicationValoraciones();
 	}
 	
 	public JPanel getPanelListValoracionesJuego(JuegoDTO game, UsuarioDTO user) throws IOException {
@@ -34,14 +33,19 @@ public class ValoracionesControllerFacade {
 		return new FachadaMedia().getMediaJuego(game);
 	}
 	
+	public void showPanel(JPanel panel) {
+		controller.setPrincipalPanel(panel);
+	}
+	
 	public void actions(int event, Object data) throws Exception {
 		TransferComentario comentario;
 		TransferValoracion valoracion;
 		switch(event) {
 		case EventsValoraciones.PUBLICAR_COMENTARIO:
 			comentario = (TransferComentario) data;
-			sa.publicarComentario(comentario);
-			valoracion = sa.getValoracionForComentario(comentario);
+			DAOComentario daoComentario = new DAOComentario();
+			daoComentario.createComentario(comentario);
+			valoracion = new DAOValoracion().getValoracion(comentario.getValoracionID(),comentario.getGame());
 			controller.setPrincipalPanel(new ViewValoracion(valoracion,this, controller.getCurrentUser() ));
 			break;
 		case EventsValoraciones.SHOW_FORM_COMENTAR:
@@ -50,27 +54,30 @@ public class ValoracionesControllerFacade {
 			break;
 		case EventsValoraciones.ELIMINAR_COMENTARIO:
 			comentario = (TransferComentario) data;
-			sa.eliminarComentario(comentario);
-			valoracion = sa.getValoracionForComentario(comentario);
+			new DAOComentario().deleteComentario(comentario);
+			valoracion = new DAOValoracion().getValoracion(comentario.getValoracionID(),comentario.getGame());
 			controller.setPrincipalPanel(new ViewValoracion(valoracion, this, controller.getCurrentUser()));
 			break;
-		case EventsValoraciones.SHOW_FORM_MODIFICAR_COMENTARIO:
-			comentario = (TransferComentario) data;
-			controller.setPrincipalPanel(new ViewFormComentario(comentario,this));
+		case EventsValoraciones.MODIFICAR_COMENTARIO:
+			
 			break;
 		case EventsValoraciones.PUBLICAR_VALORACION:
 			valoracion = (TransferValoracion) data;
-			sa.publicarValoracion(valoracion);
-			controller.setPrincipalPanel(new ViewValoracion(valoracion,this,controller.getCurrentUser()));
-			break;
-		case EventsValoraciones.ELIMINAR_VALORACION:
-			valoracion = (TransferValoracion) data;
-			sa.eliminarValoracion(valoracion);
+			DAOValoracion daoValoracion = new DAOValoracion();
+			daoValoracion.createValoracion(valoracion);
 			controller.setPrincipalPanel(controller.getBiblioteca());
 			break;
-		case EventsValoraciones.SHOW_FORM_MODIFICAR_VALORACION:
+		case EventsValoraciones.ELIMINAR_VALORACION:
+			System.out.println("control controller valoraciones");
 			valoracion = (TransferValoracion) data;
-			controller.setPrincipalPanel(new ViewFromValoracion(valoracion,this));
+			new DAOValoracion().deleteValoracion(valoracion);
+			controller.setPrincipalPanel(controller.getBiblioteca());
+			break;
+		case EventsValoraciones.MODIFICAR_VALORACION:
+			/*
+			valoracion = (TransferValoracion) data;
+			controller.setPrincipalPanel(controller.getBiblioteca());
+			*/
 			break;
 		case EventsValoraciones.SHOW_VALORACION:
 			valoracion = (TransferValoracion) data;
@@ -80,6 +87,7 @@ public class ValoracionesControllerFacade {
 	}
 
 	public JPanel getFormValoraciones(UsuarioDTO user, JuegoDTO game) {
+		// TODO Auto-generated method stub
 		return new ViewFromValoracion(user,game,this);
 	}
 }

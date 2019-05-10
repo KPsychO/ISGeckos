@@ -132,15 +132,15 @@ public class ViewValoracion extends JPanel{
 
 		c.gridx = 2;
 		c.gridy = 2;
-		
+		/*
 		if(!user.isUnregistered()) {
 			panelValoracion.add(buttonComentar, c);
 		}
 		else {
 			panelValoracion.add(new JLabel(""), c);
 		}
-		
-		//panelValoracion.add(buttonComentar, c);
+		*/
+		panelValoracion.add(buttonComentar, c);
 		
 		
 		if(user.get_user_id().equals( valoracion.getUser().get_user_id()) ){
@@ -151,7 +151,7 @@ public class ViewValoracion extends JPanel{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					try {
-						controller.actions(EventsValoraciones.SHOW_FORM_MODIFICAR_VALORACION, valoracion);
+						controller.actions(EventsValoraciones.MODIFICAR_VALORACION, valoracion);
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(
 								getParent(), 
