@@ -13,15 +13,20 @@ public abstract class Multimedia {
 	}
 	
 	public void setPath(String path, String name) throws IllegalArgumentException{
+		System.out.println("path: "+path);
+		System.out.println("name: "+name);
+		
 		this.pathFile = path;
 		this.nameFile = name;
 		this.format = getFormat(name);
 	}
 	
 	public boolean isFormatSuported(String nameFile) {
-		for(String format : aviableFormats) 
-			if(nameFile.substring(nameFile.indexOf("."), nameFile.length()).equals(format)) 
+		for(String format : aviableFormats) {
+			if(nameFile.substring(nameFile.indexOf(".")+1, nameFile.length()).equals(format)) {
 				return true;
+			}
+		}
 		return false;
 	}
 	
@@ -30,14 +35,22 @@ public abstract class Multimedia {
 	
 	private int getFormat(String nameFile) throws IllegalArgumentException{
 		for(int i = 0;i<aviableFormats.length;++i) 
-			if(nameFile.substring(nameFile.indexOf("."), nameFile.length()).equals(aviableFormats[i])) 
+			if(nameFile.substring(nameFile.indexOf(".")+1, nameFile.length()).equals(aviableFormats[i])) 
 				return i;
 		
 		throw new IllegalArgumentException("Error format not suported");
 	}
 
 	public String getToStore() {
-		return type+"-"+nameFile+"-"+pathFile;
+		return type+"&"+pathFile+"&"+nameFile;
+	}
+
+	public int getType() {
+		return this.type;
+	}
+
+	public String getName() {
+		return this.nameFile;
 	}
 	
 }

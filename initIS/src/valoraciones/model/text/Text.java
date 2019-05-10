@@ -24,7 +24,7 @@ public abstract class Text {
 	}
 
 	public void setText(String text) {
-		this.text = text;
+		this.text = text.replaceAll("\n", ".");
 	}
 	
 	public String getText() {
