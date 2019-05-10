@@ -125,12 +125,13 @@ public class UsuarioControllerFacade {
 	}
 	
 	public void storeUser(UsuarioDTO dto) {
-		new UsuarioDAOJSON().insertarUsuario(dto);
+		SingletonUsuarioDAO.getInstance().insertarUsuario(dto);
 	}
 
 
 	public void eliminarUsuario(UsuarioDTO _dto) {
-		new UsuarioDAOJSON().deleteUser(_dto);
+		SingletonUsuarioDAO.getInstance().deleteUser(_dto);
+		_controller.eliminarUsuario(_dto);
 	}
 	
 	public void quitaBalance(int b, UsuarioDTO u) {

@@ -220,5 +220,9 @@ public class Controller {
 	public JPanel getComunidad() {
 		return _controllerComunidad.getComunidadPanel(_current_user);
 	}
+
+	public void eliminarUsuario(UsuarioDTO _dto) {
+		_bibliotecaController.eliminarUsuario(_dto);
+	}
 	
 }
