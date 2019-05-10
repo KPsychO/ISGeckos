@@ -67,14 +67,24 @@ public class MainViewJuego extends JPanel{
 		jp.setLayout(grid);
 		jp.add(_leftS);
 		jp.add(_rightS);
-		this.add(jp);
 		
-		_valoraciones = new JPanel();
-		_labelValoraciones = new JLabel("Valoraciones");
-		_valoraciones.add(_labelValoraciones);
+		JPanel all = new JPanel();
 		
-		this.add(_valoraciones);
+		JScrollPane jsp = new JScrollPane(all, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		jsp.getVerticalScrollBar().setUnitIncrement(20);
+		
+		all.add(jp);
+		
+		all.setLayout(new BorderLayout());
+		all.add(jp,BorderLayout.CENTER);
+		try {
+			all.add(_cj.getListValoraciones(_juegoDTO),BorderLayout.SOUTH);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 				
+		this.add(jsp);
 		
 		this.setVisible(true);
 		

@@ -227,5 +227,8 @@ public class Controller {
 		return _controllerJuego.getJuegoPanel(_juego, comprado);
 		
 	}
+	public void eliminarUsuario(UsuarioDTO _dto) {
+		_bibliotecaController.eliminarUsuario(_dto);
+	}
 	
 }

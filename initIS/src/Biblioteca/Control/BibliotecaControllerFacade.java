@@ -134,4 +134,7 @@ public class BibliotecaControllerFacade{
 	public void eliminarJuego(String id) {
 		SingletonBibliotecaDAO.getInstance().eliminarJuegos(id);
 	}
+	public void eliminarUsuario(UsuarioDTO user) {
+		SingletonBibliotecaDAO.getInstance().eliminarBiblioteca(user.get_user_id());
+	}
 }
