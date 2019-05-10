@@ -35,6 +35,7 @@ public class IncidenciasDAOJSON implements IncidenciasDAO {
 		switch (inciMej.get_type()) {
 		case "DenJug":
 			obj.put("_type", inciMej.get_type());
+			obj.put("_username", inciMej.get_username());
 			obj.put("_id_user", inciMej.get_id_user());
 			obj.put("_id_user_denun", inciMej.get_id_user_Denun());
 			obj.put("_desc", inciMej.get_desc());
@@ -42,20 +43,25 @@ public class IncidenciasDAOJSON implements IncidenciasDAO {
 			break;
 		case "DenJue": 
 			obj.put("_type", inciMej.get_type());
+			obj.put("_username", inciMej.get_username());
 			obj.put("_id_user", inciMej.get_id_user());
+			obj.put("_game", inciMej.get_game());
 			obj.put("_id", inciMej.get_id_game());
 			obj.put("_desc", inciMej.get_desc());
 			obj.put("_coment", inciMej.get_coment());
 			break;
 		case "IncJug":
 			obj.put("_type", inciMej.get_type());
+			obj.put("_username", inciMej.get_username());
 			obj.put("_id_user", inciMej.get_id_user());
 			obj.put("_desc", inciMej.get_desc());
 			obj.put("_coment", inciMej.get_coment());
 			break;
 		case "IncJue": 
 			obj.put("_type", inciMej.get_type());
+			obj.put("_username", inciMej.get_username());
 			obj.put("_id_user", inciMej.get_id_user());
+			obj.put("_game", inciMej.get_game());
 			obj.put("_id", inciMej.get_id_game());
 			obj.put("_desc", inciMej.get_desc());
 			obj.put("_coment", inciMej.get_coment());

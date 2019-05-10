@@ -10,7 +10,7 @@ public class MultimediaImages extends Multimedia{
 
 	@Override
 	public String getPresentation() {
-		return "Multimedia image "+this.aviableFormats[this.format]+" execute,\nfile: "+this.pathFile;
+		return "Multimedia image "+this.aviableFormats[this.format]+" execute,\nfile: "+this.nameFile;
 	}
 
 }

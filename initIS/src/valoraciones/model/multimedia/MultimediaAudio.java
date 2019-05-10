@@ -10,7 +10,7 @@ public class MultimediaAudio extends Multimedia{
 
 	@Override
 	public String getPresentation() {
-		return "Multimedia audio "+this.aviableFormats[this.format]+" execute,\nfile: "+this.pathFile;
+		return "Multimedia audio "+this.aviableFormats[this.format]+" execute,\nfile: "+this.nameFile;
 	}
 
 }

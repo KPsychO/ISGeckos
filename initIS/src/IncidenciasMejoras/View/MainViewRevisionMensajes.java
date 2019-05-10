@@ -37,6 +37,8 @@ public class MainViewRevisionMensajes extends JPanel {
 	private IncidenciasMejorasDTO incMejDTO;
 	private IteratorInciMej itr;
 	private IncidenciasMejorasControllerFacade _controller;
+	private JLabel _username;
+	private JLabel _game;
 	
 	public MainViewRevisionMensajes(UsuarioDTO user, IncidenciasMejorasControllerFacade controller) {
 		_user = user;
@@ -89,6 +91,11 @@ public class MainViewRevisionMensajes extends JPanel {
         this._id_user = new JLabel();
         
         _id_user.setPreferredSize(new Dimension(500,20));
+        _id_user.setText("ID_Usuario :  ");
+        
+        this._username = new JLabel();
+        
+        _id_user.setPreferredSize(new Dimension(500,20));
         _id_user.setText("Usuario :  ");
         
         this._id_user_Denun = new JLabel();
@@ -99,7 +106,12 @@ public class MainViewRevisionMensajes extends JPanel {
         this._id_game = new JLabel();
         
         _id_game.setPreferredSize(new Dimension(500,20));
-        _id_game.setText("Juego :  ");
+        _id_game.setText("ID_Juego :  ");
+        
+        this._game = new JLabel();
+        
+        _id_user.setPreferredSize(new Dimension(500,20));
+        _id_user.setText("Juego :  ");
         
         this._desc = new JLabel();
         
@@ -112,8 +124,10 @@ public class MainViewRevisionMensajes extends JPanel {
         _coment.setText("Comentario :  " );
         
         campos.add(_type);
+        campos.add(_username);
         campos.add(_id_user);
         campos.add(_id_user_Denun);
+        campos.add(_game);
         campos.add(_id_game);
         campos.add(_desc);
         campos.add(_coment);
@@ -131,9 +145,11 @@ public class MainViewRevisionMensajes extends JPanel {
 		IncidenciasMejorasDTO incidenciasMejoras = new IncidenciasMejorasDTO(inciMej.getJSONObject(n));
 		
 		this._type.setText("Tipo :  " + incidenciasMejoras.get_type());
-		this._id_user.setText("Usuario :  " + incidenciasMejoras.get_id_user());
+		this._username.setText("Usuario :  " + incidenciasMejoras.get_username());
+		this._id_user.setText("ID_Usuario :  " + incidenciasMejoras.get_id_user());
 		this._id_user_Denun.setText("Usuario Denunciado :  " + incidenciasMejoras.get_id_user_Denun());
-		this._id_game.setText("Juego :  " + incidenciasMejoras.get_id_game());
+		this._game.setText("Juego :  " + incidenciasMejoras.get_game());
+		this._id_game.setText("ID_Juego :  " + incidenciasMejoras.get_id_game());
 		this._desc.setText("Descripcion :  " + incidenciasMejoras.get_desc());
 		this._coment.setText("Comentario :  " + incidenciasMejoras.get_coment());
 	}

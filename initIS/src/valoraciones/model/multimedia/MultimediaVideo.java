@@ -10,7 +10,7 @@ public class MultimediaVideo extends Multimedia{
 
 	@Override
 	public String getPresentation() {
-		return "Multimedia video "+this.aviableFormats[this.format]+" execute,\nfile: "+this.pathFile;
+		return "Multimedia video "+this.aviableFormats[this.format]+" execute,\nfile: "+this.nameFile;
 	}
 
 }
