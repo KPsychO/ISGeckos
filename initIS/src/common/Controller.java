@@ -203,7 +203,7 @@ public class Controller {
 		_controllerFormulario.eliminarFormularios(id);
 		_controllerJuego.eliminarJuego(id);
 		_bibliotecaController.eliminarJuego(id);
-		
+		_controllerValoraciones.eliminarJuego(id);
 	}
 	
 	public void quitaBalance(int b) {
@@ -230,6 +230,7 @@ public class Controller {
 	}
 	public void eliminarUsuario(UsuarioDTO _dto) {
 		_bibliotecaController.eliminarUsuario(_dto);
+		_controllerValoraciones.deleteUserDocuments(_dto.get_user_id());
 	}
 	
 }
