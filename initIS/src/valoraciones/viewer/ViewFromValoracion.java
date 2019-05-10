@@ -50,12 +50,52 @@ public class ViewFromValoracion extends JPanel {
 	private Multimedia multimedia;
 	
 	private ValoracionesControllerFacade controller;
-	
+
 	public ViewFromValoracion(UsuarioDTO user, JuegoDTO juego, ValoracionesControllerFacade controller) {
 		this.controller = controller;
 		valoracion = new TransferValoracion(user,juego);
 		initComponent();
 		addComponents();
+	}
+	
+	public ViewFromValoracion(TransferValoracion valoracion, ValoracionesControllerFacade controller) {
+		this.controller = controller;
+		this.valoracion = valoracion;
+		initComponent();
+		addComponents();
+		persoComponentsModify();
+	}
+
+	private void persoComponentsModify() {
+/*
+ * 
+	private JTextField textFieldTitulo;
+	private JButton buttonMultimedia;
+	private JTextArea textAreaValoracion;
+	private JSlider sliderPuntuacion;
+	private JButton buttonPublicar;
+	private JComboBox<String> comboBoxFormat;
+	
+	private TransferValoracion valoracion;
+	private Multimedia multimedia;
+ */
+		this.textFieldTitulo.setText(valoracion.getTitulo().getText());
+		this.sliderPuntuacion.setValue(valoracion.getPuntuacion());
+		if(valoracion.getMultimedia()!=null) {
+			this.buttonMultimedia.setText(valoracion.getMultimedia().getName());
+			switch(valoracion.getMultimedia().getType()) {
+			case BuildersMultimediaTypes.AUDIO:
+				comboBoxFormat.setSelectedIndex(0);
+				break;
+			case BuildersMultimediaTypes.IMAGES:
+				comboBoxFormat.setSelectedIndex(1);
+				break;
+			case BuildersMultimediaTypes.VIDEO:
+				comboBoxFormat.setSelectedIndex(2);
+				break;
+			}
+		}
+		this.textAreaValoracion.setText(valoracion.getValoracion().getText());
 	}
 
 	private void initComponent() {
@@ -96,7 +136,7 @@ public class ViewFromValoracion extends JPanel {
 					case 2: 
 						format = BuildersMultimediaTypes.VIDEO;
 						break;
-					case 3:
+					default:
 						JOptionPane.showMessageDialog(
 								getParent(), 
 								"Error. \n"+
@@ -105,10 +145,22 @@ public class ViewFromValoracion extends JPanel {
 								JOptionPane.INFORMATION_MESSAGE 
 								);
 						break;
-					default:
-						
+					
 					}
-					multimedia = SingletonBuilderMultimediaFactory.getSingletonInstance().createInstance(new Object[] {format,fileChooser.getSelectedFile().getName(),fileChooser.getSelectedFile()});
+					try {
+						multimedia = SingletonBuilderMultimediaFactory.getSingletonInstance().createInstance(new Object[] {format,fileChooser.getSelectedFile().getAbsolutePath(),fileChooser.getSelectedFile().getName()});
+						buttonMultimedia.setText("selected "+multimedia.getName());
+					}catch(Exception ex) {
+						JOptionPane.showMessageDialog(
+								getParent(), 
+								"Error. \n"+
+								ex.getMessage(), 
+								"Controller run error",
+								JOptionPane.INFORMATION_MESSAGE 
+								);
+						ex.printStackTrace();
+					}
+					
 				}
 			}
 			

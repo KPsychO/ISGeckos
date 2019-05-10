@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -65,14 +66,23 @@ public class MainViewJuego extends JPanel{
 		jp.setLayout(grid);
 		jp.add(_leftS);
 		jp.add(_rightS);
-		this.add(jp);
 		
+		
+		/*
 		_valoraciones = new JPanel();
 		_labelValoraciones = new JLabel("Valoraciones");
 		_valoraciones.add(_labelValoraciones);
 		
 		this.add(_valoraciones);
-				
+			*/
+		this.setLayout(new BorderLayout());
+		this.add(jp,BorderLayout.CENTER);
+		try {
+			this.add(_cj.getListValoraciones(_juegoDTO),BorderLayout.SOUTH);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		this.setVisible(true);
 		

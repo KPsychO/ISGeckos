@@ -140,6 +140,8 @@ public class Controller {
 	public JPanel getListValoraciones(JuegoDTO game) throws IOException {
 		return this._controllerValoraciones.getPanelListValoracionesJuego(game, this._current_user);
 	}	
+	
+	//
 
 	public UsuarioDTO getCurrentUser() {
 		
