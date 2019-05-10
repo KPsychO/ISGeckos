@@ -54,11 +54,7 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		JSONArray usu = getListUsuariosJson();
 		usu.put(obj);
 		
-		try (FileWriter file = new FileWriter("./src/resources/Users.txt")) {
-			file.write(usu.toString(4));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}	
+		saveFile(usu);
 	}
 
 	@SuppressWarnings("exports")
@@ -168,12 +164,41 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		if (i < arr.length())
 			arr.remove(i);
 		
+		saveFile(arr);
+		
+	}
+	
+	public void saveUserData(UsuarioDTO _user) {
+		
+		JSONArray arr = new JSONArray();
+		arr = this.getListUsuariosJson();
+		
+		int i = 0;
+		for (Object o : arr) {
+			JSONObject user = new JSONObject(new JSONTokener(o.toString()));
+			if (user.getString("_user_id").equals(_user.get_user_id()))
+				break;
+			
+			i++;
+		}
+		
+		if (i < arr.length())
+			arr.remove(i);
+		
+		saveFile(arr);
+		
+		insertarUsuario(_user);
+		
+	}
+	
+	private void saveFile(JSONArray arr) {
 		try (FileWriter file = new FileWriter("./src/resources/Users.txt")) {
 			file.write(arr.toString(4));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
 }
 
 

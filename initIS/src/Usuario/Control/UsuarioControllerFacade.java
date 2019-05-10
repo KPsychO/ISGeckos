@@ -136,10 +136,11 @@ public class UsuarioControllerFacade {
 	
 	public void quitaBalance(int b, UsuarioDTO u) {
 		u.set_balance(u.get_balance() - b);
-		// GUARDAR EN EL JSON EL NUEVO BALANCE
+		SingletonUsuarioDAO.getInstance().saveUserData(u);
 	}
 	public void addBalance(int b) {
 		_controller.addBalance(b);
+		SingletonUsuarioDAO.getInstance().saveUserData(_user);
 	}
 	public int get_ownedGames() {
 		return _controller.get_ownedGames();

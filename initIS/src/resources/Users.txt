@@ -192,20 +192,6 @@
         ]
     },
     {
-        "_country": "SudanDelSur12",
-        "_email": "letitiaeverett@filodyne.com",
-        "_password": "1",
-        "_balance": 30450054,
-        "_desc": "ONONONONON",
-        "_user_id": "5ccd515396f1e847f2e4eb0d",
-        "_username": "1",
-        "_types": [
-            "user",
-            "admin",
-            "developer"
-        ]
-    },
-    {
         "_country": "a",
         "_email": "a",
         "_password": "a",
@@ -217,6 +203,20 @@
             "user",
             "developer",
             "admin"
+        ]
+    },
+    {
+        "_country": "SudanDelSur12",
+        "_email": "letitiaeverett@filodyne.com",
+        "_password": "1",
+        "_balance": 31326597,
+        "_desc": "ONONONONON",
+        "_user_id": "5ccd515396f1e847f2e4eb0d",
+        "_username": "1",
+        "_types": [
+            "user",
+            "admin",
+            "developer"
         ]
     }
 ]

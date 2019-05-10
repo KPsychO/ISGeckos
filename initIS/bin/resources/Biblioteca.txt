@@ -1,1 +1,38 @@
-[]
+[
+    {
+        "_gamesList": [{
+            "_lastEx": "Never",
+            "_gameId": "5cd1ef8a60b100a9e8034586",
+            "_actVers": 0,
+            "_installed": false,
+            "_hoursPlayed": 0
+        }],
+        "_userId": "58ebcdb6-cce2-4058-b8c3"
+    },
+    {
+        "_gamesList": [
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8a60b100a9e8034586",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8ac0ebe5c6deccafa3",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            },
+            {
+                "_lastEx": "Never",
+                "_gameId": "5cd1ef8a013c7fbd7c4498dd",
+                "_actVers": 0,
+                "_installed": false,
+                "_hoursPlayed": 0
+            }
+        ],
+        "_userId": "5ccd515396f1e847f2e4eb0d"
+    }
+]

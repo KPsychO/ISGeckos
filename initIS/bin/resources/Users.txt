@@ -192,10 +192,24 @@
         ]
     },
     {
+        "_country": "a",
+        "_email": "a",
+        "_password": "a",
+        "_balance": 0,
+        "_desc": "",
+        "_user_id": "58ebcdb6-cce2-4058-b8c3",
+        "_username": "a",
+        "_types": [
+            "user",
+            "developer",
+            "admin"
+        ]
+    },
+    {
         "_country": "SudanDelSur12",
         "_email": "letitiaeverett@filodyne.com",
         "_password": "1",
-        "_balance": 30450054,
+        "_balance": 31326597,
         "_desc": "ONONONONON",
         "_user_id": "5ccd515396f1e847f2e4eb0d",
         "_username": "1",
