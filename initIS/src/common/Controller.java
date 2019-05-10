@@ -18,6 +18,7 @@ import IncidenciasMejoras.View.MainViewDenunciasJugador;
 import IncidenciasMejoras.View.MainViewIncidenciasJuego;
 import Juego.Control.JuegoControllerFacade;
 import Juego.Control.JuegoDTO;
+import Juego.View.MainViewJuego;
 import Tienda.Control.TiendaControllerFacade;
 import Usuario.Control.UsuarioControllerFacade;
 import Usuario.Control.UsuarioDTO;
@@ -140,8 +141,6 @@ public class Controller {
 	public JPanel getListValoraciones(JuegoDTO game) throws IOException {
 		return this._controllerValoraciones.getPanelListValoracionesJuego(game, this._current_user);
 	}	
-	
-	//
 
 	public UsuarioDTO getCurrentUser() {
 		
@@ -222,9 +221,11 @@ public class Controller {
 	public JPanel getComunidad() {
 		return _controllerComunidad.getComunidadPanel(_current_user);
 	}
-
-	public void eliminarUsuario(UsuarioDTO _dto) {
-		_bibliotecaController.eliminarUsuario(_dto);
+	
+	public JPanel createVistaJuegoTienda(JuegoDTO _juego, boolean comprado) {
+		
+		return _controllerJuego.getJuegoPanel(_juego, comprado);
+		
 	}
 	
 }

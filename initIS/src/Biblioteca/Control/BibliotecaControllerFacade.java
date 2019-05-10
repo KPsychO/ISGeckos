@@ -76,6 +76,7 @@ public class BibliotecaControllerFacade{
 	public void evento(EventoBiblioteca e, JuegoEnPropiedadDTO juego) {
 		switch(e) {
 		case valoraciones:
+			//System.out.println("Valorando estoy: " + juego.get_title());
 			_controller.valorar(juego);
 			break;
 		case incidencia:
@@ -110,11 +111,13 @@ public class BibliotecaControllerFacade{
 	}
 
 	public void instalarJuego(JuegoEnPropiedadDTO juego) {
+		//_dto.instalarJuego(juego);
 		juego.set_installed(true);
 		SingletonBibliotecaDAO.getInstance().actualizarBiblioteca(juego, _controller.getCurrentUser());
 	}
 	
 	public void actualizarJuego(JuegoEnPropiedadDTO juego) {
+		//_dto.actualizarJuego(juego);
 		juego.set_actVersion(juego.get_version());
 		SingletonBibliotecaDAO.getInstance().actualizarBiblioteca(_dto.getJuego(juego), _controller.getCurrentUser());
 	}
@@ -130,9 +133,5 @@ public class BibliotecaControllerFacade{
 
 	public void eliminarJuego(String id) {
 		SingletonBibliotecaDAO.getInstance().eliminarJuegos(id);
-	}
-
-	public void eliminarUsuario(UsuarioDTO user) {
-		SingletonBibliotecaDAO.getInstance().eliminarBiblioteca(user.get_user_id());
 	}
 }

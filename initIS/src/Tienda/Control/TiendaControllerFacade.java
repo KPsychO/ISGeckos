@@ -39,25 +39,7 @@ public class TiendaControllerFacade{
 
 	private List<JuegoDTO> createJuegosEnTienda(UsuarioDTO user) {
 		
-		List<JuegoDTO> pubGames = new ArrayList<JuegoDTO>();
-		List<JuegoEnPropiedadDTO> ownGames = new ArrayList<JuegoEnPropiedadDTO>();
-		
-		List<JuegoDTO> juegosEnTienda = new ArrayList<JuegoDTO>();
-		
-		pubGames = SingletonTiendaDAO.getInstance().getPublishedGames();
-		
-		ownGames = _controller.getOwnedGames();
-		
-		if(ownGames != null) {
-			for(JuegoDTO j : pubGames) {
-				
-				if(!ownGames.contains(j))
-					juegosEnTienda.add(j);
-				
-			}
-		}
-		
-		return juegosEnTienda;
+		return  SingletonTiendaDAO.getInstance().getPublishedGames();
 		
 	}
 	
@@ -83,7 +65,13 @@ public class TiendaControllerFacade{
 	public void evento(EventoTienda e, JuegoDTO _juego, UsuarioDTO _user) {
 		switch (e) {
 		case accesoJuego:
-			_controller.setPrincipalPanel(new MainViewJuego(_juego, getControllerJuego()));
+			boolean comprado = false;
+			List<JuegoEnPropiedadDTO> list = _controller.getOwnedGames();
+			for(JuegoDTO j : list) {
+				if (j.get_id().equals(_juego.get_id()))
+					comprado = true;
+			}
+			_controller.setPrincipalPanel(_controller.createVistaJuegoTienda(_juego, comprado));
 			break;
 		case comprarJuego:
 			_controller.setPrincipalPanel(new MainViewTienda(this));

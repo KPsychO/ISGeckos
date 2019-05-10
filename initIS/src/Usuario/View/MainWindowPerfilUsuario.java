@@ -8,7 +8,9 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
@@ -76,7 +78,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 				
 		JLabel pais = new JLabel ("Pais: " + _dto.get_country());
 		JLabel juegos = new JLabel ("Juegos en biblioteca: " + _cu.get_ownedGames());
-		bal = new JLabel("Balance: " + _dto.get_balance()/100);
+		bal = new JLabel("Balance: " + (float) _dto.get_balance()/100);
 		
 		name_level_estado.add(name);
 		name_level_estado.add(pais);
@@ -129,7 +131,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 		revisionMensajes = new JButton("INCIDENCIAS/DENUNCIAS");
 		revisionMensajes.addActionListener(new inciMejButton());
 		
-		addMoney = new JButton("AÑADIR BALANCE (10$)");
+		addMoney = new JButton("AÑADIR BALANCE");
 		addMoney.addActionListener(new addMoneyButton());
 		
 		setButtons();
@@ -202,8 +204,10 @@ public class MainWindowPerfilUsuario extends JPanel{
 	}
 	class addMoneyButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			_cu.addBalance(1000);
-			bal.setText("Balance: " + _dto.get_balance()/100);
+			JFrame frame = new JFrame();
+		    Object result = JOptionPane.showInputDialog(frame, "Introduzca balance a ingresar:");
+			_cu.addBalance(Integer.valueOf(result.toString()));
+			bal.setText("Balance: " + (float) _dto.get_balance() / 100);
 			bal.revalidate();
 		}
 	}
