@@ -23,6 +23,5 @@ public interface BibliotecaDAO {
 	public abstract void insertarJuego(JuegoDTO j, UsuarioDTO currentUser);
 	
 	public abstract void eliminarJuegos(String id);
-	public abstract void eliminarBiblioteca(String get_user_id);
 
 }
