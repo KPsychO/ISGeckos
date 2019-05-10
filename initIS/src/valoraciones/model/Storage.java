@@ -15,8 +15,8 @@ import java.util.List;
 import Juego.Control.JuegoDTO;
 
 public class Storage {
-	private String pathValoraciones = "src/resources/valoraciones/valoraciones";
-	private String pathComentarios = "src/resources/valoraciones/comentarios";
+	protected String pathValoraciones = "src/resources/valoraciones/valoraciones";
+	protected String pathComentarios = "src/resources/valoraciones/comentarios";
 	
 	public Storage() {}
 	
@@ -109,6 +109,14 @@ public class Storage {
 		deleteFolder(path);
 	}
 	
+	public void releaseValoracionesJuego(String gameID) {
+		String path = pathValoraciones + "/" + gameID +"/";
+		deleteFolder(path);
+		path = pathComentarios + "/" + gameID +"/";
+		deleteFolder(path);
+	}
+	
+	
 	/*
 	 * InputStream is = new FileInputStream(pathValoraciones+".txt"); 
 		buf = new BufferedReader(new InputStreamReader(is)); 
@@ -127,7 +135,7 @@ public class Storage {
 		String fileAsString = sb.toString(); 
 		System.out.println("Contents : \n" + fileAsString);
 	 */
-	private Object[] loadArchiveData(String path) throws FileNotFoundException,IOException {
+	protected Object[] loadArchiveData(String path) throws FileNotFoundException,IOException {
 		File file = new File(path);
 		this.prepareDirectory(file.getParentFile());
 		InputStream is = new FileInputStream(file); 
@@ -163,7 +171,7 @@ public class Storage {
 			folder.mkdir();
 	}
 	
-	private void deleteFolder(String path) {
+	protected void deleteFolder(String path) {
 		File file = new File(path);
 		if(!file.exists())
 			return;

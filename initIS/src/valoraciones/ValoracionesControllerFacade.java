@@ -8,7 +8,7 @@ import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
 import common.Controller;
 import valoraciones.controller.EventsValoraciones;
-import valoraciones.controller.FachadaMedia;
+import valoraciones.model.FacadeMedia;
 import valoraciones.model.ServiceApplicationValoraciones;
 import valoraciones.model.TransferComentario;
 import valoraciones.model.TransferValoracion;
@@ -31,7 +31,7 @@ public class ValoracionesControllerFacade {
 	}
 	
 	public float getMediaValoracion(JuegoDTO game) throws IOException {
-		return new FachadaMedia().getMediaJuego(game);
+		return new FacadeMedia().getMediaJuego(game);
 	}
 	
 	public void actions(int event, Object data) throws Exception {
@@ -81,5 +81,18 @@ public class ValoracionesControllerFacade {
 
 	public JPanel getFormValoraciones(UsuarioDTO user, JuegoDTO game) {
 		return new ViewFromValoracion(user,game,this);
+	}
+
+	public void eliminarJuego(String id) {
+		sa.releaseValoracionesJuego(id);
+	}
+	
+	public void deleteUserDocuments(String idUser) {
+		try {
+			sa.deleteUserDocuments(idUser);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

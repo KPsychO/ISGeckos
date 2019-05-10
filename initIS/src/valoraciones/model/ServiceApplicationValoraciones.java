@@ -1,5 +1,6 @@
 package valoraciones.model;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class ServiceApplicationValoraciones {
@@ -22,5 +23,13 @@ public class ServiceApplicationValoraciones {
 
 	public void eliminarValoracion(TransferValoracion valoracion) {
 		new DAOValoracion().deleteValoracion(valoracion);
+	}
+	
+	public void releaseValoracionesJuego(String idJuego) {
+		new Storage().releaseValoracionesJuego(idJuego);
+	}
+	
+	public void deleteUserDocuments(String idUser) throws FileNotFoundException, IOException {
+		new FacadeDeleteUserDocuments().deleteDocuments(idUser);
 	}
 }

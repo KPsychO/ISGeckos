@@ -13,9 +13,6 @@ public abstract class Multimedia {
 	}
 	
 	public void setPath(String path, String name) throws IllegalArgumentException{
-		System.out.println("path: "+path);
-		System.out.println("name: "+name);
-		
 		this.pathFile = path;
 		this.nameFile = name;
 		this.format = getFormat(name);
