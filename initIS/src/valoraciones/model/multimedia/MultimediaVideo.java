@@ -3,7 +3,7 @@ package valoraciones.model.multimedia;
 import valoraciones.factories.BuildersMultimediaTypes;
 
 public class MultimediaVideo extends Multimedia{
-	private static String[] suportedVideo= {"",""};
+	private static String[] suportedVideo= {"avi"};
 	public MultimediaVideo() {
 		super(suportedVideo,BuildersMultimediaTypes.VIDEO);
 	}

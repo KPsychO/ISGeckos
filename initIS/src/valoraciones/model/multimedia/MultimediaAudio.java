@@ -3,7 +3,7 @@ package valoraciones.model.multimedia;
 import valoraciones.factories.BuildersMultimediaTypes;
 
 public class MultimediaAudio extends Multimedia{
-	private static String[] suportedAudio = {"",""};
+	private static String[] suportedAudio = {"mp3"};
 	public MultimediaAudio() {
 		super(suportedAudio,BuildersMultimediaTypes.AUDIO);
 	}

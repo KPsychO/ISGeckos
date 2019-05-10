@@ -83,9 +83,13 @@ public class TransferValoracion {
 
 		if( ((String)s[6]).equals("none"))
 			s[6] = "none";
-		else
-			multimedia = SingletonBuilderMultimediaFactory.getSingletonInstance().createInstance(((String)s[6]).split("-"));
-		
+		else {
+			Object[] o = new Object[3];
+			o[0] =  Integer.valueOf(  ((String)s[6]).split("&")[0]  );
+			o[1] =  ((String)s[6]).split("&")[1];
+			o[2] =  ((String)s[6]).split("&")[2];
+			multimedia = SingletonBuilderMultimediaFactory.getSingletonInstance().createInstance(o);
+		}
 		date = (String)s[7];
 	}
 	

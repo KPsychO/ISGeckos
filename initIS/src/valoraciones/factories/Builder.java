@@ -9,6 +9,10 @@ public abstract class Builder<T> {
 	}
 	
 	public T createInstance(Object[] data) {
+		/*
+		for(Object obj : data)
+			System.out.println("-"+obj+"-");
+			*/
 		if( (int)data[0] == type) {
 			return createTheInstance(data);
 		}
