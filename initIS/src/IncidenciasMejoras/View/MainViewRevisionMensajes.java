@@ -131,9 +131,11 @@ public class MainViewRevisionMensajes extends JPanel {
 		IncidenciasMejorasDTO incidenciasMejoras = new IncidenciasMejorasDTO(inciMej.getJSONObject(n));
 		
 		this._type.setText("Tipo :  " + incidenciasMejoras.get_type());
-		this._id_user.setText("Usuario :  " + incidenciasMejoras.get_id_user());
+		this._id_user.setText("Usuario :  " + incidenciasMejoras.get_username());
+		this._id_user.setText("ID_Usuario :  " + incidenciasMejoras.get_id_user());
 		this._id_user_Denun.setText("Usuario Denunciado :  " + incidenciasMejoras.get_id_user_Denun());
-		this._id_game.setText("Juego :  " + incidenciasMejoras.get_id_game());
+		this._id_game.setText("Juego :  " + incidenciasMejoras.get_game());
+		this._id_game.setText("ID_Juego :  " + incidenciasMejoras.get_id_game());
 		this._desc.setText("Descripcion :  " + incidenciasMejoras.get_desc());
 		this._coment.setText("Comentario :  " + incidenciasMejoras.get_coment());
 	}

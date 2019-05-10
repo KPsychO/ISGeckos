@@ -130,7 +130,7 @@ public class MainViewIncidenciasJuego extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("aceptar")) {
 			if (!user.get_user_id().equals("0000000000")) {
-				imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("IncJue", user.get_user_id(), null, game.get_id(), descText.getText(), comenText.getText()));
+				imJSON.insertarIncidencia(new IncidenciasMejorasDTO ("IncJue", user.get_username(), user.get_user_id(), null, game.get_title(), game.get_id(), descText.getText(), comenText.getText()));
 				JOptionPane.showMessageDialog(getParent(), "Has enviado la Denuncia/Incidencia");
 			}
 			else {

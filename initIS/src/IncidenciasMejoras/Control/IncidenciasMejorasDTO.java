@@ -7,32 +7,34 @@ import Usuario.Control.UsuarioDTO;
 
 public class IncidenciasMejorasDTO {
 	private String _desc;	
+	private String _username;
 	private String _coment;
 	private String _type;
 	private String _id_user;
 	private String _id_user_Denun;
+	private String _game;
 	private String _id_game;
 	
-	public IncidenciasMejorasDTO(String type, String idUser, String idUserDenun, String idGame, String desc, String coment) {
+	public IncidenciasMejorasDTO(String type, String user, String idUser, String idUserDenun, String game, String idGame, String desc, String coment) {
 		_desc = desc;
 		_coment = coment;
 		_type = type;
 		_id_user = idUser;
 		_id_user_Denun = idUserDenun;
 		_id_game = idGame;
-	}
-	
-	public IncidenciasMejorasDTO(UsuarioDTO im) {
-
+		_game = game;
+		_username = user;
 	}
 	
 	public IncidenciasMejorasDTO(JSONObject im) {
 
 		_type = im.getString("_type");
 		_id_user = im.getString("_id_user");
+		_username = im.getString("_username");
 		switch (_type) {
 		case "IncJue": 
 			_id_user_Denun = "";
+			_game = im.getString("_game");
 			_id_game = im.getString("_id");
 			break;
 		case "DenJug":
@@ -41,11 +43,16 @@ public class IncidenciasMejorasDTO {
 			break;
 		case "DenJue":
 			_id_user_Denun = "";
+			_game = im.getString("_game");
 			_id_game = im.getString("_id");
 			break;
 		}
 		_desc = im.getString("_desc");
 		_coment = im.getString("_coment");
+	}
+
+	public IncidenciasMejorasDTO(UsuarioDTO user) {
+
 	}
 
 	public void eliminarIncidenciaMejora(int n) {
@@ -100,6 +107,20 @@ public class IncidenciasMejorasDTO {
 		this._id_game = _id_game;
 	}
 
-	
+	public String get_username() {
+		return _username;
+	}
+
+	public void set_username(String _username) {
+		this._username = _username;
+	}
+
+	public String get_game() {
+		return _game;
+	}
+
+	public void set_game(String _game) {
+		this._game = _game;
+	}
 	
 }
