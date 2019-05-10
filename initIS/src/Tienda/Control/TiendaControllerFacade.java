@@ -67,9 +67,11 @@ public class TiendaControllerFacade{
 		case accesoJuego:
 			boolean comprado = false;
 			List<JuegoEnPropiedadDTO> list = _controller.getOwnedGames();
-			for(JuegoDTO j : list) {
-				if (j.get_id().equals(_juego.get_id()))
-					comprado = true;
+			if(list != null) {
+				for(JuegoDTO j : list) {
+					if (j.get_id().equals(_juego.get_id()))
+						comprado = true;
+				}
 			}
 			_controller.setPrincipalPanel(_controller.createVistaJuegoTienda(_juego, comprado));
 			break;
