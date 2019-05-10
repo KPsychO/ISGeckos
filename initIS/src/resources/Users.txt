@@ -204,5 +204,19 @@
             "admin",
             "developer"
         ]
+    },
+    {
+        "_country": "a",
+        "_email": "a",
+        "_password": "a",
+        "_balance": 0,
+        "_desc": "",
+        "_user_id": "58ebcdb6-cce2-4058-b8c3",
+        "_username": "a",
+        "_types": [
+            "user",
+            "developer",
+            "admin"
+        ]
     }
 ]

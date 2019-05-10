@@ -215,6 +215,7 @@ public class Controller {
 	}
 	
 	public int get_ownedGames() {
+		if (_bibliotecaController.getOwnedGames(_current_user) == null) return 0;
 		return _bibliotecaController.getOwnedGames(_current_user).size();
 	}
 
