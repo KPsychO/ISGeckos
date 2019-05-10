@@ -1,1 +1,29 @@
-[]
+[
+    {
+        "_id_user_denun": "5ccd515304e6f22030650ea2",
+        "_id_user": "5ccd515396f1e847f2e4eb0d",
+        "_coment": "Me cae mal",
+        "_type": "DenJug",
+        "_desc": "Motivo por el que denuncias al jugador"
+    },
+    {
+        "_id_user": "5ccd515396f1e847f2e4eb0d",
+        "_coment": "Me cae mal un pavo",
+        "_type": "IncJug",
+        "_desc": "Cual es el problema que tienes?"
+    },
+    {
+        "_id_user": "5ccd515396f1e847f2e4eb0d",
+        "_coment": "Comenta mas a fondo el motivo",
+        "_type": "IncJue",
+        "_desc": "No me gusta",
+        "_id": "5cd1ef8a60b100a9e8034586"
+    },
+    {
+        "_id_user": "5ccd515396f1e847f2e4eb0d",
+        "_coment": "Mucho",
+        "_type": "DenJue",
+        "_desc": "Me ha herido mi corasonsito",
+        "_id": "5cd1ef8a60b100a9e8034586"
+    }
+]

@@ -121,9 +121,16 @@ public class MainViewTienda extends JPanel {
 		
 		for (JuegoDTO j : _games) {
 
-			JuegoTienda jj = new JuegoTienda(j, _tiendaController);
-			
-			aux.add(jj);
+			JuegoTienda observed = new JuegoTienda(j, _tiendaController);
+			observed.addPropertyChangeListener(new PropertyChangeListener() {
+
+				@Override
+				public void propertyChange(PropertyChangeEvent e) {
+					firePropertyChange(e.getPropertyName(), e.getOldValue(), e.getNewValue());
+				}
+			});
+
+			aux.add(observed);
 			aux.add(new JSeparator());
 
 		}
