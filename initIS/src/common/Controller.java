@@ -216,9 +216,9 @@ public class Controller {
 	public int get_ownedGames() {
 		return _bibliotecaController.getOwnedGames(_current_user).size();
 	}
-	
-	public ComunidadControllerFacade getComunControl() {
-		return _controllerComunidad;
+
+	public JPanel getComunidad() {
+		return _controllerComunidad.getComunidadPanel(_current_user);
 	}
 	
 }

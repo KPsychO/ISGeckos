@@ -136,11 +136,11 @@ public class MainViewIncidenciasJugador extends JPanel implements ActionListener
 			else {
 				JOptionPane.showMessageDialog(getParent(), "No puedes hacer una Denuncia/Incidencia porque no estas registrado");
 			}
-			_controller.evento(EventoIncidenciasMejoras.UsuarioDenunciadoComunidad, null, user);
+			_controller.evento(EventoIncidenciasMejoras.IncMejATienda, null, user);
 		}
 		else if (e.getActionCommand().equals("cancelar")) {
 			JOptionPane.showMessageDialog(getParent(), "Has cancelado la Denuncia/Incidencia");
-			_controller.evento(EventoIncidenciasMejoras.UsuarioDenunciadoComunidad, null, user);
+			_controller.evento(EventoIncidenciasMejoras.IncMejATienda, null, user);
 		}
 	}
 

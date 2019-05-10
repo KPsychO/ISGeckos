@@ -29,7 +29,7 @@ public class MainViewDenunciasJuego extends JPanel implements ActionListener{
 	private JPanel coment;
 	private JPanel buttons;
 	private JButton aceptar;
-	private JTextField comenText;
+	private JTextArea comenText;
 	private JTextField descText;
 	private IncidenciasDAOJSON imJSON;
 	private UsuarioDTO user;
@@ -58,7 +58,10 @@ public class MainViewDenunciasJuego extends JPanel implements ActionListener{
 		//Comentario
 		JLabel comen = new JLabel();
 		comen.setText("Comentario: ");
-		comenText = new JTextField("Comenta mas a fondo el motivo");
+		comenText = new JTextArea("Comenta mas a fondo el motivo");
+		comenText.setWrapStyleWord(true);
+		comenText.setLineWrap(true);
+		comenText.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		CreateFocusListenerForFields(comenText);
 		comenText.setPreferredSize(new Dimension(600, 200));
 		
@@ -131,11 +134,11 @@ public class MainViewDenunciasJuego extends JPanel implements ActionListener{
 			else {
 				JOptionPane.showMessageDialog(getParent(), "No puedes hacer una Denuncia/Incidencia porque no estas registrado");
 			}
-			_controller.evento(EventoIncidenciasMejoras.IncMejATienda, null, null);
+			_controller.evento(EventoIncidenciasMejoras.IncMejABiblioteca, null, null);
 		}
 		else if (e.getActionCommand().equals("cancelar")) {
 			JOptionPane.showMessageDialog(getParent(), "Has cancelado la Denuncia/Incidencia");
-			_controller.evento(EventoIncidenciasMejoras.IncMejATienda, null, null);
+			_controller.evento(EventoIncidenciasMejoras.IncMejABiblioteca, null, null);
 		}
 	}
 

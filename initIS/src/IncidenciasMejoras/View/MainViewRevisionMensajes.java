@@ -68,8 +68,8 @@ public class MainViewRevisionMensajes extends JPanel {
 		anterior.addActionListener(new anteriorIncDen());
 
 		buttons.add(eliminar);
-		buttons.add(siguiente);
 		buttons.add(anterior);
+		buttons.add(siguiente);
 		
 		this.add(buttons);
 	}

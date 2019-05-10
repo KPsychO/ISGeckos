@@ -6,5 +6,5 @@ public enum EventoIncidenciasMejoras {
 	IncMejATienda,
 	IncidenciasMejorasAPerfilUsuario,
 	PerfilUsuario,
-	UsuarioDenunciadoComunidad
+	IncMejABiblioteca, IncMejAComunidad
 }

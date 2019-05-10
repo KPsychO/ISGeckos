@@ -28,8 +28,8 @@ public class MainViewDenunciasJugador extends JPanel implements ActionListener{
 	private JPanel coment;
 	private JPanel buttons;
 	private JButton aceptar;
-	private JTextField comenText;
-	private JTextArea descText;
+	private JTextArea comenText;
+	private JTextField descText;
 	private IncidenciasDAOJSON imJSON;
 	private UsuarioDTO us;
 	private UsuarioDTO usDen;
@@ -50,7 +50,7 @@ public class MainViewDenunciasJugador extends JPanel implements ActionListener{
 		//Descripcion
 		JLabel desc = new JLabel();
 		desc.setText("Descripcion: ");
-		descText = new JTextArea("Motivo por el que denuncias al jugador");
+		descText = new JTextField("Motivo por el que denuncias al jugador");
 		descText.setPreferredSize(new Dimension(600, 25));
 		CreateFocusListenerForFields(descText);
 		descText.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -58,7 +58,10 @@ public class MainViewDenunciasJugador extends JPanel implements ActionListener{
 		//Comentario
 		JLabel comen = new JLabel();
 		comen.setText("Comentario: ");
-		comenText = new JTextField("Comenta mas a fondo el motivo");
+		comenText = new JTextArea("Comenta mas a fondo el motivo");
+		comenText.setWrapStyleWord(true);
+		comenText.setLineWrap(true);
+		comenText.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		comenText.setPreferredSize(new Dimension(600, 200));
 		CreateFocusListenerForFields(comenText);
 		
@@ -133,11 +136,11 @@ public class MainViewDenunciasJugador extends JPanel implements ActionListener{
 			else {
 				JOptionPane.showMessageDialog(getParent(), "No puedes hacer una Denuncia/Incidencia porque no estas registrado");
 			}
-			_controller.evento(EventoIncidenciasMejoras.UsuarioDenunciadoComunidad, null, usDen);
+			_controller.evento(EventoIncidenciasMejoras.IncMejAComunidad, null, usDen);
 		}
 		else if (e.getActionCommand().equals("cancelar")) {			
 			JOptionPane.showMessageDialog(getParent(), "Has cancelado la Denuncia/Incidencia");
-			_controller.evento(EventoIncidenciasMejoras.UsuarioDenunciadoComunidad, null, usDen);
+			_controller.evento(EventoIncidenciasMejoras.IncMejAComunidad, null, usDen);
 
 		}
 	}

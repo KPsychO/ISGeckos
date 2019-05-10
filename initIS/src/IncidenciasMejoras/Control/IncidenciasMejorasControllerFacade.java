@@ -27,11 +27,14 @@ public class IncidenciasMejorasControllerFacade {
 		case IncMejATienda:
 			_controller.setPrincipalPanel(_controller.getTienda());
 			break;
+		case IncMejABiblioteca:
+			_controller.setPrincipalPanel(_controller.getBiblioteca());
+			break;
+		case IncMejAComunidad:
+			_controller.setPrincipalPanel(_controller.getComunidad());
+			break;
 		case PerfilUsuario:
 			_controller.evento(EventoCommon.Usuario, _juego, _user);
-			break;
-		case UsuarioDenunciadoComunidad:
-			_controller.setPrincipalPanel(new MainViewPerfilUsuarioDenunciado(_user, _controller.getComunControl()));
 			break;
 		default:
 			break;
