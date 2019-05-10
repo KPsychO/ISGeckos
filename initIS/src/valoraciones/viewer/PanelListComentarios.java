@@ -122,7 +122,7 @@ public class PanelListComentarios extends JPanel {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					try {
-						controller.actions(EventsValoraciones.SHOW_FORM_MODIFICAR_COMENTARIO, comentario);
+						controller.actions(EventsValoraciones.MODIFICAR_COMENTARIO, comentario);
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(
 								getParent(), 
