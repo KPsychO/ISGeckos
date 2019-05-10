@@ -116,7 +116,7 @@ public class MainViewJuego extends JPanel{
         descLong.setLineWrap(true);
 
         descLong.append(_juegoDTO.get_descLong());
-        JScrollPane scroll = new JScrollPane(descLong, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        JScrollPane scroll = new JScrollPane(descLong, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
         izq.setLayout(layout);
         izq.add(icon);
@@ -159,6 +159,7 @@ public class MainViewJuego extends JPanel{
         generos.add(tituloGeneros);
         
         JPanel etiquetas = new JPanel();
+        etiquetas.setLayout(new GridLayout(4, 2));
         for (String et : _juegoDTO.get_genres()) {
         	JButton jl = new JButton(et);
         	//jl.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
