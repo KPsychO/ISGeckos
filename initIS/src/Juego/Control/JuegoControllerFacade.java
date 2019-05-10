@@ -24,7 +24,7 @@ public class JuegoControllerFacade {
 	public void evento(EventoJuego e, JuegoDTO _juego) {
 		switch (e) {
 		case JuegoTienda:
-			_controller.setPrincipalPanel(new MainViewJuego(_juego, this, false));
+			_controller.setPrincipalPanel(new MainViewJuego(_juego, this));
 			break;
 		case Desarrolladora:
 			_controller.setPrincipalPanel(new MainViewDeveloper(_controller.getCurrentUser(), this));
@@ -62,10 +62,6 @@ public class JuegoControllerFacade {
 
 	public void eliminarJuego(String id) {
 		SingletonJuegoDAO.getInstance().eliminarJuego(id);
-	}
-	
-	public JPanel getJuegoPanel(JuegoDTO j, boolean c) {
-		return new MainViewJuego(j, this, c);
 	}
 
 }
