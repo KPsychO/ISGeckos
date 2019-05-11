@@ -17,6 +17,8 @@ import Biblioteca.Control.JuegoEnPropiedadDTO;
 
 public class ViewActualizar extends JPanel{
 	
+	private static final long serialVersionUID = 1L;
+	
 	BibliotecaControllerFacade _bc;
 	JuegoEnPropiedadDTO _juego;
 	

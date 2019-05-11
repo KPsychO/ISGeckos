@@ -98,8 +98,10 @@ public class PanelListComentarios extends JPanel {
 		panelComentario.add(new JLabel("Autor: "+comentario.getUser().get_username()), c);
 		
 		if(user.get_user_id().equals(comentario.getUser().get_user_id())) {
-			JButton buttonEditar = new JButton(new ImageIcon("src/resources/valoraciones/images/modificar.png"));
-			JButton buttonEliminar = new JButton(new ImageIcon("src/resources/valoraciones/images/eliminar.png"));
+			//JButton buttonEditar = new JButton(new ImageIcon("src/resources/valoraciones/images/modificar.png"));
+			JButton buttonEditar = new JButton(new ImageIcon("resources/valoraciones/images/modificar.png"));
+			//JButton buttonEliminar = new JButton(new ImageIcon("src/resources/valoraciones/images/eliminar.png"));
+			JButton buttonEliminar = new JButton(new ImageIcon("resources/valoraciones/images/eliminar.png"));
 			buttonEliminar.addActionListener(new ActionListener() {
 
 				@Override

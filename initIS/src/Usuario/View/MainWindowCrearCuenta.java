@@ -10,11 +10,13 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
 import Usuario.Control.EventoUsuario;
 import Usuario.Control.UsuarioControllerFacade;
+import Usuario.Control.UsuarioDTO;
 
 public class MainWindowCrearCuenta extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -22,9 +24,9 @@ public class MainWindowCrearCuenta extends JPanel {
 	private JLabel usernameLabel;
 	private JTextArea username;
 	private JLabel passwordLabel;
-	private JTextArea password;
+	private JPasswordField password;
 	private JLabel confirmPasswordLabel;
-	private JTextArea confirmPassword;
+	private JPasswordField confirmPassword;
 	private JLabel emailLabel;
 	private JTextArea email;
 	private JLabel confirmEmailLabel;
@@ -81,7 +83,7 @@ public class MainWindowCrearCuenta extends JPanel {
         passwordLabel.setPreferredSize(new Dimension(200,20));
         passwordLabel.setText("Password:  ");
         
-        password = new JTextArea();
+        password = new JPasswordField();
         password.setPreferredSize(new Dimension(sizex,25));
         password.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         
@@ -97,7 +99,7 @@ public class MainWindowCrearCuenta extends JPanel {
         confirmPasswordLabel.setPreferredSize(new Dimension(200,20));
         confirmPasswordLabel.setText("Confirm password:  ");
         
-        confirmPassword = new JTextArea();
+        confirmPassword = new JPasswordField();
         confirmPassword.setPreferredSize(new Dimension(sizex,25));
         confirmPassword.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         
@@ -196,15 +198,16 @@ public class MainWindowCrearCuenta extends JPanel {
 	}
 	
 	class continuarButton implements ActionListener {
+		@SuppressWarnings("deprecation")
 		public void actionPerformed(ActionEvent e){  
 			 if (!username.getText().isEmpty() && !password.getText().isEmpty() && !email.getText().isEmpty()) {
 
 				if (password.getText().equals(confirmPassword.getText()) && email.getText().equals(confirmEmail.getText())) {
-				 
-					_cu.storeUser(UUID.randomUUID().toString().substring(0, 23), username.getText(), password.getText(), email.getText(),
+					
+					UsuarioDTO data = _cu.storeUser(UUID.randomUUID().toString().substring(0, 23), username.getText(), password.getText(), email.getText(),
 							country.getText(), 0, "", true, dev.isSelected(), admin.isSelected());
 					
-					_cu.evento(EventoUsuario.IniciarSesion, null);
+					_cu.evento(EventoUsuario.PerfilUsuario, data);
 				}
 			 }
 		 }

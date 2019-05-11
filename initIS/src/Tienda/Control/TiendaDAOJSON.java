@@ -14,52 +14,52 @@ import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
 
 public class TiendaDAOJSON implements TiendaDAO {
+	
+	private JSONArray getGames() {
+		JSONArray jsonInput = null;
+		try {
+			InputStream input = new FileInputStream("./resources/Games.txt");
+			jsonInput = new JSONArray(new JSONTokener(input));
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return jsonInput;
+	}
 
 	@Override
 	public List<JuegoDTO> getPublishedGames() {
 		List<JuegoDTO> list = new ArrayList<JuegoDTO>();
-		try {
-			InputStream input = new FileInputStream("./src/resources/Games.txt");
-			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
-			for (Object o : jsonInput) {
-				JSONObject oJ = new JSONObject(new JSONTokener(o.toString()));
-				list.add(new JuegoDTO(oJ));
-				
-			}
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
 		
+		JSONArray jsonInput = this.getGames();
+		for (Object o : jsonInput) {
+			JSONObject oJ = new JSONObject(new JSONTokener(o.toString()));
+			list.add(new JuegoDTO(oJ));
+			
+		}
+
 		return list;
 	}
-
+	
 	@Override
-	public List<JuegoDTO> getOwnedGames(String user_id) {
-		
+	public List<JuegoDTO> getPublishedGames(String genre) {
+
 		List<JuegoDTO> list = new ArrayList<JuegoDTO>();
-		try {
-			InputStream input = new FileInputStream("./src/resources/OwnedGames.txt");
-			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
-			for (Object o : jsonInput) {
-				JSONObject oJ = new JSONObject(new JSONTokener(o.toString()));
-				Object aux = oJ.get(user_id);
-				JSONArray items = new JSONArray(new JSONTokener(aux.toString()));
-				
-				for(Object i : items) {
-					
-					list.add(new JuegoDTO(i.toString()));
-					
+		
+		JSONArray jsonInput = this.getGames();
+		for (Object o : jsonInput) {
+			JSONObject oJ = new JSONObject(new JSONTokener(o.toString()));
+			for (Object jObject : oJ.getJSONArray("_genres")) {
+				String k = jObject.toString();
+				if (k.equals(genre)) {
+					list.add(new JuegoDTO(oJ));
+					break;
 				}
-				
 			}
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		}
-		
+			
 		return list;
-		
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class TiendaDAOJSON implements TiendaDAO {
 		
 		List<UsuarioDTO> list = new ArrayList<UsuarioDTO>();
 		try {
-			InputStream input = new FileInputStream("./src/resources/Users.txt");
+			InputStream input = new FileInputStream("./resources//Users.txt");
 			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
 			for (Object o : jsonInput) {
 				
@@ -90,7 +90,6 @@ public class TiendaDAOJSON implements TiendaDAO {
 		}
 		
 		return ret;
-		
 		
 	}
 

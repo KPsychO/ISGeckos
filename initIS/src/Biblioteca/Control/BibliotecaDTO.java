@@ -17,15 +17,11 @@ public class BibliotecaDTO {
 	@SuppressWarnings("unused")
 	private List<BibliotecaDTO> _bibliotecas;
 	
-	//private BibliotecaDAO _dao;
-	
-	// Biblioteca de prueba
 	public BibliotecaDTO(List<JuegoEnPropiedadDTO> games) {
 		this._userId = "Generic";
 		this._juegosEnBiblioteca = games;
 	}
 	
-	// Biblioteca de un usuario en concreto
 	public BibliotecaDTO(List<JuegoEnPropiedadDTO> games, UsuarioDTO user) {
 		this._userId = user.get_user_id();
 		this._juegosEnBiblioteca = games;
@@ -60,12 +56,6 @@ public class BibliotecaDTO {
 		for(JuegoEnPropiedadDTO i : _listOwnedGames)
 			this._juegosEnBiblioteca.add(i);		
 	}
-	/*
-	private void addJuego(JuegoDTO game) {
-		JuegoEnPropiedadDTO newGame = new JuegoEnPropiedadDTO(game);
-		_juegosEnBiblioteca.add(newGame);
-	}
-	 */
 	
 	public JSONArray juegosEnBibliotecaJSON() {
 		JSONArray arr = new JSONArray();
@@ -107,7 +97,6 @@ public class BibliotecaDTO {
 				System.out.println("Actualizado juego: " + i.get_title());
 				break;
 			}
-		
 	}
 
 	public void ejecutarJuego(JuegoEnPropiedadDTO juego) {
@@ -115,7 +104,7 @@ public class BibliotecaDTO {
 			if(i.get_id() == juego.get_id()) {
 				i.set_hoursPlayed(i.get_hoursPlayed() + 1);
 				i.set_lastEx("now");
-			}
-		
+			}		
 	}
+	
 }

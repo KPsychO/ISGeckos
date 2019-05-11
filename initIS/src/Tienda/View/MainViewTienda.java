@@ -11,12 +11,16 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
+import Juego.Control.EventoJuego;
 import Juego.Control.JuegoDTO;
+import Juego.View.MainViewJuego;
+import Tienda.Control.EventoTienda;
 import Tienda.Control.TiendaControllerFacade;
 import Usuario.Control.UsuarioDTO;
 
@@ -31,11 +35,11 @@ public class MainViewTienda extends JPanel {
 	private JPanel aux;
 	private List<JuegoDTO> _games;
 
-	public MainViewTienda(TiendaControllerFacade crtl) {
+	public MainViewTienda(TiendaControllerFacade crtl, List<JuegoDTO> games) {
 		
 		_tiendaController = crtl;
 		_click = false;
-		_games = _tiendaController.getJuegosEnTienda();
+		_games = games;
 
 		initGUI();
 
@@ -96,10 +100,14 @@ public class MainViewTienda extends JPanel {
 			}
 
 		});
+		
+		JButton reset = new JButton("Reset");
+		reset.addActionListener(new ResetButton());
 
 		search.add(buscado);
 		search.add(buscar);
-
+		search.add(reset);
+		
 		_panel.add(search);
 
 	}
@@ -131,6 +139,14 @@ public class MainViewTienda extends JPanel {
 		_panel.add(aux);
 		_panel.revalidate();
 		
+	}
+	
+	class ResetButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			
+			_tiendaController.evento(EventoTienda.reset, null, null);
+				
+		}
 	}
 
 }

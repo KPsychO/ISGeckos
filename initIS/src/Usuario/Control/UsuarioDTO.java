@@ -172,7 +172,7 @@ public class UsuarioDTO {
 	}
 	
 	public boolean isUnregistered() {
-		return this._types.contains(tipoCuenta.unregistered);		
+		return _types == null || this._types.contains(tipoCuenta.unregistered);		
 	}
 
 	

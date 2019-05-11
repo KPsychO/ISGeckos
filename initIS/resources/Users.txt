@@ -1,0 +1,43 @@
+[
+    {
+        "_country": "2",
+        "_email": "2",
+        "_password": "2",
+        "_balance": 0,
+        "_desc": "",
+        "_user_id": "a1a2ab94-affb-4b9d-9659",
+        "_username": "2",
+        "_types": [
+            "user",
+            "admin"
+        ]
+    },
+    {
+        "_country": "12dfs",
+        "_email": "1",
+        "_password": "1",
+        "_balance": 199988,
+        "_desc": "sadfsafa",
+        "_user_id": "675c6355-830f-46ed-8ffb",
+        "_username": "1",
+        "_types": [
+            "user",
+            "developer",
+            "admin"
+        ]
+    },
+    {
+        "_country": "3",
+        "_email": "3",
+        "_password": "3",
+        "_balance": 454528,
+        "_desc": "",
+        "_user_id": "53f95919-73bf-458d-b4b1",
+        "_username": "3",
+        "_types": [
+            "user",
+            "developer",
+            "admin"
+        ]
+    }
+]

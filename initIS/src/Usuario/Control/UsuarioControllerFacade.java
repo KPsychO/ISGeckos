@@ -32,7 +32,7 @@ public class UsuarioControllerFacade {
 		switch (e) {
 		
 		case IniciarSesion:
-			_controller.setCurrentUser(getUsuarioUnreg());
+			_controller.setCurrentUser(_controller.getUnregUser());
 			_controller.setPrincipalPanel(new MainWindowIniciarSesion(this));
 			break;
 		
@@ -53,7 +53,7 @@ public class UsuarioControllerFacade {
 			break;
 		
 		case CerrarSesion: 
-			_controller.setCurrentUser(getUsuarioUnreg());
+			_controller.setCurrentUser(_controller.getUnregUser());
 			_controller.setPrincipalPanel(new MainWindowIniciarSesion(this));
 			break;
 		
@@ -97,11 +97,6 @@ public class UsuarioControllerFacade {
 	public UsuarioDTO getUsuarioId(String ID) {
 		return _user.getUsuarioID(ID);
 	}
-	
-	public UsuarioDTO getUsuarioUnreg() {
-		return _user.getUsuarioID("0000000000");
-	}
-
 
 	public JPanel getIconoPanel(UsuarioDTO dto) {
 		if (dto.isUnregistered())
@@ -110,17 +105,19 @@ public class UsuarioControllerFacade {
 			return new MainWindowPerfilUsuario(dto, this);
 	}
 	
-	public void storeUser(String id, String name, String password, String email, String country, int balance, String desc,
+	public UsuarioDTO storeUser(String id, String name, String password, String email, String country, int balance, String desc,
 			boolean user, boolean dev, boolean admin) {
 		
 		List<tipoCuenta> tipos = new ArrayList<tipoCuenta>();
 		if (user) tipos.add(tipoCuenta.user);
 		if (dev) tipos.add(tipoCuenta.developer);
-		if (dev) tipos.add(tipoCuenta.admin);
+		if (admin) tipos.add(tipoCuenta.admin);
 		
 		UsuarioDTO data = new UsuarioDTO(tipos, balance, desc, email, country, password, id, name);
 		
-		new UsuarioDAOJSON().insertarUsuario(data);
+		SingletonUsuarioDAO.getInstance().insertarUsuario(data);
+		
+		return data;
 		
 	}
 	
@@ -140,9 +137,15 @@ public class UsuarioControllerFacade {
 	}
 	public void addBalance(int b) {
 		_controller.addBalance(b);
-		SingletonUsuarioDAO.getInstance().saveUserData(_user);
+		SingletonUsuarioDAO.getInstance().saveUserData(_controller.getCurrentUser());
 	}
 	public int get_ownedGames() {
 		return _controller.get_ownedGames();
+	}
+
+
+	public void actualizarUsuario(UsuarioDTO _dto) {
+		SingletonUsuarioDAO.getInstance().deleteUser(_dto);
+		storeUser(_dto);
 	}
 }

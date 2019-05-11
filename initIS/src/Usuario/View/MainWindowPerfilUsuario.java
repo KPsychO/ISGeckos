@@ -61,8 +61,10 @@ public class MainWindowPerfilUsuario extends JPanel{
 		String path = _dto.getAvatarPath();
 		ImageIcon img;
 		
-		if (path == null)
-			img = new ImageIcon("./src/resources/usuario.png");
+		if (path == null) {
+			//img = new ImageIcon("./resources//usuario.png");
+			img = new ImageIcon("./resources/usuario.png");
+		}
 		else 
 			img = new ImageIcon(path);
 		
@@ -131,7 +133,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 		revisionMensajes = new JButton("INCIDENCIAS/DENUNCIAS");
 		revisionMensajes.addActionListener(new inciMejButton());
 		
-		addMoney = new JButton("AÑADIR BALANCE");
+		addMoney = new JButton("SUMAR DINERO");
 		addMoney.addActionListener(new addMoneyButton());
 		
 		setButtons();
@@ -205,10 +207,18 @@ public class MainWindowPerfilUsuario extends JPanel{
 	class addMoneyButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			JFrame frame = new JFrame();
-		    Object result = JOptionPane.showInputDialog(frame, "Introduzca balance a ingresar:");
-			_cu.addBalance(Integer.valueOf(result.toString()));
-			bal.setText("Balance: " + (float) _dto.get_balance() / 100);
-			bal.revalidate();
+			String result = JOptionPane.showInputDialog(frame, "Introduzca balance a ingresar:");
+		    if (result == null){
+		    	   return;
+		    }
+		    
+		    try {
+				_cu.addBalance(Integer.valueOf(result));
+				bal.setText("Balance: " + (float) _dto.get_balance() / 100);
+				bal.revalidate();
+			} catch(Exception e) {
+	        	JOptionPane.showMessageDialog(null, "Has introducido una cantidad no valida", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 

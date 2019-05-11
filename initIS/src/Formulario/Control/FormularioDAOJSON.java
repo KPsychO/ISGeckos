@@ -19,7 +19,8 @@ public class FormularioDAOJSON implements FormularioDAO{
 		JSONArray arr = new JSONArray();
 		
 		try {
-			InputStream input = new FileInputStream("./src/resources/Formularies.txt");
+			//InputStream input = new FileInputStream("./resources//Formularies.txt");
+			InputStream input = new FileInputStream("./resources/Formularies.txt");
 			arr = new JSONArray(new JSONTokener(input));
 			
 		} catch (FileNotFoundException e) {
@@ -57,13 +58,19 @@ public class FormularioDAOJSON implements FormularioDAO{
 		obj.put("_developer", newForm.get_developer());
 		obj.put("_type", type);
 		
-		try (FileWriter file = new FileWriter("./src/resources/Formularies.txt")) {
-			formularios.put(obj);
-			file.write(formularios.toString(4));
+		formularios.put(obj);
+		
+		this.saveFormularios(formularios);
+
+	}
+	
+	public void saveFormularios(JSONArray arr) {
+		try (FileWriter file = new FileWriter("./resources/Formularies.txt")){
+			//FileWriter file = new FileWriter("./resources//Formularies.txt");
+			file.write(arr.toString(4));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
@@ -72,11 +79,7 @@ public class FormularioDAOJSON implements FormularioDAO{
 		arr = getFormularies();
 		arr.remove(n);
 		
-		try (FileWriter file = new FileWriter("./src/resources/Formularies.txt")) {
-			file.write(arr.toString(4));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		this.saveFormularios(arr);
 	}
 
 	@Override
@@ -90,7 +93,8 @@ public class FormularioDAOJSON implements FormularioDAO{
 		int remove = -1;
 		
 		try {
-			InputStream input = new FileInputStream("./src/resources/Games.txt");
+			//InputStream input = new FileInputStream("./resources//Games.txt");
+			InputStream input = new FileInputStream("./resources/Games.txt");
 			newGames = new JSONArray(new JSONTokener(input));
 			int i = 0;
 			for (Object o : newGames) {
@@ -108,9 +112,9 @@ public class FormularioDAOJSON implements FormularioDAO{
 				newGames.remove(remove);
 			
 			newGames.put(formulario_actual);
-
-			//
-			try (FileWriter file = new FileWriter("./src/resources/Games.txt")) {
+			
+			try (FileWriter file = new FileWriter("./resources/Games.txt")){
+				//FileWriter file = new FileWriter("./resources//Formularies.txt");
 				file.write(newGames.toString(4));
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -125,8 +129,9 @@ public class FormularioDAOJSON implements FormularioDAO{
 	public void deleteFormularies(String id) {
 		JSONArray arr = getFormularies();
 		List<Integer> lista_eliminar = new ArrayList<Integer>();
-
-		for (int i = 0; i < arr.length(); ++i) {
+		
+		int i = 0;
+		while (i < arr.length()) {
 			
 			JSONObject game = new JSONObject(new JSONTokener(arr.get(i).toString()));
 			if (game.getString("_id").equals(id)) {
@@ -136,11 +141,7 @@ public class FormularioDAOJSON implements FormularioDAO{
 				i++;
 		}
 		
-		try (FileWriter file = new FileWriter("./src/resources/Formularies.txt")) {
-			file.write(arr.toString(4));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		this.saveFormularios(arr);
 
 	}
 }

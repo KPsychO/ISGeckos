@@ -60,14 +60,15 @@ public class MainWindowModificarCuenta extends JPanel {
         avatarPanel.setLayout(avatarLayout);
  
         //PONER COMO AVATAR LA IMAGEN SELECCIONADA EN EL JFILECHOOSER
-        avatarFile = new JFileChooser("./src/resources"); 
-        avatarFile.addActionListener(new cambiarAvatar());
+        //avatarFile = new JFileChooser("./resources/");
+        avatarFile = new JFileChooser("./resources");
         
         String path = _dto.getAvatarPath();
 		ImageIcon img;
 		
 		if (path == null) {
-			img = new ImageIcon("./src/resources/usuario.png");
+			//img = new ImageIcon("./resources//usuario.png");
+			img = new ImageIcon("./resources/usuario.png");
 		}
 		
 		else {
@@ -139,8 +140,7 @@ public class MainWindowModificarCuenta extends JPanel {
 			if (!descripcion.getText().isEmpty())
 				_dto.set_desc(descripcion.getText());
 			
-			_cu.eliminarUsuario(_dto);
-			_cu.storeUser(_dto);
+			_cu.actualizarUsuario(_dto);
 			_cu.evento(EventoUsuario.PerfilUsuario, _dto);
 		} 
 	}

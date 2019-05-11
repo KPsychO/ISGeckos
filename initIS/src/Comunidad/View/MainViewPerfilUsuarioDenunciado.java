@@ -54,7 +54,8 @@ public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionLis
 	        BoxLayout avatarLayout = new BoxLayout(avatarPanel, BoxLayout.X_AXIS);
 	        avatarPanel.setLayout(avatarLayout);
 	        
-	        ImageIcon img = new ImageIcon("./src/resources/usuario.png");
+	        //ImageIcon img = new ImageIcon("./resources//usuario.png");
+	        ImageIcon img = new ImageIcon("./resources/usuario.png");
 	        avatarLabel = new JLabel(img, JLabel.CENTER);
 	        
 	        //USERNAME & PAIS

@@ -42,7 +42,7 @@ public class Controller {
 	
 	public Controller() {
 		
-		_current_user = new UsuarioDTO("5ccd515396f1e847f2e4eb0d");
+		_current_user = getUnregUser(); 
 		
 		_controllerJuego = new JuegoControllerFacade(this);
 		_controllerIncidenciasMejoras = new IncidenciasMejorasControllerFacade(this);
@@ -74,10 +74,16 @@ public class Controller {
 				setPrincipalPanel(_bibliotecaController.getBibliotecaPanel());
 			break;
 		case Comunidad:
-			setPrincipalPanel(_controllerComunidad.getComunidadPanel(_current_user));
+			if (_current_user.isUnregistered())
+            	JOptionPane.showMessageDialog(null, "Necesitas estas logeado para ver la comunidad", "Error", JOptionPane.ERROR_MESSAGE);
+			else
+				setPrincipalPanel(_controllerComunidad.getComunidadPanel(_current_user));
 			break;
 		case Soporte:
-			setPrincipalPanel(_controllerIncidenciasMejoras.getIncidenciasMejorasPanel(_current_user));
+			if (_current_user.isUnregistered())
+            	JOptionPane.showMessageDialog(null, "Necesitas estas logeado para ver contactar con soporte", "Error", JOptionPane.ERROR_MESSAGE);
+			else
+				setPrincipalPanel(_controllerIncidenciasMejoras.getIncidenciasMejorasPanel(_current_user));
 			break;
 		case Usuario:
 			setPrincipalPanel(_controllerUsuario.getIconoPanel(_current_user));
@@ -85,6 +91,10 @@ public class Controller {
 		default:
 			break;
 		}
+	}
+	
+	public UsuarioDTO getUnregUser() {
+		return new UsuarioDTO(null, 0, null, null, null, null, "0", null);
 	}
 	
 	public void setPrincipalPanel(JPanel panel) {
@@ -121,18 +131,10 @@ public class Controller {
 	public JPanel getDenunciasJugador(UsuarioDTO userDen) {
 		return new MainViewDenunciasJugador(_current_user, userDen, _controllerIncidenciasMejoras);
 	}
-	
-	/* Salbio
-	public UsuarioDTO getUsuarioId(String ID) {
-		_current_user = _controllerUsuario.getUsuarioID(ID);
-	}
-	*/
 
 	public void anadirJuegoComprado(JuegoDTO j) {		
 		_bibliotecaController.comprarJuego(j);
 	}
-	
-	// Ignacio
 
 	public void valorar(JuegoEnPropiedadDTO juego) {
 		this.setPrincipalPanel(this._controllerValoraciones.getFormValoraciones(this._current_user, juego));
@@ -231,6 +233,20 @@ public class Controller {
 	public void eliminarUsuario(UsuarioDTO _dto) {
 		_bibliotecaController.eliminarUsuario(_dto);
 		_controllerValoraciones.deleteUserDocuments(_dto.get_user_id());
+	}
+	
+	public float getNotaMedia(JuegoDTO dto) {
+		try {
+			return _controllerValoraciones.getMediaValoracion(dto);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	public JPanel getTiendaGenre(String genre) {
+		return _tiendaControler.getTiendaPanel(genre);
 	}
 	
 }

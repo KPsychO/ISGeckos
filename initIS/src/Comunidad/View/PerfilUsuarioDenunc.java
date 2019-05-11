@@ -40,7 +40,8 @@ public class PerfilUsuarioDenunc extends JPanel{
 		this.setMinimumSize(new Dimension(600, 200));
 		this.setPreferredSize(new Dimension(600, 200));
 		
-		_icon = new JButton(new ImageIcon("./src/resources/usuario.png"));
+		//_icon = new JButton(new ImageIcon("./resources//usuario.png"));
+		_icon = new JButton(new ImageIcon("./resources/usuario.png"));
 		_icon.addActionListener(new CargarButton());		
 			
 		JLabel name = new JLabel();

@@ -15,8 +15,10 @@ import java.util.List;
 import Juego.Control.JuegoDTO;
 
 public class Storage {
-	protected String pathValoraciones = "src/resources/valoraciones/valoraciones";
-	protected String pathComentarios = "src/resources/valoraciones/comentarios";
+	//protected String pathValoraciones = "src/resources/valoraciones/valoraciones";
+	protected String pathValoraciones = "resources/valoraciones/valoraciones";
+	//protected String pathComentarios = "src/resources/valoraciones/comentarios";
+	protected String pathComentarios = "resources/valoraciones/comentarios";
 	
 	public Storage() {}
 	

@@ -39,7 +39,7 @@ public class MainWindow extends JFrame {
 	
 	public MainWindow(Controller c) {
 		
-		super("Gecko");
+		super("Geckos");
 		this.setSize(800, 800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -68,7 +68,11 @@ public class MainWindow extends JFrame {
 		
 	public void changeBoxes(UsuarioDTO user) {
 		List<tipoCuenta> types = user.get_types();
-		
+	
+		if (types == null) {
+			state_unregistered = true;
+			return;
+		}
 		state_unregistered = types.contains(tipoCuenta.unregistered) ?  true : false;
 		state_user = types.contains(tipoCuenta.user) ?  true : false;
 		state_developer = types.contains(tipoCuenta.developer) ?  true : false;
@@ -82,6 +86,7 @@ public class MainWindow extends JFrame {
 		headerPanel = initHeaderPanel();
 		if (newPanel != null)
 			principalPanel = newPanel;
+		
 		changeBoxes(user);
 		
 		ponCosas();
@@ -108,7 +113,6 @@ public class MainWindow extends JFrame {
 		JButton buttonCom = new JButton("Comunidad");
 		buttonCom.addActionListener(new ComunidadButton());
 		buttonCom.setAlignmentX(Component.CENTER_ALIGNMENT);
-		buttonCom.addActionListener(new ComunidadButton());
 		panel.add(buttonCom);
 		
 		JButton buttonSoporte = new JButton("Soporte");
@@ -125,7 +129,8 @@ public class MainWindow extends JFrame {
 		
 		JPanel west = new JPanel();
 		
-		JButton buttonIcon = new JButton(new ImageIcon("./src/resources/usuario.png"));
+		//JButton buttonIcon = new JButton(new ImageIcon("./resources//usuario.png"));
+		JButton buttonIcon = new JButton(new ImageIcon("./resources/usuario.png"));
 		buttonIcon.addActionListener(new UserButton());
 		west.add(buttonIcon);
 		 

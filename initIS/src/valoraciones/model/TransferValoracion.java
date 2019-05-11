@@ -79,7 +79,7 @@ public class TransferValoracion {
 		
 		titulo = SingletonBuilderTextFactory.getSingletonInstance().createInstance(new Object[] {BuildersTextTypes.TITULO,s[3]});
 		valoracion = SingletonBuilderTextFactory.getSingletonInstance().createInstance(new Object[] {BuildersTextTypes.VALORACION,s[4]});
-		puntuacion = Integer.valueOf( (String) s[0] );
+		puntuacion = Integer.valueOf( (String) s[5] );
 
 		if( ((String)s[6]).equals("none"))
 			s[6] = "none";

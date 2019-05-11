@@ -59,7 +59,7 @@ public class JuegoBiblioteca extends JPanel{
 	
 	private void createIcon() {
 		
-		_icon = new JButton(new ImageIcon("./src/resources/game_icon_SMOL.jpg"));
+		_icon = new JButton(new ImageIcon("./resources//game_icon_SMOL.jpg"));
 		_icon.addActionListener(new JuegoButton());
 		
 	}
@@ -74,6 +74,10 @@ public class JuegoBiblioteca extends JPanel{
 		title.setPreferredSize(new Dimension(100,100));
 		title.setText(" Title: " + _dto.get_title());
 		
+		JPanel panelValVer = new JPanel(new GridLayout(2,1));
+		panelValVer.setMaximumSize(new Dimension(100,100));
+		panelValVer.setMinimumSize(new Dimension(100,100));
+		panelValVer.setPreferredSize(new Dimension(100,100));
 		
 		JButton buttonPlay = new JButton("JUGAR");
 		buttonPlay.setMaximumSize(new Dimension(100, 100));
@@ -89,6 +93,12 @@ public class JuegoBiblioteca extends JPanel{
 		
 		buttonPlay.addActionListener(new JugarButton());
 		
+		JButton buttonVer = new JButton("TIENDA");
+		buttonVer.setMaximumSize(new Dimension(100,100));
+		buttonVer.setMinimumSize(new Dimension(100,100));
+		buttonVer.setPreferredSize(new Dimension(100,100));
+		
+		buttonVer.addActionListener(new VerButton());
 		
 		JButton buttonValorar = new JButton("VALORAR");
 		buttonValorar.setMaximumSize(new Dimension(100, 100));
@@ -120,8 +130,10 @@ public class JuegoBiblioteca extends JPanel{
 		_contents.add(buttonPlay);
 		panelIncDen.add(buttonInc);
 		panelIncDen.add(buttonDen);
+		panelValVer.add(buttonValorar);
+		panelValVer.add(buttonVer);
 		_contents.add(panelIncDen);
-		_contents.add(buttonValorar);
+		_contents.add(panelValVer);
 	}
 	
 	class JuegoButton implements ActionListener {
@@ -133,6 +145,12 @@ public class JuegoBiblioteca extends JPanel{
 	class JugarButton implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 			_bc.evento(EventoBiblioteca.jugarJuego, _dto);
+		}
+	}
+	
+	class VerButton implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+			_bc.evento(EventoBiblioteca.JuegoTienda, _dto);
 		}
 	}
 	

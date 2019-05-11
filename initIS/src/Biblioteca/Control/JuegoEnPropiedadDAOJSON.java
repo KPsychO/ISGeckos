@@ -11,12 +11,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 public class JuegoEnPropiedadDAOJSON implements JuegoEnPropiedadDAO{
-	/*
-	public JuegoEnPropiedadDTO getJuego(JSONObject juego) {
-		String id = juego.getString("_gameId");
-		
-	}
-	*/
+	
 	public JSONObject JuegoEnPropiedadToJSON(JuegoEnPropiedadDTO game) {
 		JSONObject gameJSON = new JSONObject();
 		gameJSON.put("_gameId", game.get_id());
@@ -29,7 +24,6 @@ public class JuegoEnPropiedadDAOJSON implements JuegoEnPropiedadDAO{
 	}
 
 	public JuegoEnPropiedadDTO getLogros(JSONObject game) {
-		
 		return null;
 	}
 
@@ -38,7 +32,8 @@ public class JuegoEnPropiedadDAOJSON implements JuegoEnPropiedadDAO{
 		JSONArray jsonInput = new JSONArray();
 		List<JuegoEnPropiedadDTO> list = new ArrayList<JuegoEnPropiedadDTO>();
 		try {
-			InputStream input = new FileInputStream("./src/resources/Biblioteca.txt");
+			//InputStream input = new FileInputStream("./resources//Biblioteca.txt");
+			InputStream input = new FileInputStream("./resources/Biblioteca.txt");
 			jsonInput = new JSONArray(new JSONTokener(input));
 			
 			
@@ -52,17 +47,12 @@ public class JuegoEnPropiedadDAOJSON implements JuegoEnPropiedadDAO{
 						
 						list.add(new JuegoEnPropiedadDTO(prop));
 						
-					}
-					
-					return list;
-					
+					}		
+					return list;					
 				}
 			}
-
 			
-		} catch (FileNotFoundException e) {
-			
-		}
+		} catch (FileNotFoundException e) {}
 		
 		return null;
 	}

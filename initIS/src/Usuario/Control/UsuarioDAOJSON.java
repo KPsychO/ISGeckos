@@ -25,7 +25,8 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 		listUser = new ArrayList<UsuarioDTO>();
 		try {
 			
-			InputStream input = new FileInputStream("./src/resources/Users.txt");
+			//InputStream input = new FileInputStream("./resources//Users.txt");
+			InputStream input = new FileInputStream("./resources/Users.txt");
 			list  = new JSONArray(new JSONTokener(input));
 			for (Object o : list) {
 				
@@ -192,7 +193,8 @@ public class UsuarioDAOJSON implements UsuarioDAO {
 	}
 	
 	private void saveFile(JSONArray arr) {
-		try (FileWriter file = new FileWriter("./src/resources/Users.txt")) {
+		try (FileWriter file = new FileWriter("./resources/Users.txt")){
+			//FileWriter file = new FileWriter("./resources//Users.txt");
 			file.write(arr.toString(4));
 		} catch (IOException e) {
 			e.printStackTrace();

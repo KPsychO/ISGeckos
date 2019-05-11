@@ -44,7 +44,8 @@ public class JuegoDeveloper extends JPanel{
 		this.setMinimumSize(new Dimension(600, 200));
 		this.setPreferredSize(new Dimension(600, 200));
 		
-		_icon = new JLabel(new ImageIcon("./src/resources/game_icon.jpg"));	
+		//_icon = new JLabel(new ImageIcon("./resources//game_icon.jpg"));
+		_icon = new JLabel(new ImageIcon("./resources/game_icon.jpg"));
 			
 		JLabel name = new JLabel();
 		name.setText("Name: " + _dto.get_title());
@@ -91,19 +92,19 @@ public class JuegoDeveloper extends JPanel{
 	
 	class VerEnTienda implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			_cj.evento(EventoJuego.JuegoTienda, _dto);
+			_cj.evento(EventoJuego.JuegoTienda, _dto, null);
 		}
 	}
 	
 	class Actualizar implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			_cj.evento(EventoJuego.ActualizarJuego, _dto);
+			_cj.evento(EventoJuego.ActualizarJuego, _dto, null);
 		}
 	}
 	
 	class Eliminar implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			_cj.evento(EventoJuego.EliminarJuego, _dto);
+			_cj.evento(EventoJuego.EliminarJuego, _dto, null);
 		}
 	}
 

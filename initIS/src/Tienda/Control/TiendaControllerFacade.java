@@ -22,30 +22,25 @@ public class TiendaControllerFacade{
 	public TiendaControllerFacade(Controller cont) {
 		
 		_controller = cont;
-		_TiendaDTO = new TiendaDTO(createJuegosEnTienda(_controller.getCurrentUser()));
+		_TiendaDTO = new TiendaDTO(getJuegosEnTienda());
 		
 	}
 	
 	public TiendaControllerFacade() {
 
-		_TiendaDTO = new TiendaDTO(createJuegosEnTienda(_controller.getCurrentUser()));
+		_TiendaDTO = new TiendaDTO(getJuegosEnTienda());
 	}
 
 	public void changeUser(UsuarioDTO newUser) {
 		
-		_TiendaDTO = new TiendaDTO(createJuegosEnTienda(newUser));
-		
-	}
-
-	private List<JuegoDTO> createJuegosEnTienda(UsuarioDTO user) {
-		
-		return  SingletonTiendaDAO.getInstance().getPublishedGames();
+		_TiendaDTO = new TiendaDTO(getJuegosEnTienda());
 		
 	}
 	
 	public List<JuegoDTO> getJuegosEnTienda() {
 		return SingletonTiendaDAO.getInstance().getPublishedGames();
 	}
+	
 	
 	public boolean comprarJuego(JuegoDTO juego) {
 		
@@ -76,10 +71,12 @@ public class TiendaControllerFacade{
 			_controller.setPrincipalPanel(_controller.createVistaJuegoTienda(_juego, comprado));
 			break;
 		case comprarJuego:
-			_controller.setPrincipalPanel(new MainViewTienda(this));
+			_controller.setPrincipalPanel(new MainViewTienda(this, getJuegosEnTienda()));
 			break;
 		case juegoComprado:
 			_controller.anadirJuegoComprado(_juego);
+		case reset:
+			_controller.setPrincipalPanel(new MainViewTienda(this, getJuegosEnTienda()));
 		default:
 			break;
 		}
@@ -94,7 +91,7 @@ public class TiendaControllerFacade{
 	@SuppressWarnings("exports")
 	public JPanel getTiendaPanel() {
 		
-		return new MainViewTienda(this);
+		return new MainViewTienda(this, getJuegosEnTienda());
 		
 	}
 	
@@ -117,4 +114,13 @@ public class TiendaControllerFacade{
 		
 	}
 
+	public JPanel getTiendaPanel(String genre) {
+		return new MainViewTienda(this, createJuegosEnTienda(genre));
+	}
+
+	private List<JuegoDTO> createJuegosEnTienda(String genre) {
+		return SingletonTiendaDAO.getInstance().getPublishedGames(genre);
+	}
+
+	
 }

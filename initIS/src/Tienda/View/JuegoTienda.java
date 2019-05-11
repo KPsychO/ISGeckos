@@ -66,7 +66,8 @@ public class JuegoTienda extends JPanel {
 	
 	private void createIcon() {
 		
-		_icon = new JButton(new ImageIcon("./src/resources/game_icon.jpg"));
+		//_icon = new JButton(new ImageIcon("./resources//game_icon.jpg"));
+		_icon = new JButton(new ImageIcon("./resources/game_icon.jpg"));
 		_icon.addActionListener(new CargarButton());
 		
 	}

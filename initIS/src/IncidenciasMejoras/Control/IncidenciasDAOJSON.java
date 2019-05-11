@@ -20,7 +20,8 @@ public class IncidenciasDAOJSON implements IncidenciasDAO {
 		list = new JSONArray();
 		
 		try {
-			InputStream input = new FileInputStream("./src/resources/IncidenciasMejoras.txt");
+			//InputStream input = new FileInputStream("./resources//IncidenciasMejoras.txt");
+			InputStream input = new FileInputStream("./resources/IncidenciasMejoras.txt");
 			list  = new JSONArray(new JSONTokener(input));
 			
 		} catch (FileNotFoundException e) {
@@ -72,7 +73,8 @@ public class IncidenciasDAOJSON implements IncidenciasDAO {
 		JSONArray incMej = getListIncidencias();
 		incMej.put(obj);
 		
-		try (FileWriter file = new FileWriter("./src/resources/IncidenciasMejoras.txt")) {
+		try (FileWriter file = new FileWriter("./resources/IncidenciasMejoras.txt")){
+			//FileWriter file = new FileWriter("./resources//IncidenciasMejoras.txt");
 			file.write(incMej.toString(4));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -85,7 +87,8 @@ public class IncidenciasDAOJSON implements IncidenciasDAO {
 		arr = getListIncidencias();
 		arr.remove(n);
 		
-		try (FileWriter file = new FileWriter("./src/resources/IncidenciasMejoras.txt")) {
+		try (FileWriter file = new FileWriter("./resources/IncidenciasMejoras.txt")){
+			//FileWriter file = new FileWriter("./resources//IncidenciasMejoras.txt");
 			file.write(arr.toString(4));
 		} catch (IOException e) {
 			e.printStackTrace();

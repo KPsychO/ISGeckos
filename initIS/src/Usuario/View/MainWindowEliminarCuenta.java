@@ -10,6 +10,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
@@ -23,9 +24,9 @@ public class MainWindowEliminarCuenta extends JPanel{
 	private UsuarioDTO _dto;
 	
 	private JLabel passwordLabel;
-	private JTextArea password;
+	private JPasswordField password;
 	private JLabel confirmPasswordLabel;
-	private JTextArea confirmPassword;
+	private JPasswordField confirmPassword;
 	private JCheckBox ok;
 	//private JLabel confirmar;
 	private JButton eliminar;
@@ -60,7 +61,7 @@ public class MainWindowEliminarCuenta extends JPanel{
         passwordLabel.setPreferredSize(new Dimension(200,20));
         passwordLabel.setText("Password:  ");
         
-        password = new JTextArea();
+        password = new JPasswordField();
         password.setPreferredSize(new Dimension(sizex,25));
         password.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         
@@ -76,7 +77,7 @@ public class MainWindowEliminarCuenta extends JPanel{
         confirmPasswordLabel.setPreferredSize(new Dimension(200,20));
         confirmPasswordLabel.setText("Confirm password:  ");
         
-        confirmPassword = new JTextArea();
+        confirmPassword = new JPasswordField();
         confirmPassword.setPreferredSize(new Dimension(sizex,25));
         confirmPassword.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         

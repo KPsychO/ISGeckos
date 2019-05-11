@@ -18,12 +18,12 @@ import org.json.JSONTokener;
 import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
 
-public class BibliotecaDAOJSON implements BibliotecaDAO{
+public class BibliotecaDAOJSON implements BibliotecaDAO {
 
 	public JSONArray getOwnedGamesJSON() {
 		JSONArray arr = new JSONArray();
 		try {
-			InputStream input = new FileInputStream("./src/resources/Biblioteca.txt");
+			InputStream input = new FileInputStream("./resources//Biblioteca.txt");
 			arr = new JSONArray(new JSONTokener(input));
 			
 		} catch (FileNotFoundException e) {}
@@ -32,7 +32,6 @@ public class BibliotecaDAOJSON implements BibliotecaDAO{
 
 	@Override
 	public List<JuegoEnPropiedadDTO> getOwnedGames(String user_id) {
-		//Todavia sin usuario
 		List<JuegoEnPropiedadDTO> list = new ArrayList<JuegoEnPropiedadDTO>();
 		
 		JSONArray jsonInput = getOwnedGamesJSON();
@@ -45,18 +44,12 @@ public class BibliotecaDAOJSON implements BibliotecaDAO{
 				for (Object juego : juegos) {
 					JSONObject prop = new JSONObject(new JSONTokener(juego.toString()));
 					
-					list.add(new JuegoEnPropiedadDTO(prop));
-					
-					
-					
+					list.add(new JuegoEnPropiedadDTO(prop));		
 				}
-				
 				return list;
-				
 			}
 		}
 
-		
 		return null;
 	}
 
@@ -64,38 +57,21 @@ public class BibliotecaDAOJSON implements BibliotecaDAO{
 	public List<BibliotecaDTO> getLibraries(){
 		List<BibliotecaDTO> libraries = new ArrayList<BibliotecaDTO>();
 		
-		try {
-			InputStream input = new FileInputStream("./src/resources/Biblioteca.txt");
-			JSONArray jsonInput = new JSONArray(new JSONTokener(input));
+		JSONArray jsonInput = getOwnedGamesJSON();
+		
+		for (Object o : jsonInput) {
 			
-			for (Object o : jsonInput) {
-				
-				JSONObject library = new JSONObject(new JSONTokener(o.toString()));
-				libraries.add(new BibliotecaDTO(library));
-				
-			}
+			JSONObject library = new JSONObject(new JSONTokener(o.toString()));
+			libraries.add(new BibliotecaDTO(library));
 			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		}	
 		
 		return libraries;
 	}
-	
-	public JSONArray getLibrariesJSON() {
-		JSONArray arr = new JSONArray();
-		try {
-			InputStream input = new FileInputStream("./src/resources/Biblioteca.txt");
-			arr = new JSONArray(new JSONTokener(input));
-			
-		} catch (FileNotFoundException e) {}
-		return arr;
-	}
-	
 
 	public void writeBiblJSON(BibliotecaDTO library, String userId) {
 		
-		JSONArray libraries = getLibrariesJSON();
+		JSONArray libraries = getOwnedGamesJSON();
 		
 		JSONObject obj = new JSONObject();
 		
@@ -109,14 +85,22 @@ public class BibliotecaDAOJSON implements BibliotecaDAO{
 		obj.put("_userId", library.get_userId());
 		obj.put("_gamesList", library.juegosEnBibliotecaJSON());
 		
-		try (FileWriter file = new FileWriter("./src/resources/Biblioteca.txt")) {
-			libraries.put(obj);
-			file.write(libraries.toString());
+		libraries.put(obj);
+		
+		saveBiblioteca(libraries);
+		
+		
+	}
+
+
+	private void saveBiblioteca(JSONArray libraries) {
+		try (FileWriter file = new FileWriter("./resources//Biblioteca.txt")){
+			
+			file.write(libraries.toString(4));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
 
 	@Override
 	public List<JuegoEnPropiedadDTO> getOwnedGames(JSONArray arrayGames) {
@@ -128,12 +112,6 @@ public class BibliotecaDAOJSON implements BibliotecaDAO{
 		}
 		
 		return games;
-	}
-
-	@Override
-	public void writeBiblJSON(List<JuegoEnPropiedadDTO> gameList, String userId) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -185,12 +163,9 @@ public class BibliotecaDAOJSON implements BibliotecaDAO{
 		
 		biblioteca.remove(i);
 		
-		try (FileWriter file = new FileWriter("./src/resources/Biblioteca.txt")) {
-			biblioteca.put(bib_user);
-			file.write(biblioteca.toString(4));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		biblioteca.put(bib_user);
+		
+		this.saveBiblioteca(biblioteca);
 	}
 
 	@Override
@@ -234,23 +209,16 @@ public class BibliotecaDAOJSON implements BibliotecaDAO{
 		
 		biblioteca.remove(i);
 		
-		try (FileWriter file = new FileWriter("./src/resources/Biblioteca.txt")) {
-			biblioteca.put(bib_user);
-			file.write(biblioteca.toString(4));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		biblioteca.put(bib_user);
+		
+		this.saveBiblioteca(biblioteca);
+
 	}
 
 	@Override
 	public void eliminarJuegos(String id) {
 		
-		JSONArray biblioteca = new JSONArray();
-		try {
-			InputStream input = new FileInputStream("./src/resources/Biblioteca.txt");
-			biblioteca = new JSONArray(new JSONTokener(input));
-			
-		} catch (FileNotFoundException e) {}
+		JSONArray biblioteca = this.getOwnedGamesJSON();
 		
 		JSONArray nueva_biblioteca = new JSONArray();
 		
@@ -279,20 +247,13 @@ public class BibliotecaDAOJSON implements BibliotecaDAO{
 			
 		}
 		
-		try (FileWriter file = new FileWriter("./src/resources/Biblioteca.txt")) {
-			file.write(nueva_biblioteca.toString(4));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		this.saveBiblioteca(nueva_biblioteca);
+
 	}
-	
+
+	@Override
 	public void eliminarBiblioteca(String id) {
-		JSONArray biblioteca = new JSONArray();
-		try {
-			InputStream input = new FileInputStream("./src/resources/Biblioteca.txt");
-			biblioteca = new JSONArray(new JSONTokener(input));
-			
-		} catch (FileNotFoundException e) {}
+		JSONArray biblioteca = this.getOwnedGamesJSON();
 
 		JSONObject bib_user = new JSONObject();
 		
@@ -309,12 +270,7 @@ public class BibliotecaDAOJSON implements BibliotecaDAO{
 			++i;
 		}	
 		
-		try (FileWriter file = new FileWriter("./src/resources/Biblioteca.txt")) {
-			file.write(biblioteca.toString(4));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		this.saveBiblioteca(biblioteca);
 
 	}
-
 }

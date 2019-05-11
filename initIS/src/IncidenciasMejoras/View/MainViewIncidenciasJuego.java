@@ -35,6 +35,8 @@ public class MainViewIncidenciasJuego extends JPanel implements ActionListener{
 	private UsuarioDTO user;
 	private JuegoDTO game;
 	private IncidenciasMejorasControllerFacade _controller;
+	
+	private static final int sizex = 650;
 
 	
 	public MainViewIncidenciasJuego(UsuarioDTO usuario, JuegoDTO juego , IncidenciasMejorasControllerFacade controller) {
@@ -54,7 +56,7 @@ public class MainViewIncidenciasJuego extends JPanel implements ActionListener{
 		desc.setText("Descripcion: ");
 		descText = new JTextField("Que le pasa al juego?");
 		CreateFocusListenerForFields(descText);
-		descText.setPreferredSize(new Dimension(600, 25));
+		descText.setPreferredSize(new Dimension(sizex, 25));
 		
 		//Comentario
 		JLabel comen = new JLabel();
@@ -64,7 +66,7 @@ public class MainViewIncidenciasJuego extends JPanel implements ActionListener{
 		comenText.setLineWrap(true);
 		comenText.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		CreateFocusListenerForFields(comenText);
-		comenText.setPreferredSize(new Dimension(600, 200));
+		comenText.setPreferredSize(new Dimension(sizex, 200));
 		
 		//Botones
 		aceptar = new JButton("Aceptar");

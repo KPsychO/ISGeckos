@@ -95,7 +95,8 @@ public class MainViewJuego extends JPanel{
 		JPanel izq = new JPanel();
 		
 		BoxLayout layout = new BoxLayout(izq, BoxLayout.Y_AXIS);
-		JLabel icon = new JLabel(new ImageIcon("./src/resources/game_icon.jpg"));
+		//JLabel icon = new JLabel(new ImageIcon("./resources//game_icon.jpg"));
+		JLabel icon = new JLabel(new ImageIcon("./resources/game_icon.jpg"));
 		icon.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		icon.setAlignmentX(CENTER_ALIGNMENT);
 		
@@ -114,6 +115,7 @@ public class MainViewJuego extends JPanel{
         JTextArea descLong = new JTextArea(20, 25);
         descLong.setWrapStyleWord(true);
         descLong.setLineWrap(true);
+        descLong.setEditable(false);
 
         descLong.append(_juegoDTO.get_descLong());
         JScrollPane scroll = new JScrollPane(descLong, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -138,6 +140,7 @@ public class MainViewJuego extends JPanel{
         GridLayout derecha = new GridLayout(3, 1);
         
         JTextArea descShort = new JTextArea(15, 15);
+        descShort.setEditable(false);
         descShort.append(_juegoDTO.get_descShort());
         descShort.setWrapStyleWord(true);
         descShort.setLineWrap(true);
@@ -146,9 +149,19 @@ public class MainViewJuego extends JPanel{
         vertical.setPreferredSize(new Dimension(200, 100));
         mainPanel.add(vertical);
 
+        JPanel fechaynota = new JPanel();
+        fechaynota.setLayout(new GridLayout(2, 1));
+        
         JLabel fecha = new JLabel("Fecha: " + _juegoDTO.get_date());
         fecha.setHorizontalAlignment(JLabel.CENTER);
         fecha.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+        
+        JLabel nota = new JLabel("Nota media: " + _cj.getNotaMedia(_juegoDTO));
+        nota.setHorizontalAlignment(JLabel.CENTER);
+        nota.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+        
+        fechaynota.add(fecha);
+        fechaynota.add(nota);
         
         JPanel generos = new JPanel();
         BoxLayout genL = new BoxLayout(generos, BoxLayout.Y_AXIS);
@@ -162,7 +175,7 @@ public class MainViewJuego extends JPanel{
         etiquetas.setLayout(new GridLayout(4, 2));
         for (String et : _juegoDTO.get_genres()) {
         	JButton jl = new JButton(et);
-        	//jl.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+        	jl.addActionListener(new GenreButton(et));
         	etiquetas.add(jl);
         }
         generos.add(etiquetas);
@@ -170,7 +183,7 @@ public class MainViewJuego extends JPanel{
 		
 		der.setLayout(derecha);
 		der.add(mainPanel);
-		der.add(fecha);
+		der.add(fechaynota);
 		der.add(generos);
 		
 		_rightS = der;
@@ -181,7 +194,7 @@ public class MainViewJuego extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 			
 			if (_cj.isRegistered()) {
-				_cj.evento(EventoJuego.ComprarJuego, _juegoDTO);
+				_cj.evento(EventoJuego.ComprarJuego, _juegoDTO, null);
 			}
 			else {
 				JOptionPane.showMessageDialog(MainViewJuego.this, 
@@ -189,6 +202,21 @@ public class MainViewJuego extends JPanel{
             			"Error", JOptionPane.ERROR_MESSAGE);
 			}
 				
+		}
+	}
+	
+	class GenreButton implements ActionListener {
+		
+		private String genre;
+		
+		public GenreButton(String g) {
+			genre = g;
+		}
+		
+		public void actionPerformed(ActionEvent arg0) {
+			
+			_cj.evento(EventoJuego.TiendaGenre, _juegoDTO, genre);
+			
 		}
 	}
 }

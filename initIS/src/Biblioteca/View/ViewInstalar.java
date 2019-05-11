@@ -12,10 +12,13 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import Biblioteca.Control.BibliotecaControllerFacade;
+import Biblioteca.Control.EventoBiblioteca;
 import Biblioteca.Control.JuegoEnPropiedadDTO;
 
 public class ViewInstalar extends JPanel{
 
+	private static final long serialVersionUID = 1L;
+	
 	BibliotecaControllerFacade _bc;
 	JuegoEnPropiedadDTO _juego;
 	
@@ -42,8 +45,8 @@ public class ViewInstalar extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				_bc.instalarJuego(_juego);
-				firePropertyChange("Biblioteca",null ,null);
+				_bc.evento(EventoBiblioteca.instalarJuego, _juego);
+				firePropertyChange("Biblioteca",null ,_bc);
 				frame.dispose();
 			}	
 		});

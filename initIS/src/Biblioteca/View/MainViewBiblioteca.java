@@ -38,15 +38,13 @@ public class MainViewBiblioteca extends JPanel{
 		
 		configPanel();
 		addGames();
-		
 	}
 	
 	private void configPanel() {
 		
 		this.setLayout(new BorderLayout());
 		_panel = new JPanel();
-		_panel.setLayout(new GridLayout(0, 3, 10, 10));
-		
+		_panel.setLayout(new GridLayout(0, 3, 10, 10));		
 	}
 	
 	private void addGames() {
@@ -56,13 +54,12 @@ public class MainViewBiblioteca extends JPanel{
 			
 			JuegoBiblioteca observed = new JuegoBiblioteca(j, _bibliotecaController);
 	        
-			_panel.add(observed);
-			
+			_panel.add(observed);	
 		}
+		
 		JPanel _grid = new JPanel(new FlowLayout());
 		JScrollPane jsp = new JScrollPane(_panel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		jsp.getVerticalScrollBar().setUnitIncrement(20);
-		//_grid.add(jsp);
 		jsp.add(_grid);
 		this.add(jsp);
 	}

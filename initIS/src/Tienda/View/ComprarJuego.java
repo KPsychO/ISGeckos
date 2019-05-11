@@ -85,7 +85,8 @@ public class ComprarJuego extends JPanel{
 		name_price.setLayout(new BoxLayout(name_price, BoxLayout.Y_AXIS));
 		name_price.add(new JLabel(_juego.get_title()));
 		name_price.add(new JLabel(String.valueOf(_juego.get_price())));
-		gameInfo.add(new JLabel(new ImageIcon("./src/resources/game_icon.jpg")));
+		//gameInfo.add(new JLabel(new ImageIcon("./resources//game_icon.jpg")));
+		gameInfo.add(new JLabel(new ImageIcon("./resources/game_icon.jpg")));
 		gameInfo.add(name_price);
 		JPanel desc = new JPanel(new BorderLayout());
 		desc.setMaximumSize(new Dimension(200, 100));
@@ -190,23 +191,23 @@ public class ComprarJuego extends JPanel{
 
 			boolean ret = true;
 			
-			/*
-			ret = !tfnombre.getText().equals("");
-			ret = !tfapell.getText().equals("");
-			ret = !(Integer.valueOf(tfedad.getText()) >= 12);
-			ret = !(Integer.valueOf(tfedad.getText()) <= 100);
-			ret = !(Long.parseUnsignedLong(tfcuenta.getText()) / 1E15 < 10);
-			ret = !(Long.parseUnsignedLong(tfcuenta.getText()) / 1E15 > 1);
-			ret = !(Integer.valueOf(tfcvv.getText()) / 100 < 10);
-			ret = !(Integer.valueOf(tfcvv.getText()) / 100 > 1);
-			*/
-			if(ret)	ret = _tiendaCont.comprarJuego(_juego);
+			try {
+				
+				ret = !tfnombre.getText().equals("");
+				ret = !tfapell.getText().equals("");
+				ret = !(Integer.valueOf(tfedad.getText()) < 12);
+				ret = !(Integer.valueOf(tfedad.getText()) >= 100);
+				ret = !(Double.parseDouble(tfcuenta.getText()) / 1E15 > 10);
+				ret = !(Double.parseDouble(tfcuenta.getText()) / 1E15 < 1);
+				ret = !(Double.parseDouble(tfcvv.getText()) / 100 > 10);
+				ret = !(Double.parseDouble(tfcvv.getText()) / 100 < 1);
+				
+				if(ret)	ret = _tiendaCont.comprarJuego(_juego);
 
-			/*
-			if(Integer.valueOf(tfedad.getText()) >= 12 || Integer.valueOf(tfedad.getText()) <= 100) System.out.println("edad");
-			if(Long.parseUnsignedLong(tfcuenta.getText()) / 1E15 < 10 || Long.parseUnsignedLong(tfcuenta.getText()) / 1E15 > 1) System.out.println("cuenta");
-			if(Integer.valueOf(tfcvv.getText()) / 100 < 10 || Integer.valueOf(tfcvv.getText()) / 100 > 1) System.out.println("cvv");
-			*/
+			} catch(Exception e) {
+				ret = false;
+			}
+			
 			
 			if (ret) {
 				

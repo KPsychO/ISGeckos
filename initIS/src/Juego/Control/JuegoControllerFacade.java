@@ -21,7 +21,7 @@ public class JuegoControllerFacade {
 		
 	}
 	
-	public void evento(EventoJuego e, JuegoDTO _juego) {
+	public void evento(EventoJuego e, JuegoDTO _juego, String genre) {
 		switch (e) {
 		case JuegoTienda:
 			_controller.setPrincipalPanel(new MainViewJuego(_juego, this, false));
@@ -38,6 +38,8 @@ public class JuegoControllerFacade {
 		case ComprarJuego:
 			_controller.setPrincipalPanel(_controller.getComprarJuego(_juego));
 			break;
+		case TiendaGenre:
+			_controller.setPrincipalPanel(_controller.getTiendaGenre(genre));
 		default:
 			break;
 		}
@@ -66,6 +68,10 @@ public class JuegoControllerFacade {
 	
 	public JPanel getJuegoPanel(JuegoDTO j, boolean c) {
 		return new MainViewJuego(j, this, c);
+	}
+
+	public float getNotaMedia(JuegoDTO _juegoDTO) {
+		return _controller.getNotaMedia(_juegoDTO);
 	}
 
 }

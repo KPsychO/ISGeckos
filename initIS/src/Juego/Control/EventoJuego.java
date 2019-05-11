@@ -6,6 +6,7 @@ public enum EventoJuego {
 	Desarrolladora,
 	ActualizarJuego,
 	EliminarJuego,
-	ComprarJuego
+	ComprarJuego, 
+	TiendaGenre
 	
 }

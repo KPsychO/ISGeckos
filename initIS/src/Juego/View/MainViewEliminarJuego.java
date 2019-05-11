@@ -108,7 +108,7 @@ public class MainViewEliminarJuego extends JPanel {
         	JOptionPane.showMessageDialog(null, "Se ha cancelado la eliminacion de: " + _dto.get_title(), 
         			"Cancelar", JOptionPane.INFORMATION_MESSAGE);
 			
-        	_jc.evento(EventoJuego.Desarrolladora, null);
+        	_jc.evento(EventoJuego.Desarrolladora, null, null);
 				
 		}
 	}
@@ -119,7 +119,7 @@ public class MainViewEliminarJuego extends JPanel {
         			"Enviado", JOptionPane.INFORMATION_MESSAGE);
 
         	_jc.formularioEliminar(_dto, "Eliminar", _text.getText());
-        	_jc.evento(EventoJuego.Desarrolladora, _dto);
+        	_jc.evento(EventoJuego.Desarrolladora, _dto, null);
 				
 		}
 	}

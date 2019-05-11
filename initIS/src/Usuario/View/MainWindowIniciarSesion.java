@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
@@ -25,7 +26,7 @@ public class MainWindowIniciarSesion extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
 	private JTextArea username;
-	private JTextArea password;
+	private JPasswordField password;
     private JButton iniciarSesion;
     private JButton crearCuenta;
     
@@ -82,7 +83,7 @@ public class MainWindowIniciarSesion extends JPanel{
         passwordLabel.setPreferredSize(new Dimension(125,20));
         passwordLabel.setText("Password:  ");
         
-        password = new JTextArea();
+        password = new JPasswordField();
         password.setPreferredSize(new Dimension(sizex,25));
         password.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         
