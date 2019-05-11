@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -29,9 +28,7 @@ public class PanelListValoraciones extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	JuegoDTO juego;
-	UsuarioDTO user;
-	List<TransferValoracion> valoraciones;
+	private JuegoDTO juego;
 	private ValoracionesControllerFacade controller;
 	
 	public PanelListValoraciones(JuegoDTO game, UsuarioDTO user, ValoracionesControllerFacade controller) throws IOException {

@@ -24,7 +24,6 @@ import javax.swing.border.TitledBorder;
 import Usuario.Control.UsuarioDTO;
 import valoraciones.ValoracionesControllerFacade;
 import valoraciones.controller.EventsValoraciones;
-import valoraciones.model.DAOComentario;
 import valoraciones.model.TransferComentario;
 import valoraciones.model.TransferValoracion;
 
@@ -36,12 +35,11 @@ public class PanelListComentarios extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private List<TransferComentario> comentarios;
-	//private TransferValoracion tValoracion;
 	private UsuarioDTO user;
 	private ValoracionesControllerFacade controller;
 	
 	public PanelListComentarios(TransferValoracion tValoracion, UsuarioDTO user, ValoracionesControllerFacade controller) throws IOException{
-		comentarios = new DAOComentario().getComentarios(tValoracion);
+		comentarios = controller.getComentarios(tValoracion);
 		this.user = user;
 		this.controller = controller;
 		initComponent();
@@ -98,9 +96,7 @@ public class PanelListComentarios extends JPanel {
 		panelComentario.add(new JLabel("Autor: "+comentario.getUser().get_username()), c);
 		
 		if(user.get_user_id().equals(comentario.getUser().get_user_id())) {
-			//JButton buttonEditar = new JButton(new ImageIcon("src/resources/valoraciones/images/modificar.png"));
 			JButton buttonEditar = new JButton(new ImageIcon("resources/valoraciones/images/modificar.png"));
-			//JButton buttonEliminar = new JButton(new ImageIcon("src/resources/valoraciones/images/eliminar.png"));
 			JButton buttonEliminar = new JButton(new ImageIcon("resources/valoraciones/images/eliminar.png"));
 			buttonEliminar.addActionListener(new ActionListener() {
 

@@ -67,18 +67,6 @@ public class ViewFromValoracion extends JPanel {
 	}
 
 	private void persoComponentsModify() {
-/*
- * 
-	private JTextField textFieldTitulo;
-	private JButton buttonMultimedia;
-	private JTextArea textAreaValoracion;
-	private JSlider sliderPuntuacion;
-	private JButton buttonPublicar;
-	private JComboBox<String> comboBoxFormat;
-	
-	private TransferValoracion valoracion;
-	private Multimedia multimedia;
- */
 		this.textFieldTitulo.setText(valoracion.getTitulo().getText());
 		this.sliderPuntuacion.setValue(valoracion.getPuntuacion());
 		if(valoracion.getMultimedia()!=null) {
@@ -124,7 +112,6 @@ public class ViewFromValoracion extends JPanel {
 				JFileChooser fileChooser = new JFileChooser();
 				int ret = fileChooser.showOpenDialog(getParent());
 				if (ret == JFileChooser.APPROVE_OPTION) {
-					//fileChooser.getSelectedFile()
 					int format = 0;
 					switch(comboBoxFormat.getSelectedIndex()) {
 					case 0:
@@ -158,7 +145,7 @@ public class ViewFromValoracion extends JPanel {
 								"Controller run error",
 								JOptionPane.INFORMATION_MESSAGE 
 								);
-						ex.printStackTrace();
+						//ex.printStackTrace();
 					}
 					
 				}
@@ -190,7 +177,7 @@ public class ViewFromValoracion extends JPanel {
 							"Controller run error",
 							JOptionPane.INFORMATION_MESSAGE 
 							);
-					ex.printStackTrace();
+					//ex.printStackTrace();
 				}
 				
 			}

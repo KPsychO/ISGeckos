@@ -73,9 +73,9 @@ public class ViewFormComentario extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 				Date date = new Date();
-				comentario.setComentario(SingletonBuilderTextFactory.getSingletonInstance().createInstance(new Object[] {BuildersTextTypes.COMENTARIO,textAreaComentario.getText() }));
-				comentario.setDate(dateFormat.format(date));
 				try {
+					comentario.setComentario(SingletonBuilderTextFactory.getSingletonInstance().createInstance(new Object[] {BuildersTextTypes.COMENTARIO,textAreaComentario.getText() }));
+					comentario.setDate(dateFormat.format(date));
 					controller.actions(EventsValoraciones.PUBLICAR_COMENTARIO, comentario);
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(
@@ -84,7 +84,7 @@ public class ViewFormComentario extends JPanel{
 							"Controller run error",
 							JOptionPane.INFORMATION_MESSAGE 
 							);
-					ex.printStackTrace();
+					//ex.printStackTrace();
 				}
 			}
 			
