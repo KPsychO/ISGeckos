@@ -4,7 +4,6 @@ import javax.swing.JPanel;
 
 import org.json.JSONArray;
 
-import Comunidad.View.MainViewPerfilUsuarioDenunciado;
 import IncidenciasMejoras.View.MainViewIncidenciasJugador;
 import IncidenciasMejoras.View.MainViewRevisionMensajes;
 import Juego.Control.JuegoDTO;

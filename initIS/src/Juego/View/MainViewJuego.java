@@ -29,7 +29,9 @@ public class MainViewJuego extends JPanel{
 	private JuegoDTO _juegoDTO;
 	private JPanel _leftS;
 	private JPanel _rightS;
+	@SuppressWarnings("unused")
 	private JPanel _valoraciones;
+	@SuppressWarnings("unused")
 	private JLabel _labelValoraciones;
 	private boolean _comprado;
 	

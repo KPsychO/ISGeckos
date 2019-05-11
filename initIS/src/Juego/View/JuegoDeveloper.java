@@ -23,15 +23,13 @@ public class JuegoDeveloper extends JPanel{
 
 	private JuegoDTO _dto;
     private JuegoControllerFacade _cj;
-    private UsuarioDTO _user;
-
     private JLabel _icon;
-    private JPanel _contents;
+    @SuppressWarnings("unused")
+	private JPanel _contents;
     private JPanel _caract;
     private JPanel _desc;
 	
 	public JuegoDeveloper(JuegoDTO dto, JuegoControllerFacade cj, UsuarioDTO user) {
-		_user = user;
 		_cj = cj;
 		_dto = dto;
 		initGUI();

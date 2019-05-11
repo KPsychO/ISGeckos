@@ -18,7 +18,6 @@ import IncidenciasMejoras.View.MainViewDenunciasJugador;
 import IncidenciasMejoras.View.MainViewIncidenciasJuego;
 import Juego.Control.JuegoControllerFacade;
 import Juego.Control.JuegoDTO;
-import Juego.View.MainViewJuego;
 import Tienda.Control.TiendaControllerFacade;
 import Usuario.Control.UsuarioControllerFacade;
 import Usuario.Control.UsuarioDTO;
@@ -97,6 +96,7 @@ public class Controller {
 		return new UsuarioDTO(null, 0, null, null, null, null, "0", null);
 	}
 	
+	@SuppressWarnings("exports")
 	public void setPrincipalPanel(JPanel panel) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -123,11 +123,12 @@ public class Controller {
 		return _tiendaControler.getTiendaPanel();
 	}
 	
+	@SuppressWarnings("exports")
 	public JPanel getBiblioteca() {
 		return _bibliotecaController.getBibliotecaPanel();
 	}
-	
-	//Jin
+
+	@SuppressWarnings("exports")
 	public JPanel getDenunciasJugador(UsuarioDTO userDen) {
 		return new MainViewDenunciasJugador(_current_user, userDen, _controllerIncidenciasMejoras);
 	}
@@ -136,10 +137,12 @@ public class Controller {
 		_bibliotecaController.comprarJuego(j);
 	}
 
+	@SuppressWarnings("exports")
 	public void valorar(JuegoEnPropiedadDTO juego) {
 		this.setPrincipalPanel(this._controllerValoraciones.getFormValoraciones(this._current_user, juego));
 	}
 	
+	@SuppressWarnings("exports")
 	public JPanel getListValoraciones(JuegoDTO game) throws IOException {
 		return this._controllerValoraciones.getPanelListValoracionesJuego(game, this._current_user);
 	}	
@@ -158,18 +161,22 @@ public class Controller {
 		return _tiendaControler;
 	}
 
+	@SuppressWarnings("exports")
 	public JPanel getFormularioPanel() {
 		return _controllerFormulario.getFormularioPanel(_current_user);
 	}
 
+	@SuppressWarnings("exports")
 	public JPanel getPublicacionPanel() {
 		return _controllerFormulario.getPublicacion(_current_user);
 	}
 
+	@SuppressWarnings("exports")
 	public JPanel getDesarrolladoraPanel() {
 		return _controllerJuego.getDesarrolladoraPanel(_current_user);
 	}
 
+	@SuppressWarnings("exports")
 	public JPanel getRevMej() {
 		if (_controllerIncidenciasMejoras.getIncidenciasMejoras() != 0) {
 			return _controllerIncidenciasMejoras.getRevMejPanel();
@@ -180,22 +187,27 @@ public class Controller {
 		}	
 	}
 	
+	@SuppressWarnings("exports")
 	public List<JuegoEnPropiedadDTO> getOwnedGames(){
 		return _bibliotecaController.getOwnedGames(_current_user);
 	}
 
+	@SuppressWarnings("exports")
 	public JPanel getDenunciasJuego(JuegoEnPropiedadDTO juego) {
 		return new MainViewDenunciasJuego(_current_user, juego, _controllerIncidenciasMejoras);
 	}
 
+	@SuppressWarnings("exports")
 	public JPanel getIncidenciasJuego(JuegoEnPropiedadDTO juego) {
 		return new MainViewIncidenciasJuego(_current_user, juego, _controllerIncidenciasMejoras);
 	}
 
+	@SuppressWarnings("exports")
 	public void insertarFormulario(FormularioDTO dto, String type) {
 		_controllerFormulario.insertarFormulario(dto, type);
 	}
 
+	@SuppressWarnings("exports")
 	public FormularioDTO crearFormulario(JuegoDTO dto, String type, String just) {
 		return _controllerFormulario.crearFormulario(dto, type, just);
 	}
@@ -221,10 +233,12 @@ public class Controller {
 		return _bibliotecaController.getOwnedGames(_current_user).size();
 	}
 
+	@SuppressWarnings("exports")
 	public JPanel getComunidad() {
 		return _controllerComunidad.getComunidadPanel(_current_user);
 	}
 	
+	@SuppressWarnings("exports")
 	public JPanel createVistaJuegoTienda(JuegoDTO _juego, boolean comprado) {
 		
 		return _controllerJuego.getJuegoPanel(_juego, comprado);
@@ -239,12 +253,12 @@ public class Controller {
 		try {
 			return _controllerValoraciones.getMediaValoracion(dto);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
 	}
 
+	@SuppressWarnings("exports")
 	public JPanel getTiendaGenre(String genre) {
 		return _tiendaControler.getTiendaPanel(genre);
 	}

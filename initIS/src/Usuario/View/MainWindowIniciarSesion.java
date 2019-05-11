@@ -112,7 +112,8 @@ public class MainWindowIniciarSesion extends JPanel{
 	}
 	
 	class iniciarButton implements ActionListener {
-		 public void actionPerformed(ActionEvent e){  
+		 @SuppressWarnings("deprecation")
+		public void actionPerformed(ActionEvent e){  
 			 if (!username.getText().equals("") && !password.getText().equals("")) {
 				
 				 UsuarioDTO user = _dao.login(username.getText(), password.getText());

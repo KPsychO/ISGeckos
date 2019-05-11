@@ -2,12 +2,6 @@ package Biblioteca.Control;
 
 import java.util.List;
 
-import javax.swing.JPanel;
-
-import Juego.Control.JuegoDTO;
-import Usuario.Control.UsuarioDTO;
-import common.Controller;
-
 public class JuegoEnPropiedadController {
 
 	private JuegoEnPropiedadDAO _dao;

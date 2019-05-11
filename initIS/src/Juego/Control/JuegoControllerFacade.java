@@ -49,10 +49,12 @@ public class JuegoControllerFacade {
 		return _controller.isRegistered();
 	}
 	
+	@SuppressWarnings("exports")
 	public JPanel getDesarrolladoraPanel(UsuarioDTO dto) {
 		return new MainViewDeveloper(dto, this);
 	}
 	
+	@SuppressWarnings("exports")
 	public JPanel getListValoraciones(JuegoDTO game) throws IOException {
 		return this._controller.getListValoraciones(game);
 	}
@@ -66,6 +68,7 @@ public class JuegoControllerFacade {
 		SingletonJuegoDAO.getInstance().eliminarJuego(id);
 	}
 	
+	@SuppressWarnings("exports")
 	public JPanel getJuegoPanel(JuegoDTO j, boolean c) {
 		return new MainViewJuego(j, this, c);
 	}

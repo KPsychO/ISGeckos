@@ -1,20 +1,16 @@
 package Usuario.Control;
 
-import Usuario.View.MainWindowAcuerdoSuscriptor;
-import Usuario.View.MainWindowEliminarCuenta;
-import Usuario.View.MainWindowModificarCuenta;
-import Usuario.View.MainWindowCrearCuenta;
-import Usuario.View.MainWindowIniciarSesion;
-import Usuario.View.MainWindowPerfilUsuario;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import Usuario.Control.EventoUsuario;
-import Usuario.Control.UsuarioDTO;
+import Usuario.View.MainWindowAcuerdoSuscriptor;
+import Usuario.View.MainWindowCrearCuenta;
+import Usuario.View.MainWindowEliminarCuenta;
+import Usuario.View.MainWindowIniciarSesion;
+import Usuario.View.MainWindowModificarCuenta;
+import Usuario.View.MainWindowPerfilUsuario;
 import common.Controller;
 
 public class UsuarioControllerFacade {
@@ -98,6 +94,7 @@ public class UsuarioControllerFacade {
 		return _user.getUsuarioID(ID);
 	}
 
+	@SuppressWarnings("exports")
 	public JPanel getIconoPanel(UsuarioDTO dto) {
 		if (dto.isUnregistered())
 			return new MainWindowIniciarSesion(this);

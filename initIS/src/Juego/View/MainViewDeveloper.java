@@ -4,8 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -17,8 +15,6 @@ import Juego.Control.JuegoControllerFacade;
 import Juego.Control.JuegoDAO;
 import Juego.Control.JuegoDAOJSON;
 import Juego.Control.JuegoDTO;
-import Usuario.Control.UsuarioDAO;
-import Usuario.Control.UsuarioDAOJSON;
 import Usuario.Control.UsuarioDTO;
 
 public class MainViewDeveloper extends JPanel {

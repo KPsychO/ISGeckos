@@ -2,12 +2,9 @@ package Biblioteca.Control;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -175,7 +172,6 @@ public class BibliotecaDAOJSON implements BibliotecaDAO {
 		JSONObject bib_user = new JSONObject();
 		
 		int i = 0;
-		boolean fin = false;
 		for(Object o : biblioteca) {
 			bib_user = new JSONObject(new JSONTokener(o.toString()));
 			

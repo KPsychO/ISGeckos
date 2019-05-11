@@ -53,7 +53,6 @@ private Controller _controller;
 	}
 
 	public JPanel getPublicacion(UsuarioDTO dev) {
-		Object JPanel = null;
 		if(this.getNumForm() != 0) {
 			return new MainViewPublicacion(dev, this);
 		}

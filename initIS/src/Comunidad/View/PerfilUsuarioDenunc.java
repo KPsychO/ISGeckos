@@ -23,6 +23,7 @@ public class PerfilUsuarioDenunc extends JPanel{
 	private UsuarioDTO _user;
 	
 	private JButton _icon;
+	@SuppressWarnings("unused")
 	private JPanel _contents;
 	private JPanel _caract;
 	private JPanel _desc;

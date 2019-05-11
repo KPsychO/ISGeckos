@@ -1,8 +1,7 @@
 package Juego.Control;
 
-import java.util.*;
+import java.util.List;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class JuegoDTO {

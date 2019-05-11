@@ -1,6 +1,5 @@
 package Tienda.Control;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -8,7 +7,6 @@ import javax.swing.JPanel;
 import Biblioteca.Control.JuegoEnPropiedadDTO;
 import Juego.Control.JuegoControllerFacade;
 import Juego.Control.JuegoDTO;
-import Juego.View.MainViewJuego;
 import Tienda.View.ComprarJuego;
 import Tienda.View.MainViewTienda;
 import Usuario.Control.UsuarioDTO;
@@ -114,6 +112,7 @@ public class TiendaControllerFacade{
 		
 	}
 
+	@SuppressWarnings("exports")
 	public JPanel getTiendaPanel(String genre) {
 		return new MainViewTienda(this, createJuegosEnTienda(genre));
 	}

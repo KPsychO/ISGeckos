@@ -3,7 +3,6 @@ package Juego.Control;
 import java.util.List;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import Usuario.Control.UsuarioDTO;
 

@@ -4,25 +4,19 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import Juego.Control.EventoJuego;
 import Juego.Control.JuegoDTO;
-import Juego.View.MainViewJuego;
 import Tienda.Control.EventoTienda;
 import Tienda.Control.TiendaControllerFacade;
-import Usuario.Control.UsuarioDTO;
 
 public class MainViewTienda extends JPanel {
 

@@ -13,8 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 
 import Juego.Control.EventoJuego;
@@ -22,6 +20,8 @@ import Juego.Control.JuegoControllerFacade;
 import Juego.Control.JuegoDTO;
 
 public class MainViewEliminarJuego extends JPanel {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private JuegoDTO _dto;
 	private JuegoControllerFacade _jc;
@@ -88,6 +88,7 @@ public class MainViewEliminarJuego extends JPanel {
 		this.add(all);
 	}
 	
+	@SuppressWarnings("exports")
 	public void CreateFocusListenerForFields(JTextArea txt)
 	{
 	    txt.addFocusListener(new FocusListener() 

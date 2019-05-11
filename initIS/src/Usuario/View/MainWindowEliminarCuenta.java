@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
 import Usuario.Control.EventoUsuario;
@@ -104,7 +103,8 @@ public class MainWindowEliminarCuenta extends JPanel{
 	}
 	
 	class continuarButton implements ActionListener {
-		 public void actionPerformed(ActionEvent e){
+		 @SuppressWarnings("deprecation")
+		public void actionPerformed(ActionEvent e){
 			 if (ok.isSelected()) {
 				 if (!password.getText().isEmpty() && password.getText().equals(confirmPassword.getText())) {
 					 if (password.getText().equals(_dto.get_password())) {
