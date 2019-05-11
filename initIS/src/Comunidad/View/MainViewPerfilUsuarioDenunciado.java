@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
+import Comunidad.Control.ComunidadControllerFacade;
+import Comunidad.Control.EventoComunidad;
 import Usuario.Control.UsuarioDTO;
 
 public class MainViewPerfilUsuarioDenunciado extends JPanel implements ActionListener{

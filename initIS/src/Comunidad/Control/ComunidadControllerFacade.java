@@ -1,7 +1,9 @@
-package Comunidad.View;
+package Comunidad.Control;
 
 import javax.swing.JPanel;
 
+import Comunidad.View.MainViewComunidad;
+import Comunidad.View.MainViewPerfilUsuarioDenunciado;
 import Juego.Control.JuegoDTO;
 import Usuario.Control.UsuarioDTO;
 import common.Controller;

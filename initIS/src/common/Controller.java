@@ -9,7 +9,7 @@ import javax.swing.SwingUtilities;
 
 import Biblioteca.Control.BibliotecaControllerFacade;
 import Biblioteca.Control.JuegoEnPropiedadDTO;
-import Comunidad.View.ComunidadControllerFacade;
+import Comunidad.Control.ComunidadControllerFacade;
 import Formulario.Control.FormularioControllerFacade;
 import Formulario.Control.FormularioDTO;
 import IncidenciasMejoras.Control.IncidenciasMejorasControllerFacade;

@@ -15,6 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 
+import Comunidad.Control.ComunidadControllerFacade;
+import Comunidad.Control.EventoComunidad;
 import Usuario.Control.UsuarioDTO;
 
 public class PerfilUsuarioDenunc extends JPanel{

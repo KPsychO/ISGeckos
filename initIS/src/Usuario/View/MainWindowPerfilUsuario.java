@@ -78,7 +78,7 @@ public class MainWindowPerfilUsuario extends JPanel{
 				
 		JLabel pais = new JLabel ("Pais: " + _dto.get_country());
 		JLabel juegos = new JLabel ("Juegos en biblioteca: " + _cu.get_ownedGames());
-		bal = new JLabel("Balance: " + (float) _dto.get_balance()/100);
+		bal = new JLabel("Balance: " + (float) _dto.get_balance()/100 + "$");
 		
 		name_level_estado.add(name);
 		name_level_estado.add(pais);

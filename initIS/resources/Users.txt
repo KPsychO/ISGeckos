@@ -1,22 +1,10 @@
 [
     {
         "_country": "España",
-        "_email": "pepitoperez@delospalotes.com",
-        "_password": "1234",
-        "_balance": 694332,
-        "_desc": "Me encanta jugar a videojuegos! Geckos mola mazo.",
-        "_user_id": "a1a2ab94-affb-4b9d-9659",
-        "_username": "pepito",
-        "_types": [
-            "user"
-        ]
-    },
-    {
-        "_country": "España",
         "_email": "admin@admin.com",
         "_password": "admin",
         "_balance": 99999999,
-        "_desc": "Soy admin de esta APP y tengo permisos especiales! Puedo ver incidencias!",
+        "_desc": "Soy admin de esta APP y tengo permisos especiales! Puedo ver incidencias y publicar jeugos!",
         "_user_id": "53f95919-73bf-458d-b4b1",
         "_username": "admin",
         "_types": [
@@ -36,5 +24,15 @@
             "user",
             "developer"
         ]
+    },
+    {
+        "_country": "España",
+        "_email": "pepitoperez@gmail.com",
+        "_password": "1234",
+        "_balance": 70000,
+        "_desc": "Me encanta jugar a videojuegos! Geckos mola mazo.",
+        "_user_id": "a1a2ab94-affb-4b9d-9659",
+        "_username": "pepito",
+        "_types": ["user"]
     }
 ]

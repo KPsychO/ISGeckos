@@ -1,4 +1,4 @@
-package Comunidad.View;
+package Comunidad.Control;
 
 public enum EventoComunidad {
 	Comunidad,

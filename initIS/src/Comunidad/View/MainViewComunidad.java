@@ -19,6 +19,7 @@ import javax.swing.border.EtchedBorder;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import Comunidad.Control.ComunidadControllerFacade;
 import Usuario.Control.UsuarioDAO;
 import Usuario.Control.UsuarioDAOJSON;
 import Usuario.Control.UsuarioDTO;
