@@ -8,13 +8,6 @@ public class SingletonBuilderTextFactory {
 	private static Factory<Text> factory;
 
 	private synchronized static void createInstance() {
-		/*
-		 * 
-		ArrayList<Builder<Body>> bodyBuilders = new ArrayList<>();
-		bodyBuilders.add(new BasicBodyBuilder());
-		bodyBuilders.add(new MassLosingBodyBuilder());
-		_bodyFactory = new BuilderBasedFactory<Body>(bodyBuilders);
-		 */
 		ArrayList<Builder<Text>> builders = new ArrayList<Builder<Text>>();
 		builders.add(new BuilderTextComentario());
 		builders.add(new BuilderTextValoracion());
@@ -34,7 +27,7 @@ public class SingletonBuilderTextFactory {
 	    try {
 	        throw new CloneNotSupportedException();
 	    } catch (CloneNotSupportedException ex) {
-	        System.out.println("No se puede clonar un objeto de la clase SingletonBuilderTextFactory");
+	        ex.printStackTrace();
 	    }
 	    return null; 
 	}

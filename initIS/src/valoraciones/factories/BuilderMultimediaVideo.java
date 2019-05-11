@@ -5,7 +5,7 @@ import valoraciones.model.multimedia.MultimediaVideo;
 
 public class BuilderMultimediaVideo extends Builder<Multimedia>{
 	
-	BuilderMultimediaVideo(){
+	public BuilderMultimediaVideo(){
 		super(BuildersMultimediaTypes.VIDEO);
 	}
 	

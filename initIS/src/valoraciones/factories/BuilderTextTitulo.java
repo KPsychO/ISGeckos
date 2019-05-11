@@ -13,9 +13,9 @@ public class BuilderTextTitulo extends Builder<Text>{
 	protected Text createTheInstance(Object[] data) {
 		Text text = new TextTitulo();
 
-		System.out.println("control data"+data);
 		if(!text.isTextValid((String)data[1]))
 			throw new IllegalArgumentException("not valid text titulo");
+		
 		text.setText((String)data[1]);
 		return text;
 	}

@@ -12,8 +12,10 @@ public class BuilderMultimediaAudio extends Builder<Multimedia> {
 	@Override
 	protected Multimedia createTheInstance(Object[] data) {
 		Multimedia mul = new MultimediaAudio();
+		
 		if(!mul.isFormatSuported((String)data[1]))
 			throw new IllegalArgumentException("format not suported");
+		
 		mul.setPath((String)data[1], (String)data[2]);
 		return mul;
 	}

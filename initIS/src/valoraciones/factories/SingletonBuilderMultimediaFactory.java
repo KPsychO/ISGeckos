@@ -7,13 +7,6 @@ public class SingletonBuilderMultimediaFactory {
 	private static Factory<Multimedia> factory;
 
 	private synchronized static void createInstance() {
-		/*
-		 * 
-		ArrayList<Builder<Body>> bodyBuilders = new ArrayList<>();
-		bodyBuilders.add(new BasicBodyBuilder());
-		bodyBuilders.add(new MassLosingBodyBuilder());
-		_bodyFactory = new BuilderBasedFactory<Body>(bodyBuilders);
-		 */
 		ArrayList<Builder<Multimedia>> builders = new ArrayList<Builder<Multimedia>>();
 		builders.add(new BuilderMultimediaAudio());
 		builders.add(new BuilderMultimediaImages());
@@ -33,7 +26,7 @@ public class SingletonBuilderMultimediaFactory {
 	    try {
 	        throw new CloneNotSupportedException();
 	    } catch (CloneNotSupportedException ex) {
-	        System.out.println("No se puede clonar un objeto de la clase SingletonBuilderTextFactory");
+	        ex.printStackTrace();
 	    }
 	    return null; 
 	}
