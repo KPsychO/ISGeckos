@@ -2,6 +2,7 @@ package valoraciones.model;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ServiceApplicationValoraciones {
 	
@@ -31,5 +32,9 @@ public class ServiceApplicationValoraciones {
 	
 	public void deleteUserDocuments(String idUser) throws FileNotFoundException, IOException {
 		new FacadeDeleteUserDocuments().deleteDocuments(idUser);
+	}
+	
+	public ArrayList<TransferComentario> getComentarios(TransferValoracion valoracion) throws IOException{
+		return new DAOComentario().getComentarios(valoracion);
 	}
 }

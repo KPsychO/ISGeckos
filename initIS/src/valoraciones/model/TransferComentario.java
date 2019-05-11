@@ -16,15 +16,6 @@ public class TransferComentario {
 	private JuegoDTO game;
 	private String date;
 	
-	public TransferComentario(int id, int valoracionID, Text comentario, UsuarioDTO user, JuegoDTO game, String date) {
-		this.id = id;
-		this.valoracionID = valoracionID;
-		this.comentario = comentario;
-		this.user = user;
-		this.game = game;
-		this.date = date;
-	}
-	
 	public TransferComentario(int valoracionID, UsuarioDTO user, JuegoDTO game) {
 		this.valoracionID = valoracionID;
 		this.user = user;

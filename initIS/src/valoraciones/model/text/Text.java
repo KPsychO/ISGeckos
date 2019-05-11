@@ -6,7 +6,7 @@ public abstract class Text {
 	private int maxCharacters;
 	private String[] wordsBanned;
 	
-	protected Text(int maxCharacters,String[] wordsBanned) throws IllegalArgumentException{
+	public Text(int maxCharacters,String[] wordsBanned) throws IllegalArgumentException{
 		this.maxCharacters = maxCharacters;
 		this.wordsBanned = wordsBanned;
 	}

@@ -5,21 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class FacadeDeleteUserDocuments {
-	Storage almacen;
-	String idUser;
-
-	//String path = pathComentarios + "/" + valoracion.getGame().get_id() + "/"+valoracion.getID()+"/";
-	//path = pathValoraciones + "/"+ valoracion.getGame().get_id()+"/"+valoracion.getID()+".txt";
-	
-	/*
-	 * 
-		s[0] = id+"";
-		s[1] = valoracionID+"";
-		s[2] = comentario.getText();
-		s[3] = user.get_user_id();
-		s[4] = game.get_id();
-		s[5] = date;
-	 */
+	private Storage almacen;
+	private String idUser;
 	
 	public FacadeDeleteUserDocuments() {
 		

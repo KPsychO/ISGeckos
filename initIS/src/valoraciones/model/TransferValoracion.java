@@ -20,27 +20,6 @@ public class TransferValoracion {
 	
 	/**
 	 * 
-	 * @param id
-	 * @param userID
-	 * @param gameID
-	 * @param titulo
-	 * @param valoracion
-	 * @param puntuacion
-	 * @param multimedia
-	 */
-	public TransferValoracion(int id, UsuarioDTO user, JuegoDTO game, Text titulo, Text valoracion, int puntuacion, Multimedia multimedia, String date) {
-		this.id = id;
-		this.user = user;
-		this.game = game;
-		this.titulo = titulo;
-		this.valoracion = valoracion;
-		this.puntuacion = puntuacion;
-		this.multimedia = multimedia;
-		this.date = date;
-	}
-	
-	/**
-	 * 
 	 * @param userID
 	 * @param gameID
 	 */
