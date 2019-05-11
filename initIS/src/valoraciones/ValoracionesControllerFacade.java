@@ -1,6 +1,7 @@
 package valoraciones;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -91,8 +92,11 @@ public class ValoracionesControllerFacade {
 		try {
 			sa.deleteUserDocuments(idUser);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public List<TransferComentario> getComentarios(TransferValoracion tValoracion) throws IOException {
+		return sa.getComentarios(tValoracion);
 	}
 }
